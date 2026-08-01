@@ -1,0 +1,701 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add('js')</script>
+<!-- ENTFERNEN sobald Impressum+Datenschutz live & freigegeben -->
+<meta name="robots" content="noindex, nofollow">
+<title>Executive Reset – drei Tage für Führungskräfte | A. Faubel</title>
+<meta name="description" content="Drei Tage für Unternehmer und Führungskräfte, die viel erreicht haben und viel Kraft dafür zahlen. Ein Prozess für eine Person. Zehn Plätze im Jahr, Bewerbung.">
+<meta property="og:title" content="Erfolg, der Sie nicht aufbraucht.">
+<meta property="og:description" content="Executive Reset. Drei Tage für Menschen mit Verantwortung. Zehn Plätze im Jahr.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<!-- og:image relativ, bis die Domain feststeht — ein absoluter Verweis auf
+     eine noch nicht existierende Adresse bricht die WhatsApp-Vorschau.
+     Bei Go-Live: absolute URL + og:url wieder eintragen. -->
+<meta property="og:image" content="assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="theme-color" content="#F0EEE9">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2315161A'/%3E%3Cpath d='M6 24h20' stroke='%23F0EEE9' stroke-width='1.5'/%3E%3Cpath d='M16 7v13' stroke='%238C8C88' stroke-width='1.5'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/libre-caslon-display-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/archivo-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts.css">
+<style>
+/* ═══════════════════════════════════════════════════════════
+   Alexander Faubel · „Executive Reset“
+   Richtung „Stein & Tinte“ — Papier dominant, EINE dunkle
+   Zäsur (Phase 2), kein Gold, keine Icons, keine Diagramme.
+   Genau 5 Farbwerte · 2 Schriftfamilien · 4 Größenstufen.
+   ═══════════════════════════════════════════════════════════ */
+
+:root{
+  /* — Palette: genau fünf Werte (G1). Kein #000, kein #FFF. — */
+  --papier:#F0EEE9;
+  --tinte:#15161A;
+  --zinn:#8C8C88;      /* NUR 1px-Haarlinien auf Papier + Text auf Tinte (5,3:1) */
+  --sandstein:#D8D1C6;
+  --signatur:#2E3A45;  /* an max. 4 Stellen: CTA, Lücken-Markierung, Fokus, Wortmarken-Linie */
+
+  --serif:'Libre Caslon Display','Caslon Fallback',Georgia,serif;
+  --sans:'Archivo','Archivo Fallback','Helvetica Neue',Arial,sans-serif;
+
+  /* — GENAU vier Größenstufen (G4) — */
+  /* Untergrenze 47px (Runde 2, Fix 4): bei 38px stand H1 : Fließtext mobil nur
+     bei 1,9:1 — „starke Typografie“ (K4) war auf dem erklärten Hauptfall nicht
+     eingelöst. 47px hält bei 390px denselben zweizeiligen Umbruch (gemessen),
+     Verhältnis 2,35:1. Dokumentierte Viewport-Ausnahme im Wunsch-Register. */
+  --s1:clamp(2.9375rem, 1.05rem + 5.9vw, 5.75rem);    /* 47 → 92  H1 + Ziffern */
+  --s2:clamp(1.75rem, 1.19rem + 2.5vw, 2.75rem);     /* 28 → 44  H2 + Betonung */
+  --s3:1.25rem;                                      /* 20       Fließtext (s. Kommentar unten) */
+  --s4:clamp(0.75rem, 0.72rem + 0.14vw, 0.8125rem);  /* 12 → 13  Label */
+
+  /* — Weißraum: zwei klar verschiedene Sektionsmaße (K2) — */
+  --ruhig:112px;
+  --dicht:88px;
+  --rand:24px;
+  --spalte:1180px;
+  --text:600px;
+  --rail:44px;         /* Ziffernbahn */
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+@media (min-width:900px){
+  :root{ --ruhig:192px; --dicht:120px; --rand:80px; --rail:112px; }
+}
+@media (min-width:1600px){ :root{ --rand:120px; } }
+
+*,*::before,*::after{box-sizing:border-box}
+html{ -webkit-text-size-adjust:100% }
+body{
+  margin:0; background:var(--papier); color:var(--tinte);
+  font-family:var(--sans); font-weight:400;
+  font-size:var(--s3); line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:clip;           /* clip statt hidden — bricht sonst position:fixed auf iOS */
+}
+img{max-width:100%}
+a{color:inherit}
+h1,h2,h3,p,ul,ol,dl,dd,figure,blockquote{margin:0}
+ul,ol{padding:0;list-style:none}
+
+/* — Bühne: EIN linker Textrand über alle Sektionen, rechts frei — */
+.buehne{ max-width:var(--spalte); margin:0 auto; padding-inline:var(--rand) }
+.spalte{ max-width:var(--text) }
+
+.ruhig{ padding-block:var(--ruhig) }
+.dicht{ padding-block:var(--dicht) }
+
+.flaeche-sand{ background:var(--sandstein) }
+.flaeche-tinte{ background:var(--tinte); color:var(--papier) }
+
+/* — Typografie — */
+.t-h1{ font-family:var(--serif); font-weight:400; font-size:var(--s1);
+       line-height:1.03; letter-spacing:-0.02em; }
+.t-h2{ font-family:var(--serif); font-weight:400; font-size:var(--s2);
+       line-height:1.15; letter-spacing:-0.01em; }
+.t-gross{ font-family:var(--sans); font-weight:400; font-size:var(--s2);
+       line-height:1.28; letter-spacing:-0.01em; }
+.t-label{ font-family:var(--sans); font-weight:500; font-size:var(--s4);
+       letter-spacing:.16em; text-transform:uppercase; line-height:1.4; }
+.t-mark{ font-family:var(--sans); font-weight:500 }
+/* <strong>/<b> erbten sonst die UA-Stärke 700 — G4 erlaubt max. 500. */
+strong,b{ font-weight:500 }
+em,.t-kursiv{ font-style:italic }
+
+p + p{ margin-top:1.1em }
+.vor-s{ margin-top:28px } .vor-m{ margin-top:44px } .vor-l{ margin-top:64px }
+@media (min-width:900px){ .vor-m{margin-top:56px} .vor-l{margin-top:88px} }
+
+/* — Haarlinie (Zinn ist dekorativ, nie Textfarbe auf Papier) — */
+.linie{ height:1px; background:var(--zinn); border:0; width:100%; opacity:.55 }
+
+/* ── Skip-Link ─────────────────────────────────────────── */
+.skip{ position:absolute; left:-9999px; top:0; z-index:100;
+  background:var(--signatur); color:var(--papier); padding:16px 20px;
+  min-height:48px; display:flex; align-items:center;
+  font-size:var(--s4); letter-spacing:.08em; text-transform:uppercase; text-decoration:none }
+.skip:focus{ left:0 }
+
+/* ── Navigation ────────────────────────────────────────── */
+.nav{ position:fixed; inset:0 0 auto 0; z-index:60;
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  max-width:var(--spalte); margin:0 auto; padding:20px var(--rand);
+  transition:background .5s var(--ease), padding .5s var(--ease); }
+.nav::before{ content:''; position:absolute; inset:0; z-index:-1;
+  background:var(--papier); opacity:0; transition:opacity .5s var(--ease); }
+.nav.scrolled::before{ opacity:.94; backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px) }
+.nav.scrolled{ padding-block:14px }
+.wortmarke{ display:inline-flex; align-items:center; min-height:48px;
+  font-family:var(--sans); font-weight:500; font-size:var(--s4);
+  letter-spacing:.18em; text-transform:uppercase; text-decoration:none; line-height:1 }
+
+/* CTA erscheint erst nach dem Hero — der Hero trägt seinen eigenen Knopf,
+   ein zweiter oben wäre doppelt und würde den ersten Viewport belasten (K6). */
+.nav-cta{ opacity:0; visibility:hidden; transform:translateY(-4px);
+  transition:opacity .45s var(--ease), transform .45s var(--ease), visibility .45s }
+.nav.scrolled .nav-cta{ opacity:1; visibility:visible; transform:none }
+
+/* ── Buttons ───────────────────────────────────────────── */
+.cta{ display:inline-flex; align-items:center; justify-content:center;
+  min-height:52px; padding:14px 30px;
+  background:var(--signatur); color:var(--papier); text-decoration:none;
+  font-family:var(--sans); font-weight:500; font-size:var(--s4);
+  letter-spacing:.1em; line-height:1.2;
+  border:0; border-radius:0; cursor:pointer;
+  transition:background .35s var(--ease) }
+.cta:hover{ background:var(--tinte) }
+.cta--klein{ min-height:48px; padding:13px 20px }
+:where(a,button,input,textarea,select,summary):focus-visible{
+  outline:2px solid var(--signatur); outline-offset:3px }
+.flaeche-tinte :where(a,button):focus-visible{ outline-color:var(--sandstein) }
+
+/* ── Hero ──────────────────────────────────────────────── */
+/* Runde 2, Fix 1: Der erste Handy-Bildschirm trug vorher nur Name,
+   Eyebrow und H1 — darunter 200px Nichts bis zur Kante, kein Angebot,
+   kein Knopf. Jetzt liegt der GANZE Hero im ersten Viewport:
+   Wortmarke, Eyebrow, Haarlinie, H1, Lead = 5 Elemente / 38 Wörter,
+   CTA zählt nicht (K6 in Leonardos Runde-2-Fassung: ≤6 / ≤45).
+   Desktop bleibt unangetastet — dort war es richtig gelöst.
+
+   Das Polster darf nie mehr Platz nehmen, als nach dem Hero-Inhalt
+   übrig ist. `31svh` allein reichte dafür nicht: bei 375×667 ergab
+   es 207px und schob den Knopf 17px unter die Kante. Der zweite
+   Term deckelt auf „Viewport minus Hero-Inhalt" — bei 844px bindet
+   er nicht (262px, Leonardos ≥240 hält), bei 667px greift er und
+   holt den Knopf zurück in den ersten Bildschirm. */
+.hero .buehne{ width:100% }
+.hero{ min-height:100svh }
+.hero-oben{ padding-block:clamp(120px, min(31svh, 100svh - 500px), 268px) 0 }
+.hero-eyebrow{ color:var(--tinte) }
+/* Das EINE kontinuierlich bewegte Element der Seite (G6):
+   die Haarlinie unter dem Eyebrow atmet — 16s, nur scaleX, kein Layout-Shift. */
+.hero-atem{ height:1px; background:var(--zinn); width:104px; margin:22px 0 0;
+  transform-origin:left center; transform:scaleX(.69);
+  animation:atem 16s var(--ease) infinite alternate }
+@keyframes atem{ from{transform:scaleX(.69)} to{transform:scaleX(1)} }
+.hero h1{ margin-top:40px }
+.hero-unten{ padding-bottom:var(--dicht) }
+.hero-lead{ margin-top:40px; max-width:var(--text) }
+.hero-cta{ margin-top:44px }
+@media (min-width:900px){
+  .hero{ display:flex; align-items:flex-end }
+  .hero-oben{ min-height:0; display:block; padding-block:180px 0 }
+  .hero h1{ margin-top:56px; max-width:14ch }
+  .hero-lead{ margin-top:44px }
+  .hero-cta{ margin-top:56px }
+  .hero-unten{ padding-bottom:var(--ruhig) }
+}
+
+/* ── „Der Satz“ ────────────────────────────────────────── */
+.satz{ max-width:18ch }
+
+/* ── Für wen / für wen nicht ───────────────────────────── */
+.zweispalt{ display:grid; gap:56px; margin-top:56px }
+@media (min-width:900px){
+  .zweispalt{ grid-template-columns:1fr 1fr; gap:72px; margin-top:72px }
+}
+.zweispalt > div{ min-width:0 }
+.merkmale{ margin-top:26px; display:grid; gap:20px }
+.merkmale li{ padding-top:20px; border-top:1px solid var(--zinn) }
+
+/* ── Bahn: Ziffer links auf der Fadenachse, Inhalt rechts ── */
+.bahn{ display:grid; grid-template-columns:var(--rail) minmax(0,1fr);
+  column-gap:16px; align-items:start }
+@media (min-width:900px){ .bahn{ column-gap:40px } }
+/* Die Ziffer sitzt MITTIG in der Bahn — dieselbe Achse wie der Faden —
+   und deckt ihn mit der Flächenfarbe ab, sodass er hinter ihr durchläuft. */
+.bahn-marke{ position:relative; display:block; text-align:center;
+  font-family:var(--serif); font-weight:400; font-size:var(--s1);
+  line-height:1; letter-spacing:-0.02em; color:var(--tinte);
+  background:var(--papier); padding-block:10px }
+.flaeche-tinte .bahn-marke{ background:var(--tinte) }
+.bahn-inhalt{ max-width:var(--text) }
+.bahn-inhalt > * + *{ margin-top:20px }
+
+/* Der Faden liegt auf dem Phasen-Container (nicht auf .bahn) und spannt
+   dessen volle Höhe inkl. Polster — nur so läuft er ohne Lücke über die
+   Sektionsgrenze in die dunkle Zäsur hinein und wieder heraus. */
+.phase-innen{ position:relative }
+.phase-innen::before{ content:''; position:absolute; top:0; bottom:0;
+  left:calc(var(--rand) + var(--rail) / 2); width:1px;
+  background:var(--zinn); opacity:.5 }
+.flaeche-tinte .phase-innen::before{ opacity:.75 }
+/* Anfang und Ende laufen weich aus, statt hart im Polster abzureißen. */
+.phase-innen--start::before{
+  background:linear-gradient(to bottom, transparent, var(--zinn) 96px) }
+.phase-innen--ende::before{
+  background:linear-gradient(to top, transparent, var(--zinn) 96px) }
+
+.stichliste{ display:grid; gap:14px; margin-top:24px }
+.stichliste li{ position:relative; padding-left:22px }
+.stichliste li::before{ content:''; position:absolute; left:0; top:.72em;
+  width:10px; height:1px; background:var(--zinn) }
+.flaeche-tinte .stichliste li::before{ background:var(--sandstein); opacity:.7 }
+
+/* ── Phasen-Block (Executive Reset) ────────────────────── */
+.phase .phase-innen{ padding-block:var(--dicht) }
+.phase-2 .phase-innen{ padding-block:var(--ruhig) }
+.phase-nachsatz{ font-style:italic; color:var(--signatur) }
+.flaeche-tinte .phase-nachsatz{ color:var(--sandstein) }
+.flaeche-tinte .bahn-marke,
+.flaeche-tinte .t-h2{ color:var(--papier) }
+.flaeche-tinte .merkmale li{ border-top-color:var(--zinn) }
+
+/* ── Fakten-Zeilen (Ablauf der drei Tage) ──────────────── */
+.fakten{ display:grid; gap:0; max-width:820px }
+.fakten > li, .fakten > div{ padding-block:26px; border-top:1px solid var(--zinn) }
+.fakten > :last-child{ border-bottom:1px solid var(--zinn) }
+.fakten dt, .fakten h3{ margin-bottom:14px }
+@media (min-width:900px){
+  .fakten > li, .fakten > div{ display:grid; grid-template-columns:230px minmax(0,1fr);
+    column-gap:40px; align-items:baseline }
+  .fakten dt, .fakten h3{ margin-bottom:0; padding-top:.35em }
+}
+
+/* ── „Worum es geht“ ───────────────────────────────────── */
+.themen{ counter-reset:t; margin-top:48px; display:grid; gap:0 }
+.themen li{ counter-increment:t; display:grid;
+  grid-template-columns:var(--rail) minmax(0,1fr); column-gap:16px;
+  padding-block:26px; border-top:1px solid var(--zinn);
+  max-width:calc(var(--rail) + 40px + var(--text)) }
+.themen li:last-child{ border-bottom:1px solid var(--zinn) }
+.themen li::before{ content:counter(t,decimal-leading-zero);
+  font-family:var(--sans); font-weight:500; font-size:var(--s4);
+  letter-spacing:.16em; color:var(--tinte); padding-top:.45em }
+@media (min-width:900px){ .themen li{ column-gap:40px } }
+
+/* ── Wer Sie begleitet ─────────────────────────────────── */
+.person{ display:grid; gap:48px; margin-top:56px }
+@media (min-width:900px){
+  .person{ grid-template-columns:420px minmax(0,1fr); gap:72px; align-items:start }
+}
+.person-bild{ margin:0; width:100%; max-width:260px; aspect-ratio:4 / 5;
+  background:var(--sandstein) }
+@media (min-width:900px){ .person-bild{ max-width:420px } }
+.person-bild picture{ display:block; height:100% }
+.person-bild img{ display:block; width:100%; height:100%; object-fit:cover }
+.person-zeilen{ display:grid; gap:0 }
+.person-zeilen p{ padding-block:22px; border-top:1px solid var(--zinn) }
+.person-zeilen p:last-of-type{ border-bottom:1px solid var(--zinn) }
+
+/* ── Coaching (nachgeordnet, klein, kein Button) ───────── */
+.coaching{ max-width:var(--text) }
+.coaching h3{ font-family:var(--serif); font-weight:400; font-size:var(--s2);
+  line-height:1.15; margin-bottom:20px }
+
+/* ── Offene Stellen in ZWEI Gewichtsstufen (Runde 2, Fix 2) ──
+   Vorher trugen drei verschiedene Dinge dieselbe gestrichelte
+   20px-Uniform. Folge: Sektionen, die zu vier Fünfteln fertig
+   waren, lasen sich als leeres Formular. Jetzt getrennt:
+
+   Ebene 1 — „echtes Loch“: es gibt noch keinen Text, nur Alexander
+   hat die Antwort. Gestrichelter Kasten bleibt, aber leise (--s4).
+   Ebene 2 — „Vorschlag/Rückfrage“: der Text steht bereits und soll
+   nur bestätigt werden. KEIN Kasten — normaler Fließtext, markiert
+   allein durch eine 1px-Signatur-Kante und ein Label über der Gruppe.
+   Fertige Arbeit muss sich als fertige Arbeit lesen. */
+.luecke{ display:block; border:1px dashed var(--signatur);
+  padding:14px 16px; background:transparent;
+  color:var(--signatur); font-family:var(--sans);
+  font-size:var(--s4); letter-spacing:0; text-transform:none;
+  line-height:1.6; font-style:italic; max-width:31em }
+/* Grundabstand mit :where() = Spezifität 0, damit die .vor-*-Utilities ihn
+   überhaupt überschreiben können. Vorher gewann `.luecke` als spätere Regel
+   gleicher Spezifität — jeder `.luecke.vor-m` stand bei 6px statt 56px. */
+:where(.luecke){ margin-block:6px }
+.luecke > b{ display:block; font-family:var(--sans); font-weight:500;
+  font-size:var(--s4); letter-spacing:.16em; text-transform:uppercase;
+  font-style:normal; margin-bottom:8px }
+.flaeche-tinte .luecke{ border-color:var(--sandstein); color:var(--sandstein) }
+.luecke-liste{ display:grid; gap:12px; margin-top:26px }
+
+/* Ebene 2 + Legende teilen sich die 1px-Kante — eine Handschrift. */
+.notiz{ border-left:1px solid var(--signatur); padding-left:20px;
+  max-width:var(--text) }
+@media (min-width:900px){ .notiz{ padding-left:28px } }
+.notiz-marke{ display:block; color:var(--signatur);
+  font-family:var(--sans); font-weight:500; font-size:var(--s4);
+  letter-spacing:.16em; text-transform:uppercase; line-height:1.4;
+  margin-bottom:18px }
+.notiz ul{ display:grid; gap:20px }
+.notiz .frage{ color:var(--signatur) }
+.notiz .frage + .frage{ margin-top:20px }
+/* Legende: ein Satz, an der ERSTEN markierten Stelle der Seite —
+   nicht im Fuß, 15.000px später. */
+.legende{ font-size:var(--s4); line-height:1.6; color:var(--signatur);
+  max-width:30em }
+
+/* ── Bewerbungs-Sektion + Footer ───────────────────────── */
+.schluss-cta{ margin-top:48px }
+.site-footer{ padding-block:56px 40px; border-top:1px solid var(--zinn) }
+.site-footer .abgrenzung{ max-width:var(--text) }
+.site-footer nav{ display:flex; flex-wrap:wrap; gap:8px 28px; margin-top:32px }
+.site-footer a{ display:inline-flex; align-items:center; min-height:48px;
+  text-decoration:none; padding-bottom:2px }
+.site-footer a span{ border-bottom:1px solid var(--zinn); padding-bottom:3px }
+.site-footer a:hover span{ border-bottom-color:var(--tinte) }
+.site-footer .entwurf{ margin-top:32px }
+
+/* ── Bewegung (G6): einmalig, ≤12px, 700ms, max. 3 je Sektion ── */
+.js .reveal{ opacity:0; transform:translateY(8px);
+  transition:opacity .7s var(--ease), transform .7s var(--ease) }
+.js .reveal.is-in{ opacity:1; transform:none }
+@media (min-width:900px){ .js .reveal{ transform:translateY(12px) } }
+@media (prefers-reduced-motion:reduce){
+  .hero-atem{ animation:none; transform:scaleX(1) }
+  .js .reveal{ transform:none !important; transition:opacity .01ms }
+  *,*::before,*::after{ transition-duration:.01ms !important; animation:none !important }
+}
+
+/* ── Druck ─────────────────────────────────────────────── */
+@media print{
+  .nav,.hero-atem,.cta{ display:none }
+  body{ background:#fff; color:#000; font-size:11pt }
+  .flaeche-tinte,.flaeche-sand{ background:#fff !important; color:#000 !important }
+  .ruhig,.dicht,.phase,.phase-2{ padding-block:18pt }
+  .luecke{ border:1pt dashed #000; color:#000 }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#inhalt">Zum Inhalt springen</a>
+
+<header class="nav" id="nav">
+  <a class="wortmarke" href="#inhalt">Alexander&nbsp;Faubel</a>
+  <a class="cta cta--klein nav-cta" href="bewerbung.html">Für einen Platz bewerben</a>
+</header>
+
+<main id="inhalt">
+
+  <!-- ═══ Hero — rein typografisch, ohne Foto (E6) ═══ -->
+  <section class="hero">
+    <div class="buehne">
+      <div class="hero-oben">
+        <p class="t-label hero-eyebrow reveal">Executive Reset · Zehn Plätze im Jahr</p>
+        <div class="hero-atem" aria-hidden="true"></div>
+        <h1 class="t-h1 reveal">Erfolg, der Sie nicht aufbraucht.</h1>
+      </div>
+      <div class="hero-unten">
+        <p class="hero-lead reveal">Für Unternehmer und Führungskräfte, die liefern und dabei spüren, was es innen kostet. Drei Tage, in denen Sie einmal nicht funktionieren müssen.</p>
+        <p class="hero-cta"><a class="cta" href="bewerbung.html">Für einen Platz bewerben</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Der Satz — Sandstein-Bühne, nur dieser Satz ═══ -->
+  <section class="flaeche-sand ruhig">
+    <div class="buehne">
+      <!-- Anführungszeichen bewusst weg (Runde 2, Fix 6): das öffnende „ brach
+           bei 44–92px die gemeinsame linke Kante um 15–28px (Chrome kennt kein
+           hanging-punctuation), und die unattribuierte Zitat-Optik warf auf einer
+           Ich-Seite die Frage auf „wer sagt das?“. Ohne Zeichen ist es eine
+           Aussage — genau das, was E13 wollte. -->
+      <p class="t-h1 satz reveal">Erfolg, der bleibt, beginnt dort, wo der innere Kampf endet.</p>
+
+      <!-- Legende — steht an der ersten markierten Stelle der Seite (Fix 3),
+           weil Alexander den Link auf dem Handy öffnet, ohne die Mail zu lesen. -->
+      <aside class="notiz legende vor-l">
+        <p class="notiz-marke">An dich, Alexander</p>
+        <p>Die blau markierten Stellen sind für dich: Kanten wie diese sind fertige Entwürfe, die du bestätigst oder ersetzt — gestrichelte Kästen sind Stellen, an denen nur du die Antwort hast, und was du dort einträgst, steht später genau an dieser Stelle auf der Seite.</p>
+      </aside>
+
+      <div class="notiz vor-m">
+        <p class="notiz-marke">Rückfrage · Der Satz</p>
+        <p class="frage">Ist diese geschärfte Fassung für dich in Ordnung, oder soll dein Original „Nachhaltiger Erfolg beginnt dort, wo der innere Kampf endet.“ bleiben?</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Der stille Widerspruch ═══ -->
+  <section class="ruhig">
+    <div class="buehne">
+      <h2 class="t-h2 reveal">Von außen stimmt alles.</h2>
+      <div class="spalte vor-m reveal">
+        <p>Sie haben erreicht, was Sie erreichen wollten. Der Kalender ist voll, die Zahlen stimmen, das Team funktioniert. Und irgendwann fällt Ihnen auf, dass Sie Entscheidungen treffen, um Ruhe zu haben, nicht weil sie richtig sind.</p>
+      </div>
+      <p class="t-gross vor-l reveal" style="max-width:20ch">Die meisten, die zu mir kommen, sind nicht am Ende. Sie funktionieren tadellos. Genau das ist das Problem.</p>
+    </div>
+  </section>
+
+  <!-- ═══ Für wen. Und für wen nicht. ═══ -->
+  <section class="dicht">
+    <div class="buehne">
+      <h2 class="t-h2 reveal">Für wen. Und für wen nicht.</h2>
+      <p class="spalte vor-m reveal">Ich arbeite nicht mit jedem, der anfragt. Das hat nichts mit Exklusivität zu tun, sondern damit, dass dieser Prozess nur greift, wenn ein paar Dinge stimmen.</p>
+
+      <!-- Fix 2: Die Kriterien sind fertige Arbeit, kein leeres Formular.
+           Sie stehen deshalb als normaler Fließtext an der Signatur-Kante;
+           nur die echte Lücke darunter bleibt ein gestrichelter Kasten. -->
+      <div class="zweispalt reveal">
+        <div>
+          <h3 class="t-label">Sie sind hier richtig, wenn</h3>
+          <div class="notiz vor-s">
+            <p class="notiz-marke">Entwurf · bestätigen oder ersetzen</p>
+            <ul>
+              <li>Sie tragen Verantwortung für Menschen und merken, dass Sie diese Verantwortung zunehmend aus Reserve tragen.</li>
+              <li>Sie haben schon einiges gelesen und verstanden. Verändert hat es wenig.</li>
+            </ul>
+          </div>
+          <p class="luecke vor-m"><b>Offen · Alexander</b>Zwei weitere Kriterien in deinen Worten. Konkret, nicht allgemein.</p>
+        </div>
+        <div>
+          <h3 class="t-label">Sie sind hier falsch, wenn</h3>
+          <div class="notiz vor-s">
+            <p class="notiz-marke">Entwurf · bestätigen oder ersetzen</p>
+            <ul>
+              <li>Sie suchen eine Methode, die Sie schneller macht. Hier wird erst einmal nichts schneller.</li>
+            </ul>
+          </div>
+          <p class="luecke vor-m"><b>Offen · Alexander</b>Wen lehnst du tatsächlich ab, und warum? Diese Liste ist die glaubwürdigste der ganzen Seite. Bitte ehrlich, nicht diplomatisch.</p>
+        </div>
+      </div>
+
+      <p class="spalte vor-l">Wenn Sie unsicher sind, auf welcher Seite Sie stehen: bewerben Sie sich. Das ist genau die Frage, die wir im Vorgespräch klären.</p>
+    </div>
+  </section>
+
+  <!-- ═══ Der Ablauf ═══ -->
+  <section class="dicht">
+    <div class="buehne">
+      <h2 class="t-h2 reveal">Was in diesen drei Tagen passiert</h2>
+      <p class="spalte vor-m reveal">Sie sollen wissen, worauf Sie sich einlassen, bevor Sie sich bewerben. Deshalb hier der Ablauf, so nüchtern wie möglich.</p>
+
+      <ol class="fakten vor-m">
+        <li>
+          <h3 class="t-label">Tag 1</h3>
+          <p class="luecke"><b>Offen · Alexander</b>Tag 1, in einem Satz mit echtem Verb. Nicht „wir schaffen Raum“, sondern was wir tun. Beispiel für die Machart: „Wir gehen vormittags die vier Entscheidungen durch, die Sie im letzten Jahr aufgeschoben haben.“</p>
+        </li>
+        <li>
+          <h3 class="t-label">Tag 2</h3>
+          <p class="luecke"><b>Offen · Alexander</b>Tag 2, ein Satz, gleiche Machart.</p>
+        </li>
+        <li>
+          <h3 class="t-label">Tag 3</h3>
+          <p class="luecke"><b>Offen · Alexander</b>Tag 3, ein Satz, gleiche Machart.</p>
+        </li>
+      </ol>
+
+      <dl class="fakten vor-l">
+        <div>
+          <dt class="t-label">Wo?</dt>
+          <dd style="margin:0"><span class="luecke"><b>Offen · Alexander</b>Ort. Eigener Raum, Hotel, Natur, beim Klienten? Übernachtung und Verpflegung inklusive oder selbst zu organisieren? Anreise?</span></dd>
+        </div>
+        <div>
+          <dt class="t-label">Allein oder in der Gruppe?</dt>
+          <dd style="margin:0"><span class="luecke"><b>Offen · Alexander</b>1:1 oder Kleingruppe? Falls Gruppe: wie viele Menschen? Das ist für diese Zielgruppe eine Ja/Nein-Frage, keine Nebensache.</span></dd>
+        </div>
+        <div>
+          <dt class="t-label">Wird mit Substanzen gearbeitet?</dt>
+          <dd style="margin:0"><span class="luecke"><b>Offen · Alexander</b>Ja oder nein, unmissverständlich. Wenn nein, steht hier ein klares Nein und die Frage ist erledigt. Wenn ja, brauchen wir vorher eine rechtliche Klärung.</span></dd>
+        </div>
+        <div>
+          <dt class="t-label">Wer erfährt davon?</dt>
+          <dd style="margin:0"><span class="luecke"><b>Offen · Alexander</b>Deine Diskretionszusage in einem Satz. Wird der Name irgendwo genannt, gibt es Aufzeichnungen, wer sonst ist im Raum?</span></dd>
+        </div>
+      </dl>
+
+      <p class="spalte vor-m reveal">Wenn danach noch etwas offen ist, klären wir es im Vorgespräch, bevor irgendetwas verbindlich wird.</p>
+    </div>
+  </section>
+
+  <!-- ═══ Executive Reset — drei Phasen nativ, Phase 2 als dunkle Zäsur ═══ -->
+  <section>
+    <div class="buehne" style="padding-top:var(--dicht)">
+      <h2 class="t-h2 reveal">Executive Reset</h2>
+      <p class="spalte vor-m reveal">Drei Phasen. Die drei Tage sind die mittlere.</p>
+    </div>
+
+    <div class="phase">
+      <div class="buehne phase-innen phase-innen--start">
+        <div class="bahn">
+          <span class="bahn-marke" aria-hidden="true">1</span>
+          <div class="bahn-inhalt">
+            <p class="t-label">Phase 1</p>
+            <h3 class="t-h2">Vorbereitung</h3>
+            <p>Bevor wir uns sehen, klären wir, worum es wirklich geht. Ich baue den Prozess danach, nicht davor.</p>
+            <ul class="stichliste">
+              <li>Persönliches Vorgespräch, 60 Minuten</li>
+              <li>Zieldefinition</li>
+              <li>Individuelles Prozessdesign</li>
+            </ul>
+            <p class="phase-nachsatz">Was wir hier klären, entscheidet über die Tiefe der drei Tage.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Die EINE dunkle Sektion der Seite: die drei Tage sind der innere,
+         dunkle Teil des Prozesses — gerahmt von zwei hellen Phasen. -->
+    <div class="phase-2 flaeche-tinte">
+      <div class="buehne phase-innen">
+        <div class="bahn">
+          <span class="bahn-marke" aria-hidden="true">2</span>
+          <div class="bahn-inhalt">
+            <p class="t-label">Phase 2</p>
+            <h3 class="t-h2">Die drei Tage</h3>
+            <p>Kein Seminar, kein Vortrag, keine Folien. Wir arbeiten an dem, was Sie längst wissen und bisher umgangen haben.</p>
+            <ul class="stichliste">
+              <li>Zugang zu unbewussten Mustern</li>
+              <li>Neue Perspektiven auf das, was Sie seit Jahren gleich entscheiden</li>
+              <li>Veränderung durch direkte Erfahrung statt bloßes Wissen</li>
+            </ul>
+            <p class="phase-nachsatz">Wir arbeiten nicht an dem, was Sie stört, sondern an dem, was darunter liegt.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="buehne phase-innen phase-innen--ende">
+        <div class="bahn">
+          <span class="bahn-marke" aria-hidden="true">3</span>
+          <div class="bahn-inhalt">
+            <p class="t-label">Phase 3</p>
+            <h3 class="t-h2">Integration</h3>
+            <p>Danach geht es zurück in Ihren Kalender. Genau da entscheidet sich, ob etwas bleibt.</p>
+            <ul class="stichliste">
+              <li>Zwei Integrationsgespräche à 60 Minuten</li>
+              <li>Begleitender WhatsApp-Support</li>
+              <li>Praktische Werkzeuge für den Alltag</li>
+            </ul>
+            <p class="phase-nachsatz">Was in drei Tagen aufgeht, entscheidet sich in den Wochen danach.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Die Investitionszeile stand bis Runde 2 hier — zwischen zwei
+         Rückfrage-Kästen im Fuß der Phasen. Bei diesem Preispunkt las sie
+         sich damit als „traut sich nicht“. Sie steht jetzt in der
+         Bewerbungs-Sektion direkt über dem CTA (Fix 7); E3 bleibt. -->
+    <div class="buehne" style="padding-bottom:var(--dicht)">
+      <div class="luecke-liste">
+        <p class="luecke"><b>Offen · Alexander</b>Über welchen Zeitraum läuft die Integration? Die beiden Grafiken sagen 30 bzw. 60 Tage.</p>
+        <p class="luecke"><b>Offen · Alexander</b>Zwei Integrationsgespräche oder Reflexionsgespräche alle zwei Wochen?</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Worum es geht — fünf Zeilen, keine Icons, kein Diagramm ═══ -->
+  <section class="dicht">
+    <div class="buehne">
+      <h2 class="t-h2 reveal">Worum es in diesen drei Tagen geht</h2>
+      <p class="spalte vor-m reveal">Das sind keine Ergebnisse, die ich zusage. Es sind die Themen, an denen wir arbeiten.</p>
+      <ol class="themen reveal">
+        <li><p><span class="t-mark">Entscheidungen.</span> Warum Sie manche Dinge treffen, weil sie richtig sind, und andere, weil sie Ruhe bringen.</p></li>
+        <li><p><span class="t-mark">Muster.</span> Die Reaktionen, die Sie an sich seit Jahren kennen und trotzdem jedes Mal wieder abrufen.</p></li>
+        <li><p><span class="t-mark">Führung.</span> Wie Sie führen, wenn Sie die Rolle nicht mehr halten müssen.</p></li>
+        <li><p><span class="t-mark">Präsenz.</span> Was sich verändert, wenn Sie im Raum sind statt schon im nächsten Termin.</p></li>
+        <li><p><span class="t-mark">Belastbarkeit.</span> Woraus Ihre Leistungsfähigkeit schöpft, wenn Disziplin allein nicht mehr reicht.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ═══ Wer Sie begleitet — das Foto, genau einmal ═══ -->
+  <section class="ruhig">
+    <div class="buehne">
+      <h2 class="t-h2 reveal">Wer Sie begleitet</h2>
+      <div class="person reveal">
+        <figure class="person-bild">
+          <picture>
+            <source type="image/avif" srcset="assets/alexander-faubel-420.avif 420w, assets/alexander-faubel-840.avif 840w" sizes="(min-width: 900px) 420px, 260px">
+            <source type="image/webp" srcset="assets/alexander-faubel-420.webp 420w, assets/alexander-faubel-840.webp 840w" sizes="(min-width: 900px) 420px, 260px">
+            <img src="assets/alexander-faubel-420.jpg" srcset="assets/alexander-faubel-420.jpg 420w, assets/alexander-faubel-840.jpg 840w" sizes="(min-width: 900px) 420px, 260px" width="420" height="525" loading="lazy" decoding="async" alt="Alexander Faubel, Schwarzweißaufnahme, Blick nach oben">
+          </picture>
+        </figure>
+        <div class="person-zeilen">
+          <p>Früher Enterprise Sales Executive. Ich weiß, wie sich ein Quartal anfühlt, das nicht aufgeht.</p>
+          <p>Seit vielen Jahren an der Seite von Menschen, die Verantwortung für andere tragen.</p>
+          <p>Heute arbeite ich mit Menschen, deren Erfolg sie mehr kostet, als er ihnen zurückgibt.</p>
+          <div class="luecke-liste">
+            <p class="luecke"><b>Offen · Alexander</b>Ist „15+ Jahre mit Executives“ belastbar, und ab welchem Jahr?</p>
+            <p class="luecke"><b>Offen · Alexander</b>Ein bis zwei Sätze in deinen eigenen Worten, warum du das machst. Unlektoriert. Diese Stelle fehlt bisher komplett.</p>
+            <p class="luecke"><b>Offen · Alexander</b>Welche Ausbildungen dürfen genannt werden? Insbesondere: worauf stützt sich die Arbeit mit dem Nervensystem?</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Coaching — ein Absatz, nachgeordnet, kein Button ═══ -->
+  <section class="dicht">
+    <div class="buehne">
+      <div class="coaching reveal">
+        <h3>Und danach?</h3>
+        <p>Für einige entsteht aus den drei Tagen eine längere Begleitung. Das plane ich nicht vorher ein und verkaufe es nicht mit. Wenn es sinnvoll ist, sprechen wir darüber, wenn es soweit ist.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Die Bewerbung ═══ -->
+  <section class="flaeche-sand ruhig">
+    <div class="buehne">
+      <h2 class="t-h2 reveal">Die Bewerbung</h2>
+      <div class="spalte vor-m reveal">
+        <p>Ich nehme zehn Menschen im Jahr. Jeder Prozess wird für eine Person gebaut, und mehr als zehn schaffe ich in dieser Tiefe nicht ehrlich.</p>
+        <p>Ich lese jede Bewerbung selbst. Manche beantworte ich mit einer Empfehlung für jemand anderen. Das ist kein schlechtes Ergebnis, sondern das richtige.</p>
+      </div>
+      <div class="notiz vor-m">
+        <p class="notiz-marke">Rückfragen · Verknappung und Preis</p>
+        <p class="frage">Die Zahl „zehn Plätze im Jahr“ steht an zwei Stellen der Seite. Stimmt sie so, und willst du sie öffentlich festschreiben? Eine Verknappung muss nachprüfbar wahr sein.</p>
+        <p class="frage">Und ist die Investitionszeile unten so in Ordnung, oder willst du den Preis doch nennen?</p>
+      </div>
+
+      <hr class="linie vor-l" style="max-width:var(--text)">
+      <p class="spalte vor-m">Die Investition besprechen wir im Vorgespräch. Jeder Prozess wird für eine Person gebaut, deshalb gibt es keine Liste.</p>
+      <p class="schluss-cta"><a class="cta" href="bewerbung.html">Für einen Platz bewerben</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="buehne">
+    <p class="abgrenzung">Der Executive Reset ist persönliche Begleitung und Persönlichkeitsentwicklung. Er ist keine medizinische oder psychotherapeutische Behandlung und ersetzt diese nicht.</p>
+    <nav aria-label="Rechtliches">
+      <a href="impressum.html"><span>Impressum</span></a>
+      <a href="datenschutz.html"><span>Datenschutz</span></a>
+    </nav>
+    <p class="luecke vor-m"><b>Offen · Alexander</b>Von wo aus arbeitest du? (Ortszeile für den Fuß der Seite.)</p>
+    <!-- Kurz halten: Die Legende in „Der Satz“ erklärt die beiden Stufen bereits.
+         Hier ein zweites Mal zu erklären hieß mobil vier bis sechs Zeilen
+         13px-Versalien mit 0,16em Sperrung — der lauteste Absatz der Fußzeile. -->
+    <p class="t-label entwurf">Entwurf 31.07.2026 · nicht veröffentlichen</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var nav = document.getElementById('nav');
+  var hero = document.querySelector('.hero');
+
+  /* Nav-Fläche + CTA erst nach dem Hero (hält den ersten Viewport ruhig) */
+  if (nav && hero && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function(es){
+      nav.classList.toggle('scrolled', !es[0].isIntersecting);
+    }, { rootMargin: '-88% 0px 0px 0px' }).observe(hero);
+  }
+
+  /* Einmalige Reveals — bei reduzierter Bewegung sofort alles sichtbar */
+  var reveals = [].slice.call(document.querySelectorAll('.reveal'));
+  var ruhig = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var foto = /(\?|&)foto\b/.test(location.search);   /* Screenshot-Modus: alles sofort sichtbar */
+  if (foto || !('IntersectionObserver' in window) || ruhig.matches) {
+    reveals.forEach(function(el){ el.classList.add('is-in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e, i){
+      if (!e.isIntersecting) return;
+      var el = e.target;
+      setTimeout(function(){ el.classList.add('is-in'); }, Math.min(i, 2) * 80);
+      io.unobserve(el);
+    });
+  }, { rootMargin: '0px 0px -12% 0px', threshold: 0.06 });
+  reveals.forEach(function(el){ io.observe(el); });
+})();
+</script>
+</body>
+</html>

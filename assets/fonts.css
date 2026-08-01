@@ -1,0 +1,49 @@
+/* ============================================================
+   Alexander Faubel · „Executive Reset“
+   Lokal gehostete Schriften (latin-Subset, woff2).
+   DSGVO: KEINE Verbindung zu Google/Drittservern.
+   2 Familien · 4 Dateien · 72 KB gesamt.
+
+   Libre Caslon Display: es existiert NUR der Schnitt 400 roman
+   (kein Kursiv!). Deshalb wird in Caslon-Headlines niemals
+   `font-style: italic` gesetzt — der Browser würde synthetisch
+   schrägstellen und die Serifen verzerren.
+   Kursive Auszeichnungen laufen ausschliesslich über Archivo.
+
+   size-adjust: gemessen im Headless-Chrome gegen den jeweiligen
+   System-Fallback (Textbreite bei 100px), gegen Layout-Shift.
+   ============================================================ */
+
+/* — Libre Caslon Display (Headlines, Ziffern) — */
+@font-face{
+  font-family:'Libre Caslon Display';
+  font-style:normal; font-weight:400; font-display:swap;
+  src:url(fonts/libre-caslon-display-400.woff2) format('woff2');
+}
+@font-face{
+  font-family:'Caslon Fallback';
+  src:local('Georgia'), local('Times New Roman'), local('Times');
+  size-adjust:82.3%; ascent-override:95%; descent-override:25%;
+}
+
+/* — Archivo (Fliesstext, Labels) — */
+@font-face{
+  font-family:'Archivo';
+  font-style:normal; font-weight:400; font-display:swap;
+  src:url(fonts/archivo-400.woff2) format('woff2');
+}
+@font-face{
+  font-family:'Archivo';
+  font-style:normal; font-weight:500; font-display:swap;
+  src:url(fonts/archivo-500.woff2) format('woff2');
+}
+@font-face{
+  font-family:'Archivo';
+  font-style:italic; font-weight:400; font-display:swap;
+  src:url(fonts/archivo-400italic.woff2) format('woff2');
+}
+@font-face{
+  font-family:'Archivo Fallback';
+  src:local('Helvetica Neue'), local('Helvetica'), local('Arial');
+  size-adjust:99.6%; ascent-override:94%; descent-override:24%;
+}
