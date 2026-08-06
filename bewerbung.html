@@ -23,30 +23,39 @@
 <link rel="preload" href="assets/fonts/libre-caslon-display-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/archivo-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/gemeinsam.css">
 <style>
-/* Token-Block identisch zu index.html — bei Änderungen BEIDE Dateien pflegen
-   (Sync-Hinweis steht auch in CLAUDE.md). */
+/* ⚠ SYNC-PFLICHT — zweiter von vier Token-Blöcken (index.html ·
+   bewerbung.html · assets/legal.css · 404.html). Wer einen ändert,
+   ändert alle vier: Typo UND Raster (--spalte / --text).
+   Runde 4: neue Sechser-Skala (§ J/G4), H1 ≤ 72px, Fließtext ≤ 18px. */
 :root{
-  --papier:#F0EEE9; --tinte:#15161A; --zinn:#8C8C88;
+  --papier:#F0EEE9; --papier-tief:#E7E3DA; --tinte:#15161A; --tinte-hoch:#1E2027; --zinn:#8C8C88;
   --sandstein:#D8D1C6; --signatur:#2E3A45;
   --serif:'Libre Caslon Display','Caslon Fallback',Georgia,serif;
   --sans:'Archivo','Archivo Fallback','Helvetica Neue',Arial,sans-serif;
-  --s1:clamp(2.9375rem, 1.05rem + 5.9vw, 5.75rem);
-  --s2:clamp(1.75rem, 1.19rem + 2.5vw, 2.75rem);
-  --s3:1.25rem;
-  --s4:clamp(0.75rem, 0.72rem + 0.14vw, 0.8125rem);
+  --s-label:clamp(0.6875rem, 0.641rem + 0.19vw,  0.8125rem); /* 11 → 13 */
+  --s-klein:clamp(0.875rem,  0.852rem + 0.095vw, 0.9375rem); /* 14 → 15 */
+  --s-text: 1.125rem;                                         /* 18 fest  ⚠ Sync */
+  --s-lead: clamp(1.3125rem, 1.157rem + 0.381vw, 1.5rem);    /* 21 → 24 */
+  --s-h2:   clamp(1.625rem,  1.3rem   + 1.333vw, 2.5rem);    /* 26 → 40 */
+  --s-h1:   clamp(2.875rem,  2.193rem + 2.286vw, 4.25rem);   /* 46 → 68 */
   --ruhig:112px; --dicht:88px; --rand:24px;
-  --spalte:1180px; --text:600px;
+  --spalte:1180px; --text:540px;
   --ease:cubic-bezier(.22,.61,.36,1);
 }
-@media (min-width:900px){ :root{ --ruhig:192px; --dicht:120px; --rand:80px } }
+@media (min-width:900px){ :root{ --ruhig:160px; --dicht:120px; --rand:80px } }
 @media (min-width:1600px){ :root{ --rand:120px } }
 
 *,*::before,*::after{box-sizing:border-box}
 html{ -webkit-text-size-adjust:100% }
 body{ margin:0; background:var(--papier); color:var(--tinte);
-  font-family:var(--sans); font-weight:400; font-size:var(--s3); line-height:1.65;
-  -webkit-font-smoothing:antialiased; overflow-x:clip }
+  font-family:var(--sans); font-weight:400; font-size:var(--s-text); line-height:1.65;
+  -webkit-font-smoothing:antialiased; overflow-x:clip; counter-reset:offen }
+/* Papierkorn — identisch auf allen fünf Seiten. */
+body::after{ content:''; position:fixed; inset:0; z-index:90;
+  pointer-events:none; opacity:.028; mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") }
 a{color:inherit}
 h1,h2,h3,p,ul,ol,fieldset,legend{margin:0}
 ul{padding:0;list-style:none}
@@ -60,18 +69,23 @@ fieldset{border:0;padding:0;min-width:0}
 @media (min-width:900px){ .vor-m{margin-top:56px} .vor-l{margin-top:88px} }
 p + p{ margin-top:1.1em }
 
-.t-h1{ font-family:var(--serif); font-weight:400; font-size:var(--s1);
+.t-h1{ font-family:var(--serif); font-weight:400; font-size:var(--s-h1);
   line-height:1.03; letter-spacing:-0.02em }
-.t-label{ font-family:var(--sans); font-weight:500; font-size:var(--s4);
-  letter-spacing:.16em; text-transform:uppercase; line-height:1.4 }
-.linie{ height:1px; background:var(--zinn); border:0; width:100%; opacity:.55 }
+.t-label{ font-family:var(--sans); font-weight:500; font-size:var(--s-label);
+  letter-spacing:.18em; text-transform:uppercase; line-height:1.4 }
+.linie{ height:1px; background:var(--zinn); border:0; width:100%; opacity:.55;
+  /* margin-inline:0 ist Pflicht: das UA-Stylesheet gibt <hr> `margin: .5em auto`.
+     Mit `max-width:var(--text)` zentrierte sich die Haarlinie dadurch in der
+     Bühne statt an der linken Kante zu stehen — auf einer Seite, deren ganze
+     Grammatik EINE linke Kante ist. Im Screenshot gesehen, nicht im Quelltext. */
+  margin-inline:0 }
 /* <strong>/<b> erbten sonst die UA-Stärke 700 — G4 erlaubt max. 500. */
 strong,b{ font-weight:500 }
 
 .skip{ position:absolute; left:-9999px; top:0; z-index:100;
   background:var(--signatur); color:var(--papier); padding:16px 20px;
   min-height:48px; display:flex; align-items:center;
-  font-size:var(--s4); letter-spacing:.08em; text-transform:uppercase; text-decoration:none }
+  font-size:var(--s-label); letter-spacing:.08em; text-transform:uppercase; text-decoration:none }
 .skip:focus{ left:0 }
 
 .nav{ position:fixed; inset:0 0 auto 0; z-index:60;
@@ -81,14 +95,14 @@ strong,b{ font-weight:500 }
   background:var(--papier); opacity:.94;
   backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px) }
 .wortmarke{ display:inline-flex; align-items:center; min-height:48px;
-  font-family:var(--sans); font-weight:500; font-size:var(--s4);
+  font-family:var(--sans); font-weight:500; font-size:var(--s-label);
   letter-spacing:.18em; text-transform:uppercase; text-decoration:none; line-height:1 }
 .zurueck{ display:inline-flex; align-items:center; min-height:48px;
-  font-size:var(--s4); letter-spacing:.1em; text-transform:uppercase; text-decoration:none }
+  font-size:var(--s-label); letter-spacing:.1em; text-transform:uppercase; text-decoration:none }
 
 .cta{ display:inline-flex; align-items:center; justify-content:center;
   min-height:52px; padding:14px 30px; background:var(--signatur); color:var(--papier);
-  text-decoration:none; font-family:var(--sans); font-weight:500; font-size:var(--s4);
+  text-decoration:none; font-family:var(--sans); font-weight:500; font-size:var(--s-label);
   letter-spacing:.1em; line-height:1.2; border:0; border-radius:0; cursor:pointer;
   transition:background .35s var(--ease) }
 .cta:hover{ background:var(--tinte) }
@@ -121,7 +135,7 @@ strong,b{ font-weight:500 }
 
 .rahmen-fuss{ margin-top:56px; padding-top:28px; border-top:1px solid var(--zinn) }
 .rahmen-fuss a{ display:inline-flex; align-items:center; min-height:48px;
-  font-size:var(--s4); letter-spacing:.1em; text-transform:uppercase; text-decoration:none }
+  font-size:var(--s-label); letter-spacing:.1em; text-transform:uppercase; text-decoration:none }
 .rahmen-fuss a span{ border-bottom:1px solid var(--zinn); padding-bottom:3px }
 .rahmen-fuss a:hover span{ border-bottom-color:var(--tinte) }
 /* Ab 900px trägt die linke Spalte den Weg zurück — in der Nav wäre er doppelt. */
@@ -135,14 +149,14 @@ strong,b{ font-weight:500 }
 .block > .t-label{ display:block; padding-bottom:18px; border-bottom:1px solid var(--zinn) }
 .feld{ margin-top:28px }
 .feld label{ display:block; font-family:var(--sans); font-weight:500;
-  font-size:var(--s4); letter-spacing:.08em; margin-bottom:10px }
-.feld .hinweis{ font-size:var(--s4); letter-spacing:0; text-transform:none;
+  font-size:var(--s-label); letter-spacing:.08em; margin-bottom:10px }
+.feld .hinweis{ font-size:var(--s-klein); letter-spacing:0; text-transform:none;
   font-weight:400; color:var(--signatur); margin-top:8px; line-height:1.5 }
 /* Kanten von Bedienelementen brauchen 3:1 (WCAG 1.4.11). Zinn auf Papier
    liegt bei 2,91:1 — deshalb tragen Feld-Unterkanten und Checkbox Signatur
    (10,02:1). Zinn bleibt, wo es dekorativ trennt (Block-Linien, Fuß). */
 .feld input, .feld textarea{
-  width:100%; font-family:var(--sans); font-size:var(--s3); font-weight:400;
+  width:100%; font-family:var(--sans); font-size:var(--s-text); font-weight:400;
   line-height:1.6; color:var(--tinte); background:transparent;
   border:0; border-bottom:1px solid var(--signatur); border-radius:0;
   padding:12px 2px; min-height:52px;
@@ -180,7 +194,7 @@ strong,b{ font-weight:500 }
   border-left:2px solid var(--papier); border-bottom:2px solid var(--papier);
   transform:rotate(-45deg) translate(1px,-2px) }
 .honig input{ font-size:1rem }
-.einwilligung label{ font-size:var(--s4); letter-spacing:0; text-transform:none;
+.einwilligung label{ font-size:var(--s-klein); letter-spacing:0; text-transform:none;
   font-weight:400; line-height:1.6; margin:0 }
 .honig{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden }
 
@@ -189,7 +203,7 @@ strong,b{ font-weight:500 }
    unvollständige E-Mail abschickte, bekam optisch dieselbe Antwort wie beim
    Erfolg. Getrennt ohne sechsten Farbwert, in der Grammatik der Seite:
    Ankunft = gefüllte Signaturfläche · Einwand = Kante wie bei .notiz. */
-.form-msg{ margin-top:24px; font-size:var(--s4);
+.form-msg{ margin-top:24px; font-size:var(--s-klein);
   letter-spacing:0; text-transform:none; line-height:1.6; max-width:31em }
 .form-msg:empty{ display:none }
 .form-msg.ok{ background:var(--signatur); color:var(--papier);
@@ -199,41 +213,14 @@ strong,b{ font-weight:500 }
   border:0; border-left:2px solid var(--signatur);
   padding:2px 0 2px 20px }
 
-/* ── Offene Stellen — zwei Gewichtsstufen, synchron zu index.html ──
-   Ebene 1 „echtes Loch“: gestrichelter Kasten, leise (--s4).
-   Ebene 2 „Notiz/Legende“: 1px-Signatur-Kante, kein Kasten. */
-.luecke{ display:block; border:1px dashed var(--signatur); padding:14px 16px;
-  color:var(--signatur); font-family:var(--sans);
-  font-size:var(--s4); letter-spacing:0; text-transform:none;
-  line-height:1.6; font-style:italic; max-width:31em }
-/* Grundabstand mit :where() = Spezifität 0, damit die .vor-*-Utilities ihn
-   überhaupt überschreiben können. Vorher gewann `.luecke` als spätere Regel
-   gleicher Spezifität — jeder `.luecke.vor-m` stand bei 6px statt 56px. */
-:where(.luecke){ margin-block:6px }
-.luecke > b{ display:block; font-family:var(--sans); font-weight:500;
-  font-size:var(--s4); letter-spacing:.16em; text-transform:uppercase;
-  font-style:normal; margin-bottom:8px }
-.luecke-liste{ display:grid; gap:12px }
-
-.notiz{ border-left:1px solid var(--signatur); padding-left:20px; max-width:var(--text) }
-@media (min-width:900px){ .notiz{ padding-left:28px } }
-.notiz-marke{ display:block; color:var(--signatur);
-  font-family:var(--sans); font-weight:500; font-size:var(--s4);
-  letter-spacing:.16em; text-transform:uppercase; line-height:1.4;
-  margin-bottom:18px }
-.legende{ font-size:var(--s4); line-height:1.6; color:var(--signatur);
-  max-width:30em }
-
-.site-footer{ padding-block:56px 40px; border-top:1px solid var(--zinn); margin-top:var(--dicht) }
-.site-footer .abgrenzung{ max-width:var(--text) }
-.site-footer nav{ display:flex; flex-wrap:wrap; gap:8px 28px; margin-top:32px }
-.site-footer a{ display:inline-flex; align-items:center; min-height:48px; text-decoration:none }
-.site-footer .entwurf{ margin-top:32px }
+/* Offene Stellen (drei Gewichte, laufende Nummer) und der dreispaltige
+   Fuß stehen in assets/gemeinsam.css — EINMAL, für alle fünf Seiten. */
+.site-footer{ margin-top:var(--dicht) }
 
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{ transition-duration:.01ms !important; animation:none !important }
 }
-@media print{ .nav,.cta{display:none} body{background:#fff;color:#000} }
+@media print{ .nav,.cta,body::after{display:none} body{background:#fff;color:#000} }
 </style>
 </head>
 <body>
@@ -320,13 +307,13 @@ strong,b{ font-weight:500 }
              öffnen kann, ohne über die Startseite gekommen zu sein. -->
         <aside class="notiz legende">
           <p class="notiz-marke">An dich, Alexander</p>
-          <p>Die gestrichelten Kästen sind Stellen, an denen nur du die Antwort hast — was du dort einträgst, steht später genau an dieser Stelle.</p>
+          <p>Die blau markierten Stellen sind für dich, und sie sind durchnummeriert — was du dort einträgst, steht später genau an dieser Stelle.</p>
         </aside>
 
-        <div class="luecke-liste vor-m">
-          <p class="luecke"><b>Offen · Alexander</b>Antwortzeit: Innerhalb welcher Frist liest und beantwortest du eine Bewerbung? Der Satz nach dem Absenden nennt sie.</p>
-          <p class="luecke"><b>Offen · Alexander</b>E-Mail-Adresse: An welche Adresse sollen die Bewerbungen gehen — und welche Adresse steht in der Fehlermeldung, falls das Formular einmal klemmt?</p>
-          <p class="luecke"><b>Offen · Lechcode</b>Das Formular ist noch nicht scharf. Es braucht Postfach und Domain, dann einen Eintrag in <span style="font-style:normal">recipients.js</span>, die Domain in der CORS-Liste und einen Test-Versand. Bis dahin sendet es bewusst nichts.</p>
+        <div class="randnotiz-liste vor-m">
+          <p class="randnotiz offen"><b class="offen-nr"></b>Antwortzeit: Innerhalb welcher Frist liest und beantwortest du eine Bewerbung? Der Satz nach dem Absenden nennt sie.</p>
+          <p class="randnotiz offen"><b class="offen-nr"></b>E-Mail-Adresse: An welche Adresse sollen die Bewerbungen gehen — und welche Adresse steht in der Fehlermeldung, falls das Formular einmal klemmt?</p>
+          <p class="randnotiz offen"><b class="offen-nr"></b>An uns, nicht an dich: Das Formular ist noch nicht scharf. Es braucht Postfach und Domain, dann einen Eintrag in <span style="font-style:normal">recipients.js</span>, die Domain in der CORS-Liste und einen Test-Versand. Bis dahin sendet es bewusst nichts.</p>
         </div>
       </div>
 
@@ -337,12 +324,36 @@ strong,b{ font-weight:500 }
 
 <footer class="site-footer">
   <div class="buehne">
-    <p class="abgrenzung">Der Executive Reset ist persönliche Begleitung und Persönlichkeitsentwicklung. Er ist keine medizinische oder psychotherapeutische Behandlung und ersetzt diese nicht.</p>
-    <nav aria-label="Rechtliches">
-      <a href="impressum.html">Impressum</a>
-      <a href="datenschutz.html">Datenschutz</a>
-    </nav>
-    <p class="t-label entwurf">Entwurf 31.07.2026 · Formular noch nicht scharf · nicht veröffentlichen</p>
+    <div class="foot-oben">
+      <div>
+        <span class="foot-marke">Alexander&nbsp;Faubel</span>
+        <p class="foot-satz">Drei Tage für Menschen, die Verantwortung tragen.</p>
+        <p class="foot-abgrenzung">Der Executive Reset ist persönliche Begleitung und Persönlichkeitsentwicklung. Er ist keine medizinische oder psychotherapeutische Behandlung und ersetzt diese nicht.</p>
+      </div>
+      <div>
+        <span class="foot-titel">Die Seite</span>
+        <nav class="foot-liste" aria-label="Seiteninhalt">
+          <a href="index.html#fuer-wen"><span>Für wen. Und für wen nicht.</span></a>
+          <a href="index.html#ablauf"><span>Was in diesen drei Tagen passiert</span></a>
+          <a href="index.html#reset"><span>Executive Reset</span></a>
+          <a href="index.html#person"><span>Wer Sie begleitet</span></a>
+          <a href="index.html#bewerbung"><span>Die Bewerbung</span></a>
+        </nav>
+      </div>
+      <div>
+        <span class="foot-titel">Rechtliches und Kontakt</span>
+        <nav class="foot-liste" aria-label="Rechtliches">
+          <a href="impressum.html"><span>Impressum</span></a>
+          <a href="datenschutz.html"><span>Datenschutz</span></a>
+        </nav>
+        <p class="foot-hinweis">Kontakt ausschließlich über die Bewerbung.</p>
+        <p class="foot-hinweis">Was in einer Bewerbung steht, bleibt zwischen Ihnen und mir.</p>
+      </div>
+    </div>
+    <div class="foot-unten">
+      <span>Keine Cookies. Keine Tracker. Keine externen Dienste.</span>
+      <span>Handgebaut in Landsberg am Lech · Entwurf, Formular noch nicht scharf</span>
+    </div>
   </div>
 </footer>
 
