@@ -20,13 +20,15 @@
   --gold:#8A6A12;       /* echtes Gold auf hellem Grund                      */
   --gold-lt:#E0C07A;    /* Champagner — ausschließlich auf --ink-Flächen     */
 
+  /* Eine Familie, wie ursprünglich. Der Serifen-Versuch aus dem Design-Review
+     ist am 09.08. wieder zurückgenommen worden — die Struktur- und
+     Bewegungsänderungen sind geblieben. */
   --font:"Inter Tight","Inter Tight Fallback",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
-  --display:"Libre Caslon Display","Libre Caslon Fallback",Georgia,"Times New Roman",serif;
 
   /* Typo — fluid, mobile Untergrenze bei rund 40 % der Desktop-Größe */
-  --t-h1:clamp(41px, 7.4vw, 104px);
-  --t-h2:clamp(30px, 4.3vw, 56px);
-  --t-num:clamp(34px, 3.9vw, 54px);   /* die großen Ziffern 01 · 02 · 03 */
+  --t-h1:clamp(39px, 7vw, 96px);
+  --t-h2:clamp(29px, 4vw, 52px);
+  --t-num:clamp(30px, 3.4vw, 46px);   /* die großen Ziffern 01 · 02 · 03 */
   --t-h3:clamp(20px, 1.5vw, 25px);
   --t-lead:clamp(17px, 1.15vw, 20px);
   --t-body:clamp(15.5px, .8vw, 17px);
@@ -60,25 +62,16 @@ body{
   -moz-osx-font-smoothing:grayscale;
   overflow-x:clip;
 }
-/* Die großen Stimmen laufen in der Serife, alles Strukturelle in Inter Tight.
-   Serifen brauchen keine negative Laufweite — was beim Grotesk hochwertig
-   wirkt, drückt hier die Buchstaben zusammen. Deshalb nur eine Spur unter 0. */
-h1,h2{
-  font-family:var(--display);
-  font-weight:400;
-  letter-spacing:-.014em;
-  line-height:1.08;
+h1,h2,h3{
+  font-weight:500;                 /* Überschriften nie fett — 500 mit
+                                      negativer Laufweite wirkt hochwertig  */
+  letter-spacing:-.035em;
+  line-height:1.1;
   text-wrap:balance;
 }
-h1{font-size:var(--t-h1);line-height:1.02;max-width:14ch;}
-h2{font-size:var(--t-h2);max-width:16ch;}
-h3{
-  font-weight:500;                 /* Überschriften nie fett */
-  font-size:var(--t-h3);
-  line-height:1.24;
-  letter-spacing:-.028em;
-  text-wrap:balance;
-}
+h1{font-size:var(--t-h1);line-height:1.02;max-width:15ch;}
+h2{font-size:var(--t-h2);max-width:17ch;}
+h3{font-size:var(--t-h3);line-height:1.24;letter-spacing:-.028em;}
 p{max-width:58ch;}
 a{color:inherit;text-decoration:none;}
 img{display:block;max-width:100%;height:auto;}
@@ -240,10 +233,32 @@ section{padding-block:var(--sec);}
 .hero{
   min-height:100svh;
   padding-top:calc(var(--head) + clamp(40px,7vw,90px));
-  padding-bottom:clamp(34px,5vw,64px);
-  display:flex;align-items:stretch;
+  padding-bottom:0;                /* der Horizont sitzt bündig am Rand */
+  display:flex;flex-direction:column;
 }
-.hero .wrap{display:flex;flex-direction:column;justify-content:center;}
+.hero .wrap{
+  flex:1;
+  display:flex;flex-direction:column;justify-content:center;
+  padding-bottom:clamp(30px,4vw,54px);
+}
+
+/* Der Horizont — randlos über die volle Breite, unten am ersten Bildschirm.
+   Kein Rahmen, kein Radius, kein Text darüber: das helle Papier geht oben in
+   den Dunst über, die dunkle Kuppe unten in das schwarze Kapitel danach. */
+.horizon{
+  margin:0;
+  width:100%;
+  height:clamp(190px,30svh,360px);
+  overflow:hidden;
+}
+.horizon img{
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center 62%;      /* Horizontlinie ins obere Drittel holen */
+}
+@media (max-width:640px){
+  .horizon{height:clamp(150px,24svh,230px);}
+}
 .hero h1{margin-top:clamp(26px,3vw,44px);}
 .hero .lead{margin-top:clamp(24px,2.6vw,38px);}
 /* Der Mindestabstand hängt am Button, nicht an der Metazeile: dort unten
@@ -271,7 +286,6 @@ section{padding-block:var(--sec);}
 }
 .statement h2{
   color:var(--paper);
-  font-size:clamp(32px,5vw,72px);
   max-width:19ch;
 }
 .statement p{
@@ -309,14 +323,13 @@ section{padding-block:var(--sec);}
 }
 .flow-step--core::before{background:var(--gold);}
 /* Die Ziffer trägt den Schritt. Vorher ein 11-px-Label, das niemand gesehen
-   hat — jetzt in der Serife, groß, in Gold. Das ist der Anker der Grafik. */
+   hat — jetzt groß und in Gold. Das ist der Anker der Grafik. */
 .flow-num{
   display:block;
-  font-family:var(--display);
   font-size:var(--t-num);
-  font-weight:400;
+  font-weight:500;
   line-height:1;
-  letter-spacing:-.01em;
+  letter-spacing:-.035em;
   color:var(--gold);
   margin-bottom:clamp(16px,1.8vw,24px);
 }
@@ -354,11 +367,10 @@ section{padding-block:var(--sec);}
    Ziffernpaare direkt untereinander würden sich gegenseitig entwerten. */
 .phase-num{
   display:block;
-  font-family:var(--display);
-  font-size:clamp(21px,1.9vw,27px);
-  font-weight:400;
+  font-size:clamp(19px,1.7vw,24px);
+  font-weight:500;
   line-height:1;
-  letter-spacing:-.01em;
+  letter-spacing:-.035em;
   color:var(--gold);
   margin-bottom:clamp(16px,1.8vw,24px);
 }
@@ -369,12 +381,11 @@ section{padding-block:var(--sec);}
   margin-top:clamp(28px,3vw,42px);
   padding-top:22px;
   border-top:1px solid var(--gold);
-  font-family:var(--display);
-  font-size:clamp(19px,1.6vw,26px);
-  line-height:1.38;
-  max-width:34ch;
+  font-size:var(--t-lead);
+  line-height:1.5;
+  max-width:40ch;
   color:var(--ink);
-  letter-spacing:-.008em;
+  letter-spacing:-.01em;
 }
 
 /* ─── 8 · Ergebnis ─────────────────────────────────────────────────────── */
@@ -391,11 +402,10 @@ section{padding-block:var(--sec);}
   margin-top:clamp(44px,5vw,76px);
   padding-top:24px;
   border-top:1px solid var(--gold);
-  font-family:var(--display);
-  font-size:clamp(21px,2.2vw,34px);
-  line-height:1.32;
-  letter-spacing:-.01em;
-  max-width:28ch;
+  font-size:var(--t-h3);
+  line-height:1.3;
+  letter-spacing:-.028em;
+  max-width:30ch;
 }
 
 /* ─── 9 · Für wen ──────────────────────────────────────────────────────── */
@@ -460,7 +470,7 @@ section{padding-block:var(--sec);}
   padding-top:clamp(28px,3vw,42px);
   border-top:1px solid var(--line);
 }
-.invest .amount{margin-top:18px;font-family:var(--display);font-size:clamp(28px,3.6vw,50px);font-weight:400;letter-spacing:-.014em;line-height:1.06;}
+.invest .amount{margin-top:16px;font-size:clamp(25px,3.4vw,44px);font-weight:500;letter-spacing:-.035em;line-height:1.1;}
 .invest .meta{margin-top:20px;max-width:46ch;}
 
 /* ─── 13 · Einzelcoaching — bewusst zurückgenommen ─────────────────────── */
@@ -481,11 +491,10 @@ section{padding-block:var(--sec);}
   padding-top:clamp(26px,3vw,40px);
   border-top:1px solid rgba(249,248,246,.16);
   color:var(--gold-lt);
-  font-family:var(--display);
-  font-size:clamp(21px,2.4vw,36px);
-  line-height:1.34;
+  font-size:var(--t-lead);
+  line-height:1.45;
   letter-spacing:-.01em;
-  max-width:26ch;
+  max-width:40ch;
 }
 
 /* ─── 15 · Fußzeile ────────────────────────────────────────────────────── */
