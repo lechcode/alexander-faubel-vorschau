@@ -1,442 +1,103 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>document.documentElement.classList.add('js')</script>
-<!-- ENTFERNEN sobald Impressum+Datenschutz live & freigegeben -->
-<meta name="robots" content="noindex, nofollow">
-<title>Bewerbung für einen Platz | Executive Reset · A. Faubel</title>
-<meta name="description" content="Zehn Plätze im Jahr. Alexander Faubel liest jede Bewerbung selbst. Fünf Felder, drei Sätze genügen — der Rest wird im Vorgespräch geklärt.">
-<meta property="og:title" content="Für einen Platz bewerben">
-<meta property="og:description" content="Executive Reset. Zehn Plätze im Jahr. Jede Bewerbung wird persönlich gelesen.">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="de_DE">
-<!-- og:image relativ, bis die Domain feststeht — ein absoluter Verweis auf
-     eine noch nicht existierende Adresse bricht die WhatsApp-Vorschau.
-     Bei Go-Live: absolute URL + og:url wieder eintragen. -->
-<meta property="og:image" content="assets/og.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="theme-color" content="#F0EEE9">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2315161A'/%3E%3Cpath d='M6 24h20' stroke='%23F0EEE9' stroke-width='1.5'/%3E%3Cpath d='M16 7v13' stroke='%238C8C88' stroke-width='1.5'/%3E%3C/svg%3E">
-<link rel="preload" href="assets/fonts/libre-caslon-display-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/archivo-400.woff2" as="font" type="font/woff2" crossorigin>
+<title>Apply for Reset — Executive Reset</title>
+<meta name="description" content="Bewerbung für den Executive Reset. Jede Bewerbung wird persönlich gelesen.">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#F9F8F6">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111C19'/%3E%3Crect x='9' y='15' width='14' height='1.4' fill='%23DDCEB9'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts.css">
-<link rel="stylesheet" href="assets/gemeinsam.css">
-<style>
-/* ⚠ SYNC-PFLICHT — zweiter von vier Token-Blöcken (index.html ·
-   bewerbung.html · assets/legal.css · 404.html). Wer einen ändert,
-   ändert alle vier: Typo UND Raster (--spalte / --text).
-   Runde 4: neue Sechser-Skala (§ J/G4), H1 ≤ 72px, Fließtext ≤ 18px. */
-:root{
-  --papier:#F0EEE9; --papier-tief:#E7E3DA; --tinte:#15161A; --tinte-hoch:#1E2027; --zinn:#8C8C88;
-  --sandstein:#D8D1C6; --signatur:#2E3A45;
-  --serif:'Libre Caslon Display','Caslon Fallback',Georgia,serif;
-  --sans:'Archivo','Archivo Fallback','Helvetica Neue',Arial,sans-serif;
-  --s-label:clamp(0.6875rem, 0.641rem + 0.19vw,  0.8125rem); /* 11 → 13 */
-  --s-klein:clamp(0.875rem,  0.852rem + 0.095vw, 0.9375rem); /* 14 → 15 */
-  --s-text: 1.125rem;                                         /* 18 fest  ⚠ Sync */
-  --s-lead: clamp(1.3125rem, 1.157rem + 0.381vw, 1.5rem);    /* 21 → 24 */
-  --s-h2:   clamp(1.625rem,  1.3rem   + 1.333vw, 2.5rem);    /* 26 → 40 */
-  --s-h1:   clamp(2.875rem,  2.193rem + 2.286vw, 4.25rem);   /* 46 → 68 */
-  --ruhig:112px; --dicht:88px; --rand:24px;
-  --spalte:1180px; --text:540px;
-  --ease:cubic-bezier(.22,.61,.36,1);
-}
-@media (min-width:900px){ :root{ --ruhig:160px; --dicht:120px; --rand:80px } }
-@media (min-width:1600px){ :root{ --rand:120px } }
-
-*,*::before,*::after{box-sizing:border-box}
-html{ -webkit-text-size-adjust:100% }
-body{ margin:0; background:var(--papier); color:var(--tinte);
-  font-family:var(--sans); font-weight:400; font-size:var(--s-text); line-height:1.65;
-  -webkit-font-smoothing:antialiased; overflow-x:clip; counter-reset:offen }
-/* Papierkorn — identisch auf allen fünf Seiten. */
-body::after{ content:''; position:fixed; inset:0; z-index:90;
-  pointer-events:none; opacity:.028; mix-blend-mode:multiply;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") }
-a{color:inherit}
-h1,h2,h3,p,ul,ol,fieldset,legend{margin:0}
-ul{padding:0;list-style:none}
-fieldset{border:0;padding:0;min-width:0}
-
-.buehne{ max-width:var(--spalte); margin:0 auto; padding-inline:var(--rand) }
-.spalte{ max-width:var(--text) }
-.ruhig{ padding-block:var(--ruhig) }
-.dicht{ padding-block:var(--dicht) }
-.vor-s{margin-top:28px} .vor-m{margin-top:44px} .vor-l{margin-top:64px}
-@media (min-width:900px){ .vor-m{margin-top:56px} .vor-l{margin-top:88px} }
-p + p{ margin-top:1.1em }
-
-.t-h1{ font-family:var(--serif); font-weight:400; font-size:var(--s-h1);
-  line-height:1.03; letter-spacing:-0.02em }
-.t-label{ font-family:var(--sans); font-weight:500; font-size:var(--s-label);
-  letter-spacing:.18em; text-transform:uppercase; line-height:1.4 }
-.linie{ height:1px; background:var(--zinn); border:0; width:100%; opacity:.55;
-  /* margin-inline:0 ist Pflicht: das UA-Stylesheet gibt <hr> `margin: .5em auto`.
-     Mit `max-width:var(--text)` zentrierte sich die Haarlinie dadurch in der
-     Bühne statt an der linken Kante zu stehen — auf einer Seite, deren ganze
-     Grammatik EINE linke Kante ist. Im Screenshot gesehen, nicht im Quelltext. */
-  margin-inline:0 }
-/* <strong>/<b> erbten sonst die UA-Stärke 700 — G4 erlaubt max. 500. */
-strong,b{ font-weight:500 }
-
-.skip{ position:absolute; left:-9999px; top:0; z-index:100;
-  background:var(--signatur); color:var(--papier); padding:16px 20px;
-  min-height:48px; display:flex; align-items:center;
-  font-size:var(--s-label); letter-spacing:.08em; text-transform:uppercase; text-decoration:none }
-.skip:focus{ left:0 }
-
-.nav{ position:fixed; inset:0 0 auto 0; z-index:60;
-  display:flex; align-items:center; justify-content:space-between; gap:16px;
-  max-width:var(--spalte); margin:0 auto; padding:20px var(--rand) }
-.nav::before{ content:''; position:absolute; inset:0; z-index:-1;
-  background:var(--papier); opacity:.94;
-  backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px) }
-.wortmarke{ display:inline-flex; align-items:center; min-height:48px;
-  font-family:var(--sans); font-weight:500; font-size:var(--s-label);
-  letter-spacing:.18em; text-transform:uppercase; text-decoration:none; line-height:1 }
-.zurueck{ display:inline-flex; align-items:center; min-height:48px;
-  font-size:var(--s-label); letter-spacing:.1em; text-transform:uppercase; text-decoration:none }
-
-.cta{ display:inline-flex; align-items:center; justify-content:center;
-  min-height:52px; padding:14px 30px; background:var(--signatur); color:var(--papier);
-  text-decoration:none; font-family:var(--sans); font-weight:500; font-size:var(--s-label);
-  letter-spacing:.1em; line-height:1.2; border:0; border-radius:0; cursor:pointer;
-  transition:background .35s var(--ease) }
-.cta:hover{ background:var(--tinte) }
-.cta[disabled]{ opacity:.6; cursor:default }
-:where(a,button,input,textarea,summary):focus-visible{
-  outline:2px solid var(--signatur); outline-offset:3px }
-
-.kopf{ padding-block:150px var(--dicht) }
-@media (min-width:900px){ .kopf{ padding-block:210px var(--dicht) } }
-
-/* ── Zweispalter ab 900px (Runde 2, Fix 5) ─────────────────
-   Vorher stand die ganze Seite in einer 600px-Spalte links —
-   44 % der Bildschirmbreite blieben über 6.100px hinweg leer.
-   Auf der Startseite trägt „eine linke Kante“, weil H1,
-   Vollflächen und Grid ihr eine rechte Kante geben; hier
-   überquerte nichts die Mitte. Links die Rahmung und der Weg
-   zurück, rechts das Formular. Halbiert die Seitenlänge.
-   Bewusst NICHT sticky — G6 verbietet Scroll-Pinning. */
-.raster{ display:block }
-.regie{ margin-top:64px }
-@media (min-width:900px){
-  .raster{ display:grid; grid-template-columns:minmax(0,400px) minmax(0,1fr);
-    column-gap:96px; align-items:start }
-  .raster > * { min-width:0 }
-  .rahmen{ grid-column:1; grid-row:1 }
-  .formularspalte{ grid-column:2; grid-row:1 / span 2 }
-  .regie{ grid-column:1; grid-row:2; margin-top:56px }
-}
-@media (min-width:1200px){ .raster{ column-gap:128px } }
-
-.rahmen-fuss{ margin-top:56px; padding-top:28px; border-top:1px solid var(--zinn) }
-.rahmen-fuss a{ display:inline-flex; align-items:center; min-height:48px;
-  font-size:var(--s-label); letter-spacing:.1em; text-transform:uppercase; text-decoration:none }
-.rahmen-fuss a span{ border-bottom:1px solid var(--zinn); padding-bottom:3px }
-.rahmen-fuss a:hover span{ border-bottom-color:var(--tinte) }
-/* Ab 900px trägt die linke Spalte den Weg zurück — in der Nav wäre er doppelt. */
-@media (min-width:900px){ .nav .zurueck{ display:none } }
-@media (max-width:899.98px){ .rahmen-fuss{ display:none } }
-
-/* ── Formular ──────────────────────────────────────────── */
-.formular{ max-width:var(--text); margin-top:56px }
-@media (min-width:900px){ .formular{ margin-top:0 } }
-.block + .block{ margin-top:56px }
-.block > .t-label{ display:block; padding-bottom:18px; border-bottom:1px solid var(--zinn) }
-.feld{ margin-top:28px }
-.feld label{ display:block; font-family:var(--sans); font-weight:500;
-  font-size:var(--s-label); letter-spacing:.08em; margin-bottom:10px }
-.feld .hinweis{ font-size:var(--s-klein); letter-spacing:0; text-transform:none;
-  font-weight:400; color:var(--signatur); margin-top:8px; line-height:1.5 }
-/* Kanten von Bedienelementen brauchen 3:1 (WCAG 1.4.11). Zinn auf Papier
-   liegt bei 2,91:1 — deshalb tragen Feld-Unterkanten und Checkbox Signatur
-   (10,02:1). Zinn bleibt, wo es dekorativ trennt (Block-Linien, Fuß). */
-.feld input, .feld textarea{
-  width:100%; font-family:var(--sans); font-size:var(--s-text); font-weight:400;
-  line-height:1.6; color:var(--tinte); background:transparent;
-  border:0; border-bottom:1px solid var(--signatur); border-radius:0;
-  padding:12px 2px; min-height:52px;
-  transition:border-color .3s var(--ease) }
-.feld textarea{ min-height:150px; resize:vertical }
-.feld input:focus, .feld textarea:focus{ border-bottom-color:var(--signatur); outline:0 }
-.feld input:focus-visible, .feld textarea:focus-visible{ outline:2px solid var(--signatur); outline-offset:3px }
-.feld input::placeholder, .feld textarea::placeholder{ color:var(--signatur); opacity:.75 }
-
-.einwilligung{ display:flex; gap:14px; align-items:flex-start; margin-top:40px;
-  padding-top:28px; border-top:1px solid var(--zinn) }
-/* font-size ≥ 16px auch auf Checkbox/Honeypot — Formularfelder erben sie NICHT
-   und iOS zoomt sonst beim Fokus in die Seite hinein. */
-/* Die Checkbox lief bis Runde 3 im Chrome-Default: weiße Fläche, Rand
-   rgb(118,118,118), Textfarbe #000 — drei Werte außerhalb der Palette,
-   ausgerechnet auf dem einen Feld, das jeder Bewerber anfassen muss.
-   G1 sagt „≤ 5 Farbwerte, kein #000, kein #FFF". Jetzt in Zinn, Signatur
-   und Papier gebaut, ohne einen sechsten Wert.
-   24px, nicht 22: WCAG 2.2 SC 2.5.8 fordert 24px Mindestgröße. Über das
-   Label ist die Fläche längst groß genug — aber 2px unter der Norm auf dem
-   einen Feld, das jeder Bewerber anfassen muss, ist ein vermeidbarer Satz
-   in einem Audit. Der :hover war bis Runde 3 eine tote Regel (border-color
-   identisch zum Grundzustand): das Pflichtfeld war das einzige Bedienelement
-   ohne Rückmeldung. Jetzt 2px-Rahmen — sichtbar, ohne Layout-Sprung, weil
-   box-sizing:border-box die 24px hält. */
-.einwilligung input{ appearance:none; -webkit-appearance:none;
-  width:24px; height:24px; min-height:0; flex:0 0 auto;
-  margin-top:.25em; font-size:1rem; cursor:pointer;
-  background:transparent; border:1px solid var(--signatur); border-radius:0;
-  display:grid; place-content:center;
-  transition:background .25s var(--ease), border-width .2s var(--ease) }
-.einwilligung input:hover{ border-width:2px }
-.einwilligung input:checked{ background:var(--signatur); border-color:var(--signatur) }
-.einwilligung input:checked::before{ content:''; width:10px; height:5px;
-  border-left:2px solid var(--papier); border-bottom:2px solid var(--papier);
-  transform:rotate(-45deg) translate(1px,-2px) }
-.honig input{ font-size:1rem }
-.einwilligung label{ font-size:var(--s-klein); letter-spacing:0; text-transform:none;
-  font-weight:400; line-height:1.6; margin:0 }
-.honig{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden }
-
-.absenden{ margin-top:40px }
-/* Erfolg und Fehler waren bis Runde 3 exakt gleich gestylt — wer eine
-   unvollständige E-Mail abschickte, bekam optisch dieselbe Antwort wie beim
-   Erfolg. Getrennt ohne sechsten Farbwert, in der Grammatik der Seite:
-   Ankunft = gefüllte Signaturfläche · Einwand = Kante wie bei .notiz. */
-.form-msg{ margin-top:24px; font-size:var(--s-klein);
-  letter-spacing:0; text-transform:none; line-height:1.6; max-width:31em }
-.form-msg:empty{ display:none }
-.form-msg.ok{ background:var(--signatur); color:var(--papier);
-  border:0; padding:16px 18px }
-.form-msg.ok a{ color:var(--papier) }
-.form-msg.err{ background:transparent; color:var(--signatur);
-  border:0; border-left:2px solid var(--signatur);
-  padding:2px 0 2px 20px }
-
-/* Offene Stellen (drei Gewichte, laufende Nummer) und der dreispaltige
-   Fuß stehen in assets/gemeinsam.css — EINMAL, für alle fünf Seiten. */
-.site-footer{ margin-top:var(--dicht) }
-
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{ transition-duration:.01ms !important; animation:none !important }
-}
-@media print{ .nav,.cta,body::after{display:none} body{background:#fff;color:#000} }
-</style>
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-<a class="skip" href="#inhalt">Zum Inhalt springen</a>
 
-<header class="nav">
-  <a class="wortmarke" href="index.html">Alexander&nbsp;Faubel</a>
-  <a class="zurueck" href="index.html">Zurück</a>
+<a class="skip" href="#main">Zum Inhalt</a>
+
+<header class="head">
+  <div class="wrap">
+    <a class="mark" href="index.html">Executive Reset</a>
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a href="index.html#prozess">Prozess</a>
+      <a href="index.html#ergebnis">Ergebnis</a>
+      <a href="index.html#fuer-wen">Für wen</a>
+      <a href="index.html#alexander">Alexander</a>
+      <a class="apply" href="index.html">Zurück</a>
+    </nav>
+  </div>
 </header>
 
-<main id="inhalt">
-  <section class="kopf">
-    <div class="buehne">
-      <div class="raster">
+<main id="main" class="legal">
+  <div class="wrap">
 
-      <div class="rahmen">
-      <p class="t-label">Executive Reset · Zehn Plätze im Jahr</p>
-      <h1 class="t-h1 vor-m" style="max-width:12ch">Die Bewerbung</h1>
-      <div class="spalte vor-m">
-        <p>Ich nehme zehn Menschen im Jahr. Jeder Prozess wird für eine Person gebaut, und mehr als zehn schaffe ich in dieser Tiefe nicht ehrlich.</p>
-        <p>Ich lese jede Bewerbung selbst. Manche beantworte ich mit einer Empfehlung für jemand anderen. Das ist kein schlechtes Ergebnis, sondern das richtige.</p>
-      </div>
-      <p class="rahmen-fuss"><a href="index.html"><span>Zurück zum Executive Reset</span></a></p>
-      </div>
+    <span class="eyebrow" data-reveal>Apply for Reset</span>
+    <h1 data-reveal style="margin-top:24px;max-width:17ch;font-size:var(--t-h2)">Erzähl mir, worum es gerade geht.</h1>
+    <p class="lead" data-reveal style="margin-top:28px">Zehn Plätze im Jahr. Ich lese jede Bewerbung selbst und melde mich innerhalb weniger Tage — auch dann, wenn es nicht passt.</p>
 
-      <div class="formularspalte">
-      <form class="formular" id="bewerbung" novalidate>
-        <fieldset class="block">
-          <legend class="t-label">Wer Sie sind</legend>
-
-          <div class="feld">
-            <label for="name">Ihr Name</label>
-            <input id="name" name="name" type="text" autocomplete="name" required>
-          </div>
-
-          <div class="feld">
-            <label for="email">E-Mail</label>
-            <input id="email" name="email" type="email" autocomplete="email" required>
-          </div>
-
-          <div class="feld">
-            <label for="rolle">Rolle und Unternehmen</label>
-            <input id="rolle" name="rolle" type="text" autocomplete="organization">
-          </div>
-
-          <div class="feld">
-            <label for="telefon">Telefon <span style="text-transform:none;letter-spacing:0;font-weight:400">(optional)</span></label>
-            <input id="telefon" name="telefon" type="tel" autocomplete="tel">
-            <p class="hinweis">Nur falls Ihnen ein Anruf lieber ist als eine Mail.</p>
-          </div>
-        </fieldset>
-
-        <fieldset class="block">
-          <legend class="t-label">Worum es geht</legend>
-
-          <div class="feld">
-            <label for="msg">Worum geht es gerade?</label>
-            <textarea id="msg" name="message" rows="6" placeholder="Drei Sätze reichen. Ich lese sie wirklich."></textarea>
-            <p class="hinweis">Bitte keine Angaben zu Gesundheit, Diagnosen oder Behandlungen. Was persönlich ist, besprechen wir im Vorgespräch, nicht im Formular.</p>
-          </div>
-        </fieldset>
-
-        <div class="honig" aria-hidden="true">
-          <label for="_honey">Bitte leer lassen</label>
-          <input id="_honey" name="_honey" type="text" tabindex="-1" autocomplete="off">
-        </div>
-
-        <div class="einwilligung">
-          <input id="ok" name="ok" type="checkbox" required>
-          <label for="ok">Ich bin einverstanden, dass meine Angaben zur Bearbeitung meiner Bewerbung gespeichert und verwendet werden. Näheres in der <a href="datenschutz.html">Datenschutzerklärung</a>.</label>
-        </div>
-
-        <p class="absenden"><button class="cta" type="submit">Bewerbung senden</button></p>
-        <p class="form-msg" id="formmsg" role="status" aria-live="polite"></p>
-      </form>
-
+    <form class="form" data-apply data-reveal>
+      <!-- Spamschutz: für Menschen unsichtbar, kein CAPTCHA. -->
+      <div class="hp" aria-hidden="true">
+        <label for="website">Website</label>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
       </div>
 
-      <!-- Regie-Notizen: im Quelltext NACH dem Formular (mobil liest man erst
-           das Formular), ab 900px per Grid in die linke Bahn unter die Rahmung —
-           dort trägt die Spalte etwas, statt neben dem Formular leerzulaufen. -->
-      <div class="regie">
-        <!-- Legende (Fix 3) — auch hier, weil Alexander diese Seite direkt
-             öffnen kann, ohne über die Startseite gekommen zu sein. -->
-        <aside class="notiz legende">
-          <p class="notiz-marke">An dich, Alexander</p>
-          <p>Die blau markierten Stellen sind für dich, und sie sind durchnummeriert — was du dort einträgst, steht später genau an dieser Stelle.</p>
-        </aside>
-
-        <div class="randnotiz-liste vor-m">
-          <p class="randnotiz offen"><b class="offen-nr"></b>Antwortzeit: Innerhalb welcher Frist liest und beantwortest du eine Bewerbung? Der Satz nach dem Absenden nennt sie.</p>
-          <p class="randnotiz offen"><b class="offen-nr"></b>E-Mail-Adresse: An welche Adresse sollen die Bewerbungen gehen — und welche Adresse steht in der Fehlermeldung, falls das Formular einmal klemmt?</p>
-          <p class="randnotiz offen"><b class="offen-nr"></b>An uns, nicht an dich: Das Formular ist noch nicht scharf. Es braucht Postfach und Domain, dann einen Eintrag in <span style="font-style:normal">recipients.js</span>, die Domain in der CORS-Liste und einen Test-Versand. Bis dahin sendet es bewusst nichts.</p>
-        </div>
+      <div class="field">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="Name" required autocomplete="name">
       </div>
 
+      <div class="field">
+        <label for="email">E-Mail</label>
+        <input type="email" id="email" name="E-Mail" required autocomplete="email">
       </div>
-    </div>
-  </section>
+
+      <div class="field">
+        <label for="rolle">Unternehmen und Rolle</label>
+        <input type="text" id="rolle" name="Unternehmen und Rolle" required autocomplete="organization">
+      </div>
+
+      <div class="field">
+        <label for="thema">Worum geht es gerade?</label>
+        <textarea id="thema" name="Worum geht es gerade" required></textarea>
+        <p class="hint">Ein paar Sätze reichen. Was dich beschäftigt, sagt mehr als ein Lebenslauf.</p>
+      </div>
+
+      <div class="field">
+        <label for="tel">Telefon — optional</label>
+        <input type="tel" id="tel" name="Telefon" autocomplete="tel">
+      </div>
+
+      <div class="consent">
+        <input type="checkbox" id="ok" name="Einverständnis" required>
+        <label for="ok">Ich bin damit einverstanden, dass meine Angaben zur Bearbeitung meiner Bewerbung gespeichert und verwendet werden. Widerruf jederzeit per E-Mail.</label>
+      </div>
+
+      <button type="submit" class="btn">Bewerbung senden</button>
+
+      <p class="form-msg" id="form-msg" role="status" tabindex="-1" hidden></p>
+
+      <p class="form-note">Deine Angaben gehen ausschließlich an Alexander und werden nur für die Beantwortung deiner Bewerbung verwendet. Kein Newsletter, keine Weitergabe. Mehr dazu in der <a class="link" href="datenschutz.html">Datenschutzerklärung</a>.</p>
+    </form>
+
+  </div>
 </main>
 
-<footer class="site-footer">
-  <div class="buehne">
-    <div class="foot-oben">
-      <div>
-        <span class="foot-marke">Alexander&nbsp;Faubel</span>
-        <p class="foot-satz">Drei Tage für Menschen, die Verantwortung tragen.</p>
-        <p class="foot-abgrenzung">Der Executive Reset ist persönliche Begleitung und Persönlichkeitsentwicklung. Er ist keine medizinische oder psychotherapeutische Behandlung und ersetzt diese nicht.</p>
-      </div>
-      <div>
-        <span class="foot-titel">Die Seite</span>
-        <nav class="foot-liste" aria-label="Seiteninhalt">
-          <a href="index.html#fuer-wen"><span>Für wen. Und für wen nicht.</span></a>
-          <a href="index.html#ablauf"><span>Was in diesen drei Tagen passiert</span></a>
-          <a href="index.html#reset"><span>Executive Reset</span></a>
-          <a href="index.html#person"><span>Wer Sie begleitet</span></a>
-          <a href="index.html#bewerbung"><span>Die Bewerbung</span></a>
-        </nav>
-      </div>
-      <div>
-        <span class="foot-titel">Rechtliches und Kontakt</span>
-        <nav class="foot-liste" aria-label="Rechtliches">
-          <a href="impressum.html"><span>Impressum</span></a>
-          <a href="datenschutz.html"><span>Datenschutz</span></a>
-        </nav>
-        <p class="foot-hinweis">Kontakt ausschließlich über die Bewerbung.</p>
-        <p class="foot-hinweis">Was in einer Bewerbung steht, bleibt zwischen Ihnen und mir.</p>
-      </div>
-    </div>
-    <div class="foot-unten">
-      <span>Keine Cookies. Keine Tracker. Keine externen Dienste.</span>
-      <span>Handgebaut in Landsberg am Lech · Entwurf, Formular noch nicht scharf</span>
-    </div>
+<footer class="foot" style="margin-top:clamp(84px,13vw,190px)">
+  <div class="wrap">
+    <p>Alexander Faubel — Executive Reset</p>
+    <nav aria-label="Rechtliches">
+      <a href="mailto:kontakt@example.com">kontakt@example.com</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </nav>
+  </div>
+  <div class="wrap">
+    <p class="foot-note">Der Executive Reset ist persönliche Begleitung und Persönlichkeitsentwicklung. Er ist keine medizinische oder psychotherapeutische Behandlung und ersetzt diese nicht.</p>
   </div>
 </footer>
 
-<script>
-(function(){
-  /* ─────────────────────────────────────────────────────────
-     Bewerbungsformular → Lechcode-Worker /contact → Resend.
-     SCHARF = false, solange Postfach + Domain fehlen (E9):
-     es wird NICHTS gesendet, der Besucher bekommt einen
-     ehrlichen Hinweis. Scharfschalten =
-       1) recipients.js: "alexander-faubel" eintragen
-       2) Domain in ALLOWED_ORIGINS
-       3) npx wrangler deploy
-       4) hier SCHARF = true
-     Die Zusatzfelder werden clientseitig in message gesetzt —
-     contact.js wird NICHT angefasst (bedient auch andere Kunden).
-     ───────────────────────────────────────────────────────── */
-  var SCHARF = false;
-  var WORKER = 'https://lechcode-api.nameless-waterfall-55e5.workers.dev';
-  var SITE   = 'alexander-faubel';
-
-  var f = document.getElementById('bewerbung');
-  var m = document.getElementById('formmsg');
-  if (!f) return;
-  var btn = f.querySelector('button[type=submit]');
-  var ERR = 'Das ist gerade nicht durchgegangen. Schreiben Sie mir direkt — die Adresse steht im Impressum, dann geht es sicher nicht verloren.';
-
-  function sag(art, text){
-    m.className = 'form-msg ' + art;
-    m.textContent = text;
-    m.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
-  function wert(id){ var e = document.getElementById(id); return e ? e.value.trim() : ''; }
-
-  f.addEventListener('submit', function(e){
-    e.preventDefault();
-    if (document.getElementById('_honey').value) return;   /* Honeypot */
-
-    var name = wert('name'), email = wert('email');
-    if (!name)  return sag('err', 'Da fehlt noch etwas. Ohne Ihren Namen kann ich mich nicht zurückmelden.');
-    if (!email) return sag('err', 'Da fehlt noch etwas. Ohne E-Mail kann ich mich nicht zurückmelden.');
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email))
-      return sag('err', 'Diese E-Mail-Adresse sieht nicht vollständig aus. Bitte schauen Sie noch einmal darauf.');
-    if (!document.getElementById('ok').checked)
-      return sag('err', 'Da fehlt noch etwas. Ohne Ihr Einverständnis darf ich die Bewerbung nicht bearbeiten.');
-
-    /* Zusatzfelder in den message-Block — Worker-Schema bleibt unberührt */
-    var text = [
-      'Rolle und Unternehmen: ' + (wert('rolle') || '—'),
-      'Telefon: ' + (wert('telefon') || '—'),
-      '',
-      'Worum es gerade geht:',
-      wert('msg') || '(keine Angabe)'
-    ].join('\n');
-
-    if (!SCHARF) {
-      sag('ok', 'Dieses Formular ist im Entwurf noch nicht scharf geschaltet — es wird nichts gesendet und nichts gespeichert. Sobald Postfach und Domain feststehen, landet die Bewerbung direkt im Postfach von Alexander Faubel.');
-      return;
-    }
-
-    var label = btn.textContent;
-    btn.disabled = true; btn.textContent = 'Wird gesendet …';
-    fetch(WORKER + '/contact', {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ site: SITE, name: name, email: email, thema: 'Bewerbung Executive Reset', message: text })
-    })
-    .then(function(r){ return r.json(); })
-    .then(function(d){
-      if (d && d.ok) {
-        sag('ok', 'Ihre Bewerbung liegt bei mir. Ich lese sie selbst. Bis dahin müssen Sie nichts tun.');
-        f.reset(); btn.textContent = 'Gesendet';
-      } else {
-        sag('err', (d && d.meldung) || ERR);
-        btn.disabled = false; btn.textContent = label;
-      }
-    })
-    .catch(function(){
-      sag('err', ERR);
-      btn.disabled = false; btn.textContent = label;
-    });
-  });
-})();
-</script>
+<script src="assets/site.js" defer></script>
 </body>
 </html>

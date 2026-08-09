@@ -1,163 +1,33 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>document.documentElement.classList.add('js')</script>
-<!-- ENTFERNEN sobald Impressum+Datenschutz live & freigegeben -->
-<meta name="robots" content="noindex, nofollow">
-<title>Seite nicht gefunden | Executive Reset · A. Faubel</title>
-<meta name="description" content="Diese Seite gibt es nicht. Der Weg zurück zur Startseite ist kurz.">
-<meta property="og:title" content="Diese Seite gibt es nicht.">
-<meta property="og:description" content="Der Weg zurück ist kurz.">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="de_DE">
-<!-- og:image relativ, bis die Domain feststeht — ein absoluter Verweis auf
-     eine noch nicht existierende Adresse bricht die WhatsApp-Vorschau.
-     Bei Go-Live: absolute URL + og:url wieder eintragen. -->
-<meta property="og:image" content="assets/og.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="theme-color" content="#F0EEE9">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2315161A'/%3E%3Cpath d='M6 24h20' stroke='%23F0EEE9' stroke-width='1.5'/%3E%3Cpath d='M16 7v13' stroke='%238C8C88' stroke-width='1.5'/%3E%3C/svg%3E">
+<title>Seite nicht gefunden — Executive Reset</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#F9F8F6">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111C19'/%3E%3Crect x='9' y='15' width='14' height='1.4' fill='%23DDCEB9'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/fonts.css">
-<link rel="stylesheet" href="assets/gemeinsam.css">
-<style>
-/* ⚠ SYNC-PFLICHT — vierter von vier Token-Blöcken (index.html ·
-   bewerbung.html · assets/legal.css · 404.html). Wer einen ändert,
-   ändert alle vier: Typo UND Raster (--spalte / --text). */
-:root{
-  --papier:#F0EEE9; --papier-tief:#E7E3DA; --tinte:#15161A; --tinte-hoch:#1E2027; --zinn:#8C8C88;
-  --sandstein:#D8D1C6; --signatur:#2E3A45;
-  --serif:'Libre Caslon Display','Caslon Fallback',Georgia,serif;
-  --sans:'Archivo','Archivo Fallback','Helvetica Neue',Arial,sans-serif;
-  /* Runde 4: neue Sechser-Skala (§ J/G4) — H1 ≤ 72px, Fließtext ≤ 18px. */
-  --s-label:clamp(0.6875rem, 0.641rem + 0.19vw,  0.8125rem); /* 11 → 13 */
-  --s-klein:clamp(0.875rem,  0.852rem + 0.095vw, 0.9375rem); /* 14 → 15 */
-  --s-text: 1.125rem;                                         /* 18 fest  ⚠ Sync */
-  --s-lead: clamp(1.3125rem, 1.157rem + 0.381vw, 1.5rem);    /* 21 → 24 */
-  --s-h2:   clamp(1.625rem,  1.3rem   + 1.333vw, 2.5rem);    /* 26 → 40 */
-  --s-h1:   clamp(2.875rem,  2.193rem + 2.286vw, 4.25rem);   /* 46 → 68 */
-  --dicht:88px; --rand:24px;
-  --spalte:1180px; --text:540px;   /* Bühne / Textmaß — synchron zu index.html */
-  --ease:cubic-bezier(.22,.61,.36,1);
-}
-@media (min-width:900px){ :root{ --dicht:120px; --rand:80px } }
-*,*::before,*::after{box-sizing:border-box}
-html{ -webkit-text-size-adjust:100% }
-body{ margin:0; min-height:100svh; display:flex; flex-direction:column;
-  background:var(--papier); color:var(--tinte);
-  font-family:var(--sans); font-weight:400; font-size:var(--s-text); line-height:1.65;
-  -webkit-font-smoothing:antialiased; overflow-x:clip; counter-reset:offen }
-/* Papierkorn — identisch auf allen fünf Seiten. */
-body::after{ content:''; position:fixed; inset:0; z-index:90;
-  pointer-events:none; opacity:.028; mix-blend-mode:multiply;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") }
-h1,p{margin:0}
-a{color:inherit}
-.buehne{ max-width:var(--spalte); margin:0 auto; padding-inline:var(--rand); width:100% }
-.t-h1{ font-family:var(--serif); font-weight:400; font-size:var(--s-h1);
-  line-height:1.03; letter-spacing:-0.02em; max-width:14ch }
-.t-label{ font-family:var(--sans); font-weight:500; font-size:var(--s-label);
-  letter-spacing:.18em; text-transform:uppercase; line-height:1.4 }
-.linie{ height:1px; width:104px; background:var(--zinn); margin:22px 0 0 }
-.lead{ margin-top:36px; max-width:38ch }
-.cta{ display:inline-flex; align-items:center; justify-content:center;
-  min-height:52px; padding:14px 30px; margin-top:44px;
-  background:var(--signatur); color:var(--papier); text-decoration:none;
-  font-family:var(--sans); font-weight:500; font-size:var(--s-label);
-  letter-spacing:.1em; line-height:1.2; transition:background .35s var(--ease) }
-.cta:hover{ background:var(--tinte) }
-:where(a):focus-visible{ outline:2px solid var(--signatur); outline-offset:3px }
-
-.skip{ position:absolute; left:-9999px; top:0; z-index:100;
-  background:var(--signatur); color:var(--papier); padding:16px 20px;
-  min-height:48px; display:flex; align-items:center;
-  font-size:var(--s-label); letter-spacing:.08em; text-transform:uppercase; text-decoration:none }
-.skip:focus{ left:0 }
-
-/* Absender und Pflichtlinks — bis Runde 3 hatte ausgerechnet die Seite,
-   auf der ein Vertipper landet, weder Wortmarke noch Impressum. § 5 DDG
-   verlangt „ständig verfügbar“; „auf allen Seiten außer dieser“ ist das
-   nicht. Aufbau wie bewerbung.html / die Rechtsseiten. */
-.nav{ position:fixed; inset:0 0 auto 0; z-index:60 }
-.nav::before{ content:''; position:absolute; inset:0; z-index:-1;
-  background:var(--papier); opacity:.94;
-  backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px) }
-.nav-innen{ display:flex; align-items:center; gap:16px;
-  max-width:var(--spalte); margin:0 auto; padding:20px var(--rand) }
-.wortmarke{ display:inline-flex; align-items:center; min-height:48px;
-  font-family:var(--sans); font-weight:500; font-size:var(--s-label);
-  letter-spacing:.18em; text-transform:uppercase; text-decoration:none; line-height:1 }
-/* Kein „Zurück“ in der Nav: der CTA IST der Weg zurück. Zwei Wege zum
-   selben Ziel wären genau das, was G7 „ein Weg“ ausschließt. */
-
-main{ flex:1 0 auto; display:flex; align-items:center;
-  padding-block:130px var(--dicht) }
-@media (min-width:900px){ main{ padding-block:190px var(--dicht) } }
-@media (min-width:900px){ .t-h1{margin-top:56px} }
-
-/* Der dreispaltige Fuß steht in assets/gemeinsam.css — EINMAL,
-   für alle fünf Seiten. Hier nur die Flex-Verankerung am Seitenfuß. */
-.site-footer{ flex:0 0 auto }
-
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{ transition-duration:.01ms !important; animation:none !important }
-}
-@media print{ .nav,body::after{display:none} body{background:#fff;color:#000;font-size:11pt} }
-</style>
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-<a class="skip" href="#inhalt">Zum Inhalt springen</a>
-<header class="nav">
-  <div class="nav-innen">
-    <a class="wortmarke" href="index.html">Alexander&nbsp;Faubel</a>
+
+<header class="head">
+  <div class="wrap">
+    <a class="mark" href="index.html">Executive Reset</a>
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a class="apply" href="index.html">Zurück</a>
+    </nav>
   </div>
 </header>
 
-<main id="inhalt">
-  <div class="buehne">
-    <p class="t-label">Executive Reset</p>
-    <div class="linie" aria-hidden="true"></div>
-    <h1 class="t-h1" style="margin-top:40px">Diese Seite gibt es nicht.</h1>
-    <p class="lead">Der Weg zurück ist kurz.</p>
-    <p><a class="cta" href="index.html">Zur Startseite</a></p>
+<main id="main" class="legal">
+  <div class="wrap">
+    <span class="eyebrow">404</span>
+    <h1 style="margin-top:24px;max-width:14ch">Diese Seite gibt es nicht.</h1>
+    <p class="lead" style="margin-top:28px">Der Rest steht noch. <a class="link" href="index.html">Zur Startseite</a></p>
   </div>
 </main>
 
-<footer class="site-footer">
-  <div class="buehne">
-    <div class="foot-oben">
-      <div>
-        <span class="foot-marke">Alexander&nbsp;Faubel</span>
-        <p class="foot-satz">Drei Tage für Menschen, die Verantwortung tragen.</p>
-        <p class="foot-abgrenzung">Der Executive Reset ist persönliche Begleitung und Persönlichkeitsentwicklung. Er ist keine medizinische oder psychotherapeutische Behandlung und ersetzt diese nicht.</p>
-      </div>
-      <div>
-        <span class="foot-titel">Die Seite</span>
-        <nav class="foot-liste" aria-label="Seiteninhalt">
-          <a href="index.html#fuer-wen"><span>Für wen. Und für wen nicht.</span></a>
-          <a href="index.html#ablauf"><span>Was in diesen drei Tagen passiert</span></a>
-          <a href="index.html#reset"><span>Executive Reset</span></a>
-          <a href="index.html#person"><span>Wer Sie begleitet</span></a>
-          <a href="index.html#bewerbung"><span>Die Bewerbung</span></a>
-        </nav>
-      </div>
-      <div>
-        <span class="foot-titel">Rechtliches und Kontakt</span>
-        <nav class="foot-liste" aria-label="Rechtliches">
-          <a href="impressum.html"><span>Impressum</span></a>
-          <a href="datenschutz.html"><span>Datenschutz</span></a>
-        </nav>
-        <p class="foot-hinweis">Kontakt ausschließlich über die Bewerbung.</p>
-        <p class="foot-hinweis">Was in einer Bewerbung steht, bleibt zwischen Ihnen und mir.</p>
-      </div>
-    </div>
-    <div class="foot-unten">
-      <span>Keine Cookies. Keine Tracker. Keine externen Dienste.</span>
-      <span>Handgebaut in Landsberg am Lech · Entwurf, nicht veröffentlichen</span>
-    </div>
-  </div>
-</footer>
 </body>
 </html>

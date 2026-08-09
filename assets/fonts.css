@@ -1,49 +1,31 @@
-/* ============================================================
-   Alexander Faubel · „Executive Reset“
-   Lokal gehostete Schriften (latin-Subset, woff2).
-   DSGVO: KEINE Verbindung zu Google/Drittservern.
-   2 Familien · 4 Dateien · 72 KB gesamt.
+/* Executive Reset — Schrift lokal gehostet.
+   Keine Verbindung zu Google Fonts (DSGVO), kein externer Request auf der ganzen Seite.
+   Inter Tight, Variable-Font, Achse 300–500. Lizenz: SIL Open Font License 1.1. */
 
-   Libre Caslon Display: es existiert NUR der Schnitt 400 roman
-   (kein Kursiv!). Deshalb wird in Caslon-Headlines niemals
-   `font-style: italic` gesetzt — der Browser würde synthetisch
-   schrägstellen und die Serifen verzerren.
-   Kursive Auszeichnungen laufen ausschliesslich über Archivo.
-
-   size-adjust: gemessen im Headless-Chrome gegen den jeweiligen
-   System-Fallback (Textbreite bei 100px), gegen Layout-Shift.
-   ============================================================ */
-
-/* — Libre Caslon Display (Headlines, Ziffern) — */
 @font-face{
-  font-family:'Libre Caslon Display';
-  font-style:normal; font-weight:400; font-display:swap;
-  src:url(fonts/libre-caslon-display-400.woff2) format('woff2');
+  font-family:"Inter Tight";
+  font-style:normal;
+  font-weight:300 500;
+  font-display:swap;
+  src:url("fonts/inter-tight-latin.woff2") format("woff2");
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
 @font-face{
-  font-family:'Caslon Fallback';
-  src:local('Georgia'), local('Times New Roman'), local('Times');
-  size-adjust:82.3%; ascent-override:95%; descent-override:25%;
+  font-family:"Inter Tight";
+  font-style:normal;
+  font-weight:300 500;
+  font-display:swap;
+  src:url("fonts/inter-tight-latin-ext.woff2") format("woff2");
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
 }
 
-/* — Archivo (Fliesstext, Labels) — */
+/* Fallback mit angeglichener Metrik — verhindert den Sprung beim Nachladen (font-display:swap).
+   Inter Tight läuft enger als Arial, deshalb size-adjust unter 100 %. */
 @font-face{
-  font-family:'Archivo';
-  font-style:normal; font-weight:400; font-display:swap;
-  src:url(fonts/archivo-400.woff2) format('woff2');
-}
-@font-face{
-  font-family:'Archivo';
-  font-style:normal; font-weight:500; font-display:swap;
-  src:url(fonts/archivo-500.woff2) format('woff2');
-}
-@font-face{
-  font-family:'Archivo';
-  font-style:italic; font-weight:400; font-display:swap;
-  src:url(fonts/archivo-400italic.woff2) format('woff2');
-}
-@font-face{
-  font-family:'Archivo Fallback';
-  src:local('Helvetica Neue'), local('Helvetica'), local('Arial');
-  size-adjust:99.6%; ascent-override:94%; descent-override:24%;
+  font-family:"Inter Tight Fallback";
+  src:local("Arial"),local("Helvetica Neue"),local("Segoe UI");
+  size-adjust:97%;
+  ascent-override:97%;
+  descent-override:24%;
+  line-gap-override:0%;
 }

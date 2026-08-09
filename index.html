@@ -1,897 +1,355 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>document.documentElement.classList.add('js')</script>
-<!-- ENTFERNEN sobald Impressum+Datenschutz live & freigegeben -->
-<meta name="robots" content="noindex, nofollow">
-<title>Executive Reset – drei Tage für Führungskräfte | A. Faubel</title>
-<meta name="description" content="Drei Tage für Unternehmer und Führungskräfte, die viel erreicht haben und viel Kraft dafür zahlen. Ein Prozess für eine Person. Zehn Plätze im Jahr, Bewerbung.">
-<meta property="og:title" content="Erfolg, der Sie nicht aufbraucht.">
-<meta property="og:description" content="Executive Reset. Drei Tage für Menschen mit Verantwortung. Zehn Plätze im Jahr.">
+<title>Executive Reset — Alexander Faubel</title>
+<meta name="description" content="Ein exklusiver Prozess für Unternehmer und Führungskräfte, die nicht mehr zwischen beruflichem Erfolg und persönlichem Wohlbefinden wählen wollen. Zehn Plätze im Jahr.">
+<!-- Vorschau: bleibt aus dem Index, bis die Seite freigegeben ist. -->
+<meta name="robots" content="noindex,nofollow">
+<!-- canonical und og:url fehlen bewusst: die Domain steht noch nicht fest, und ein
+     absoluter Verweis auf eine Adresse, die es nicht gibt, richtet mehr Schaden an
+     als er nützt. og:image bleibt solange relativ. Bei Go-Live beides eintragen. -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="de_DE">
-<!-- og:image relativ, bis die Domain feststeht — ein absoluter Verweis auf
-     eine noch nicht existierende Adresse bricht die WhatsApp-Vorschau.
-     Bei Go-Live: absolute URL + og:url wieder eintragen. -->
-<meta property="og:image" content="assets/og.jpg">
+<meta property="og:title" content="Executive Reset — Alexander Faubel">
+<meta property="og:description" content="Erfolg ohne inneren Kampf. Ein exklusiver Prozess für Unternehmer und Führungskräfte. Zehn Plätze im Jahr.">
+<meta property="og:image" content="assets/img/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta name="theme-color" content="#F0EEE9">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2315161A'/%3E%3Cpath d='M6 24h20' stroke='%23F0EEE9' stroke-width='1.5'/%3E%3Cpath d='M16 7v13' stroke='%238C8C88' stroke-width='1.5'/%3E%3C/svg%3E">
-<link rel="preload" href="assets/fonts/libre-caslon-display-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/archivo-400.woff2" as="font" type="font/woff2" crossorigin>
+<meta property="og:image:alt" content="Alexander Faubel, Schwarzweißaufnahme">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F9F8F6">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111C19'/%3E%3Crect x='9' y='15' width='14' height='1.4' fill='%23DDCEB9'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts.css">
-<link rel="stylesheet" href="assets/gemeinsam.css">
-<style>
-/* ═══════════════════════════════════════════════════════════
-   Alexander Faubel · „Executive Reset“
-   Richtung „Stein & Tinte“ — papierdominant, ZWEI dunkle
-   Flächen (Ablauf, Wer Sie begleitet) plus Fuß, kein Gold,
-   keine Icons, keine Diagramme.
-   6 Farbwerte · 2 Schriftfamilien · 6 Größenstufen (§ J/G4).
-
-   ⚠ SYNC-PFLICHT — erster von vier Token-Blöcken (index.html ·
-   bewerbung.html · assets/legal.css · 404.html). Wer einen
-   ändert, ändert alle vier: Typo UND Raster (--spalte/--text).
-   `aldo-sync.mjs` misst das über alle fünf Seiten.
-   ═══════════════════════════════════════════════════════════ */
-
-:root{
-  /* — Palette: sechs Werte (§ J/G1 erlaubt ≤ 8). Kein #000, kein #FFF. —
-     Drei Hue-Familien: Papier-Warm (36–43°) · Tinte-Neutral · Signatur-Blau.
-     --papier-tief ist neu: die vierte Stufe der Papier-Tinte-Achse, damit
-     „Für wen“ einen eigenen Ton bekommt, ohne die Achse zu verlassen. */
-  --papier:#F0EEE9;
-  --papier-tief:#E7E3DA;
-  --tinte-hoch:#1E2027;  /* nur Grund fuer leere Bildfelder auf Tinte */
-  --tinte:#15161A;
-  --zinn:#8C8C88;      /* NUR 1px-Haarlinien auf Papier + Text auf Tinte (5,3:1) */
-  --sandstein:#D8D1C6;
-  --signatur:#2E3A45;
-
-  --serif:'Libre Caslon Display','Caslon Fallback',Georgia,serif;
-  --sans:'Archivo','Archivo Fallback','Helvetica Neue',Arial,sans-serif;
-
-  /* — SECHS Größenstufen, Sprung ≥ 1,15×, eine Größe = eine Rolle (§ J/G4) —
-     Die alte Skala (13/20/44/92) war laut Leonardos eigener Revision keine
-     Gestaltung, sondern eine Kompensation: sein zu enges Zeichenband
-     (32–42 mobil) zwang den Fließtext auf 20px, und um sein damaliges 4:1
-     zu halten, musste die H1 auf 92px. Beide Deckel sind jetzt hart:
-     H1 ≤ 72px, Fließtext ≤ 18px. Die 4:1-Regel ist gefallen. */
-  --s-label:clamp(0.6875rem, 0.641rem + 0.19vw,  0.8125rem); /* 11 → 13  Versal-Label, .18em */
-  --s-klein:clamp(0.875rem,  0.852rem + 0.095vw, 0.9375rem); /* 14 → 15  Randnotiz, Fuß, Bildunterschrift */
-  /* Fließtext 18px AUF ALLEN BREITEN, nicht mehr 17 mobil. Andrea, 47, liest
-     die Seite im Auto ohne Lesebrille: „17px ist die eine Stelle, an der
-     ‚kleiner‘ einen Klick zu weit ging.“ 18px ist zugleich der G4-Deckel —
-     die Stufe steht damit an ihrer Obergrenze und braucht kein clamp mehr. */
-  --s-text: 1.125rem;                                        /* 18 fest   Fließtext */
-  /* Lead-Untergrenze 20 → 21: bei 18px Fließtext wäre der Sprung 18→20 nur
-     1,11× und risse G4 („Sprung ≥ 1,15×“). 21px hält ihn mit 1,167×. */
-  --s-lead: clamp(1.3125rem, 1.157rem + 0.381vw, 1.5rem);    /* 21 → 24  Lead, Betonungssatz */
-  --s-h2:   clamp(1.625rem,  1.3rem   + 1.333vw, 2.5rem);    /* 26 → 40  Sektionsüberschrift */
-  /* H1-Untergrenze 44 → 46, aus derselben Ableitung wie zuvor 44: die
-     Mobil-Grenze ist H1 : Fließtext ≥ 2,5:1. Bei 17px Text hielt 44px sie
-     (2,59:1) — bei 18px Text ergäbe 44px nur noch 2,44:1. 45px läge exakt
-     auf der Kante, 46px hält sie mit 2,56:1 und bleibt weit unter dem
-     72er-Deckel. Monas Umbruch steht bei 46px unverändert zweizeilig. */
-  --s-h1:   clamp(2.875rem,  2.193rem + 2.286vw, 4.25rem);   /* 46 → 68  H1, „Der Satz“, Phasen-Ziffern */
-
-  /* — Weißraum: zwei klar verschiedene Sektionsmaße (K2) — */
-  --ruhig:112px;
-  --dicht:88px;
-  --rand:24px;
-  --spalte:1180px;
-  --text:540px;
-  --rail:28px;         /* Ziffernbahn — mobil bewusst schmal: bei 44px blieben
-                          fuer den eingerueckten Text nur 282px = 35-37 Zeichen
-                          und rissen damit das Mobil-Band 38-48 nach unten. */
-  --ease:cubic-bezier(.22,.61,.36,1);
-}
-@media (min-width:900px){
-  :root{ --ruhig:160px; --dicht:120px; --rand:80px; --rail:112px; }
-}
-@media (min-width:1600px){ :root{ --rand:120px; } }
-
-*,*::before,*::after{box-sizing:border-box}
-html{ -webkit-text-size-adjust:100% }
-body{
-  margin:0; background:var(--papier); color:var(--tinte);
-  font-family:var(--sans); font-weight:400;
-  font-size:var(--s-text); line-height:1.65;
-  -webkit-font-smoothing:antialiased;
-  overflow-x:clip;           /* clip statt hidden — bricht sonst position:fixed auf iOS */
-  counter-reset:offen;
-}
-/* Papierkorn über die ganze Seite — drei Zeilen, kein Request.
-   Macht aus einem Bildschirm eine Fläche mit Oberfläche. */
-body::after{ content:''; position:fixed; inset:0; z-index:90;
-  pointer-events:none; opacity:.028; mix-blend-mode:multiply;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") }
-img{max-width:100%}
-a{color:inherit}
-h1,h2,h3,p,ul,ol,dl,dd,figure,figcaption,blockquote{margin:0}
-ul,ol{padding:0;list-style:none}
-
-/* — Bühne: EIN linker Textrand über alle Sektionen — */
-.buehne{ max-width:var(--spalte); margin:0 auto; padding-inline:var(--rand) }
-.spalte{ max-width:var(--text) }
-
-.ruhig{ padding-block:var(--ruhig) }
-.dicht{ padding-block:var(--dicht) }
-
-/* — Tonale Rhythmik (§ J/G6): nie zwei gleiche Töne in Folge,
-     ≥ 2 helle Sektionen zwischen zwei Tinte-Flächen, Papier ≥ 45 %. — */
-.flaeche-sand{ background:var(--sandstein) }
-.flaeche-tief{ background:var(--papier-tief) }
-.flaeche-tinte{ background:var(--tinte); color:var(--papier) }
-
-/* — Typografie — */
-.t-h1{ font-family:var(--serif); font-weight:400; font-size:var(--s-h1);
-       line-height:1.03; letter-spacing:-0.02em; }
-.t-h2{ font-family:var(--serif); font-weight:400; font-size:var(--s-h2);
-       line-height:1.15; letter-spacing:-0.01em; }
-/* Lead und Fließtext sind benachbarte Stufen und teilen die Familie —
-   sie müssen sich deshalb zusätzlich in der Laufweite unterscheiden
-   (§ J/G4). Lead: −0.01em und engerer Durchschuss. */
-.t-lead{ font-family:var(--sans); font-weight:400; font-size:var(--s-lead);
-       line-height:1.4; letter-spacing:-0.01em; }
-.t-label{ font-family:var(--sans); font-weight:500; font-size:var(--s-label);
-       letter-spacing:.18em; text-transform:uppercase; line-height:1.4; }
-.t-klein{ font-size:var(--s-klein); line-height:1.6; letter-spacing:0 }
-.t-mark{ font-family:var(--sans); font-weight:500 }
-/* <strong>/<b> erbten sonst die UA-Stärke 700 — G4 erlaubt max. 500. */
-strong,b{ font-weight:500 }
-em,.t-kursiv{ font-style:italic }
-
-p + p{ margin-top:1.1em }
-.vor-s{ margin-top:28px } .vor-m{ margin-top:44px } .vor-l{ margin-top:64px }
-@media (min-width:900px){ .vor-m{margin-top:56px} .vor-l{margin-top:88px} }
-
-/* — Haarlinie (Zinn ist dekorativ, nie Textfarbe auf Papier) — */
-.linie{ height:1px; background:var(--zinn); border:0; width:100%; opacity:.55;
-  /* margin-inline:0 ist Pflicht: das UA-Stylesheet gibt <hr> `margin: .5em auto`.
-     Mit `max-width:var(--text)` zentrierte sich die Haarlinie dadurch in der
-     Bühne statt an der linken Kante zu stehen — auf einer Seite, deren ganze
-     Grammatik EINE linke Kante ist. Im Screenshot gesehen, nicht im Quelltext. */
-  margin-inline:0 }
-
-/* ── Skip-Link ─────────────────────────────────────────── */
-.skip{ position:absolute; left:-9999px; top:0; z-index:100;
-  background:var(--signatur); color:var(--papier); padding:16px 20px;
-  min-height:48px; display:flex; align-items:center;
-  font-size:var(--s-label); letter-spacing:.08em; text-transform:uppercase; text-decoration:none }
-.skip:focus{ left:0 }
-
-/* ── Navigation ────────────────────────────────────────── */
-.nav{ position:fixed; inset:0 0 auto 0; z-index:60;
-  display:flex; align-items:center; justify-content:space-between; gap:16px;
-  max-width:var(--spalte); margin:0 auto; padding:20px var(--rand);
-  transition:background .5s var(--ease), padding .5s var(--ease); }
-.nav::before{ content:''; position:absolute; inset:0; z-index:-1;
-  background:var(--papier); opacity:0; transition:opacity .5s var(--ease); }
-.nav.scrolled::before{ opacity:.94; backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px) }
-.nav.scrolled{ padding-block:14px }
-.wortmarke{ display:inline-flex; align-items:center; min-height:48px;
-  font-family:var(--sans); font-weight:500; font-size:var(--s-label);
-  letter-spacing:.18em; text-transform:uppercase; text-decoration:none; line-height:1 }
-
-/* CTA erscheint erst nach dem Hero — der Hero trägt seinen eigenen Knopf,
-   ein zweiter oben wäre doppelt und würde den ersten Viewport belasten (K6). */
-.nav-cta{ opacity:0; visibility:hidden; transform:translateY(-4px);
-  transition:opacity .45s var(--ease), transform .45s var(--ease), visibility .45s }
-.nav.scrolled .nav-cta{ opacity:1; visibility:visible; transform:none }
-
-/* ── Buttons ───────────────────────────────────────────── */
-.cta{ display:inline-flex; align-items:center; justify-content:center;
-  min-height:52px; padding:14px 30px;
-  background:var(--signatur); color:var(--papier); text-decoration:none;
-  font-family:var(--sans); font-weight:500; font-size:var(--s-label);
-  letter-spacing:.1em; line-height:1.2;
-  border:0; border-radius:0; cursor:pointer;
-  transition:background .35s var(--ease) }
-.cta:hover{ background:var(--tinte) }
-.cta--klein{ min-height:48px; padding:13px 20px }
-:where(a,button,input,textarea,select,summary):focus-visible{
-  outline:2px solid var(--signatur); outline-offset:3px }
-.flaeche-tinte :where(a,button):focus-visible{ outline-color:var(--sandstein) }
-
-/* ── Bildfeld — Swap-in-Container (E15) ─────────────────────
-   Alexander hat noch keine Bilder geliefert, und lizenzfreie
-   Stimmungsbilder berühren sein erstes ausdrückliches Nein.
-   Also stehen hier die FLÄCHEN fertig: Seitenverhältnis, Kante,
-   Scrim, Duotone und object-position liegen auf .bildfeld —
-   beim Bildtausch ändert sich KEIN Layoutwert, es wird nur der
-   Inhalt von <picture> gefüllt. Motiv-Aufträge: _projekt/BILDPLAN.md.
-
-   Die heutige Füllung ist ein radialer LICHTFALL: ein einziger
-   weicher Kern, der eine Fläche als beleuchtet lesbar macht.
-   Ausdrücklich KEINE Gradient-Blobs — das ist der im DESIGN-LOG
-   abgeschaffte Einheitsbrei-Fehler. */
-.bildfeld{ position:relative; isolation:isolate; overflow:hidden;
-  background:var(--sandstein);
-  box-shadow:inset 0 0 0 1px rgba(140,140,136,.55) }
-/* Der Lichtfall ist bewusst SCHWACH und aus einer Richtung. Der erste
-   Anlauf stand bei .42 und mittiger — und las sich damit als genau der
-   weiche Farbnebel, den das DESIGN-LOG als Einheitsbrei abgeschafft hat.
-   Eine reservierte Fläche darf beleuchtet wirken, aber nicht dekoriert. */
-.bildfeld::before{ content:''; position:absolute; inset:0; z-index:-1;
-  background:linear-gradient(128deg, rgba(240,238,233,.30) 0%, rgba(240,238,233,0) 58%) }
-/* Ein Bildfeld INNERHALB der Tinte-Sektion braucht einen eigenen,
-   angehobenen Grund — sonst ist es kein reservierter Platz, sondern
-   ein Loch. Im Screenshot war das Vollbreiten-Band auf Tinte praktisch
-   unsichtbar. --tinte-hoch liegt in derselben Hue-Familie (227° gegen
-   228°) und verschwindet vollständig, sobald ein Foto einrastet. */
-.bildfeld--tinte{ background:var(--tinte-hoch);
-  box-shadow:inset 0 0 0 1px rgba(216,209,198,.28) }
-.bildfeld--tinte::before{
-  background:linear-gradient(128deg, rgba(240,238,233,.14) 0%, rgba(240,238,233,0) 60%) }
-/* Passepartout: eine zweite Haarlinie 16px innen. Das ist die Sprache
-   der Seite (1px-Kanten, sonst nichts) und sagt „hier ist Platz
-   reserviert" statt „hier ist Dekoration". Verschwindet nicht, wenn
-   das Foto kommt — es rahmt es dann. */
-.bildfeld::after{ content:''; position:absolute; inset:16px;
-  pointer-events:none; border:1px solid rgba(140,140,136,.42) }
-.bildfeld--tinte::after{ border-color:rgba(216,209,198,.22) }
-@media (min-width:900px){ .bildfeld::after{ inset:22px } }
-/* … aber NUR im leeren Zustand. Über dem Porträt zog der Passepartout
-   eine sichtbare Linie quer durchs Bild — im Screenshot gesehen. Sobald
-   ein Foto da ist, rahmt die äußere Kante, nicht die innere. */
-.bildfeld:has(img)::after{ display:none }
-/* Duotone-Pipeline: liegt fertig, greift erst wenn ein Bild da ist —
-   Machart wie joshua-rudisch/assets/site.css `.portrait`. Sie sitzt auf
-   <picture>, weil sie zum FOTO gehört: ohne Bild hat <picture> keine
-   Ausdehnung, also zeichnet sie nichts. */
-.bildfeld picture{ position:relative; display:block; width:100%; height:100% }
-.bildfeld picture::after{ content:''; position:absolute; inset:0;
-  background:linear-gradient(152deg, rgba(46,58,69,0) 50%, rgba(46,58,69,.26));
-  mix-blend-mode:multiply }
-.bildfeld img{ display:block; width:100%; height:100%; object-fit:cover;
-  object-position:50% 34%; filter:grayscale(1) contrast(1.02) }
-
-/* Vollbreiten-Band als Bühne — Machart wie emi-atmet `.cine`,
-   nur ohne Text darüber (§ J-Veto: keine Verläufe hinter Text). */
-.bildfeld--band{ width:100%; aspect-ratio:4 / 3;
-  border-block:1px solid var(--zinn) }
-@media (min-width:900px){ .bildfeld--band{ aspect-ratio:21 / 9 } }
-.bildfeld--band-schluss{ aspect-ratio:4 / 3 }
-@media (min-width:900px){ .bildfeld--band-schluss{ aspect-ratio:16 / 9 } }
-.bildfeld--hoch{ aspect-ratio:4 / 5 }
-
-/* Bildunterschrift steht UNTER der Fläche, nie darauf. */
-.bildfeld-notiz{ font-size:var(--s-klein); line-height:1.6;
-  color:var(--signatur); margin-top:14px; max-width:34em }
-/* Ohne display:block lief die Nummer in den Satz hinein
-   („OFFEN · 01Bildfeld 1 · Der Ort …“) — im Screenshot gesehen,
-   nicht im Quelltext.
-   Die Bildfelder tragen bewusst KEINE laufende Nummer, sondern ihre
-   eigene Bezeichnung: das Hero-Bildfeld ist unter 900px `display:none`,
-   und ein nicht dargestelltes Element zählt den CSS-Zähler nicht hoch.
-   Folge wäre gewesen, dass dieselbe offene Stelle am Desktop „18" und
-   auf dem Handy „17" heißt — und Alexander liest die Seite auf dem
-   Handy. Jetzt läuft der Zähler nur über die Textstellen und ist auf
-   beiden Breiten identisch. */
-.bildfeld-notiz > b{ display:block; font-family:var(--sans); font-weight:500;
-  font-size:var(--s-label); letter-spacing:.18em; text-transform:uppercase;
-  margin-bottom:6px }
-.flaeche-tinte .bildfeld-notiz{ color:var(--sandstein) }
-
-/* ── Hero ──────────────────────────────────────────────── */
-/* Runde 2, Fix 1: Der erste Handy-Bildschirm trug vorher nur Name,
-   Eyebrow und H1 — darunter 200px Nichts bis zur Kante, kein Angebot,
-   kein Knopf. Jetzt liegt der GANZE Hero im ersten Viewport.
-   Das Polster darf nie mehr Platz nehmen, als nach dem Hero-Inhalt
-   übrig ist — deshalb der zweite Deckel im clamp. */
-.hero .buehne{ width:100% }
-.hero{ min-height:100svh }
-.hero-oben{ padding-block:clamp(120px, min(31svh, 100svh - 500px), 268px) 0 }
-.hero-eyebrow{ color:var(--tinte) }
-/* Das EINE kontinuierlich bewegte Element der Seite (§ J/G7 unverändert):
-   die Haarlinie unter dem Eyebrow atmet — 16s, nur scaleX, kein Layout-Shift. */
-.hero-atem{ height:1px; background:var(--zinn); width:104px; margin:22px 0 0;
-  transform-origin:left center; transform:scaleX(.69);
-  animation:atem 16s var(--ease) infinite alternate }
-@keyframes atem{ from{transform:scaleX(.69)} to{transform:scaleX(1)} }
-.hero h1{ margin-top:40px }
-.hero-unten{ padding-bottom:0 }
-.hero-lead{ margin-top:40px; max-width:var(--text) }
-.hero-cta{ margin-top:44px }
-/* Der Hero-Zweitträger (§ J/G5) stand mobil auf `display:none` — die
-   Abweichung 2 aus Runde 4, mit der Begründung, ein siebtes Element würde
-   die Falte brechen. Das war zu kurz gedacht: unter dem Knopf kostet die
-   Fläche NULL Elemente über der Falte, nimmt aber mobil einen ankerlosen
-   Abschnitt weg (3 → 2) und lässt die Falte anschneiden, statt sie in
-   leerem Papier enden zu lassen. Zusätzlich war das Feld mobil die einzige
-   offene Stelle, die Alexander auf dem Handy gar nicht zu sehen bekam.
-   Der Abstand ist bewusst groß: die Fläche gehört nicht zum Knopf. */
-.hero-bild{ display:block; margin-block:var(--dicht) }
-@media (min-width:900px){
-  .hero{ display:flex; align-items:flex-end }
-  .hero .buehne{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.72fr);
-    column-gap:clamp(48px,6vw,104px); align-items:end }
-  .hero-oben{ grid-column:1; min-height:0; display:block; padding-block:180px 0 }
-  .hero-unten{ grid-column:1; padding-bottom:var(--ruhig) }
-  .hero-bild{ display:block; grid-column:2; grid-row:1 / span 2;
-    align-self:end; margin-top:0; margin-bottom:var(--ruhig) }
-  .hero h1{ margin-top:56px; max-width:14ch }
-  .hero-lead{ margin-top:44px }
-  .hero-cta{ margin-top:56px }
-}
-
-/* ── „Der Satz“ ────────────────────────────────────────── */
-.satz{ max-width:18ch }
-
-/* ── Für wen / für wen nicht ───────────────────────────── */
-.zweispalt{ display:grid; gap:56px; margin-top:56px }
-@media (min-width:900px){
-  .zweispalt{ grid-template-columns:1fr 1fr; gap:72px; margin-top:72px }
-}
-.zweispalt > div{ min-width:0 }
-.merkmale{ margin-top:26px; display:grid; gap:20px }
-.merkmale li{ padding-top:20px; border-top:1px solid var(--zinn) }
-
-/* ── Bahn: Ziffer links auf der Fadenachse, Inhalt rechts ── */
-.bahn{ display:grid; grid-template-columns:var(--rail) minmax(0,1fr);
-  column-gap:14px; align-items:start }
-@media (min-width:900px){ .bahn{ column-gap:40px } }
-/* Die Ziffer sitzt MITTIG in der Bahn — dieselbe Achse wie der Faden —
-   und deckt ihn mit der Flächenfarbe ab, sodass er hinter ihr durchläuft. */
-.bahn-marke{ position:relative; display:block; text-align:center;
-  font-family:var(--serif); font-weight:400; font-size:var(--s-h1);
-  line-height:1; letter-spacing:-0.02em; color:var(--tinte);
-  background:var(--papier); padding-block:10px }
-.flaeche-sand .bahn-marke{ background:var(--sandstein) }
-.flaeche-tinte .bahn-marke{ background:var(--tinte) }
-.bahn-inhalt{ max-width:var(--text) }
-.bahn-inhalt > * + *{ margin-top:20px }
-
-/* Der Faden liegt auf dem Phasen-Container (nicht auf .bahn) und spannt
-   dessen volle Höhe inkl. Polster — nur so läuft er ohne Lücke über die
-   Sektionsgrenze in die Zäsur hinein und wieder heraus. */
-.phase-innen{ position:relative }
-.phase-innen::before{ content:''; position:absolute; top:0; bottom:0;
-  left:calc(var(--rand) + var(--rail) / 2); width:1px;
-  background:var(--zinn); opacity:.5 }
-.flaeche-tinte .phase-innen::before{ opacity:.75 }
-/* Anfang und Ende laufen weich aus, statt hart im Polster abzureißen. */
-.phase-innen--start::before{
-  background:linear-gradient(to bottom, transparent, var(--zinn) 96px) }
-.phase-innen--ende::before{
-  background:linear-gradient(to top, transparent, var(--zinn) 96px) }
-
-.stichliste{ display:grid; gap:14px; margin-top:24px }
-.stichliste li{ position:relative; padding-left:22px }
-.stichliste li::before{ content:''; position:absolute; left:0; top:.72em;
-  width:10px; height:1px; background:var(--zinn) }
-.flaeche-tinte .stichliste li::before{ background:var(--sandstein); opacity:.7 }
-
-/* ── Phasen-Block (Executive Reset) ────────────────────── */
-.phase .phase-innen{ padding-block:var(--dicht) }
-.phase-2 .phase-innen{ padding-block:var(--ruhig) }
-.phase-nachsatz{ font-style:italic; color:var(--signatur) }
-.flaeche-tinte .phase-nachsatz{ color:var(--sandstein) }
-.flaeche-tinte .bahn-marke,
-.flaeche-tinte .t-h2{ color:var(--papier) }
-.flaeche-tinte .merkmale li{ border-top-color:var(--zinn) }
-.flaeche-tinte .fakten > li, .flaeche-tinte .fakten > div{ border-top-color:var(--zinn) }
-.flaeche-tinte .fakten > :last-child{ border-bottom-color:var(--zinn) }
-
-/* ── Fakten-Zeilen (Ablauf der drei Tage) ──────────────── */
-.fakten{ display:grid; gap:0; max-width:820px }
-.fakten > li, .fakten > div{ padding-block:26px; border-top:1px solid var(--zinn) }
-.fakten > :last-child{ border-bottom:1px solid var(--zinn) }
-.fakten dt, .fakten h3{ margin-bottom:14px }
-@media (min-width:900px){
-  .fakten > li, .fakten > div{ display:grid; grid-template-columns:230px minmax(0,1fr);
-    column-gap:40px; align-items:baseline }
-  .fakten dt, .fakten h3{ margin-bottom:0; padding-top:.35em }
-}
-
-/* ── „Was das mit Ihrer Arbeit zu tun hat“ ─────────────── */
-.themen{ counter-reset:t; margin-top:48px; display:grid; gap:0 }
-.themen li{ counter-increment:t; display:grid;
-  grid-template-columns:var(--rail) minmax(0,1fr); column-gap:14px;
-  padding-block:26px; border-top:1px solid var(--zinn);
-  max-width:calc(var(--rail) + 40px + var(--text)) }
-.themen li:last-child{ border-bottom:1px solid var(--zinn) }
-.themen li::before{ content:counter(t,decimal-leading-zero);
-  font-family:var(--sans); font-weight:500; font-size:var(--s-label);
-  letter-spacing:.18em; color:var(--tinte); padding-top:.45em }
-@media (min-width:900px){ .themen li{ column-gap:40px } }
-
-/* ── Wer Sie begleitet — auf Tinte ─────────────────────────
-   Leonardos Begründung, warum das Porträt hierhin gehört:
-   Schwarzweiß auf dunkler Fläche schluckt den unruhigen
-   Hintergrund seines Telefon-Fotos. Die Fläche repariert das Bild.
-   K9 (§ J) neu: sein GESICHT erscheint genau einmal — groß wird
-   die Fläche, nicht das Gesicht. */
-.person{ display:grid; gap:48px; margin-top:56px }
-@media (min-width:900px){
-  .person{ grid-template-columns:minmax(0,420px) minmax(0,1fr); gap:72px; align-items:start }
-}
-.person-bild{ width:100%; max-width:300px }
-@media/* 420, nicht 440: bei 440px CSS braucht DPR 2 genau 880w, geliefert werden
-   aber nur 840w — die dokumentierte srcset/Retina-Falle. Bei 420px passt
-   die 840er-Datei exakt. */
-@media (min-width:900px){ .person-bild{ max-width:420px } }
-.person-zeilen{ display:grid; gap:0 }
-.person-zeilen p{ padding-block:22px; border-top:1px solid var(--zinn) }
-.person-zeilen p:last-of-type{ border-bottom:1px solid var(--zinn) }
-
-/* ── Coaching (nachgeordnet, klein, kein Button) ───────── */
-.coaching{ max-width:var(--text) }
-.coaching h3{ font-family:var(--serif); font-weight:400; font-size:var(--s-h2);
-  line-height:1.15; margin-bottom:20px }
-
-/* Die offenen Stellen (drei Gewichte, laufende Nummer) und der
-   dreispaltige Fuß stehen in assets/gemeinsam.css — EINMAL, für
-   alle fünf Seiten. Siehe Kopfkommentar dort. */
-
-/* ── Bewerbungs-Sektion ────────────────────────────────── */
-.schluss-cta{ margin-top:48px }
-
-/* ── Bewegung (§ J/G7 unverändert): einmalig, ≤12px, 700ms, max. 3 je Sektion ──
-   ⚠ NICHT im Hero. Gemessen: mit `.reveal` auf Eyebrow, H1 und Lead lag
-   der LCP bei 2,3 s (FCP 1,4 s) — die H1 ist das LCP-Element und wurde
-   vom IntersectionObserver plus 700-ms-Blende um 0,9 s nach hinten
-   geschoben. Gegenprobe mit `opacity:1` im Startzustand: LCP 1,4 s,
-   Performance 100. Eine Einblendung ist für Inhalt gedacht, der beim
-   Scrollen in den Blick kommt; der Hero ist beim Laden schon da. */
-.js .reveal{ opacity:0; transform:translateY(8px);
-  transition:opacity .7s var(--ease), transform .7s var(--ease) }
-.js .reveal.is-in{ opacity:1; transform:none }
-@media (min-width:900px){ .js .reveal{ transform:translateY(12px) } }
-@media (prefers-reduced-motion:reduce){
-  .hero-atem{ animation:none; transform:scaleX(1) }
-  .js .reveal{ transform:none !important; transition:opacity .01ms }
-  *,*::before,*::after{ transition-duration:.01ms !important; animation:none !important }
-}
-
-/* ── Druck ─────────────────────────────────────────────── */
-@media print{
-  .nav,.hero-atem,.cta,body::after{ display:none }
-  body{ background:#fff; color:#000; font-size:11pt }
-  .flaeche-tinte,.flaeche-sand,.flaeche-tief,.site-footer{ background:#fff !important; color:#000 !important }
-  .ruhig,.dicht,.phase,.phase-2{ padding-block:18pt }
-  .luecke{ border:1pt dashed #000; color:#000 }
-  .bildfeld{ display:none }
-}
-</style>
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-<a class="skip" href="#inhalt">Zum Inhalt springen</a>
 
-<header class="nav" id="nav">
-  <a class="wortmarke" href="#inhalt">Alexander&nbsp;Faubel</a>
-  <a class="cta cta--klein nav-cta" href="bewerbung.html">Für einen Platz bewerben</a>
+<a class="skip" href="#main">Zum Inhalt</a>
+
+<header class="head">
+  <div class="wrap">
+    <a class="mark" href="index.html">Executive Reset</a>
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a href="#prozess">Prozess</a>
+      <a href="#ergebnis">Ergebnis</a>
+      <a href="#fuer-wen">Für wen</a>
+      <a href="#alexander">Alexander</a>
+      <a class="apply" href="bewerbung.html">Apply for Reset</a>
+    </nav>
+  </div>
 </header>
 
-<main id="inhalt">
+<main id="main">
 
-  <!-- ═══ Hero — Papier · kein Gesicht (E6), aber ab 900px ein
-       zweiter Träger neben der Typografie (§ J/G5) ═══ -->
+  <!-- ═══ Hero — rein typografisch. Bild folgt erst, wenn das Porträt steht. ═══ -->
   <section class="hero">
-    <div class="buehne">
-      <div class="hero-oben">
-        <p class="t-label hero-eyebrow">Executive Reset · Zehn Plätze im Jahr</p>
-        <div class="hero-atem" aria-hidden="true"></div>
-        <h1 class="t-h1">Erfolg, der Sie nicht aufbraucht.</h1>
-      </div>
-      <div class="hero-unten">
-        <p class="t-lead hero-lead">Für Unternehmer und Führungskräfte, die liefern und dabei spüren, was es innen kostet. Drei Tage, in denen Sie einmal nicht funktionieren müssen.</p>
-        <p class="hero-cta"><a class="cta" href="bewerbung.html">Für einen Platz bewerben</a></p>
-      </div>
-      <figure class="hero-bild">
-        <!-- Kein role="img": ein Screenreader kündigte sonst ein Bild an, das
-             es nicht gibt, und sagte die Aussage zweimal (Rolle + sichtbare
-             figcaption). Die Legende trägt die Information allein. -->
-        <div class="bildfeld bildfeld--hoch"></div>
-        <!-- Satz 2 („Solange keine eigene Aufnahme vorliegt …") ist ersatzlos
-             aus dem Hero raus: er war unsere Stimme, die unsere eigene
-             Entscheidung verteidigt — auf den teuersten 40 Wörtern der Seite.
-             Er steht jetzt EINMAL in der Legende eine Sektion tiefer und
-             ohnehin in _projekt/BILDPLAN.md.
-             Die Bezeichnung bleibt: ohne sie ist das Feld für Alexander kein
-             erkennbar offener Platz mehr, sondern sieht nach Absicht aus —
-             und eine Lücke, die niemand sieht, füllt niemand (E11). Sie ist
-             drei Wörter, keine Anrede, und verschwindet beim Bildtausch. -->
-        <figcaption class="bildfeld-notiz"><b class="t-label">Bildfeld 1 · offen</b>Der Ort, an dem die drei Tage stattfinden — morgens, leer, vor der Ankunft.</figcaption>
-      </figure>
+    <div class="wrap">
+      <span class="eyebrow" data-reveal>Executive Reset</span>
+      <h1 data-reveal>Erfolg ohne inneren Kampf.</h1>
+      <p class="lead" data-reveal>Für Unternehmer und Führungskräfte, die nicht mehr zwischen beruflichem Erfolg und persönlichem Wohlbefinden wählen wollen.</p>
+      <div data-reveal><a class="btn" href="bewerbung.html">Apply for Reset</a></div>
+      <p class="hero-meta" data-reveal>Vorbereitung · Drei intensive Tage · 60 Tage Integration — Zehn Plätze im Jahr</p>
     </div>
   </section>
 
-  <!-- ═══ Der Satz — Sandstein ═══ -->
-  <section class="flaeche-sand ruhig">
-    <div class="buehne">
-      <!-- Anführungszeichen bewusst weg (Runde 2, Fix 6): das öffnende „ brach
-           bei großen Graden die gemeinsame linke Kante (Chrome kennt kein
-           hanging-punctuation), und die unattribuierte Zitat-Optik warf auf einer
-           Ich-Seite die Frage auf „wer sagt das?“. Ohne Zeichen ist es eine
-           Aussage — genau das, was E13 wollte. -->
-      <p class="t-h1 satz reveal">Erfolg, der bleibt, beginnt dort, wo der innere Kampf endet.</p>
+  <!-- ═══ Bildfläche 21:9 ═══ -->
+  <div class="ph ph--wide" role="img" aria-label="Bildfläche — Ort des Prozesses">
+    <span>Bild folgt — Ort</span>
+  </div>
 
-      <!-- Legende — steht an der ersten markierten Stelle der Seite (Fix 3),
-           weil Alexander den Link auf dem Handy öffnet, ohne die Mail zu lesen. -->
-      <aside class="notiz legende vor-l">
-        <p class="notiz-marke">An dich, Alexander</p>
-        <p>Die blau markierten Stellen sind für dich, und sie sind durchnummeriert. Kanten wie diese sind fertige Entwürfe, die du bestätigst oder ersetzt — Randnotizen und die wenigen gestrichelten Kästen sind Stellen, an denen nur du die Antwort hast. Was du dort einträgst, steht später genau an dieser Stelle auf der Seite.</p>
-        <p class="vor-s">Die gerahmten Flächen sind reservierte Bildplätze. Solange keine eigene Aufnahme vorliegt, steht dort eine Fläche und kein fremdes Foto — beim Einsetzen deiner Bilder ändert sich am Layout nichts.</p>
-      </aside>
-
-      <div class="notiz vor-m offen">
-        <p class="notiz-marke offen-nr"></p>
-        <p class="frage">Rückfrage · Der Satz: Ist diese geschärfte Fassung für dich in Ordnung, oder soll dein Original „Nachhaltiger Erfolg beginnt dort, wo der innere Kampf endet.“ bleiben?</p>
-      </div>
+  <!-- ═══ Statement ═══ -->
+  <section class="statement">
+    <div class="wrap">
+      <h2 data-reveal>Du hast erreicht, was du dir vorgenommen hast. Und trotzdem arbeitet etwas gegen dich.</h2>
+      <p data-reveal>Mehr Wissen über dich selbst hat daran bisher nichts geändert. Was etwas ändert, ist der Zugang zu den eigentlichen Ursachen — und der lässt sich nicht denken, nur erfahren.</p>
     </div>
   </section>
 
-  <!-- ═══ Der stille Widerspruch — Papier ═══ -->
-  <section class="ruhig" id="widerspruch">
-    <div class="buehne">
-      <h2 class="t-h2 reveal">Von außen stimmt alles.</h2>
-      <div class="spalte vor-m reveal">
-        <p>Sie haben erreicht, was Sie erreichen wollten. Der Kalender ist voll, die Zahlen stimmen, das Team funktioniert. Und irgendwann fällt Ihnen auf, dass Sie Entscheidungen treffen, um Ruhe zu haben, nicht weil sie richtig sind. Bei einer Personalie, bei einem Gesellschafter, bei der Frage, wer das hier in zehn Jahren führt.</p>
-      </div>
-      <p class="t-lead vor-l reveal" style="max-width:24ch">Die meisten, die zu mir kommen, sind nicht am Ende. Sie funktionieren tadellos. Genau das ist das Problem.</p>
-    </div>
-  </section>
-
-  <!-- ═══ Für wen. Und für wen nicht. — Papier-tief ═══ -->
-  <section class="flaeche-tief dicht" id="fuer-wen">
-    <div class="buehne">
-      <h2 class="t-h2 reveal">Für wen. Und für wen nicht.</h2>
-      <p class="spalte vor-m reveal">Ich arbeite nicht mit jedem, der anfragt. Das hat nichts mit Exklusivität zu tun, sondern damit, dass dieser Prozess nur greift, wenn ein paar Dinge stimmen.</p>
-
-      <!-- Fix 2: Die Kriterien sind fertige Arbeit, kein leeres Formular.
-           Sie stehen deshalb als normaler Fließtext an der Signatur-Kante;
-           nur die echte Lücke darunter bleibt ein gestrichelter Kasten —
-           hier fehlt ein ganzer Block, nicht eine Antwortzeile. -->
-      <div class="zweispalt reveal">
+  <!-- ═══ Prozess ═══ -->
+  <section id="prozess" class="rule">
+    <div class="wrap">
+      <div class="duo">
         <div>
-          <h3 class="t-label">Sie sind hier richtig, wenn</h3>
-          <div class="notiz vor-s offen">
-            <p class="notiz-marke offen-nr"></p>
-            <ul>
-              <li>Sie tragen Verantwortung für Menschen und merken, dass Sie diese Verantwortung zunehmend aus Reserve tragen.</li>
-              <li>Sie haben schon einiges gelesen und verstanden. Verändert hat es wenig.</li>
-            </ul>
-          </div>
-          <p class="luecke vor-m offen"><b class="offen-nr"></b>Zwei weitere Kriterien in deinen Worten. Konkret, nicht allgemein.</p>
+          <span class="eyebrow" data-reveal>Der Prozess</span>
+          <h2 data-reveal style="margin-top:22px">Drei Schritte. Kein Programm.</h2>
         </div>
-        <div>
-          <h3 class="t-label">Sie sind hier falsch, wenn</h3>
-          <div class="notiz vor-s offen">
-            <p class="notiz-marke offen-nr"></p>
-            <ul>
-              <li>Sie suchen eine Methode, die Sie schneller macht. Hier wird erst einmal nichts schneller.</li>
-            </ul>
-          </div>
-          <p class="luecke vor-m offen"><b class="offen-nr"></b>Wen lehnst du tatsächlich ab, und warum? Diese Liste ist die glaubwürdigste der ganzen Seite. Bitte ehrlich, nicht diplomatisch.</p>
-        </div>
+        <p class="lead" data-reveal>Ein intensiver Transformationsprozess für Unternehmer, Führungskräfte und Menschen mit hoher Verantwortung. Zugeschnitten, bevor er beginnt — begleitet, bis das Neue im Alltag hält.</p>
       </div>
 
-      <p class="spalte vor-l">Wenn Sie unsicher sind, auf welcher Seite Sie stehen: bewerben Sie sich. Das ist genau die Frage, die wir im Vorgespräch klären.</p>
-    </div>
-  </section>
-
-  <!-- ═══ Der Ablauf — TINTE. Andreas konversionsentscheidende Sektion;
-       die dunkle Zäsur ist von Phase 2 hierher gewandert. ═══ -->
-  <section class="flaeche-tinte ruhig" id="ablauf">
-    <div class="buehne">
-      <h2 class="t-h2 reveal">Was in diesen drei Tagen passiert</h2>
-      <p class="spalte vor-m reveal">Sie sollen wissen, worauf Sie sich einlassen, bevor Sie sich bewerben. Deshalb hier der Ablauf, so nüchtern wie möglich.</p>
-
-      <ol class="fakten vor-m">
-        <li>
-          <h3 class="t-label">Tag 1</h3>
-          <p class="randnotiz offen"><b class="offen-nr"></b>Tag 1, in einem Satz mit echtem Verb. Nicht „wir schaffen Raum“, sondern was wir tun. Beispiel für die Machart: „Wir gehen vormittags die vier Entscheidungen durch, die Sie im letzten Jahr aufgeschoben haben.“</p>
+      <!-- Ablauf auf einen Blick: Haarlinie als Zeitstrahl, drei Marken darauf.
+           Der Kern in der Mitte ist allein an der goldenen Linie erkennbar. -->
+      <ol class="flow" data-reveal>
+        <li class="flow-step">
+          <span class="flow-num">01</span>
+          <span class="flow-title">Vorbereitung</span>
+          <span class="flow-when">Vorab · Vorgespräch, 60 Minuten</span>
         </li>
-        <li>
-          <h3 class="t-label">Tag 2</h3>
-          <p class="randnotiz offen"><b class="offen-nr"></b>Tag 2, ein Satz, gleiche Machart.</p>
+        <li class="flow-step flow-step--core">
+          <span class="flow-num">02</span>
+          <span class="flow-title">Die intensiven Tage</span>
+          <span class="flow-when">Drei Tage · Einzelbegleitung</span>
         </li>
-        <li>
-          <h3 class="t-label">Tag 3</h3>
-          <p class="randnotiz offen"><b class="offen-nr"></b>Tag 3, ein Satz, gleiche Machart.</p>
+        <li class="flow-step">
+          <span class="flow-num">03</span>
+          <span class="flow-title">Integration</span>
+          <span class="flow-when">60 Tage · durchgehend begleitet</span>
         </li>
       </ol>
-    </div>
 
-    <!-- Vollbreiten-Band, Machart wie emi-atmet `.cine` — aber ohne Text
-         darüber. Es liegt INNERHALB der dunklen Sektion, damit es keine
-         dritte dunkle Fläche aufmacht (§ J/G6: genau zwei). -->
-    <figure class="vor-l">
-      <div class="bildfeld bildfeld--band bildfeld--tinte"></div>
-      <div class="buehne">
-        <figcaption class="bildfeld-notiz"><b class="t-label">Bildfeld 2 · offen</b>Der Ort, an dem am zweiten Tag gearbeitet wird, aus Augenhöhe eines Sitzenden — mit den Dingen darauf, die dort wirklich liegen.</figcaption>
-      </div>
-    </figure>
+      <div class="phases">
+        <span class="eyebrow" data-reveal style="margin-bottom:clamp(26px,3vw,42px)">Im Detail</span>
 
-    <div class="buehne vor-l">
-      <dl class="fakten">
-        <div>
-          <dt class="t-label">Wo?</dt>
-          <dd style="margin:0"><span class="randnotiz offen"><b class="offen-nr"></b>Ort. Eigener Raum, Hotel, Natur, beim Klienten? Übernachtung und Verpflegung inklusive oder selbst zu organisieren? Anreise?</span></dd>
-        </div>
-        <div>
-          <dt class="t-label">Allein oder in der Gruppe?</dt>
-          <dd style="margin:0"><span class="randnotiz offen"><b class="offen-nr"></b>1:1 oder Kleingruppe? Falls Gruppe: wie viele Menschen? Das ist für diese Zielgruppe eine Ja/Nein-Frage, keine Nebensache.</span></dd>
-        </div>
-        <div>
-          <dt class="t-label">Wird mit Substanzen gearbeitet?</dt>
-          <!-- Der eine Kasten in dieser Sektion, bewusst als Hierarchie und
-               nicht als Unruhe: Andrea nennt diese Frage den härtesten
-               Deal-Breaker der Seite. Sie steht deshalb schwerer als die
-               sechs Zeilen um sie herum. -->
-          <dd style="margin:0"><span class="luecke offen"><b class="offen-nr"></b>Ja oder nein, unmissverständlich. Wenn nein, steht hier ein klares Nein und die Frage ist erledigt. Wenn ja, brauchen wir vorher eine rechtliche Klärung.</span></dd>
-        </div>
-        <div>
-          <dt class="t-label">Wer erfährt davon?</dt>
-          <dd style="margin:0"><span class="randnotiz offen"><b class="offen-nr"></b>Deine Diskretionszusage in einem Satz. Wird der Name irgendwo genannt, gibt es Aufzeichnungen, wer sonst ist im Raum?</span></dd>
-        </div>
-      </dl>
-
-      <p class="spalte vor-m reveal">Wenn danach noch etwas offen ist, klären wir es im Vorgespräch, bevor irgendetwas verbindlich wird.</p>
-    </div>
-  </section>
-
-  <!-- ═══ Executive Reset — drei Phasen nativ.
-       Phase 2 ist von Tinte auf Sandstein zurückgestuft: der Faden läuft
-       weiter, der Ton wechselt dort nur sanfter. Die dunkle Zäsur steht
-       jetzt oben beim Ablauf, wo Andrea sie braucht. ═══ -->
-  <section id="reset">
-    <div class="buehne" style="padding-top:var(--dicht)">
-      <h2 class="t-h2 reveal">Executive Reset</h2>
-      <p class="spalte vor-m reveal">Drei Phasen. Die drei Tage sind die mittlere.</p>
-    </div>
-
-    <div class="phase">
-      <div class="buehne phase-innen phase-innen--start">
-        <div class="bahn">
-          <span class="bahn-marke" aria-hidden="true">1</span>
-          <div class="bahn-inhalt">
-            <p class="t-label">Phase 1</p>
-            <h3 class="t-h2">Vorbereitung</h3>
-            <p>Bevor wir uns sehen, klären wir, worum es wirklich geht. Ich baue den Prozess danach, nicht davor.</p>
-            <ul class="stichliste">
+        <article class="phase" data-reveal>
+          <div>
+            <span class="phase-num">01</span>
+            <h3>Vorbereitung</h3>
+            <p class="phase-when">Vor den drei Tagen</p>
+          </div>
+          <div>
+            <p class="phase-desc">Wir schaffen Klarheit über deine Ziele und darüber, was dich wirklich weiterbringt. Bevor wir uns sehen, steht die Basis für maximale Tiefe.</p>
+            <ul class="dash">
               <li>Persönliches Vorgespräch, 60 Minuten</li>
               <li>Zieldefinition</li>
+              <li>Mentale Vorbereitung</li>
               <li>Individuelles Prozessdesign</li>
             </ul>
-            <p class="phase-nachsatz">Was wir hier klären, entscheidet über die Tiefe der drei Tage.</p>
           </div>
-        </div>
-      </div>
-    </div>
+        </article>
 
-    <div class="phase-2 flaeche-sand">
-      <div class="buehne phase-innen">
-        <div class="bahn">
-          <span class="bahn-marke" aria-hidden="true">2</span>
-          <div class="bahn-inhalt">
-            <p class="t-label">Phase 2</p>
-            <h3 class="t-h2">Die drei Tage</h3>
-            <p>Kein Seminar, kein Vortrag, keine Folien. Wir arbeiten an dem, was Sie längst wissen und bisher umgangen haben.</p>
-            <!-- Phase 2 verliert als einzige der drei Phasen ihre Stichliste.
-                 Beabsichtigt: die Zäsur soll sich auch strukturell von den
-                 Nachbarn unterscheiden, nicht nur im Ton. -->
-            <p>Es geht um die Entscheidungen, die bei Ihnen seit Jahren gleich ausfallen. Nicht um die von letzter Woche. Um den Reflex, mit dem Sie sie treffen.</p>
-            <p class="phase-nachsatz">Was an diesen Tagen konkret passiert, steht weiter oben. Ich beschreibe es nicht zweimal.</p>
+        <article class="phase" data-reveal>
+          <div>
+            <span class="phase-num">02</span>
+            <h3>Die intensiven Tage</h3>
+            <p class="phase-when">Drei Tage, Einzelbegleitung</p>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="phase">
-      <div class="buehne phase-innen phase-innen--ende">
-        <div class="bahn">
-          <span class="bahn-marke" aria-hidden="true">3</span>
-          <div class="bahn-inhalt">
-            <p class="t-label">Phase 3</p>
-            <h3 class="t-h2">Integration</h3>
-            <p>Danach geht es zurück in Ihren Kalender. Genau da entscheidet sich, ob etwas bleibt.</p>
-            <ul class="stichliste">
-              <li>Zwei Integrationsgespräche à 60 Minuten</li>
-              <li>Meine Nummer für die Wochen dazwischen</li>
-              <li>Praktische Werkzeuge für den Alltag</li>
+          <div>
+            <p class="phase-desc">Tiefer Zugang. Echte Transformation. Veränderung entsteht hier durch direkte Erfahrung, nicht durch neues Wissen über dich selbst.</p>
+            <ul class="dash">
+              <li>Zugang zu unbewussten Mustern</li>
+              <li>Tiefgreifende Erkenntnisse</li>
+              <li>Emotionale und geistige Klarheit</li>
+              <li>Neue Perspektiven</li>
+              <li>Veränderung durch direkte Erfahrung statt bloßes Wissen</li>
             </ul>
-            <p class="phase-nachsatz">Was in drei Tagen aufgeht, entscheidet sich in den Wochen danach.</p>
+            <p class="phase-key">Beschleunigte persönliche Entwicklung durch tiefen Zugang zu den eigentlichen Ursachen. Dein wirkliches Problem wird direkt erkannt und an der Wurzel transformiert.</p>
           </div>
-        </div>
-      </div>
-    </div>
+        </article>
 
-    <div class="buehne" style="padding-bottom:var(--dicht)">
-      <div class="randnotiz-liste">
-        <p class="randnotiz offen"><b class="offen-nr"></b>Über welchen Zeitraum läuft die Integration? Die beiden Grafiken sagen 30 bzw. 60 Tage.</p>
-        <p class="randnotiz offen"><b class="offen-nr"></b>Zwei Integrationsgespräche oder Reflexionsgespräche alle zwei Wochen?</p>
-      </div>
+        <article class="phase" data-reveal>
+          <div>
+            <span class="phase-num">03</span>
+            <h3>Integration</h3>
+            <p class="phase-when">60 Tage danach</p>
+          </div>
+          <div>
+            <p class="phase-desc">Wir verankern deine Erkenntnisse, und du bekommst Unterstützung bei der Umsetzung im echten Leben. Ich begleite die ersten Schritte zurück in Alltag und Beruf.</p>
+            <ul class="dash">
+              <li>Reflexionsgespräche alle zwei Wochen</li>
+              <li>Begleitender WhatsApp-Support</li>
+              <li>Reflexion und Einordnung der Erfahrungen</li>
+              <li>Praktische Werkzeuge für den Alltag</li>
+              <li>Neue Gewohnheiten etablieren</li>
+              <li>Accountability</li>
+              <li>Transfer in Alltag und Beruf</li>
+            </ul>
+          </div>
+        </article>
 
-      <!-- „Und danach?“ stand bis Runde 4 als eigene Sektion zwischen
-           Porträt und Bewerbung: 395px, ein Absatz, ohne jeden Anker.
-           Inhaltlich gehört die Frage hinter Phase 3 — was nach der
-           Integration kommt, ist die Fortsetzung der Integration.
-           K8 bleibt gewahrt: ein Absatz, nachgeordnet, kein Button. -->
-      <div class="coaching vor-l reveal">
-        <h3>Und danach?</h3>
-        <p>Für einige entsteht aus den drei Tagen eine längere Begleitung. Das plane ich nicht vorher ein und verkaufe es nicht mit. Wenn es sinnvoll ist, sprechen wir darüber, wenn es soweit ist.</p>
       </div>
     </div>
   </section>
 
-  <!-- ═══ Was das mit Ihrer Arbeit zu tun hat — Papier.
-       Umgewidmet aus „Worum es in diesen drei Tagen geht“: das war die
-       DRITTE Sektion über dieselben drei Tage (E17). „Entscheidungen“ und
-       „Muster“ sind entfallen — sie doppelten die beiden stärksten Absätze
-       der Seite. Geblieben sind Führung, Präsenz, Belastbarkeit. ═══ -->
-  <section class="dicht" id="arbeit">
-    <div class="buehne">
-      <h2 class="t-h2 reveal">Was das mit Ihrer Arbeit zu tun hat</h2>
-      <p class="spalte vor-m reveal">Das sind keine Ergebnisse, die ich zusage. Es sind die Themen, an denen wir arbeiten.</p>
-      <ol class="themen reveal">
-        <li><p><span class="t-mark">Führung.</span> Wie Sie führen, wenn Sie die Rolle nicht mehr halten müssen.</p></li>
-        <li><p><span class="t-mark">Präsenz.</span> Was sich verändert, wenn Sie im Raum sind statt schon im nächsten Termin.</p></li>
-        <li><p><span class="t-mark">Belastbarkeit.</span> Woraus Ihre Leistungsfähigkeit schöpft, wenn Disziplin allein nicht mehr reicht.</p></li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- ═══ Wer Sie begleitet — TINTE. Das Gesicht genau einmal (K9),
-       die Fläche groß. ═══ -->
-  <section class="flaeche-tinte ruhig" id="person">
-    <div class="buehne">
-      <h2 class="t-h2 reveal">Wer Sie begleitet</h2>
-      <div class="person reveal">
+  <!-- ═══ Ergebnis ═══ -->
+  <section id="ergebnis" class="rule">
+    <div class="wrap">
+      <div class="duo">
         <div>
-          <figure class="person-bild">
-            <div class="bildfeld bildfeld--hoch bildfeld--tinte">
-              <picture>
-                <source type="image/avif" srcset="assets/alexander-faubel-420.avif 420w, assets/alexander-faubel-840.avif 840w" sizes="(min-width: 900px) 420px, 300px">
-                <source type="image/webp" srcset="assets/alexander-faubel-420.webp 420w, assets/alexander-faubel-840.webp 840w" sizes="(min-width: 900px) 420px, 300px">
-                <img src="assets/alexander-faubel-420.jpg" srcset="assets/alexander-faubel-420.jpg 420w, assets/alexander-faubel-840.jpg 840w" sizes="(min-width: 900px) 420px, 300px" width="420" height="525" loading="lazy" decoding="async" alt="Alexander Faubel, Schwarzweißaufnahme">
-              </picture>
-            </div>
-            <!-- Die Bemerkung, das vorhandene Foto zeige den Zustand, von dem
-                 die Seite wegführt, ist ersatzlos von der Seite genommen.
-                 Sie stand direkt unter dem Porträt und sagte dem Leser, das
-                 Bild über ihr sei das falsche — der peinlichste Moment der
-                 Seite, peinlicher als das Foto allein. Die Begründung steht,
-                 wo sie hingehört: in der Nachricht an Alexander (Punkt 12)
-                 und in _projekt/BILDPLAN.md. Hier bleibt der Motivauftrag. -->
-            <figcaption class="bildfeld-notiz"><b class="t-label">Bildfeld 4 · offen</b>Alexander sitzend, Blick zur Kamera, an dem Ort, an dem der Reset stattfindet.</figcaption>
-          </figure>
+          <span class="eyebrow" data-reveal>Ergebnis</span>
+          <h2 data-reveal style="margin-top:22px">Dein neues Normal.</h2>
         </div>
-        <div class="person-zeilen">
-          <p>Früher Enterprise Sales Executive. Ich weiß, wie sich ein Quartal anfühlt, das nicht aufgeht.</p>
-          <p>Seit vielen Jahren an der Seite von Menschen, die Verantwortung für andere tragen.</p>
-          <p>Heute arbeite ich mit Menschen, deren Erfolg sie mehr kostet, als er ihnen zurückgibt.</p>
-          <div class="randnotiz-liste vor-m">
-            <p class="randnotiz offen"><b class="offen-nr"></b>Ist „15+ Jahre mit Executives“ belastbar, und ab welchem Jahr?</p>
-            <p class="randnotiz offen"><b class="offen-nr"></b>Welche Ausbildungen dürfen genannt werden? Insbesondere: worauf stützt sich die Arbeit mit dem Nervensystem?</p>
-          </div>
-          <!-- Kasten, kein Randstrich: hier fehlt nicht eine Antwort,
-               sondern ein ganzer Absatz, den es noch nirgends gibt. -->
-          <p class="luecke vor-m offen"><b class="offen-nr"></b>Ein bis zwei Sätze in deinen eigenen Worten, warum du das machst. Unlektoriert. Diese Stelle fehlt bisher komplett — und sie ist die einzige der Seite, an der du selbst sprichst.</p>
+        <p class="lead" data-reveal>Was danach anders ist, zeigt sich nicht in einem Vorsatz. Es zeigt sich darin, wie du entscheidest, wie du führst und wie du abschaltest.</p>
+      </div>
+
+      <ul class="outcome" data-reveal>
+        <li>Emotionale Resilienz</li>
+        <li>Bessere Entscheidungen</li>
+        <li>Mehr innere Freiheit</li>
+        <li>Weniger Selbstsabotage</li>
+        <li>Mehr Präsenz</li>
+        <li>Mehr Fokus</li>
+        <li>Klarere Beziehungen</li>
+        <li>Authentische Führung</li>
+        <li>Nachhaltige Leistungsfähigkeit</li>
+      </ul>
+
+      <p class="outcome-key" data-reveal>Ein neues, starkes Fundament für Erfolg — in Business und im Leben.</p>
+    </div>
+  </section>
+
+  <!-- ═══ Bildfläche 21:9 ═══ -->
+  <div class="ph ph--wide" role="img" aria-label="Bildfläche — Detail, Raum oder Weg">
+    <span>Bild folgt — Raum</span>
+  </div>
+
+  <!-- ═══ Für wen ═══ -->
+  <section id="fuer-wen">
+    <div class="wrap">
+      <div class="duo">
+        <div>
+          <span class="eyebrow" data-reveal>Für wen</span>
+          <h2 data-reveal style="margin-top:22px">Handselektiert. Zehn Plätze im Jahr.</h2>
+          <p class="lead" data-reveal style="margin-top:26px">Ich arbeite mit wenigen Menschen und wähle aus. Nicht als Inszenierung, sondern weil dieser Prozess nur trägt, wenn beide Seiten passen.</p>
+          <ul class="criteria" data-reveal>
+            <li>Du trägst Verantwortung — für ein Unternehmen, für Menschen, für Kapital.</li>
+            <li>Du hast beruflich erreicht, was du wolltest, und merkst, dass der Preis dafür steigt.</li>
+            <li>Du suchst kein weiteres Format, das dir erklärt, wie es geht. Du willst, dass sich etwas ändert.</li>
+            <li>Du kannst drei Tage vollständig aus dem Betrieb gehen. Ohne Ausnahme, ohne Telefon.</li>
+          </ul>
+        </div>
+        <div class="ph ph--port" role="img" aria-label="Bildfläche — Ort der intensiven Tage" data-reveal>
+          <span>Bild folgt — Ort</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ Die Bewerbung — Papier, eröffnet vom dritten Bildfeld ═══ -->
-  <section id="bewerbung">
-    <figure>
-      <div class="bildfeld bildfeld--band bildfeld--band-schluss"></div>
-      <div class="buehne">
-        <figcaption class="bildfeld-notiz"><b class="t-label">Bildfeld 3 · offen</b>Der Weg, den ein Teilnehmer am dritten Tag nach draußen nimmt — Türschwelle, Hof oder Feldweg, so wie er ist. Kein Sonnenuntergang.</figcaption>
+  <!-- ═══ Über Alexander — kein Lebenslauf ═══ -->
+  <section id="alexander" class="rule">
+    <div class="wrap">
+      <div class="duo">
+        <figure class="portrait" data-reveal>
+          <picture>
+            <source type="image/avif" srcset="assets/img/alexander-faubel-420.avif 420w, assets/img/alexander-faubel-840.avif 840w" sizes="(min-width:900px) 44vw, 92vw">
+            <source type="image/webp" srcset="assets/img/alexander-faubel-420.webp 420w, assets/img/alexander-faubel-840.webp 840w" sizes="(min-width:900px) 44vw, 92vw">
+            <img src="assets/img/alexander-faubel-840.jpg"
+                 srcset="assets/img/alexander-faubel-420.jpg 420w, assets/img/alexander-faubel-840.jpg 840w"
+                 sizes="(min-width:900px) 44vw, 92vw"
+                 width="840" height="1050" loading="lazy" decoding="async"
+                 alt="Alexander Faubel im Halbprofil, telefonierend, den Blick nach oben gerichtet — Schwarzweißaufnahme.">
+          </picture>
+          <figcaption class="credit">Foto: Andreas Tobias</figcaption>
+        </figure>
+        <div>
+          <span class="eyebrow" data-reveal>Über Alexander</span>
+          <h2 data-reveal style="margin-top:22px">Alexander Faubel.</h2>
+          <ul class="about-lines" data-reveal style="margin-top:clamp(30px,3.4vw,48px)">
+            <li>Former Enterprise Sales Executive.</li>
+            <li>15+ years working with executives.</li>
+            <li>Today: helping leaders build lasting success by ending the war with themselves.</li>
+          </ul>
+        </div>
       </div>
-    </figure>
+    </div>
+  </section>
 
-    <div class="buehne" style="padding-block:var(--ruhig)">
-      <h2 class="t-h2 reveal">Die Bewerbung</h2>
-      <div class="spalte vor-m reveal">
-        <p>Ich nehme zehn Menschen im Jahr. Jeder Prozess wird für eine Person gebaut, und mehr als zehn schaffe ich in dieser Tiefe nicht ehrlich.</p>
-        <p>Ich lese jede Bewerbung selbst. Manche beantworte ich mit einer Empfehlung für jemand anderen. Das ist kein schlechtes Ergebnis, sondern das richtige.</p>
-      </div>
-      <hr class="linie vor-l" style="max-width:var(--text)">
-      <p class="spalte vor-m">Die Investition besprechen wir im Vorgespräch. Jeder Prozess wird für eine Person gebaut, deshalb gibt es keine Liste.</p>
-      <p class="schluss-cta"><a class="cta" href="bewerbung.html">Für einen Platz bewerben</a></p>
-
-      <!-- Die drei offenen Stellen dieser Sektion standen bis hierher ZWISCHEN
-           „Ich lese jede Bewerbung selbst“ — dem stärksten Vertrauenssatz der
-           Seite — und dem Knopf. Ein Aktenvermerk im Entscheidungsmoment.
-           Sie stehen jetzt hinter dem Knopf: für Alexander unverändert
-           sichtbar und in derselben Reihenfolge (die Nummern ändern sich
-           nicht), für einen Leser aber erst, wenn er entschieden hat.
-           Nichts entfernt, nur umgestellt (E11). -->
-      <div class="notiz vor-l offen">
-        <p class="notiz-marke offen-nr"></p>
-        <!-- Zählung korrigiert: „an zwei Stellen“ war falsch. Auf einer Seite,
-             deren Währung Präzision ist, darf die eigene Annotation nicht
-             falsch zählen. Nachgezählt: index Eyebrow + index „zehn Menschen“
-             + bewerbung Eyebrow + bewerbung „zehn Menschen“ = 4 sichtbar;
-             dazu je Seite description + og:description = 4 Meta-Angaben. -->
-        <p class="frage">Rückfrage · Verknappung: Die Zahl „zehn Plätze im Jahr“ steht an vier sichtbaren Stellen auf zwei Seiten, dazu in vier Meta-Angaben für Suchergebnis und Link-Vorschau. Stimmt sie so, und willst du sie öffentlich festschreiben? Eine Verknappung muss nachprüfbar wahr sein.</p>
-        <p class="frage">Rückfrage · Preis: Ist die Investitionszeile oben so in Ordnung, oder willst du den Preis doch nennen?</p>
+  <!-- ═══ Stimmen ═══
+       ACHTUNG: Es liegen noch keine echten Zitate und Videos vor. Bis dahin
+       stehen hier Platzhalter — es wird nichts erfunden und nichts behauptet.
+       Wenn bis zum Livegang nichts vorliegt: diese Sektion ersatzlos entfernen. -->
+  <section id="stimmen">
+    <div class="wrap">
+      <div class="duo">
+        <div>
+          <span class="eyebrow" data-reveal>Stimmen</span>
+          <h2 data-reveal style="margin-top:22px">Was danach gesagt wird.</h2>
+        </div>
+        <p class="lead" data-reveal>Wer diesen Prozess geht, spricht selten öffentlich darüber. Die folgenden Stimmen stehen hier mit ausdrücklicher Erlaubnis.</p>
       </div>
 
-      <!-- Monas Fund, von Klaus entschieden: „Jeder Prozess wird für eine
-           Person gebaut“ steht dreimal auf der Seite (hier zweimal plus
-           Meta-Description), während offen ist, ob 1:1 oder Kleingruppe.
-           Der Wortlaut bleibt — aber die Unklarheit bleibt sichtbar. -->
-      <p class="randnotiz vor-m offen"><b class="offen-nr"></b>„Für eine Person gebaut“ liest sich als 1:1. Trifft das zu, oder arbeitest du auch mit Kleingruppen? Wenn Gruppe, müssen wir es an drei Stellen ändern.</p>
+      <div class="quotes" data-reveal>
+        <figure class="quote">
+          <blockquote>Platzhalter — echtes Zitat folgt.</blockquote>
+          <cite>Name, Rolle, Unternehmen</cite>
+        </figure>
+        <figure class="quote">
+          <blockquote>Platzhalter — echtes Zitat folgt.</blockquote>
+          <cite>Name, Rolle, Unternehmen</cite>
+        </figure>
+        <figure class="quote">
+          <blockquote>Platzhalter — echtes Zitat folgt.</blockquote>
+          <cite>Name, Rolle, Unternehmen</cite>
+        </figure>
+      </div>
+
+      <div class="videos" data-reveal>
+        <div class="ph ph--video" role="img" aria-label="Videofläche — Stimme eins"><span>Video folgt</span></div>
+        <div class="ph ph--video" role="img" aria-label="Videofläche — Stimme zwei"><span>Video folgt</span></div>
+        <div class="ph ph--video" role="img" aria-label="Videofläche — Stimme drei"><span>Video folgt</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Umfang ═══ -->
+  <section id="umfang" class="scope">
+    <div class="wrap">
+      <div class="duo">
+        <div>
+          <span class="eyebrow" data-reveal>Umfang</span>
+          <h2 data-reveal style="margin-top:22px">Was enthalten ist.</h2>
+        </div>
+        <p class="lead" data-reveal>Ein Prozess, drei Phasen, durchgehend begleitet. Nichts davon ist ein Baukasten, aus dem du einzelne Teile wählst.</p>
+      </div>
+
+      <ul class="scope-list" data-reveal>
+        <li><b>Vorgespräch und Prozessdesign</b><span>vorab</span></li>
+        <li><b>Die intensiven Tage</b><span>Einzelbegleitung</span></li>
+        <li><b>Persönliche Begleitung</b><span>durchgehend</span></li>
+        <li><b>Integrationsphase</b><span>60 Tage</span></li>
+      </ul>
+
+      <div class="invest" data-reveal>
+        <span class="eyebrow">Investition</span>
+        <p class="amount">Auf Anfrage.</p>
+        <p class="meta">Jeder Reset wird individuell zugeschnitten. Was er umfasst und was er kostet, besprechen wir im Vorgespräch — nicht vorher auf einer Seite.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Einzelcoaching — bewusst klein und nachgeordnet ═══ -->
+  <section id="coaching">
+    <div class="wrap">
+      <div class="aside-offer">
+        <div>
+          <span class="eyebrow" data-reveal>Ergänzend</span>
+          <h2 data-reveal style="margin-top:22px">Einzelcoaching.</h2>
+          <p data-reveal>Fortlaufende Begleitung über einen längeren Zeitraum. Für alle, bei denen der Reset noch nicht ansteht oder bei denen es um etwas anderes geht.</p>
+          <div data-reveal><a class="btn" href="bewerbung.html">Anfragen</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Bewerbung ═══ -->
+  <section class="apply-band on-ink">
+    <div class="wrap">
+      <h2 data-reveal>Der nächste Schritt ist ein Gespräch, keine Buchung.</h2>
+      <p data-reveal>Jede Bewerbung lese ich persönlich. Passt es, folgt das Vorgespräch. Passt es nicht, sage ich es dir — das ist Teil der Arbeit.</p>
+      <div data-reveal><a class="btn btn--inv" href="bewerbung.html">Apply for Reset</a></div>
+      <p class="claim" data-reveal>Nachhaltiger Erfolg beginnt dort, wo der innere Kampf endet.</p>
     </div>
   </section>
 
 </main>
 
-<!-- ═══ Fuß — drei Spalten auf Tinte. Identisch auf allen fünf Seiten. ═══ -->
-<footer class="site-footer">
-  <div class="buehne">
-    <div class="foot-oben">
-      <div>
-        <span class="foot-marke">Alexander&nbsp;Faubel</span>
-        <p class="foot-satz">Drei Tage für Menschen, die Verantwortung tragen.</p>
-        <p class="foot-abgrenzung">Der Executive Reset ist persönliche Begleitung und Persönlichkeitsentwicklung. Er ist keine medizinische oder psychotherapeutische Behandlung und ersetzt diese nicht.</p>
-      </div>
-      <div>
-        <span class="foot-titel">Die Seite</span>
-        <nav class="foot-liste" aria-label="Seiteninhalt">
-          <a href="#fuer-wen"><span>Für wen. Und für wen nicht.</span></a>
-          <a href="#ablauf"><span>Was in diesen drei Tagen passiert</span></a>
-          <a href="#reset"><span>Executive Reset</span></a>
-          <a href="#person"><span>Wer Sie begleitet</span></a>
-          <a href="#bewerbung"><span>Die Bewerbung</span></a>
-        </nav>
-      </div>
-      <div>
-        <span class="foot-titel">Rechtliches und Kontakt</span>
-        <nav class="foot-liste" aria-label="Rechtliches">
-          <a href="impressum.html"><span>Impressum</span></a>
-          <a href="datenschutz.html"><span>Datenschutz</span></a>
-        </nav>
-        <p class="foot-hinweis">Kontakt ausschließlich über die Bewerbung.</p>
-        <p class="foot-hinweis">Was in einer Bewerbung steht, bleibt zwischen Ihnen und mir.</p>
-        <p class="randnotiz offen"><b class="offen-nr"></b>Von wo aus arbeitest du? Die Ortszeile steht hier, sobald du sie nennst — und sie gehört auch ins Impressum.</p>
-      </div>
-    </div>
-    <div class="foot-unten">
-      <span>Keine Cookies. Keine Tracker. Keine externen Dienste.</span>
-      <span>Handgebaut in Landsberg am Lech · Entwurf, nicht veröffentlichen</span>
-    </div>
+<footer class="foot">
+  <div class="wrap">
+    <p>Alexander Faubel — Executive Reset</p>
+    <nav aria-label="Rechtliches">
+      <a href="mailto:kontakt@example.com">kontakt@example.com</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </nav>
+  </div>
+  <!-- Abgrenzung zur Heilkunde. Steht bewusst auf jeder Seite, nicht nur im
+       Impressum — sie schützt Alexander und ist gegenüber dem Leser fair. -->
+  <div class="wrap">
+    <p class="foot-note">Der Executive Reset ist persönliche Begleitung und Persönlichkeitsentwicklung. Er ist keine medizinische oder psychotherapeutische Behandlung und ersetzt diese nicht.</p>
   </div>
 </footer>
 
-<script>
-(function(){
-  var nav = document.getElementById('nav');
-  var hero = document.querySelector('.hero');
-
-  /* Nav-Fläche + CTA erst nach dem Hero (hält den ersten Viewport ruhig) */
-  if (nav && hero && 'IntersectionObserver' in window) {
-    new IntersectionObserver(function(es){
-      nav.classList.toggle('scrolled', !es[0].isIntersecting);
-    }, { rootMargin: '-88% 0px 0px 0px' }).observe(hero);
-  }
-
-  /* Einmalige Reveals — bei reduzierter Bewegung sofort alles sichtbar */
-  var reveals = [].slice.call(document.querySelectorAll('.reveal'));
-  var ruhig = window.matchMedia('(prefers-reduced-motion: reduce)');
-  var foto = /(\?|&)foto\b/.test(location.search);   /* Screenshot-Modus: alles sofort sichtbar */
-  if (foto || !('IntersectionObserver' in window) || ruhig.matches) {
-    reveals.forEach(function(el){ el.classList.add('is-in'); });
-    return;
-  }
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(e, i){
-      if (!e.isIntersecting) return;
-      var el = e.target;
-      setTimeout(function(){ el.classList.add('is-in'); }, Math.min(i, 2) * 80);
-      io.unobserve(el);
-    });
-  }, { rootMargin: '0px 0px -12% 0px', threshold: 0.06 });
-  reveals.forEach(function(el){ io.observe(el); });
-})();
-</script>
+<script src="assets/site.js" defer></script>
 </body>
 </html>

@@ -1,113 +1,92 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>document.documentElement.classList.add('js')</script>
-<!-- ENTFERNEN sobald Impressum+Datenschutz live & freigegeben -->
-<meta name="robots" content="noindex, nofollow">
-<title>Impressum | Executive Reset · A. Faubel</title>
-<meta name="description" content="Impressum und Anbieterkennzeichnung nach § 5 DDG für die Website Executive Reset von Alexander Faubel.">
-<meta property="og:title" content="Impressum">
-<meta property="og:description" content="Anbieterkennzeichnung nach § 5 DDG.">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="de_DE">
-<!-- og:image relativ, bis die Domain feststeht — ein absoluter Verweis auf
-     eine noch nicht existierende Adresse bricht die WhatsApp-Vorschau.
-     Bei Go-Live: absolute URL + og:url wieder eintragen. -->
-<meta property="og:image" content="assets/og.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="theme-color" content="#F0EEE9">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2315161A'/%3E%3Cpath d='M6 24h20' stroke='%23F0EEE9' stroke-width='1.5'/%3E%3Cpath d='M16 7v13' stroke='%238C8C88' stroke-width='1.5'/%3E%3C/svg%3E">
+<title>Impressum — Executive Reset</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#F9F8F6">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111C19'/%3E%3Crect x='9' y='15' width='14' height='1.4' fill='%23DDCEB9'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/fonts.css">
-<link rel="stylesheet" href="assets/gemeinsam.css">
-<link rel="stylesheet" href="assets/legal.css">
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-<a class="skip" href="#inhalt">Zum Inhalt springen</a>
-<header class="nav">
-  <div class="nav-innen">
-    <a class="wortmarke" href="index.html">Alexander&nbsp;Faubel</a>
-    <a class="zurueck" href="index.html">Zurück</a>
+
+<a class="skip" href="#main">Zum Inhalt</a>
+
+<header class="head">
+  <div class="wrap">
+    <a class="mark" href="index.html">Executive Reset</a>
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a class="apply" href="index.html">Zurück</a>
+    </nav>
   </div>
 </header>
 
-<main id="inhalt" class="kopf">
-  <div class="buehne">
-   <!-- .buehne = Bühne (1180px, Inhaltskante 210px @1440, wie index.html)
-        .spalte = Textmaß (600px). Bis Runde 3 war beides dieselbe Box. -->
-   <div class="spalte">
-    <p class="t-label">Rechtliches</p>
-    <h1 class="t-h1 vor-m">Impressum</h1>
+<main id="main" class="legal">
+  <div class="wrap">
+    <span class="eyebrow">Rechtliches</span>
+    <h1 style="margin-top:24px">Impressum.</h1>
 
-    <p class="luecke vor-m offen"><b>Entwurf · noch kein gültiges Impressum</b>Diese Seite ist ein Platzhalter. Alexander hat die Pflichtangaben noch nicht geliefert. Solange hier Lücken stehen, bleibt die gesamte Website auf <span style="font-style:normal">noindex</span> und darf nicht veröffentlicht werden.</p>
+    <p class="todo">Noch offen: Die Angaben nach § 5 DDG und § 18 Abs. 2 MStV liegen nicht vor.
+    Benötigt werden Name, ladungsfähige Anschrift, E-Mail, Telefon, Rechtsform sowie —
+    falls vorhanden — Umsatzsteuer-Identifikationsnummer und Berufsangaben.
+    Ohne diese Angaben darf die Seite nicht online gehen.</p>
 
-    <h2 class="t-h2">Angaben gemäß § 5 DDG</h2>
-    <p class="randnotiz offen"><b class="offen-nr"></b>Vollständiger Name bzw. Firmierung und Rechtsform (Einzelunternehmen, GbR, UG, GmbH …). Bei Gesellschaften zusätzlich alle vertretungsberechtigten Personen.</p>
-    <p class="randnotiz offen"><b class="offen-nr"></b>Ladungsfähige Anschrift — Straße, Hausnummer, PLZ, Ort. Ein Postfach genügt nicht.</p>
+    <h2>Angaben gemäß § 5 DDG</h2>
+    <p>Alexander Faubel<br>
+    <em>Straße und Hausnummer</em><br>
+    <em>PLZ und Ort</em></p>
 
-    <h2 class="t-h2">Kontakt</h2>
-    <p class="randnotiz offen"><b class="offen-nr"></b>E-Mail-Adresse und Telefonnummer. Beides ist Pflicht, nicht nur eines von beiden.</p>
+    <h2>Kontakt</h2>
+    <p>E-Mail: <a class="link" href="mailto:kontakt@example.com">kontakt@example.com</a><br>
+    Telefon: <em>noch offen</em></p>
 
-    <h2 class="t-h2">Umsatzsteuer</h2>
-    <p class="randnotiz offen"><b class="offen-nr"></b>Umsatzsteuer-Identifikationsnummer nach § 27a UStG, falls vorhanden — oder der Hinweis auf die Kleinunternehmerregelung nach § 19 UStG. Sobald die Wirtschafts-Identifikationsnummer zugeteilt ist, gehört diese hierher, korrekt beschriftet.</p>
+    <h2>Umsatzsteuer</h2>
+    <p><em>Umsatzsteuer-Identifikationsnummer gemäß § 27 a UStG — noch offen.</em></p>
 
-    <h2 class="t-h2">Berufsbezeichnung</h2>
-    <p>Der Executive Reset ist persönliche Begleitung und Persönlichkeitsentwicklung. Es handelt sich weder um Heilkunde im Sinne des Heilpraktikergesetzes noch um Psychotherapie; eine Erlaubnis nach § 1 HeilprG ist dafür nicht erforderlich.</p>
-    <p class="randnotiz offen"><b class="offen-nr"></b>Sollen Ausbildungen, Zertifizierungen oder Verbandsmitgliedschaften genannt werden? Falls ja: genaue Bezeichnung und verleihende Stelle — hier darf nichts sinngemäß stehen.</p>
+    <h2>Berufsbezeichnung</h2>
+    <p>Der Executive Reset ist persönliche Begleitung und Persönlichkeitsentwicklung.
+    Es handelt sich weder um Heilkunde im Sinne des Heilpraktikergesetzes noch um
+    Psychotherapie; eine Erlaubnis nach § 1 HeilprG ist dafür nicht erforderlich.</p>
+    <p><em>Offen: Sollen Ausbildungen, Zertifizierungen oder Verbandsmitgliedschaften genannt
+    werden? Falls ja, gehören die genaue Bezeichnung und die verleihende Stelle hierher —
+    sinngemäße Angaben sind an dieser Stelle nicht zulässig.</em></p>
 
-    <h2 class="t-h2">Verantwortlich für den Inhalt</h2>
-    <p class="randnotiz offen"><b class="offen-nr"></b>Name und Anschrift der inhaltlich verantwortlichen Person (in der Regel identisch mit den Angaben oben).</p>
+    <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+    <p>Alexander Faubel, Anschrift wie oben.</p>
 
-    <h2 class="t-h2">Streitbeilegung</h2>
-    <p>Zur Teilnahme an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle sind wir nicht verpflichtet und nicht bereit.</p>
+    <h2>Bildnachweis</h2>
+    <p>Porträtaufnahme: Andreas Tobias.</p>
+    <p><em>Offen: Die Nutzungsrechte für die Veröffentlichung auf dieser Website müssen
+    schriftlich vorliegen, bevor die Seite online geht.</em></p>
 
-    <h2 class="t-h2">Haftung für Inhalte und Links</h2>
-    <p>Die Inhalte dieser Seiten wurden mit Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte kann jedoch keine Gewähr übernommen werden. Für Inhalte verlinkter externer Seiten ist stets deren Betreiber verantwortlich; zum Zeitpunkt der Verlinkung waren keine Rechtsverstöße erkennbar.</p>
+    <h2>Haftung für Inhalte und Links</h2>
+    <p>Die Inhalte dieser Seiten wurden mit Sorgfalt erstellt. Für Richtigkeit,
+    Vollständigkeit und Aktualität kann keine Gewähr übernommen werden. Für die Inhalte
+    verlinkter externer Seiten ist deren jeweiliger Betreiber verantwortlich; zum Zeitpunkt
+    der Verlinkung waren keine Rechtsverstöße erkennbar.</p>
 
-    <h2 class="t-h2">Bildnachweis</h2>
-    <p class="randnotiz offen"><b class="offen-nr"></b>Wer hat die Schwarzweißaufnahme gemacht, und liegen die Nutzungsrechte für die Website vor? Ohne diese Klärung darf das Foto nicht öffentlich gehen.</p>
+    <h2>Streitbeilegung</h2>
+    <p>Ich bin nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
 
-    <h2 class="t-h2">Umsetzung</h2>
-    <p>Gestaltung und technische Umsetzung: Lechcode — Schönbach &amp; Storz GbR, Landsberg am Lech.</p>
-   </div>
+    <h2>Gestaltung und Umsetzung</h2>
+    <p><a class="link" href="https://lechcode.de" rel="noopener">Lechcode</a> — Schönbach &amp; Storz GbR, Landsberg am Lech.</p>
   </div>
 </main>
 
-<footer class="site-footer">
-  <div class="buehne">
-    <div class="foot-oben">
-      <div>
-        <span class="foot-marke">Alexander&nbsp;Faubel</span>
-        <p class="foot-satz">Drei Tage für Menschen, die Verantwortung tragen.</p>
-        <p class="foot-abgrenzung">Der Executive Reset ist persönliche Begleitung und Persönlichkeitsentwicklung. Er ist keine medizinische oder psychotherapeutische Behandlung und ersetzt diese nicht.</p>
-      </div>
-      <div>
-        <span class="foot-titel">Die Seite</span>
-        <nav class="foot-liste" aria-label="Seiteninhalt">
-          <a href="index.html#fuer-wen"><span>Für wen. Und für wen nicht.</span></a>
-          <a href="index.html#ablauf"><span>Was in diesen drei Tagen passiert</span></a>
-          <a href="index.html#reset"><span>Executive Reset</span></a>
-          <a href="index.html#person"><span>Wer Sie begleitet</span></a>
-          <a href="index.html#bewerbung"><span>Die Bewerbung</span></a>
-        </nav>
-      </div>
-      <div>
-        <span class="foot-titel">Rechtliches und Kontakt</span>
-        <nav class="foot-liste" aria-label="Rechtliches">
-          <a href="impressum.html"><span>Impressum</span></a>
-          <a href="datenschutz.html"><span>Datenschutz</span></a>
-        </nav>
-        <p class="foot-hinweis">Kontakt ausschließlich über die Bewerbung.</p>
-        <p class="foot-hinweis">Was in einer Bewerbung steht, bleibt zwischen Ihnen und mir.</p>
-      </div>
-    </div>
-    <div class="foot-unten">
-      <span>Keine Cookies. Keine Tracker. Keine externen Dienste.</span>
-      <span>Handgebaut in Landsberg am Lech · Entwurf, noch kein gültiges Impressum</span>
-    </div>
+<footer class="foot" style="margin-top:clamp(84px,13vw,190px)">
+  <div class="wrap">
+    <p>Alexander Faubel — Executive Reset</p>
+    <nav aria-label="Rechtliches">
+      <a href="index.html">Startseite</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </nav>
+  </div>
+  <div class="wrap">
+    <p class="foot-note">Der Executive Reset ist persönliche Begleitung und Persönlichkeitsentwicklung. Er ist keine medizinische oder psychotherapeutische Behandlung und ersetzt diese nicht.</p>
   </div>
 </footer>
+
 </body>
 </html>
