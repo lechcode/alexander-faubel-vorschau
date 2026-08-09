@@ -17,8 +17,12 @@
 
   /* 2 · Fade-up beim Scrollen, gestaffelt um 70 ms, jedes Element genau einmal */
   var items = document.querySelectorAll('[data-reveal]');
-  if (calm || !('IntersectionObserver' in window)) {
+  var alleZeigen = function () {
     Array.prototype.forEach.call(items, function (el) { el.classList.add('in'); });
+  };
+
+  if (calm || !('IntersectionObserver' in window)) {
+    alleZeigen();
   } else {
     var io = new IntersectionObserver(function (entries) {
       var n = 0;
@@ -30,6 +34,14 @@
       });
     }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
     Array.prototype.forEach.call(items, function (el) { io.observe(el); });
+
+    /* Notbremse: Wenn der Observer nach 2,5 s nichts gemeldet hat — weil die
+       Umgebung ihn nicht bedient, weil die Seite in einem nicht gezeichneten
+       Tab liegt, weil ein Reader sie umbaut —, wird alles sichtbar gemacht.
+       Lieber ohne Animation als unsichtbar. */
+    setTimeout(function () {
+      if (!document.querySelector('[data-reveal].in')) alleZeigen();
+    }, 2500);
   }
 
   /* 3 · Bewerbungsformular

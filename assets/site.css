@@ -21,10 +21,12 @@
   --gold-lt:#E0C07A;    /* Champagner — ausschließlich auf --ink-Flächen     */
 
   --font:"Inter Tight","Inter Tight Fallback",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --display:"Libre Caslon Display","Libre Caslon Fallback",Georgia,"Times New Roman",serif;
 
   /* Typo — fluid, mobile Untergrenze bei rund 40 % der Desktop-Größe */
-  --t-h1:clamp(39px, 7vw, 96px);
-  --t-h2:clamp(29px, 4vw, 52px);
+  --t-h1:clamp(41px, 7.4vw, 104px);
+  --t-h2:clamp(30px, 4.3vw, 56px);
+  --t-num:clamp(34px, 3.9vw, 54px);   /* die großen Ziffern 01 · 02 · 03 */
   --t-h3:clamp(20px, 1.5vw, 25px);
   --t-lead:clamp(17px, 1.15vw, 20px);
   --t-body:clamp(15.5px, .8vw, 17px);
@@ -58,16 +60,25 @@ body{
   -moz-osx-font-smoothing:grayscale;
   overflow-x:clip;
 }
-h1,h2,h3{
-  font-weight:500;                 /* Überschriften nie fett — 500 mit
-                                      negativer Laufweite wirkt hochwertig  */
-  letter-spacing:-.035em;
-  line-height:1.1;
+/* Die großen Stimmen laufen in der Serife, alles Strukturelle in Inter Tight.
+   Serifen brauchen keine negative Laufweite — was beim Grotesk hochwertig
+   wirkt, drückt hier die Buchstaben zusammen. Deshalb nur eine Spur unter 0. */
+h1,h2{
+  font-family:var(--display);
+  font-weight:400;
+  letter-spacing:-.014em;
+  line-height:1.08;
   text-wrap:balance;
 }
-h1{font-size:var(--t-h1);line-height:1.02;max-width:15ch;}
-h2{font-size:var(--t-h2);max-width:17ch;}
-h3{font-size:var(--t-h3);line-height:1.24;letter-spacing:-.028em;}
+h1{font-size:var(--t-h1);line-height:1.02;max-width:14ch;}
+h2{font-size:var(--t-h2);max-width:16ch;}
+h3{
+  font-weight:500;                 /* Überschriften nie fett */
+  font-size:var(--t-h3);
+  line-height:1.24;
+  letter-spacing:-.028em;
+  text-wrap:balance;
+}
 p{max-width:58ch;}
 a{color:inherit;text-decoration:none;}
 img{display:block;max-width:100%;height:auto;}
@@ -104,8 +115,11 @@ section{padding-block:var(--sec);}
 .lead{font-size:var(--t-lead);line-height:1.6;max-width:44ch;color:var(--muted);}
 .meta{font-size:var(--t-meta);line-height:1.5;color:var(--muted);}
 
-/* Button — nur Outline. Hover füllt die Fläche. Kein gefüllter Grundzustand. */
+/* Button — nur Outline. Beim Hover läuft die Fläche von unten hoch,
+   statt einfach umzuschalten. Eine Bewegung, kein Blinken. */
 .btn{
+  position:relative;
+  isolation:isolate;
   display:inline-block;
   border:1px solid var(--ink);
   padding:17px 34px;
@@ -116,11 +130,21 @@ section{padding-block:var(--sec);}
   color:var(--ink);
   background:transparent;
   cursor:pointer;
-  transition:background .35s var(--ease), color .35s var(--ease);
+  overflow:hidden;
+  transition:color .38s var(--ease);
 }
-.btn:hover{background:var(--ink);color:var(--paper);}
+.btn::before{
+  content:"";
+  position:absolute;inset:0;z-index:-1;
+  background:var(--ink);
+  transform:scaleY(0);transform-origin:bottom;
+  transition:transform .42s var(--ease);
+}
+.btn:hover{color:var(--paper);}
+.btn:hover::before{transform:scaleY(1);}
 .btn--inv{border-color:var(--paper);color:var(--paper);}
-.btn--inv:hover{background:var(--paper);color:var(--ink);}
+.btn--inv::before{background:var(--paper);}
+.btn--inv:hover{color:var(--ink);}
 
 /* Link im Fließtext */
 .link{border-bottom:1px solid var(--line);transition:border-color .3s var(--ease);}
@@ -186,6 +210,7 @@ section{padding-block:var(--sec);}
 }
 .nav{display:flex;align-items:center;gap:clamp(20px,2.4vw,38px);}
 .nav a{
+  position:relative;
   font-size:var(--t-eyebrow);
   font-weight:500;
   letter-spacing:.16em;
@@ -194,6 +219,15 @@ section{padding-block:var(--sec);}
   transition:color .3s var(--ease);
 }
 .nav a:hover{color:var(--ink);}
+/* Unterstreichung zeichnet sich von links, zieht sich nach rechts zurück */
+.nav a::after{
+  content:"";
+  position:absolute;left:0;right:0;bottom:-7px;
+  height:1px;background:currentColor;
+  transform:scaleX(0);transform-origin:right;
+  transition:transform .42s var(--ease);
+}
+.nav a:hover::after{transform:scaleX(1);transform-origin:left;}
 .nav a.apply{color:var(--gold);}
 .nav a.apply:hover{color:var(--ink);}
 @media (max-width:760px){
@@ -201,12 +235,23 @@ section{padding-block:var(--sec);}
 }
 
 /* ─── 5 · Hero — rein typografisch, ohne Bild ──────────────────────────── */
-.hero{padding-top:calc(var(--head) + clamp(70px,12vw,168px));padding-bottom:var(--sec);}
+/* Der erste Bildschirm ist ein gesetztes Bild, keine angeschnittene Seite:
+   volle Höhe, Inhalt mittig, die Metazeile sitzt unten am Rand. */
+.hero{
+  min-height:100svh;
+  padding-top:calc(var(--head) + clamp(40px,7vw,90px));
+  padding-bottom:clamp(34px,5vw,64px);
+  display:flex;align-items:stretch;
+}
+.hero .wrap{display:flex;flex-direction:column;justify-content:center;}
 .hero h1{margin-top:clamp(26px,3vw,44px);}
 .hero .lead{margin-top:clamp(24px,2.6vw,38px);}
-.hero .btn{margin-top:clamp(34px,3.6vw,52px);}
+/* Der Mindestabstand hängt am Button, nicht an der Metazeile: dort unten
+   frisst margin-top:auto den freien Platz und würde einen eigenen
+   Mindestabstand wieder aufheben. */
+.hero .btn{margin-top:clamp(34px,3.6vw,52px);margin-bottom:clamp(56px,8vw,120px);}
 .hero-meta{
-  margin-top:clamp(56px,8vw,120px);
+  margin-top:auto;                 /* schiebt die Zeile an den unteren Rand */
   padding-top:22px;
   border-top:1px solid var(--line);
   font-size:var(--t-meta);
@@ -215,8 +260,27 @@ section{padding-block:var(--sec);}
   max-width:none;              /* die Zeile darf laufen, sie ist keine Textspalte */
 }
 
-/* ─── 6 · Statement ────────────────────────────────────────────────────── */
-.statement p{margin-top:clamp(26px,3vw,44px);color:var(--muted);font-size:var(--t-lead);line-height:1.6;max-width:52ch;}
+/* ─── 6 · Statement — das dunkle Kapitel gleich nach dem Hero ──────────── */
+/* Die Seite hatte vorher nur eine dunkle Fläche, ganz am Ende. Jetzt gibt es
+   zwei: hier der Satz, der wehtut, unten die Einladung. Dazwischen Papier. */
+.statement{
+  background:var(--ink);
+  color:var(--paper);
+  min-height:76svh;
+  display:flex;align-items:center;
+}
+.statement h2{
+  color:var(--paper);
+  font-size:clamp(32px,5vw,72px);
+  max-width:19ch;
+}
+.statement p{
+  margin-top:clamp(30px,3.4vw,52px);
+  color:rgba(249,248,246,.62);
+  font-size:var(--t-lead);
+  line-height:1.6;
+  max-width:50ch;
+}
 
 /* ─── 7 · Prozess ──────────────────────────────────────────────────────── */
 
@@ -244,13 +308,17 @@ section{padding-block:var(--sec);}
   background:var(--line);
 }
 .flow-step--core::before{background:var(--gold);}
+/* Die Ziffer trägt den Schritt. Vorher ein 11-px-Label, das niemand gesehen
+   hat — jetzt in der Serife, groß, in Gold. Das ist der Anker der Grafik. */
 .flow-num{
   display:block;
-  font-size:var(--t-eyebrow);
-  font-weight:500;
-  letter-spacing:.2em;
+  font-family:var(--display);
+  font-size:var(--t-num);
+  font-weight:400;
+  line-height:1;
+  letter-spacing:-.01em;
   color:var(--gold);
-  margin-bottom:12px;
+  margin-bottom:clamp(16px,1.8vw,24px);
 }
 .flow-title{
   display:block;
@@ -281,26 +349,32 @@ section{padding-block:var(--sec);}
 @media (min-width:900px){
   .phase{grid-template-columns:5fr 6fr;gap:clamp(40px,6vw,110px);}
 }
+/* Bewusst kleiner als die Ziffern in der Ablauf-Grafik: die große Ziffer
+   gehört dort hin, hier ist sie nur noch Wegmarke. Zwei gleich große
+   Ziffernpaare direkt untereinander würden sich gegenseitig entwerten. */
 .phase-num{
-  font-size:var(--t-eyebrow);
-  font-weight:500;
-  letter-spacing:.2em;
-  color:var(--gold);
   display:block;
-  margin-bottom:14px;
+  font-family:var(--display);
+  font-size:clamp(21px,1.9vw,27px);
+  font-weight:400;
+  line-height:1;
+  letter-spacing:-.01em;
+  color:var(--gold);
+  margin-bottom:clamp(16px,1.8vw,24px);
 }
 .phase-when{margin-top:12px;font-size:var(--t-meta);color:var(--muted);letter-spacing:.02em;}
 .phase-desc{color:var(--muted);}
 .phase .dash{margin-top:clamp(22px,2.4vw,34px);}
 .phase-key{
   margin-top:clamp(28px,3vw,42px);
-  padding-top:20px;
+  padding-top:22px;
   border-top:1px solid var(--gold);
-  font-size:var(--t-lead);
-  line-height:1.5;
-  max-width:40ch;
+  font-family:var(--display);
+  font-size:clamp(19px,1.6vw,26px);
+  line-height:1.38;
+  max-width:34ch;
   color:var(--ink);
-  letter-spacing:-.01em;
+  letter-spacing:-.008em;
 }
 
 /* ─── 8 · Ergebnis ─────────────────────────────────────────────────────── */
@@ -315,12 +389,13 @@ section{padding-block:var(--sec);}
 }
 .outcome-key{
   margin-top:clamp(44px,5vw,76px);
-  padding-top:22px;
+  padding-top:24px;
   border-top:1px solid var(--gold);
-  font-size:var(--t-h3);
-  line-height:1.3;
-  letter-spacing:-.028em;
-  max-width:30ch;
+  font-family:var(--display);
+  font-size:clamp(21px,2.2vw,34px);
+  line-height:1.32;
+  letter-spacing:-.01em;
+  max-width:28ch;
 }
 
 /* ─── 9 · Für wen ──────────────────────────────────────────────────────── */
@@ -385,7 +460,7 @@ section{padding-block:var(--sec);}
   padding-top:clamp(28px,3vw,42px);
   border-top:1px solid var(--line);
 }
-.invest .amount{margin-top:16px;font-size:clamp(25px,3.4vw,44px);font-weight:500;letter-spacing:-.035em;line-height:1.1;}
+.invest .amount{margin-top:18px;font-family:var(--display);font-size:clamp(28px,3.6vw,50px);font-weight:400;letter-spacing:-.014em;line-height:1.06;}
 .invest .meta{margin-top:20px;max-width:46ch;}
 
 /* ─── 13 · Einzelcoaching — bewusst zurückgenommen ─────────────────────── */
@@ -406,9 +481,11 @@ section{padding-block:var(--sec);}
   padding-top:clamp(26px,3vw,40px);
   border-top:1px solid rgba(249,248,246,.16);
   color:var(--gold-lt);
-  font-size:var(--t-lead);
+  font-family:var(--display);
+  font-size:clamp(21px,2.4vw,36px);
+  line-height:1.34;
   letter-spacing:-.01em;
-  max-width:40ch;
+  max-width:26ch;
 }
 
 /* ─── 15 · Fußzeile ────────────────────────────────────────────────────── */
@@ -486,15 +563,71 @@ section{padding-block:var(--sec);}
   font-size:var(--t-meta);color:var(--muted);max-width:58ch;
 }
 
-/* ─── 18 · Bewegung — genau zwei Dinge, sonst nichts ───────────────────── */
-[data-reveal]{opacity:0;transform:translateY(16px);}
+/* ─── 18 · Bewegung ────────────────────────────────────────────────────── */
+/* Vier Gesten, mehr nicht. Jede hat einen Grund, keine wiederholt sich
+   auf derselben Seite mehr als nötig, und alle sind langsam genug, dass
+   man sie eher spürt als sieht. */
+
+/* (1) Inhalt steigt beim Scrollen leicht auf — der Grundton.
+   Wichtig: versteckt wird NUR, wenn JavaScript läuft (Klasse .js kommt aus
+   einem Inline-Schnipsel im <head>). Ohne JS, bei einem Skriptfehler oder
+   in einer Umgebung, die IntersectionObserver nicht bedient, steht der
+   Inhalt einfach da. Eine Animation darf nie darüber entscheiden, ob ein
+   Text existiert. */
+.js [data-reveal]{opacity:0;transform:translateY(16px);}
 [data-reveal].in{
   opacity:1;transform:none;
   transition:opacity .8s var(--ease), transform .8s var(--ease);
   transition-delay:var(--d,0ms);
 }
+
+/* (2) Die großen Zeilen fahren hinter einer Kante hervor, statt einzublenden.
+   Padding und negativer Rand geben den Unterlängen Platz, sonst schneidet
+   die Maske das g und das p ab. */
+.mask{overflow:hidden;padding-bottom:.14em;margin-bottom:-.14em;}
+/* Maske und Aufblenden schließen sich aus — sonst bewegt sich dasselbe
+   Element zweimal und die Geste wird zappelig. */
+.js .mask[data-reveal],.mask[data-reveal].in{opacity:1;transform:none;}
+.js .mask > span{display:block;transform:translateY(112%);}
+.mask.in > span{
+  transform:none;
+  transition:transform 1.05s cubic-bezier(.16,.84,.28,1);
+  transition-delay:var(--d,0ms);
+}
+
+/* (3) Der Zeitstrahl zeichnet sich von links, Abschnitt für Abschnitt.
+   Das ist die einzige Stelle, an der die Seite etwas vorführt — und sie
+   führt genau das vor, worum es geht: einen Ablauf. */
+.js .flow-step{border-top-color:transparent;}
+.flow-step::after{
+  content:"";
+  position:absolute;top:-1px;left:0;right:0;height:1px;
+  background:var(--line);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .9s var(--ease);
+  transition-delay:var(--d,0ms);
+}
+.flow-step--core::after{background:var(--gold);}
+.flow.in .flow-step::after{transform:scaleX(1);}
+.flow.in .flow-step:nth-child(2)::after{transition-delay:.22s;}
+.flow.in .flow-step:nth-child(3)::after{transition-delay:.44s;}
+.js .flow-step::before{transition:opacity .5s var(--ease) .3s;opacity:0;}
+.flow.in .flow-step::before{opacity:1;}
+.flow.in .flow-step:nth-child(2)::before{transition-delay:.52s;}
+.flow.in .flow-step:nth-child(3)::before{transition-delay:.74s;}
+
+/* (4) Hover-Gesten: Navigation und Button — stehen weiter oben bei ihren
+   Komponenten, damit sie dort zu finden sind, wo sie wirken. */
+
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto;}
   [data-reveal],[data-reveal].in{opacity:1;transform:none;transition:none;}
+  .mask{overflow:visible;padding-bottom:0;margin-bottom:0;}
+  .mask > span,.mask.in > span{transform:none;transition:none;}
+  .flow-step{border-top-color:var(--line);}
+  .flow-step--core{border-top-color:var(--gold);}
+  .flow-step::after{display:none;}
+  .flow-step::before,.flow.in .flow-step::before{opacity:1;transition:none;}
+  .nav a::after,.btn::before{transition:none;}
   *{animation:none!important;}
 }

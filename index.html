@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add("js")</script>
 <title>Executive Reset — Alexander Faubel</title>
 <meta name="description" content="Ein exklusiver Prozess für Unternehmer und Führungskräfte, die nicht mehr zwischen beruflichem Erfolg und persönlichem Wohlbefinden wählen wollen. Zehn Plätze im Jahr.">
 <!-- Vorschau: bleibt aus dem Index, bis die Seite freigegeben ist. -->
@@ -48,22 +49,21 @@
   <section class="hero">
     <div class="wrap">
       <span class="eyebrow" data-reveal>Executive Reset</span>
-      <h1 data-reveal>Erfolg ohne inneren Kampf.</h1>
+      <h1 class="mask" data-reveal><span>Erfolg ohne inneren Kampf.</span></h1>
       <p class="lead" data-reveal>Für Unternehmer und Führungskräfte, die nicht mehr zwischen beruflichem Erfolg und persönlichem Wohlbefinden wählen wollen.</p>
       <div data-reveal><a class="btn" href="bewerbung.html">Apply for Reset</a></div>
       <p class="hero-meta" data-reveal>Vorbereitung · Drei intensive Tage · 60 Tage Integration — Zehn Plätze im Jahr</p>
     </div>
   </section>
 
-  <!-- ═══ Bildfläche 21:9 ═══ -->
-  <div class="ph ph--wide" role="img" aria-label="Bildfläche — Ort des Prozesses">
-    <span>Bild folgt — Ort</span>
-  </div>
-
-  <!-- ═══ Statement ═══ -->
-  <section class="statement">
+  <!-- ═══ Statement — das dunkle Kapitel ═══
+       Hier stand bis zum Design-Review eine graue Platzhalterfläche mit der
+       Aufschrift „Bild folgt". Solange kein Bild da ist, trägt der Satz die
+       Stelle besser als ein leerer Kasten. Wenn Material kommt, kann es
+       hinter oder neben diesen Satz. -->
+  <section class="statement on-ink">
     <div class="wrap">
-      <h2 data-reveal>Du hast erreicht, was du dir vorgenommen hast. Und trotzdem arbeitet etwas gegen dich.</h2>
+      <h2 class="mask" data-reveal><span>Du hast erreicht, was du dir vorgenommen hast. Und trotzdem arbeitet etwas gegen dich.</span></h2>
       <p data-reveal>Mehr Wissen über dich selbst hat daran bisher nichts geändert. Was etwas ändert, ist der Zugang zu den eigentlichen Ursachen — und der lässt sich nicht denken, nur erfahren.</p>
     </div>
   </section>
@@ -189,29 +189,23 @@
     </div>
   </section>
 
-  <!-- ═══ Bildfläche 21:9 ═══ -->
-  <div class="ph ph--wide" role="img" aria-label="Bildfläche — Detail, Raum oder Weg">
-    <span>Bild folgt — Raum</span>
-  </div>
-
-  <!-- ═══ Für wen ═══ -->
-  <section id="fuer-wen">
+  <!-- ═══ Für wen ═══
+       Die Kriterien stehen jetzt in der rechten Spalte, wo vorher eine graue
+       Platzhalterfläche war. Beide Spalten tragen etwas — kein Loch mehr. -->
+  <section id="fuer-wen" class="rule">
     <div class="wrap">
       <div class="duo">
         <div>
           <span class="eyebrow" data-reveal>Für wen</span>
           <h2 data-reveal style="margin-top:22px">Handselektiert. Zehn Plätze im Jahr.</h2>
-          <p class="lead" data-reveal style="margin-top:26px">Ich arbeite mit wenigen Menschen und wähle aus. Nicht als Inszenierung, sondern weil dieser Prozess nur trägt, wenn beide Seiten passen.</p>
-          <ul class="criteria" data-reveal>
-            <li>Du trägst Verantwortung — für ein Unternehmen, für Menschen, für Kapital.</li>
-            <li>Du hast beruflich erreicht, was du wolltest, und merkst, dass der Preis dafür steigt.</li>
-            <li>Du suchst kein weiteres Format, das dir erklärt, wie es geht. Du willst, dass sich etwas ändert.</li>
-            <li>Du kannst drei Tage vollständig aus dem Betrieb gehen. Ohne Ausnahme, ohne Telefon.</li>
-          </ul>
+          <p class="lead" data-reveal style="margin-top:28px">Ich arbeite mit wenigen Menschen und wähle aus. Nicht als Inszenierung, sondern weil dieser Prozess nur trägt, wenn beide Seiten passen.</p>
         </div>
-        <div class="ph ph--port" role="img" aria-label="Bildfläche — Ort der intensiven Tage" data-reveal>
-          <span>Bild folgt — Ort</span>
-        </div>
+        <ul class="criteria" data-reveal>
+          <li>Du trägst Verantwortung — für ein Unternehmen, für Menschen, für Kapital.</li>
+          <li>Du hast beruflich erreicht, was du wolltest, und merkst, dass der Preis dafür steigt.</li>
+          <li>Du suchst kein weiteres Format, das dir erklärt, wie es geht. Du willst, dass sich etwas ändert.</li>
+          <li>Du kannst drei Tage vollständig aus dem Betrieb gehen. Ohne Ausnahme, ohne Telefon.</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -245,10 +239,14 @@
     </div>
   </section>
 
-  <!-- ═══ Stimmen ═══
-       ACHTUNG: Es liegen noch keine echten Zitate und Videos vor. Bis dahin
-       stehen hier Platzhalter — es wird nichts erfunden und nichts behauptet.
-       Wenn bis zum Livegang nichts vorliegt: diese Sektion ersatzlos entfernen. -->
+  <!-- ═══ Stimmen — im Design-Review vom 09.08. herausgenommen ═══
+       Sechs graue Kästen mit „Platzhalter" und „Video folgt" haben die Seite
+       unfertig aussehen lassen; genau das kostet den Premium-Eindruck. Das
+       Briefing sagt für diesen Fall selbst: entweder echte Stimmen oder die
+       Sektion vorerst entfernen. Das Markup steht unverändert unten in
+       diesem Kommentar — sobald Zitate und Videos da sind, kommt es in einem
+       Schritt zurück, samt .quotes/.videos-Styles, die im CSS geblieben sind.
+
   <section id="stimmen">
     <div class="wrap">
       <div class="duo">
@@ -256,31 +254,20 @@
           <span class="eyebrow" data-reveal>Stimmen</span>
           <h2 data-reveal style="margin-top:22px">Was danach gesagt wird.</h2>
         </div>
-        <p class="lead" data-reveal>Wer diesen Prozess geht, spricht selten öffentlich darüber. Die folgenden Stimmen stehen hier mit ausdrücklicher Erlaubnis.</p>
+        <p class="lead" data-reveal>Wer diesen Prozess geht, spricht selten oeffentlich darueber. Die folgenden Stimmen stehen hier mit ausdruecklicher Erlaubnis.</p>
       </div>
-
       <div class="quotes" data-reveal>
         <figure class="quote">
-          <blockquote>Platzhalter — echtes Zitat folgt.</blockquote>
-          <cite>Name, Rolle, Unternehmen</cite>
-        </figure>
-        <figure class="quote">
-          <blockquote>Platzhalter — echtes Zitat folgt.</blockquote>
-          <cite>Name, Rolle, Unternehmen</cite>
-        </figure>
-        <figure class="quote">
-          <blockquote>Platzhalter — echtes Zitat folgt.</blockquote>
+          <blockquote>Zitat</blockquote>
           <cite>Name, Rolle, Unternehmen</cite>
         </figure>
       </div>
-
       <div class="videos" data-reveal>
-        <div class="ph ph--video" role="img" aria-label="Videofläche — Stimme eins"><span>Video folgt</span></div>
-        <div class="ph ph--video" role="img" aria-label="Videofläche — Stimme zwei"><span>Video folgt</span></div>
-        <div class="ph ph--video" role="img" aria-label="Videofläche — Stimme drei"><span>Video folgt</span></div>
+        <div class="ph ph--video"><span>Video</span></div>
       </div>
     </div>
   </section>
+  ═══ Ende der ausgebauten Sektion ═══ -->
 
   <!-- ═══ Umfang ═══ -->
   <section id="umfang" class="scope">
