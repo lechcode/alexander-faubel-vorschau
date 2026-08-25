@@ -4,17 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>document.documentElement.classList.add("js")</script>
-<title>Executive Reset — Alexander Faubel</title>
-<meta name="description" content="Ein exklusiver Prozess für Unternehmer und Führungskräfte, die nicht mehr zwischen beruflichem Erfolg und persönlichem Wohlbefinden wählen wollen. Zehn Plätze im Jahr.">
+<title>The Executive Reset — Alexander Faubel</title>
+<meta name="description" content="Ein intensiver 1:1-Prozess für Unternehmer, Führungskräfte und Menschen mit hoher Verantwortung. Drei Tage in Person bei Berlin, davor und danach begleitet. Zehn Plätze im Jahr.">
 <!-- Vorschau: bleibt aus dem Index, bis die Seite freigegeben ist. -->
 <meta name="robots" content="noindex,nofollow">
-<!-- canonical und og:url fehlen bewusst: die Domain steht noch nicht fest, und ein
-     absoluter Verweis auf eine Adresse, die es nicht gibt, richtet mehr Schaden an
-     als er nützt. og:image bleibt solange relativ. Bei Go-Live beides eintragen. -->
+<!-- canonical und og:url fehlen bewusst: die Domain steht noch nicht fest. -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="de_DE">
-<meta property="og:title" content="Executive Reset — Alexander Faubel">
-<meta property="og:description" content="Erfolg ohne inneren Kampf. Ein exklusiver Prozess für Unternehmer und Führungskräfte. Zehn Plätze im Jahr.">
+<meta property="og:title" content="The Executive Reset — Alexander Faubel">
+<meta property="og:description" content="Erfolg ohne inneren Kampf. Ein exklusiver 1:1-Prozess für Unternehmer und Führungskräfte. Zehn Plätze im Jahr.">
 <meta property="og:image" content="assets/img/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -28,36 +26,57 @@
 </head>
 <body>
 
+<!-- ═══ Strichsymbole ═══
+     Alle Symbole liegen als Sprite im Dokument — kein externer Request und
+     keine Icon-Bibliothek. Bewusst nur Konturen in Haarstärke. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-person" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c0-3.9 3.1-7 7-7s7 3.1 7 7"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r=".8"/></symbol>
+    <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></symbol>
+    <symbol id="i-screen" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="11"/><path d="M2 20h20"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="15"/><path d="M3.5 10h17M8.5 3v5M15.5 3v5"/></symbol>
+    <symbol id="i-speech" viewBox="0 0 24 24"><path d="M3.5 5.5h17v11H9l-5.5 4.5z"/></symbol>
+    <symbol id="i-steps" viewBox="0 0 24 24"><path d="M3 20h5v-5H3zM9.5 20h5V11h-5zM16 20h5V6h-5z"/></symbol>
+    <symbol id="i-hands" viewBox="0 0 24 24"><circle cx="8" cy="9" r="3"/><circle cx="16" cy="9" r="3"/><path d="M2.5 20c0-3 2.5-5.5 5.5-5.5s5.5 2.5 5.5 5.5M10.5 20c0-3 2.5-5.5 5.5-5.5s5.5 2.5 5.5 5.5"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2.5l8 3v6.2c0 4.8-3.3 8.2-8 9.8-4.7-1.6-8-5-8-9.8V5.5z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M6 18L18 6M9 6h9v9"/></symbol>
+    <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="12" r="4.5"/><path d="M12.5 12H21M18 12v3.5M15.5 12v2.5"/></symbol>
+    <symbol id="i-block" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M6 18L18 6"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.8-6 10-6 10 6 10 6-3.8 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="2.6"/></symbol>
+    <symbol id="i-focus" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></symbol>
+    <symbol id="i-rings" viewBox="0 0 24 24"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></symbol>
+    <symbol id="i-flag" viewBox="0 0 24 24"><path d="M6 21V3M6 4h12l-2.5 4L18 12H6"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V13M10 20V8M16 20v-9M22 20V4"/></symbol>
+  </defs>
+</svg>
+
 <a class="skip" href="#main">Zum Inhalt</a>
 
 <header class="head">
   <div class="wrap">
     <a class="mark" href="index.html">The Executive Reset</a>
     <nav class="nav" aria-label="Hauptnavigation">
+      <a href="#alexander">Alexander</a>
       <a href="#prozess">Prozess</a>
       <a href="#ergebnis">Ergebnis</a>
       <a href="#fuer-wen">Für wen</a>
-      <a href="#alexander">Alexander</a>
-      <a class="apply" href="bewerbung.html">Apply for Reset</a>
+      <a class="apply" href="bewerbung.html">Bewerben</a>
     </nav>
   </div>
 </header>
 
 <main id="main">
 
-  <!-- ═══ Hero — rein typografisch. Bild folgt erst, wenn das Porträt steht. ═══ -->
+  <!-- ═══ Hero — rein typografisch, darunter der Horizont ═══ -->
   <section class="hero">
     <div class="wrap">
-      <span class="eyebrow" data-reveal>Exklusive Einzelbegleitung — Zehn Plätze im Jahr</span>
+      <span class="eyebrow" data-reveal>Exklusive 1:1-Begleitung — Zehn Plätze im Jahr</span>
       <h1 class="mask" data-reveal><span>Erfolg ohne inneren Kampf.</span></h1>
-      <p class="lead" data-reveal>Für Unternehmer und Führungskräfte, die nicht mehr zwischen beruflichem Erfolg und persönlichem Wohlbefinden wählen wollen.</p>
-      <div data-reveal><a class="btn" href="bewerbung.html">Apply for Reset</a></div>
+      <p class="lead" data-reveal>Für Unternehmer und Führungskräfte, die nach außen erreicht haben, was sie wollten — und innen weiterkämpfen.</p>
+      <div data-reveal><a class="btn" href="bewerbung.html">Bewerbung starten</a></div>
     </div>
 
-    <!-- Der Horizont schließt den ersten Bildschirm ab: oben helles Papier,
-         darunter der Dunst, unten die dunkle Kuppe — und direkt danach das
-         schwarze Kapitel. Kein Text liegt auf dem Bild, die Kanten laufen
-         randlos aus. -->
     <figure class="horizon" data-reveal>
       <img src="assets/img/horizont-1256.jpg"
            srcset="assets/img/horizont-560.jpg 560w, assets/img/horizont-840.jpg 840w, assets/img/horizont-1256.jpg 1256w"
@@ -67,265 +86,325 @@
     </figure>
   </section>
 
-  <!-- ═══ Statement — das dunkle Kapitel ═══
-       Hier stand bis zum Design-Review eine graue Platzhalterfläche mit der
-       Aufschrift „Bild folgt". Solange kein Bild da ist, trägt der Satz die
-       Stelle besser als ein leerer Kasten. Wenn Material kommt, kann es
-       hinter oder neben diesen Satz. -->
-  <section class="statement on-ink">
+  <!-- ═══ Pain + Person ═══
+       Nach dem Call zusammengelegt: links die Sätze, die die Zielgruppe über
+       sich selbst sagt, rechts das Gesicht dazu. Alexander wollte das Porträt
+       ausdrücklich weit nach oben, gekoppelt an den Schmerz. -->
+  <section id="alexander" class="pain on-ink">
     <div class="wrap">
-      <h2 class="mask" data-reveal><span>Du hast erreicht, was du dir vorgenommen hast. Und trotzdem arbeitet etwas gegen dich.</span></h2>
-      <p data-reveal>Mehr Wissen über dich selbst hat daran bisher nichts geändert. Was etwas ändert, ist der Zugang zu den eigentlichen Ursachen — und der lässt sich nicht denken, nur erfahren.</p>
+      <div class="pain-grid">
+
+        <div>
+          <span class="eyebrow" data-reveal>Warum du hier bist</span>
+          <h2 class="mask" data-reveal style="margin-top:22px"><span>Du hast alles erreicht, was du dir vorgenommen hast. Und trotzdem arbeitet etwas in dir gegen dich.</span></h2>
+
+          <ul class="pain-list" data-reveal>
+            <li>Du kannst abschalten, aber nicht wirklich loslassen.</li>
+            <li>Was du leistest, ist nie genug.</li>
+            <li>Dein Kopf funktioniert. In deinem Inneren kommst du nicht zur Ruhe.</li>
+            <li>Du erreichst dein Ziel — und willst sofort zum nächsten, ohne dass sich etwas verändert hat.</li>
+          </ul>
+
+          <div data-reveal><a class="btn btn--inv" href="bewerbung.html">Bewerbung starten</a></div>
+        </div>
+
+        <div class="guide" data-reveal>
+          <img src="assets/img/alexander-faubel-840.jpg"
+               srcset="assets/img/alexander-faubel-420.jpg 420w, assets/img/alexander-faubel-840.jpg 840w"
+               sizes="(min-width:940px) 36vw, 92vw"
+               width="840" height="1050" decoding="async"
+               alt="Alexander Faubel, Schwarzweißaufnahme im Halbprofil.">
+          <p class="guide-role">Dein Guide</p>
+          <p class="guide-name">Alexander Faubel</p>
+          <p>Ehemaliger Enterprise-Sales-Experte. Heute begleitet er Unternehmer und Führungskräfte durch tiefe innere Transformationsprozesse — mit Klarheit, Struktur und persönlicher Erfahrung.</p>
+          <p>„Ich weiß, wovon du sprichst. Ich habe jahrelang selbst darunter gelebt."</p>
+          <p class="credit">Foto: Andreas Tobias</p>
+        </div>
+
+      </div>
     </div>
   </section>
 
-  <!-- ═══ Prozess ═══ -->
-  <section id="prozess" class="rule">
+  <!-- ═══ Prozess — drei Spalten, der Kern in der Mitte dunkel ═══ -->
+  <section id="prozess">
     <div class="wrap">
       <div class="duo">
         <div>
-          <span class="eyebrow" data-reveal>Der Prozess</span>
+          <span class="eyebrow" data-reveal>Dein 1:1-Prozess — von Anfang bis Ende an deiner Seite</span>
           <h2 data-reveal style="margin-top:22px">Drei Schritte. Kein Programm.</h2>
         </div>
-        <p class="lead" data-reveal>Ein intensiver Transformationsprozess für Unternehmer, Führungskräfte und Menschen mit hoher Verantwortung. Zugeschnitten, bevor er beginnt — begleitet, bis das Neue im Alltag hält.</p>
+        <p class="lead" data-reveal>Ein intensiver 1:1-Coaching- und Transformationsprozess für Unternehmer, Führungskräfte und Menschen mit hoher Verantwortung. Du arbeitest durchgehend direkt mit Alexander — von der ersten Session bis zum Abschluss.</p>
       </div>
 
-      <!-- Ablauf auf einen Blick: Haarlinie als Zeitstrahl, drei Marken darauf.
-           Der Kern in der Mitte ist allein an der goldenen Linie erkennbar. -->
-      <ol class="flow" data-reveal>
-        <li class="flow-step">
-          <span class="flow-num">01</span>
-          <span class="flow-title">Vorbereitung</span>
-          <span class="flow-when">Vorab · Vorgespräch, 60 Minuten</span>
-        </li>
-        <li class="flow-step flow-step--core">
-          <span class="flow-num">02</span>
-          <span class="flow-title">Die intensiven Tage</span>
-          <span class="flow-when">Drei Tage · Einzelbegleitung</span>
-        </li>
-        <li class="flow-step">
-          <span class="flow-num">03</span>
-          <span class="flow-title">Integration</span>
-          <span class="flow-when">60 Tage · durchgehend begleitet</span>
-        </li>
-      </ol>
+      <div class="steps" data-reveal>
 
-      <div class="phases">
-        <span class="eyebrow" data-reveal style="margin-bottom:clamp(26px,3vw,42px)">Im Detail</span>
-
-        <article class="phase" data-reveal>
-          <div>
-            <span class="phase-num">01</span>
-            <h3>Vorbereitung</h3>
-            <p class="phase-when">Vor den drei Tagen</p>
-          </div>
-          <div>
-            <p class="phase-desc">Wir schaffen Klarheit über deine Ziele und darüber, was dich wirklich weiterbringt. Bevor wir uns sehen, steht die Basis für maximale Tiefe.</p>
-            <ul class="dash">
-              <li>Persönliches Vorgespräch, 60 Minuten</li>
-              <li>Zieldefinition</li>
-              <li>Mentale Vorbereitung</li>
-              <li>Individuelles Prozessdesign</li>
-            </ul>
-          </div>
+        <!-- 01 -->
+        <article class="step">
+          <span class="step-num">01</span>
+          <h3>Vorbereitung</h3>
+          <p class="step-claim">Online und individuell auf dich abgestimmt.</p>
+          <ul class="iconlist">
+            <li>
+              <svg class="ico" aria-hidden="true"><use href="#i-person"></use></svg>
+              <div><b>Kennenlernen &amp; Zielklarheit</b><span>1:1-Kick-off-Call</span></div>
+            </li>
+            <li>
+              <svg class="ico" aria-hidden="true"><use href="#i-target"></use></svg>
+              <div><b>Analyse &amp; Standortbestimmung</b><span>Tiefe Einblicke in deine Themen</span></div>
+            </li>
+            <li>
+              <svg class="ico" aria-hidden="true"><use href="#i-compass"></use></svg>
+              <div><b>Individuelle Prozessgestaltung</b><span>Dein persönlicher Fahrplan</span></div>
+            </li>
+            <li>
+              <svg class="ico" aria-hidden="true"><use href="#i-screen"></use></svg>
+              <div><b>Mentale &amp; emotionale Vorbereitung</b><span>Online-Sessions und Übungen</span></div>
+            </li>
+          </ul>
+          <p class="step-key">Wir schaffen Klarheit über deine Ziele und darüber, was dich wirklich weiterbringt.</p>
         </article>
 
-        <article class="phase" data-reveal>
-          <div>
-            <span class="phase-num">02</span>
-            <h3>Die intensiven Tage</h3>
-            <p class="phase-when">Drei Tage, Einzelbegleitung</p>
+        <!-- 02 — der Kern -->
+        <article class="step step--core on-ink">
+          <span class="step-num">02</span>
+          <h3>Das intensive 1:1-Wochenende</h3>
+          <p class="step-claim">3 Tage · 100 % Fokus · nur du und dein Prozess</p>
+
+          <ul class="step-facts dash">
+            <li>In einer gehobenen Location in der Nähe von Berlin.</li>
+            <li>Ihr wohnt und arbeitet zu zweit für die gesamte Zeit.</li>
+            <li>All inclusive — Unterkunft, Verpflegung und alles, was du brauchst.</li>
+          </ul>
+
+          <div class="aspects">
+            <div>
+              <h4>Tiefe Klarheit</h4>
+              <p>Wir bringen auf den Punkt, was dich wirklich zurückhält.</p>
+            </div>
+            <div>
+              <h4>Lösen &amp; transformieren</h4>
+              <p>Wir arbeiten direkt an der Wurzel und schaffen echte Veränderung.</p>
+            </div>
+            <div>
+              <h4>Neue Perspektiven</h4>
+              <p>Du gewinnst einen neuen Blick auf dich, dein Leben und dein Business.</p>
+            </div>
+            <div>
+              <h4>Integration im Moment</h4>
+              <p>Du verkörperst neue Erkenntnisse und verankerst sie nachhaltig.</p>
+            </div>
           </div>
-          <div>
-            <p class="phase-desc">Tiefer Zugang. Echte Transformation. Veränderung entsteht hier durch direkte Erfahrung, nicht durch neues Wissen über dich selbst.</p>
-            <ul class="dash">
-              <li>Zugang zu unbewussten Mustern</li>
-              <li>Tiefgreifende Erkenntnisse</li>
-              <li>Emotionale und geistige Klarheit</li>
-              <li>Neue Perspektiven</li>
-              <li>Veränderung durch direkte Erfahrung statt bloßes Wissen</li>
-            </ul>
-            <p class="phase-key">Beschleunigte persönliche Entwicklung durch tiefen Zugang zu den eigentlichen Ursachen. Dein wirkliches Problem wird direkt erkannt und an der Wurzel transformiert.</p>
-          </div>
+
+          <p class="step-key">Diese Zeit gehört dir.
+            <small>Keine Ablenkung. Kein Alltag. Nur du, dein Prozess und ich.</small>
+          </p>
         </article>
 
-        <article class="phase" data-reveal>
-          <div>
-            <span class="phase-num">03</span>
-            <h3>Integration</h3>
-            <p class="phase-when">60 Tage danach</p>
-          </div>
-          <div>
-            <p class="phase-desc">Wir verankern deine Erkenntnisse, und du bekommst Unterstützung bei der Umsetzung im echten Leben. Ich begleite die ersten Schritte zurück in Alltag und Beruf.</p>
-            <ul class="dash">
-              <li>Reflexionsgespräche alle zwei Wochen</li>
-              <li>Begleitender WhatsApp-Support</li>
-              <li>Reflexion und Einordnung der Erfahrungen</li>
-              <li>Praktische Werkzeuge für den Alltag</li>
-              <li>Neue Gewohnheiten etablieren</li>
-              <li>Accountability</li>
-              <li>Transfer in Alltag und Beruf</li>
-            </ul>
-          </div>
+        <!-- 03 -->
+        <article class="step">
+          <span class="step-num">03</span>
+          <h3>Integration</h3>
+          <p class="step-claim">Nachhaltige Integration. Langfristige Transformation.</p>
+          <ul class="iconlist">
+            <li>
+              <svg class="ico" aria-hidden="true"><use href="#i-calendar"></use></svg>
+              <div><b>Sechs 1:1-Integrations-Sessions</b><span>à 60 Minuten, online</span></div>
+            </li>
+            <li>
+              <svg class="ico" aria-hidden="true"><use href="#i-speech"></use></svg>
+              <div><b>Reflexion &amp; Einordnung</b><span>Die Erfahrungen finden ihren Platz</span></div>
+            </li>
+            <li>
+              <svg class="ico" aria-hidden="true"><use href="#i-steps"></use></svg>
+              <div><b>Praktische Umsetzung im Alltag</b><span>Werkzeuge, die im Betrieb halten</span></div>
+            </li>
+            <li>
+              <svg class="ico" aria-hidden="true"><use href="#i-hands"></use></svg>
+              <div><b>Begleitung &amp; Support</b><span>Auch zwischen den Sessions</span></div>
+            </li>
+          </ul>
+          <p class="step-key">Wir verankern deine Erkenntnisse und unterstützen dich bei der Umsetzung im echten Leben.</p>
         </article>
 
       </div>
     </div>
   </section>
 
-  <!-- ═══ Ergebnis ═══ -->
+  <!-- ═══ Ergebnis — Netzgrafik ═══
+       Die neun Punkte aus Alexanders Grafik, auf einen Blick statt als
+       Liste. Reine Haarlinien in der Farbwelt der Seite. -->
   <section id="ergebnis" class="rule">
     <div class="wrap">
       <div class="duo">
         <div>
-          <span class="eyebrow" data-reveal>Ergebnis</span>
+          <span class="eyebrow" data-reveal>Dein Outcome</span>
           <h2 data-reveal style="margin-top:22px">Dein neues Normal.</h2>
         </div>
         <p class="lead" data-reveal>Was danach anders ist, zeigt sich nicht in einem Vorsatz. Es zeigt sich darin, wie du entscheidest, wie du führst und wie du abschaltest.</p>
       </div>
 
-      <ul class="outcome" data-reveal>
-        <li>Emotionale Resilienz</li>
-        <li>Bessere Entscheidungen</li>
-        <li>Mehr innere Freiheit</li>
-        <li>Weniger Selbstsabotage</li>
-        <li>Mehr Präsenz</li>
-        <li>Mehr Fokus</li>
-        <li>Klarere Beziehungen</li>
-        <li>Authentische Führung</li>
-        <li>Nachhaltige Leistungsfähigkeit</li>
-      </ul>
+      <div class="radar-wrap" data-reveal>
+        <svg class="radar" viewBox="0 0 1000 720" role="img"
+             aria-label="Neun Ergebnisfelder: emotionale Resilienz, bessere Entscheidungen, mehr innere Freiheit, weniger Selbstsabotage, mehr Präsenz, mehr Fokus, klarere Beziehungen, authentische Führung, nachhaltige Leistungsfähigkeit.">
+
+          <polygon class="ring" points="500,297.5 533.8,309.8 551.7,340.9 545.5,376.3 517.9,399.3 482.1,399.3 454.5,376.3 448.3,340.9 466.2,309.8"/>
+          <polygon class="ring" points="500,245 567.5,269.6 603.4,331.8 591,402.5 535.9,448.7 464.1,448.7 409,402.5 396.6,331.8 432.5,269.6"/>
+          <polygon class="ring" points="500,192.5 601.3,229.3 655.1,322.6 636.4,428.8 553.9,498 446.1,498 363.6,428.8 344.9,322.6 398.8,229.3"/>
+          <polygon class="ring" points="500,140 635,189.1 706.8,313.5 681.9,455 571.8,547.3 428.2,547.3 318.1,455 293.2,313.5 365,189.1"/>
+
+          <g class="axis">
+            <line x1="500" y1="350" x2="500" y2="140"/>
+            <line x1="500" y1="350" x2="635" y2="189.1"/>
+            <line x1="500" y1="350" x2="706.8" y2="313.5"/>
+            <line x1="500" y1="350" x2="681.9" y2="455"/>
+            <line x1="500" y1="350" x2="571.8" y2="547.3"/>
+            <line x1="500" y1="350" x2="428.2" y2="547.3"/>
+            <line x1="500" y1="350" x2="318.1" y2="455"/>
+            <line x1="500" y1="350" x2="293.2" y2="313.5"/>
+            <line x1="500" y1="350" x2="365" y2="189.1"/>
+          </g>
+
+          <polygon class="shape" points="500,177.8 608,221.3 673.7,319.3 643.7,432.9 558.2,509.8 440.4,513.8 354.5,434 330.4,320.1 390.6,219.7"/>
+
+          <g class="dot">
+            <circle cx="500" cy="177.8" r="4"/><circle cx="608" cy="221.3" r="4"/>
+            <circle cx="673.7" cy="319.3" r="4"/><circle cx="643.7" cy="432.9" r="4"/>
+            <circle cx="558.2" cy="509.8" r="4"/><circle cx="440.4" cy="513.8" r="4"/>
+            <circle cx="354.5" cy="434" r="4"/><circle cx="330.4" cy="320.1" r="4"/>
+            <circle cx="390.6" cy="219.7" r="4"/>
+          </g>
+
+          <svg class="ico" x="489" y="52" width="22" height="22" viewBox="0 0 24 24"><use href="#i-shield"></use></svg>
+          <text class="lbl" x="500" y="98" text-anchor="middle">EMOTIONALE</text>
+          <text class="lbl" x="500" y="118" text-anchor="middle">RESILIENZ</text>
+
+          <svg class="ico" x="659" y="98" width="22" height="22" viewBox="0 0 24 24"><use href="#i-arrow"></use></svg>
+          <text class="lbl" x="659" y="144" text-anchor="start">BESSERE</text>
+          <text class="lbl" x="659" y="164" text-anchor="start">ENTSCHEIDUNGEN</text>
+
+          <svg class="ico" x="744" y="252" width="22" height="22" viewBox="0 0 24 24"><use href="#i-key"></use></svg>
+          <text class="lbl" x="744" y="298" text-anchor="start">MEHR INNERE</text>
+          <text class="lbl" x="744" y="318" text-anchor="start">FREIHEIT</text>
+
+          <svg class="ico" x="715" y="410" width="22" height="22" viewBox="0 0 24 24"><use href="#i-block"></use></svg>
+          <text class="lbl" x="715" y="456" text-anchor="start">WENIGER</text>
+          <text class="lbl" x="715" y="476" text-anchor="start">SELBSTSABOTAGE</text>
+
+          <svg class="ico" x="585" y="538" width="22" height="22" viewBox="0 0 24 24"><use href="#i-eye"></use></svg>
+          <text class="lbl" x="585" y="584" text-anchor="start">MEHR</text>
+          <text class="lbl" x="585" y="604" text-anchor="start">PRÄSENZ</text>
+
+          <svg class="ico" x="393" y="538" width="22" height="22" viewBox="0 0 24 24"><use href="#i-focus"></use></svg>
+          <text class="lbl" x="415" y="584" text-anchor="end">MEHR</text>
+          <text class="lbl" x="415" y="604" text-anchor="end">FOKUS</text>
+
+          <svg class="ico" x="263" y="410" width="22" height="22" viewBox="0 0 24 24"><use href="#i-rings"></use></svg>
+          <text class="lbl" x="285" y="456" text-anchor="end">KLARERE</text>
+          <text class="lbl" x="285" y="476" text-anchor="end">BEZIEHUNGEN</text>
+
+          <svg class="ico" x="234" y="252" width="22" height="22" viewBox="0 0 24 24"><use href="#i-flag"></use></svg>
+          <text class="lbl" x="256" y="298" text-anchor="end">AUTHENTISCHE</text>
+          <text class="lbl" x="256" y="318" text-anchor="end">FÜHRUNG</text>
+
+          <svg class="ico" x="319" y="98" width="22" height="22" viewBox="0 0 24 24"><use href="#i-chart"></use></svg>
+          <text class="lbl" x="341" y="144" text-anchor="end">NACHHALTIGE</text>
+          <text class="lbl" x="341" y="164" text-anchor="end">LEISTUNGSFÄHIGKEIT</text>
+        </svg>
+      </div>
 
       <p class="outcome-key" data-reveal>Ein neues, starkes Fundament für Erfolg — in Business und im Leben.</p>
     </div>
   </section>
 
-  <!-- ═══ Für wen ═══
-       Die Kriterien stehen jetzt in der rechten Spalte, wo vorher eine graue
-       Platzhalterfläche war. Beide Spalten tragen etwas — kein Loch mehr. -->
-  <section id="fuer-wen" class="rule">
-    <div class="wrap">
-      <div class="duo">
-        <div>
-          <span class="eyebrow" data-reveal>Für wen</span>
-          <h2 data-reveal style="margin-top:22px">Handselektiert. Zehn Plätze im Jahr.</h2>
-          <p class="lead" data-reveal style="margin-top:28px">Ich arbeite mit wenigen Menschen und wähle aus. Nicht als Inszenierung, sondern weil dieser Prozess nur trägt, wenn beide Seiten passen.</p>
-        </div>
-        <ul class="criteria" data-reveal>
-          <li>Du trägst Verantwortung — für ein Unternehmen, für Menschen, für Kapital.</li>
-          <li>Du hast beruflich erreicht, was du wolltest, und merkst, dass der Preis dafür steigt.</li>
-          <li>Du suchst kein weiteres Format, das dir erklärt, wie es geht. Du willst, dass sich etwas ändert.</li>
-          <li>Du kannst drei Tage vollständig aus dem Betrieb gehen. Ohne Ausnahme, ohne Telefon.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ Über Alexander — kein Lebenslauf ═══ -->
-  <section id="alexander" class="rule">
-    <div class="wrap">
-      <div class="duo">
-        <figure class="portrait" data-reveal>
-          <picture>
-            <source type="image/avif" srcset="assets/img/alexander-faubel-420.avif 420w, assets/img/alexander-faubel-840.avif 840w" sizes="(min-width:900px) 44vw, 92vw">
-            <source type="image/webp" srcset="assets/img/alexander-faubel-420.webp 420w, assets/img/alexander-faubel-840.webp 840w" sizes="(min-width:900px) 44vw, 92vw">
-            <img src="assets/img/alexander-faubel-840.jpg"
-                 srcset="assets/img/alexander-faubel-420.jpg 420w, assets/img/alexander-faubel-840.jpg 840w"
-                 sizes="(min-width:900px) 44vw, 92vw"
-                 width="840" height="1050" loading="lazy" decoding="async"
-                 alt="Alexander Faubel im Halbprofil, telefonierend, den Blick nach oben gerichtet — Schwarzweißaufnahme.">
-          </picture>
-          <figcaption class="credit">Foto: Andreas Tobias</figcaption>
-        </figure>
-        <div>
-          <span class="eyebrow" data-reveal>Über Alexander</span>
-          <h2 data-reveal style="margin-top:22px">Alexander Faubel.</h2>
-          <ul class="about-lines" data-reveal style="margin-top:clamp(30px,3.4vw,48px)">
-            <li>Former Enterprise Sales Executive.</li>
-            <li>15+ years working with executives.</li>
-            <li>Today: helping leaders build lasting success by ending the war with themselves.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ Stimmen — im Design-Review vom 09.08. herausgenommen ═══
-       Sechs graue Kästen mit „Platzhalter" und „Video folgt" haben die Seite
-       unfertig aussehen lassen; genau das kostet den Premium-Eindruck. Das
-       Briefing sagt für diesen Fall selbst: entweder echte Stimmen oder die
-       Sektion vorerst entfernen. Das Markup steht unverändert unten in
-       diesem Kommentar — sobald Zitate und Videos da sind, kommt es in einem
-       Schritt zurück, samt .quotes/.videos-Styles, die im CSS geblieben sind.
-
-  <section id="stimmen">
+  <!-- ═══ Stimmen ═══
+       PLATZHALTER. Alexander schickt bestehende Videos, neue werden
+       angefragt. Format nach Absprache: hochkant, ein bis zwei Minuten,
+       Thumbnail in Schwarzweiß, darunter die Kernaussage als kurzes Zitat.
+       Später erweiterbar über „Weitere anzeigen" oder einen Slider. -->
+  <section id="stimmen" class="rule">
     <div class="wrap">
       <div class="duo">
         <div>
           <span class="eyebrow" data-reveal>Stimmen</span>
           <h2 data-reveal style="margin-top:22px">Was danach gesagt wird.</h2>
         </div>
-        <p class="lead" data-reveal>Wer diesen Prozess geht, spricht selten oeffentlich darueber. Die folgenden Stimmen stehen hier mit ausdruecklicher Erlaubnis.</p>
+        <p class="lead" data-reveal>Kurze Videos von Menschen, die den Prozess gegangen sind. Die eine Sache, die sich für sie wirklich verändert hat — mehr braucht es nicht.</p>
       </div>
-      <div class="quotes" data-reveal>
-        <figure class="quote">
-          <blockquote>Zitat</blockquote>
-          <cite>Name, Rolle, Unternehmen</cite>
+
+      <div class="voices" data-reveal>
+        <figure class="voice">
+          <div class="ph ph--tall" role="img" aria-label="Videofläche, erste Stimme"><span>Video folgt</span></div>
+          <figcaption>
+            <blockquote>Platzhalter — Kernaussage aus dem Video.</blockquote>
+            <cite>Name, Rolle, Unternehmen</cite>
+          </figcaption>
+        </figure>
+        <figure class="voice">
+          <div class="ph ph--tall" role="img" aria-label="Videofläche, zweite Stimme"><span>Video folgt</span></div>
+          <figcaption>
+            <blockquote>Platzhalter — Kernaussage aus dem Video.</blockquote>
+            <cite>Name, Rolle, Unternehmen</cite>
+          </figcaption>
+        </figure>
+        <figure class="voice">
+          <div class="ph ph--tall" role="img" aria-label="Videofläche, dritte Stimme"><span>Video folgt</span></div>
+          <figcaption>
+            <blockquote>Platzhalter — Kernaussage aus dem Video.</blockquote>
+            <cite>Name, Rolle, Unternehmen</cite>
+          </figcaption>
         </figure>
       </div>
-      <div class="videos" data-reveal>
-        <div class="ph ph--video"><span>Video</span></div>
-      </div>
+
+      <p class="voices-note" data-reveal>Diese drei Flächen warten auf echtes Material. Bis die Videos vorliegen, steht hier bewusst nichts Erfundenes.</p>
+
+      <div data-reveal style="margin-top:clamp(34px,4vw,56px)"><a class="btn" href="bewerbung.html">Bewerbung starten</a></div>
     </div>
   </section>
-  ═══ Ende der ausgebauten Sektion ═══ -->
 
-  <!-- ═══ Umfang ═══ -->
-  <section id="umfang" class="scope">
+  <!-- ═══ Für wen — Fit gegen Anti-Fit ═══ -->
+  <section id="fuer-wen" class="rule">
     <div class="wrap">
       <div class="duo">
         <div>
-          <span class="eyebrow" data-reveal>Umfang</span>
-          <h2 data-reveal style="margin-top:22px">Was enthalten ist.</h2>
+          <span class="eyebrow" data-reveal>Für wen</span>
+          <h2 data-reveal style="margin-top:22px">Handselektiert. Zehn Plätze im Jahr.</h2>
         </div>
-        <p class="lead" data-reveal>Ein Prozess, drei Phasen, durchgehend begleitet. Nichts davon ist ein Baukasten, aus dem du einzelne Teile wählst.</p>
+        <p class="lead" data-reveal>Damit niemand Zeit verliert — weder du noch ich — steht hier auch, wann du besser nicht anfragst.</p>
       </div>
 
-      <ul class="scope-list" data-reveal>
-        <li><b>Vorgespräch und Prozessdesign</b><span>vorab</span></li>
-        <li><b>Die intensiven Tage</b><span>Einzelbegleitung</span></li>
-        <li><b>Persönliche Begleitung</b><span>durchgehend</span></li>
-        <li><b>Integrationsphase</b><span>60 Tage</span></li>
-      </ul>
-
-      <div class="invest" data-reveal>
-        <span class="eyebrow">Investition</span>
-        <p class="amount">Auf Anfrage.</p>
-        <p class="meta">Jeder Reset wird individuell zugeschnitten. Was er umfasst und was er kostet, besprechen wir im Vorgespräch — nicht vorher auf einer Seite.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ Einzelcoaching — bewusst klein und nachgeordnet ═══ -->
-  <section id="coaching">
-    <div class="wrap">
-      <div class="aside-offer">
-        <div>
-          <span class="eyebrow" data-reveal>Ergänzend</span>
-          <h2 data-reveal style="margin-top:22px">Einzelcoaching.</h2>
-          <p data-reveal>Fortlaufende Begleitung über einen längeren Zeitraum. Für alle, bei denen der Reset noch nicht ansteht oder bei denen es um etwas anderes geht.</p>
-          <div data-reveal><a class="btn" href="bewerbung.html">Anfragen</a></div>
+      <div class="fit">
+        <div class="fit--yes" data-reveal>
+          <h3>Das ist für dich, wenn</h3>
+          <ul>
+            <li>du Verantwortung trägst — für ein Unternehmen, für Menschen, für Kapital.</li>
+            <li>du beruflich erreicht hast, was du wolltest, und merkst, dass der Preis dafür steigt.</li>
+            <li>du drei Tage vollständig aus dem Betrieb gehen kannst. Ohne Ausnahme, ohne Telefon.</li>
+            <li>du willst, dass sich etwas ändert — statt dass dir jemand erklärt, wie es ginge.</li>
+          </ul>
+        </div>
+        <div class="fit--no" data-reveal>
+          <h3>Nicht für dich, wenn</h3>
+          <ul>
+            <li>du einen Performance-Hack suchst.</li>
+            <li>du einen schnellen Fix erwartest.</li>
+            <li>du nicht bereit bist, dass es unangenehm werden darf.</li>
+            <li>du den Prozess zwischen zwei Terminen unterbringen willst.</li>
+          </ul>
         </div>
       </div>
+
+      <p class="select-note" data-reveal>Ich schaue mir jede Bewerbung persönlich an und entscheide, mit wem ich arbeite. Der Prozess geht tief und ist sehr persönlich — das braucht von beiden Seiten ein echtes Commitment.</p>
+
+      <div data-reveal style="margin-top:clamp(32px,3.4vw,48px)"><a class="btn" href="bewerbung.html">Bewerbung starten</a></div>
     </div>
   </section>
 
   <!-- ═══ Bewerbung ═══ -->
   <section class="apply-band on-ink">
     <div class="wrap">
-      <h2 data-reveal>Der nächste Schritt ist ein Gespräch, keine Buchung.</h2>
+      <h2 class="mask" data-reveal><span>Der nächste Schritt ist ein Gespräch, keine Buchung.</span></h2>
       <p data-reveal>Jede Bewerbung lese ich persönlich. Passt es, folgt das Vorgespräch. Passt es nicht, sage ich es dir — das ist Teil der Arbeit.</p>
-      <div data-reveal><a class="btn btn--inv" href="bewerbung.html">Apply for Reset</a></div>
+      <div data-reveal><a class="btn btn--inv" href="bewerbung.html">Bewerbung starten</a></div>
       <p class="claim" data-reveal>Nachhaltiger Erfolg beginnt dort, wo der innere Kampf endet.</p>
     </div>
   </section>
@@ -334,15 +413,13 @@
 
 <footer class="foot">
   <div class="wrap">
-    <p>Alexander Faubel — Executive Reset</p>
+    <p>Alexander Faubel — The Executive Reset</p>
     <nav aria-label="Rechtliches">
       <a href="mailto:kontakt@example.com">kontakt@example.com</a>
       <a href="impressum.html">Impressum</a>
       <a href="datenschutz.html">Datenschutz</a>
     </nav>
   </div>
-  <!-- Abgrenzung zur Heilkunde. Steht bewusst auf jeder Seite, nicht nur im
-       Impressum — sie schützt Alexander und ist gegenüber dem Leser fair. -->
   <div class="wrap">
     <p class="foot-note">Der Executive Reset ist persönliche Begleitung und Persönlichkeitsentwicklung. Er ist keine medizinische oder psychotherapeutische Behandlung und ersetzt diese nicht.</p>
   </div>
