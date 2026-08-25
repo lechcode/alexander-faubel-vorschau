@@ -21,8 +21,8 @@
 <meta name="theme-color" content="#F9F8F6">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111C19'/%3E%3Crect x='9' y='15' width='14' height='1.4' fill='%23DDCEB9'/%3E%3C/svg%3E">
 <link rel="preload" href="assets/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/fonts.css?v=6">
-<link rel="stylesheet" href="assets/site.css?v=6">
+<link rel="stylesheet" href="assets/fonts.css?v=7">
+<link rel="stylesheet" href="assets/site.css?v=7">
 </head>
 <body>
 
@@ -108,9 +108,8 @@
                sizes="(min-width:940px) 36vw, 92vw"
                width="840" height="1050" decoding="async"
                alt="Alexander Faubel, entspannt sitzend, den Blick direkt in die Kamera — Schwarzweißaufnahme.">
-          <p class="guide-role">Dein Guide</p>
           <p class="guide-name">Alexander Faubel</p>
-          <p>Ich kenne genau diese Situation. Ich habe jahrelang selbst genau so gelebt.</p>
+          <p class="guide-quote">Ich kenne genau diese Situation. Ich habe jahrelang selbst genau so gelebt.</p>
           <p>Als ehemaliger Enterprise-Sales-Experte begleite ich heute Unternehmer und Führungskräfte durch tiefe innere Transformationsprozesse — mit Klarheit, Struktur und persönlicher Erfahrung.</p>
         </div>
 
@@ -305,13 +304,28 @@
 
       <p class="outcome-key" data-reveal>Ein neues, starkes Fundament für Erfolg — in Business und im Leben.</p>
 
-      <!-- Drei Stimmen, direkt unter dem Satz. Bewusst nur die Flächen:
-           Zitat und Name kommen mit dem echten Material. Format nach
-           Absprache hochkant, Thumbnail spaeter in Schwarzweiß. -->
+      <!-- Zwei Stimmen. Poster in Schwarzweiß wie besprochen, das Video
+           selbst laeuft in Farbe. preload="none": es wird erst geladen,
+           wenn jemand auf Abspielen drueckt. -->
       <div class="voices" data-reveal>
-        <div class="ph ph--tall" role="img" aria-label="Videofläche, erste Stimme"><span>Video folgt</span></div>
-        <div class="ph ph--tall" role="img" aria-label="Videofläche, zweite Stimme"><span>Video folgt</span></div>
-        <div class="ph ph--tall" role="img" aria-label="Videofläche, dritte Stimme"><span>Video folgt</span></div>
+        <figure class="voice">
+          <video controls preload="none" playsinline
+                 poster="assets/img/poster-wahler.jpg"
+                 width="720" height="960">
+            <source src="assets/video/stimme-wahler.mp4" type="video/mp4">
+            Dein Browser kann dieses Video nicht abspielen.
+          </video>
+          <figcaption>Alexander Wahler</figcaption>
+        </figure>
+        <figure class="voice">
+          <video controls preload="none" playsinline
+                 poster="assets/img/poster-schaefer.jpg"
+                 width="720" height="960">
+            <source src="assets/video/stimme-schaefer.mp4" type="video/mp4">
+            Dein Browser kann dieses Video nicht abspielen.
+          </video>
+          <figcaption>Patrick Schäfer</figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -367,16 +381,12 @@
   <div class="wrap">
     <p>Alexander Faubel — The Executive Reset</p>
     <nav aria-label="Rechtliches">
-      <a href="mailto:kontakt@example.com">kontakt@example.com</a>
       <a href="impressum.html">Impressum</a>
       <a href="datenschutz.html">Datenschutz</a>
     </nav>
   </div>
-  <div class="wrap">
-    <p class="foot-note">Der Executive Reset ist persönliche Begleitung und Persönlichkeitsentwicklung. Er ist keine medizinische oder psychotherapeutische Behandlung und ersetzt diese nicht.</p>
-  </div>
 </footer>
 
-<script src="assets/site.js?v=6" defer></script>
+<script src="assets/site.js?v=7" defer></script>
 </body>
 </html>
