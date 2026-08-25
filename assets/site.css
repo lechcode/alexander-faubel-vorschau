@@ -234,26 +234,26 @@ section{padding-block:var(--sec);}
   letter-spacing:-.015em;max-width:40ch;
 }
 .pain-list li:last-child{border-bottom:1px solid rgba(249,248,246,.16);}
+.pain-why{
+  margin-top:clamp(30px,3.4vw,46px);
+  color:rgba(249,248,246,.66);
+  font-size:var(--t-body);line-height:1.7;max-width:46ch;
+}
 .pain .btn{margin-top:clamp(38px,4vw,60px);}
 
 /* Die Person daneben */
 .guide img{width:100%;aspect-ratio:4/5;object-fit:cover;}
 /* Unter .guide p geschrieben, sonst gewinnt die allgemeine Absatzregel
    und Name, Rolle und Bildnachweis fallen auf Fließtextgröße zurück. */
-.guide .guide-role{
-  margin-top:clamp(22px,2.4vw,32px);
-  font-size:var(--t-eyebrow);
-  letter-spacing:.2em;text-transform:uppercase;color:var(--gold-lt);
-}
 .guide .guide-name{
-  margin-top:10px;
-  font-size:var(--t-h3);letter-spacing:-.028em;color:var(--paper);
+  margin-top:clamp(22px,2.4vw,32px);
+  font-size:var(--t-h3);letter-spacing:-.028em;color:var(--gold-lt);
 }
 .guide p{margin-top:20px;color:rgba(249,248,246,.66);font-size:var(--t-body);max-width:40ch;}
 /* Der persoenliche Satz steht in Champagner — er ist Alexanders Stimme,
    nicht Beschreibung. Hoehere Spezifitaet als .guide p. */
 .guide .guide-quote{
-  color:var(--gold-lt);
+  color:var(--paper);
   font-size:var(--t-lead);line-height:1.5;
   letter-spacing:-.01em;max-width:34ch;
 }
@@ -299,13 +299,6 @@ section{padding-block:var(--sec);}
    keine Sperrung. Auf der dunklen Flaeche nur die helle Entsprechung
    von --muted. */
 .step--core .step-claim{color:rgba(249,248,246,.6);}
-.step-facts{
-  margin-top:clamp(22px,2.4vw,32px);
-  padding-top:clamp(18px,2vw,24px);
-  border-top:1px solid rgba(249,248,246,.16);
-  color:rgba(249,248,246,.72);max-width:46ch;
-}
-.step-facts li{margin-block:8px;}
 /* Derselbe Trennstrich wie in der Kernspalte: er schliesst die Subline ab
    und trennt sie vom Leistungsteil. */
 .step .iconlist{
@@ -323,7 +316,34 @@ section{padding-block:var(--sec);}
   letter-spacing:-.01em;max-width:36ch;
   min-height:calc(1.45em * 3 + clamp(26px,3vw,38px));
 }
-.step--core .step-key{color:var(--paper);}
+.step--core .step-key{
+  color:var(--paper);
+  margin-top:clamp(28px,3vw,42px);   /* nicht auto: darunter folgt das Bild */
+  min-height:0;
+}
+
+/* Die Location schliesst die Kernspalte ab. Die drei Fakten liegen auf dem
+   Bild; darunter ein Verlauf in Gruenschwarz, damit der Text sicher lesbar
+   bleibt und nicht auf dem belebten Foto schwimmt. */
+.location{position:relative;margin:clamp(20px,2.2vw,30px) 0 0;}
+.location img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;}
+.location::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to top, rgba(17,28,25,.92) 0%, rgba(17,28,25,.70) 38%, rgba(17,28,25,.18) 100%);
+}
+.location-facts{
+  position:absolute;left:0;right:0;bottom:0;z-index:1;
+  padding:clamp(18px,2vw,26px);
+}
+.location-facts li{
+  position:relative;padding-left:22px;
+  margin-block:9px;color:var(--paper);
+  font-size:var(--t-meta);line-height:1.5;
+}
+.location-facts li::before{
+  content:"";position:absolute;left:0;top:.7em;
+  width:12px;height:1px;background:var(--gold-lt);
+}
 
 /* Aspekte im Kern — zweispaltig ab mittlerer Breite */
 .aspects{margin-top:clamp(24px,2.6vw,34px);display:grid;gap:clamp(18px,2vw,26px);}
