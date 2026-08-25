@@ -316,23 +316,20 @@ section{padding-block:var(--sec);}
   letter-spacing:-.01em;max-width:36ch;
   min-height:calc(1.45em * 3 + clamp(26px,3vw,38px));
 }
-.step--core .step-key{
-  color:var(--paper);
-  margin-top:clamp(28px,3vw,42px);   /* nicht auto: darunter folgt das Bild */
-  min-height:0;
-}
+.step--core .step-key{color:var(--paper);}
 
 /* Die Location schliesst die Kernspalte ab. Die drei Fakten liegen auf dem
    Bild; darunter ein Verlauf in Gruenschwarz, damit der Text sicher lesbar
    bleibt und nicht auf dem belebten Foto schwimmt. */
-.location{position:relative;margin:clamp(20px,2.2vw,30px) 0 0;}
-.location img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;}
+.location{position:relative;margin:clamp(24px,2.6vw,34px) 0 0;}
+.location img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;}
 .location::after{
   content:"";position:absolute;inset:0;
-  background:linear-gradient(to top, rgba(17,28,25,.92) 0%, rgba(17,28,25,.70) 38%, rgba(17,28,25,.18) 100%);
+  background:linear-gradient(to top, rgba(17,28,25,.86) 0%, rgba(17,28,25,.74) 50%, rgba(17,28,25,.60) 100%);
 }
 .location-facts{
-  position:absolute;left:0;right:0;bottom:0;z-index:1;
+  position:absolute;inset:0;z-index:1;
+  display:flex;flex-direction:column;justify-content:center;
   padding:clamp(18px,2vw,26px);
 }
 .location-facts li{
