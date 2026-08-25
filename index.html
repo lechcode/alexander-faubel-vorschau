@@ -48,6 +48,8 @@
     <symbol id="i-rings" viewBox="0 0 24 24"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></symbol>
     <symbol id="i-flag" viewBox="0 0 24 24"><path d="M6 21V3M6 4h12l-2.5 4L18 12H6"/></symbol>
     <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V13M10 20V8M16 20v-9M22 20V4"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M4 12.5l5.5 5.5L20 6"/></symbol>
+    <symbol id="i-cross" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
   </defs>
 </svg>
 
@@ -317,38 +319,35 @@
   <!-- ═══ Für wen — Fit gegen Anti-Fit ═══ -->
   <section id="fuer-wen" class="rule">
     <div class="wrap">
-      <div class="duo">
-        <div>
-          <span class="eyebrow" data-reveal>Für wen</span>
-          <h2 data-reveal style="margin-top:22px">Handselektiert. Zehn Plätze im Jahr.</h2>
-        </div>
-        <p class="lead" data-reveal>Damit niemand Zeit verliert — weder du noch ich — steht hier auch, wann du besser nicht anfragst.</p>
-      </div>
+      <span class="eyebrow" data-reveal>Für wen</span>
+      <h2 data-reveal style="margin-top:22px">Handselektiert. Zehn Plätze im Jahr.</h2>
+      <p class="select-note" data-reveal>Ich schaue mir jede Bewerbung persönlich an und entscheide, mit wem ich arbeite. Der Prozess geht tief und ist sehr persönlich — das braucht von beiden Seiten ein echtes Commitment.</p>
 
+      <!-- Vier Kernaussagen je Seite. Getrennt durch eine senkrechte Haarlinie
+           genau in der Mitte, dazu Haken gegen Kreuz — damit auf einen Blick
+           klar ist, welche Spalte was sagt. -->
       <div class="fit">
         <div class="fit--yes" data-reveal>
           <h3>Das ist für dich, wenn</h3>
           <ul>
-            <li>du Verantwortung trägst — für ein Unternehmen, für Menschen, für Kapital.</li>
-            <li>du beruflich erreicht hast, was du wolltest, und merkst, dass der Preis dafür steigt.</li>
-            <li>du drei Tage vollständig aus dem Betrieb gehen kannst. Ohne Ausnahme, ohne Telefon.</li>
-            <li>du willst, dass sich etwas ändert — statt dass dir jemand erklärt, wie es ginge.</li>
+            <li><svg class="ico ico--sm" aria-hidden="true"><use href="#i-check"></use></svg><span>Du trägst Verantwortung — für ein Unternehmen, für Menschen, für Kapital.</span></li>
+            <li><svg class="ico ico--sm" aria-hidden="true"><use href="#i-check"></use></svg><span>Du hast beruflich erreicht, was du wolltest — und der Preis dafür steigt.</span></li>
+            <li><svg class="ico ico--sm" aria-hidden="true"><use href="#i-check"></use></svg><span>Du kannst drei Tage vollständig aus dem Betrieb gehen. Ohne Ausnahme.</span></li>
+            <li><svg class="ico ico--sm" aria-hidden="true"><use href="#i-check"></use></svg><span>Du willst, dass sich etwas ändert — nicht, dass dir jemand erklärt, wie es ginge.</span></li>
           </ul>
         </div>
         <div class="fit--no" data-reveal>
           <h3>Nicht für dich, wenn</h3>
           <ul>
-            <li>du einen Performance-Hack suchst.</li>
-            <li>du einen schnellen Fix erwartest.</li>
-            <li>du nicht bereit bist, dass es unangenehm werden darf.</li>
-            <li>du den Prozess zwischen zwei Terminen unterbringen willst.</li>
+            <li><svg class="ico ico--sm" aria-hidden="true"><use href="#i-cross"></use></svg><span>Du einen Performance-Hack suchst.</span></li>
+            <li><svg class="ico ico--sm" aria-hidden="true"><use href="#i-cross"></use></svg><span>Du einen schnellen Fix erwartest.</span></li>
+            <li><svg class="ico ico--sm" aria-hidden="true"><use href="#i-cross"></use></svg><span>Du nicht bereit bist, dass es unangenehm werden darf.</span></li>
+            <li><svg class="ico ico--sm" aria-hidden="true"><use href="#i-cross"></use></svg><span>Du den Prozess zwischen zwei Terminen unterbringen willst.</span></li>
           </ul>
         </div>
       </div>
 
-      <p class="select-note" data-reveal>Ich schaue mir jede Bewerbung persönlich an und entscheide, mit wem ich arbeite. Der Prozess geht tief und ist sehr persönlich — das braucht von beiden Seiten ein echtes Commitment.</p>
-
-      <div data-reveal style="margin-top:clamp(32px,3.4vw,48px)"><a class="btn" href="bewerbung.html">Jetzt bewerben</a></div>
+      <div data-reveal style="margin-top:clamp(40px,4.5vw,64px)"><a class="btn" href="bewerbung.html">Jetzt bewerben</a></div>
     </div>
   </section>
 
