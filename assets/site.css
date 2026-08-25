@@ -202,25 +202,22 @@ section{padding-block:var(--sec);}
 @media (max-width:820px){.nav a:not(.apply){display:none;}}
 
 /* ─── 5 · Hero ─────────────────────────────────────────────────────────── */
+/* Der erste Bildschirm ist rein typografisch. Das Landschaftsbild ist am
+   25.08. wieder herausgenommen worden — der Hero laeuft jetzt direkt in
+   das dunkle Kapitel, deshalb unten wieder echter Abstand. */
 .hero{
   min-height:100svh;
   padding-top:calc(var(--head) + clamp(40px,7vw,90px));
-  padding-bottom:0;
+  padding-bottom:clamp(46px,7vw,96px);
   display:flex;flex-direction:column;
 }
 .hero .wrap{
   flex:1;display:flex;flex-direction:column;justify-content:center;
-  padding-bottom:clamp(30px,4vw,54px);
 }
 .hero h1{margin-top:clamp(26px,3vw,44px);}
 .hero .lead{margin-top:clamp(24px,2.6vw,38px);}
 .hero .btn{margin-top:clamp(34px,3.6vw,52px);}
 
-/* Der Horizont schließt den ersten Bildschirm ab und läuft unten in das
-   dunkle Kapitel hinein. Kein Text liegt auf dem Bild. */
-.horizon{margin:0;width:100%;height:clamp(190px,30svh,360px);overflow:hidden;}
-.horizon img{width:100%;height:100%;object-fit:cover;object-position:center 62%;}
-@media (max-width:640px){.horizon{height:clamp(150px,24svh,230px);}}
 
 /* ─── 6 · Pain + Person — das dunkle Kapitel ───────────────────────────── */
 /* Alexander im Call: erst der Schmerz, direkt daneben das Gesicht dazu.
