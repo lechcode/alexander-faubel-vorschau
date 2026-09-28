@@ -22,7 +22,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111C19'/%3E%3Crect x='9' y='15' width='14' height='1.4' fill='%23DDCEB9'/%3E%3C/svg%3E">
 <link rel="preload" href="assets/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts.css?v=11">
-<link rel="stylesheet" href="assets/site.css?v=22">
+<link rel="stylesheet" href="assets/site.css?v=24">
 </head>
 <body>
 
@@ -107,25 +107,35 @@
 
   <!-- ═══ 03 · Der Spiegel ═══
        Alexander wollte diese Sektion gross: dunkel, ein grossformatiges
-       Foto, wenig Text, die Saetze nacheinander erfahrbar. Das Bild bleibt
-       beim Scrollen stehen, die Saetze ziehen daran vorbei; der Satz in der
-       Bildschirmmitte ist hell, die anderen zurueckgenommen. -->
+       Foto, wenig Text, die Saetze nacheinander erfahrbar.
+       Seit 28.09. ist das Foto B2 (die Runde an der Feuerschale, Michi).
+       Ein Querformat, die Maenner sitzen ueber 80 % der Breite — deshalb
+       steht es gross ueber die ganze Breite statt in einer Hochkant-Spalte.
+       Darunter bleibt der Satz „Andere Maenner koennen uns etwas zeigen …“
+       stehen, waehrend die Spiegel-Saetze daneben vorbeiziehen; der Satz in
+       der Bildschirmmitte ist hell, die anderen zurueckgenommen. -->
   <section class="mirror on-ink" id="spiegel">
     <div class="wrap">
+      <span class="eyebrow" data-reveal>Der Spiegel</span>
+      <h2 class="mask" data-reveal><span>Alleine sehen wir nur einen Teil von uns.</span></h2>
+
+      <figure class="mirror-media" data-reveal>
+        <picture>
+          <source media="(max-width:700px)"
+                  srcset="assets/img/spiegel-m-800.jpg 800w, assets/img/spiegel-m-1200.jpg 1200w"
+                  sizes="100vw">
+          <img src="assets/img/spiegel-1400.jpg"
+               srcset="assets/img/spiegel-900.jpg 900w, assets/img/spiegel-1400.jpg 1400w, assets/img/spiegel-2000.jpg 2000w"
+               sizes="(min-width:1320px) 1144px, 88vw"
+               width="2000" height="1125" loading="lazy"
+               alt="Acht Männer sitzen in Holzstühlen im Kreis um eine Feuerschale, einander zugewandt, dahinter Obstbäume im Abendlicht — Schwarzweißaufnahme.">
+        </picture>
+      </figure>
+
       <div class="mirror-grid">
-        <figure class="mirror-media" data-reveal>
-          <img src="assets/img/spiegel-800.jpg"
-               srcset="assets/img/spiegel-800.jpg 800w, assets/img/spiegel-1200.jpg 1200w"
-               sizes="(min-width:940px) 38vw, 92vw"
-               width="1200" height="1500" loading="lazy"
-               alt="Männer stehen im Wald in lockerem Kreis, einander zugewandt — Schwarzweißaufnahme.">
-        </figure>
+        <p class="mirror-premise" data-reveal>Andere Männer können uns etwas zeigen, das wir alleine nur schwer erkennen.</p>
 
         <div>
-          <span class="eyebrow" data-reveal>Der Spiegel</span>
-          <h2 class="mask" data-reveal><span>Alleine sehen wir nur einen Teil von uns.</span></h2>
-          <p class="lead" data-reveal>Andere Männer können uns etwas zeigen, das wir alleine nur schwer erkennen.</p>
-
           <div class="mirror-lines" data-mirror>
             <p>Der eine beeindruckt dich.</p>
             <p>Mit dem anderen vergleichst du dich.</p>
@@ -355,12 +365,9 @@
           <figcaption><p class="name">Matthias</p><p class="said"><span class="klaeren">[Ein Satz aus dem Video]</span></p></figcaption>
         </figure>
       </div>
-
-      <figure class="group" data-reveal>
-        <img src="assets/img/gruppe-1000.jpg" srcset="assets/img/gruppe-1000.jpg 1000w, assets/img/gruppe-1600.jpg 1600w"
-             sizes="(min-width:1320px) 1144px, 88vw" width="1600" height="1067" loading="lazy"
-             alt="Männer sitzen in Holzstühlen im Kreis um eine Feuerschale und reden, dahinter Obstbäume im Abendlicht — Schwarzweißaufnahme.">
-      </figure>
+      <!-- Das „eventuelle Gruppenfoto“ aus dem Doc steht bewusst nicht mehr
+           hier: B1 (die Gruppe) eroeffnet die Seite, B2 (die Runde) traegt
+           den Spiegel — ein drittes Gruppenbild waere nur Wiederholung. -->
     </div>
   </section>
 
