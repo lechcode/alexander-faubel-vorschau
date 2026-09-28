@@ -64,6 +64,19 @@
       });
     }, { rootMargin: '-38% 0px -38% 0px', threshold: 0 });
     Array.prototype.forEach.call(saetze, function (p) { mio.observe(p); });
+
+    /* Aufklappen (wirkt nur auf Handy/Tablet, das CSS regelt die Breite):
+       ein Satz oeffnet sich, sobald er ueber das untere Fuenftel des
+       Bildschirms steigt, und schliesst sich wieder, wenn man zurueckscrollt
+       und er darunter verschwindet. Saetze, die schon oben aus dem Bild
+       gescrollt sind, bleiben offen — sonst klappten sie beim Hochscrollen
+       von oben her ein zweites Mal auf. */
+    var fio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        e.target.classList.toggle('open', e.isIntersecting || e.boundingClientRect.top < 0);
+      });
+    }, { rootMargin: '0px 0px -20% 0px', threshold: 0 });
+    Array.prototype.forEach.call(saetze, function (p) { fio.observe(p); });
   }
 
   /* 4 · Video-Vorschaubilder erst holen, wenn die Stimmen naeherkommen.

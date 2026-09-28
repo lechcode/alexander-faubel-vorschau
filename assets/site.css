@@ -305,6 +305,20 @@ section{padding-block:var(--sec);}
    liegt, ist hell, die anderen zurueckgenommen. site.js setzt .now. */
 .mirror-lines{margin-top:0;}
 .mirror-lines p:first-child{padding-top:0;}
+.mirror-lines p > span{display:block;}
+/* Handy und Tablet: die Saetze klappen beim Scrollen einer nach dem anderen
+   auf. Jeder steigt aus seiner eigenen Zeile hoch, sobald er ins untere
+   Fuenftel des Bildschirms kommt (site.js setzt .open), und klappt beim
+   Zurueckscrollen wieder zu. Der Platz bleibt reserviert — nichts springt.
+   Nur mit laufendem Observer; sonst (.no-io) stehen alle Saetze sofort da. */
+@media (max-width:939px){
+  .js:not(.no-io) .mirror-lines p{overflow:hidden;}
+  .js:not(.no-io) .mirror-lines p > span{
+    opacity:0;transform:translateY(calc(100% + 28px));
+    transition:transform .9s cubic-bezier(.16,.84,.28,1), opacity .5s var(--ease);
+  }
+  .js:not(.no-io) .mirror-lines p.open > span{opacity:1;transform:none;}
+}
 .mirror-lines p{
   font-size:var(--t-big);font-weight:500;letter-spacing:-.03em;line-height:1.15;
   max-width:16ch;
@@ -337,18 +351,29 @@ section{padding-block:var(--sec);}
 .pull span+span{color:var(--muted);margin-top:.35em;}
 /* Drei Fotos: eines quer, zwei hochkant — verschiedene Groessen, damit es
    nach Kontaktbogen aussieht und nicht nach Galerie. */
+/* Drei Querformate (B3-1..3). Handy: untereinander in ihren eigenen
+   Formaten. Ab 900 px: links gross die Jurte (4:3, ueber zwei Zeilen),
+   rechts uebereinander Gruppe und Gras. Spalten 1.73 : 1 — dann sind die
+   rechten Felder rund 1,6 : 1 breit, und bei der Gruppe (16:9) faellt
+   links und rechts nur je 5 % weg, keiner der acht Maenner. */
 .work-photos{
   margin-top:clamp(50px,6vw,90px);
-  display:grid;gap:clamp(12px,1.6vw,24px);
-  grid-template-columns:1fr 1fr;
+  display:grid;gap:clamp(12px,1.6vw,20px);
 }
 .work-photos figure{margin:0;}
-.work-photos figure:first-child{grid-column:1 / -1;}
-.work-photos img{width:100%;aspect-ratio:4/5;object-fit:cover;}
-.work-photos figure:first-child img{aspect-ratio:3/2;}
+.work-photos img{display:block;width:100%;height:auto;object-fit:cover;}
+.work-photos .wp-main img{aspect-ratio:4/3;}
+.work-photos .wp-a img{aspect-ratio:16/9;}
+.work-photos .wp-b img{aspect-ratio:3/2;object-position:50% 60%;}
 @media (min-width:900px){
-  .work-photos{grid-template-columns:3fr 1fr 1fr;align-items:end;}
-  .work-photos figure:first-child{grid-column:auto;}
+  .work-photos{grid-template-columns:1.73fr 1fr;grid-template-rows:1fr 1fr;}
+  .work-photos .wp-main{grid-column:1;grid-row:1 / span 2;}
+  .work-photos .wp-a{grid-column:2;grid-row:1;}
+  .work-photos .wp-b{grid-column:2;grid-row:2;}
+  .work-photos .wp-a,.work-photos .wp-b{position:relative;}
+  .work-photos .wp-a img,.work-photos .wp-b img{
+    position:absolute;inset:0;height:100%;aspect-ratio:auto;
+  }
 }
 
 /* ─── 9 · Die Erfahrung — fünf Säulen ──────────────────────────────────── */
@@ -697,6 +722,7 @@ section{padding-block:var(--sec);}
   .mask{overflow:visible;padding-bottom:0;margin-bottom:0;}
   .mask > span,.mask.in > span{transform:none;transition:none;}
   .mirror-lines p{color:var(--paper);transition:none;}
+  .js .mirror-lines p > span{opacity:1!important;transform:none!important;transition:none!important;}
   .nav a::after,.btn::before,.faq-list summary::after{transition:none;}
   *{animation:none!important;}
 }
