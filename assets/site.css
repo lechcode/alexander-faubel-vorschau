@@ -229,7 +229,7 @@ section{padding-block:var(--sec);}
   display:flex;flex-direction:column;
 }
 .hero .wrap{flex:1;display:flex;flex-direction:column;justify-content:center;}
-.hero h1{margin-top:clamp(26px,3vw,44px);max-width:15ch;}   /* „Begegne dir selbst." auf einer Zeile */
+.hero h1{max-width:15ch;}   /* ohne Zeile darueber (Michi, 28.09.) */   /* „Begegne dir selbst." auf einer Zeile */
 /* Die zweite Zeile beginnt eine eigene Zeile — so hat Alexander die
    Headline im Doc gezeichnet. balance verhindert ein Einzelwort am Ende. */
 .hero h1 em{font-style:normal;color:var(--muted);display:block;text-wrap:balance;}
@@ -286,14 +286,43 @@ section{padding-block:var(--sec);}
 }
 
 /* ─── 7 · Der Spiegel — dunkel, ein grosses Bild, Saetze nacheinander ──── */
-/* Ueberschrift, darunter B2 gross ueber die ganze Breite (16:9, Handy 4:3
-   aus <picture>). Dann zweispaltig: links bleibt die Praemisse beim
-   Scrollen stehen, rechts ziehen die Spiegel-Saetze vorbei. */
-.mirror{padding-block:var(--sec);}
+/* Oben die Buehne: B2 (die Runde an der Feuerschale) liegt ueber die volle
+   Breite tief im Gruenschwarz, wie das Bild im Schluss-Kapitel; „Der
+   Spiegel“ und die Ueberschrift tauchen unten links darin auf. Darunter
+   zweispaltig: links bleibt die Praemisse beim Scrollen stehen, rechts
+   ziehen die Spiegel-Saetze vorbei. */
+.mirror{padding-top:0;padding-bottom:var(--sec);}
 .mirror h2{max-width:14ch;}
-.mirror-media{margin:clamp(40px,5vw,72px) 0 0;}
-.mirror-media img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;}
-@media (max-width:700px){.mirror-media img{aspect-ratio:4/3;}}
+.mirror-stage{
+  position:relative;isolation:isolate;overflow:hidden;
+  min-height:min(56.25vw, 100svh);            /* 16:9, nie hoeher als der Bildschirm */
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding-top:clamp(120px,14vw,220px);
+  padding-bottom:clamp(44px,5vw,80px);
+}
+.mirror-bg{position:absolute;inset:0;z-index:-1;}
+.mirror-bg img{width:100%;height:100%;object-fit:cover;opacity:.6;}
+/* Verlauf von unten: dort steht die Schrift, dort ist es fast ganz dunkel;
+   nach oben bleibt die Runde sichtbar. Unten laeuft das Bild nahtlos ins
+   Gruenschwarz der Sektion aus. */
+.mirror-bg::after{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(to right, rgba(17,28,25,.4) 0%, rgba(17,28,25,0) 55%),   /* links, wo die Schrift steht, etwas dunkler */
+    linear-gradient(to top, var(--ink) 0%, rgba(17,28,25,.72) 16%, rgba(17,28,25,.45) 42%, rgba(17,28,25,.2) 100%);
+}
+.mirror-stage .wrap{position:relative;}
+/* Handy: das Bild (4:3-Schnitt) steht oben in voller Breite, die Schrift
+   beginnt in seinem unteren, schon dunklen Drittel und laeuft darunter
+   weiter — so bleibt die ganze Runde zu sehen statt eines Ausschnitts. */
+@media (max-width:700px){
+  .mirror-stage{min-height:0;padding-top:52vw;padding-bottom:0;}
+  .mirror-bg{bottom:auto;aspect-ratio:4/3;}
+  .mirror-bg img{opacity:.62;}
+  .mirror-bg::after{
+    background:linear-gradient(to top, var(--ink) 0%, rgba(17,28,25,.7) 18%, rgba(17,28,25,.35) 50%, rgba(17,28,25,.12) 100%);
+  }
+}
 .mirror-grid{margin-top:clamp(50px,6vw,90px);display:grid;gap:clamp(30px,4vw,56px);}
 @media (min-width:940px){
   .mirror-grid{grid-template-columns:5fr 6fr;column-gap:clamp(40px,6vw,110px);align-items:start;}
