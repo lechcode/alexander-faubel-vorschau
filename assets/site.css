@@ -241,11 +241,22 @@ section{padding-block:var(--sec);}
 /* Der Punkt haengt am Eintrag davor und bricht nie allein an den Zeilenanfang. */
 .facts-line li{white-space:nowrap;}
 .facts-line li:not(:last-child)::after{content:"·";margin-inline:14px;color:var(--gold);}
-/* Das Bild schliesst den ersten Bildschirm ab — ueber die volle Breite,
-   aber nicht hoeher als ein Drittel des Schirms, damit die Headline den
-   ersten Eindruck behaelt. */
-.hero-media{margin-top:clamp(44px,6vw,80px);}
-.hero-media img{width:100%;height:clamp(220px,34vh,440px);object-fit:cover;}
+/* Das Gruppenfoto unter der Headline — die Gruppe muss ganz zu sehen sein,
+   vom Kopf bis zu den Schuhen. Deshalb festes 16:9 statt eines schmalen
+   Streifens, und nie hoeher als der Bildschirm: auf breiten Monitoren wird
+   das Bild lieber schmaler (mittig) als oben und unten beschnitten. */
+.hero-media{margin-top:clamp(40px,4.5vw,64px);}
+.hero-media img{
+  display:block;width:100%;height:auto;
+  aspect-ratio:16/9;object-fit:cover;
+  max-width:calc((100svh - var(--head) - 24px) * 16 / 9);
+  margin-inline:auto;
+}
+/* Handy: eigener 4:3-Schnitt aus <picture>, seitlich enger — die Maenner
+   werden so rund ein Drittel groesser als im Desktop-Schnitt. */
+@media (max-width:700px){
+  .hero-media img{aspect-ratio:4/3;max-width:none;}
+}
 
 /* ─── 6 · Das Leben vieler Männer — extrem reduziert ───────────────────── */
 .life .wrap{max-width:900px;}

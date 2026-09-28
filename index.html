@@ -16,13 +16,13 @@
 <meta property="og:image" content="assets/img/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Männer liegen im Gras unter Bäumen, Sonne fällt durch die Kronen — Schwarzweißaufnahme.">
+<meta property="og:image:alt" content="Acht Männer Arm in Arm vor einer Holzhütte am Waldrand — Schwarzweißaufnahme.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#F9F8F6">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111C19'/%3E%3Crect x='9' y='15' width='14' height='1.4' fill='%23DDCEB9'/%3E%3C/svg%3E">
 <link rel="preload" href="assets/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts.css?v=11">
-<link rel="stylesheet" href="assets/site.css?v=21">
+<link rel="stylesheet" href="assets/site.css?v=22">
 </head>
 <body>
 
@@ -68,11 +68,20 @@
         <li><span class="klaeren">[Datum]</span></li>
       </ul>
     </div>
+    <!-- Das Gruppenfoto (B1): acht Männer Arm in Arm vor der Hütte, ganz im
+         Bild vom Kopf bis zu den Schuhen. Desktop 16:9 über die volle Breite,
+         auf dem Handy ein eigener, seitlich engerer 4:3-Schnitt — sonst
+         wären die Männer dort nur daumenbreit. -->
     <div class="hero-media" data-reveal>
-      <img src="assets/img/hero-1400.jpg"
-           srcset="assets/img/hero-900.jpg 900w, assets/img/hero-1400.jpg 1400w, assets/img/hero-2000.jpg 2000w"
-           sizes="100vw" width="2000" height="875" fetchpriority="high"
-           alt="Männer liegen im Gras unter Bäumen, die Sonne fällt durch die Kronen — Schwarzweißaufnahme.">
+      <picture>
+        <source media="(max-width:700px)"
+                srcset="assets/img/hero-m-800.jpg 800w, assets/img/hero-m-1200.jpg 1200w"
+                sizes="100vw">
+        <img src="assets/img/hero-1400.jpg"
+             srcset="assets/img/hero-900.jpg 900w, assets/img/hero-1400.jpg 1400w, assets/img/hero-2000.jpg 2000w"
+             sizes="100vw" width="2000" height="1125" fetchpriority="high"
+             alt="Acht Männer stehen Arm in Arm auf einer Wiese vor einer Holzhütte am Waldrand und lachen in die Kamera — Schwarzweißaufnahme.">
+      </picture>
     </div>
   </section>
 
@@ -350,7 +359,7 @@
       <figure class="group" data-reveal>
         <img src="assets/img/gruppe-1000.jpg" srcset="assets/img/gruppe-1000.jpg 1000w, assets/img/gruppe-1600.jpg 1600w"
              sizes="(min-width:1320px) 1144px, 88vw" width="1600" height="1067" loading="lazy"
-             alt="Die Gruppe eines Retreats vor einer Holzhütte am Waldrand — Schwarzweißaufnahme.">
+             alt="Männer sitzen in Holzstühlen im Kreis um eine Feuerschale und reden, dahinter Obstbäume im Abendlicht — Schwarzweißaufnahme.">
       </figure>
     </div>
   </section>
