@@ -153,7 +153,6 @@
     var spur = slider.querySelector('.slider-track');
     var bilder = spur.children;
     var anzahl = bilder.length;
-    var nrEl = slider.querySelector('[data-nr]');
     var fill = slider.querySelector('.slider-fill');
     var jetzt = 0;
     var ruheBis = 0;
@@ -164,19 +163,27 @@
     var schritt = function () {
       return anzahl > 1 ? bilder[1].offsetLeft - bilder[0].offsetLeft : spur.clientWidth;
     };
+    /* Keine Zahlen (Michi, 28.09.) — nur die Goldlinie zeigt den Fortschritt */
     var setze = function (i) {
       jetzt = i;
-      nrEl.textContent = (i < 9 ? '0' : '') + (i + 1);
       fill.style.width = ((i + 1) / anzahl * 100) + '%';
+    };
+    /* Auf dem Desktop stehen mehrere Bilder nebeneinander: dann erreicht die
+       Spur ihr Ende, bevor das letzte Bild an der linken Kante steht. „Am
+       Ende“ zaehlt deshalb als letztes Bild, und „weiter“ springt von dort
+       zurueck zum ersten. */
+    var amEnde = function () {
+      return spur.scrollLeft >= spur.scrollWidth - spur.clientWidth - 2;
     };
     var zeigen = function (i) {
       i = (i + anzahl) % anzahl;
       setze(i);
       spur.scrollTo({ left: i * schritt(), behavior: calm ? 'auto' : 'smooth' });
     };
+    var weiter = function () { zeigen(amEnde() ? 0 : jetzt + 1); };
     /* Beim Wischen: das Bild, das gerade am naechsten an der Kante steht */
     var stand = function () {
-      setze(Math.max(0, Math.min(anzahl - 1, Math.round(spur.scrollLeft / schritt()))));
+      setze(amEnde() ? anzahl - 1 : Math.max(0, Math.min(anzahl - 1, Math.round(spur.scrollLeft / schritt()))));
     };
     var warte = null;
     spur.addEventListener('scroll', function () {
@@ -188,7 +195,7 @@
       spur.addEventListener(t, ruhe, { passive: true });
     });
     slider.querySelector('[data-prev]').addEventListener('click', function () { ruhe(); zeigen(jetzt - 1); });
-    slider.querySelector('[data-next]').addEventListener('click', function () { ruhe(); zeigen(jetzt + 1); });
+    slider.querySelector('[data-next]').addEventListener('click', function () { ruhe(); weiter(); });
     slider.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') maus = true; });
     slider.addEventListener('pointerleave', function () { maus = false; });
     slider.addEventListener('focusin', function (e) { fokus = e.target.matches(':focus-visible'); });
@@ -203,7 +210,7 @@
     if (!calm && anzahl > 1) {
       setInterval(function () {
         if (!imBild || maus || fokus || document.hidden || Date.now() < ruheBis) return;
-        zeigen(jetzt + 1);
+        weiter();
         ruheBis = Date.now() + 5000;
       }, 500);
     }

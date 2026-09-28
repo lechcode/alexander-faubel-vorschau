@@ -375,38 +375,40 @@ section{padding-block:var(--sec);}
   padding-block:clamp(12px,1.4vw,18px);border-top:1px solid var(--line);
 }
 .work-questions p:last-child{border-bottom:1px solid var(--line);}
+/* Das Zitat als dunkle Buehne ueber die volle Breite (Michi, 28.09.):
+   B3-1 (Jurte innen) liegt im Hintergrund — dieselbe Machart wie oben im
+   Spiegel (.mirror-bg: Deckkraft, Verlauf von unten, Handy 4:3 oben). */
+.work-stage{
+  position:relative;isolation:isolate;overflow:hidden;
+  margin-top:clamp(60px,7vw,110px);
+  min-height:min(56.25vw, 100svh);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding-top:clamp(120px,14vw,220px);
+  padding-bottom:clamp(44px,5vw,80px);
+}
+.work-stage .wrap{position:relative;}
+@media (max-width:700px){
+  .work-stage{min-height:0;padding-top:52vw;padding-bottom:48px;}
+}
 .pull{
-  margin-top:clamp(50px,6vw,90px);
   font-size:var(--t-h2);font-weight:500;letter-spacing:-.035em;line-height:1.12;
-  max-width:24ch;
+  max-width:24ch;text-wrap:balance;
 }
 .pull span{display:block;}
-.pull span+span{color:var(--muted);margin-top:.35em;}
-/* Drei Fotos: eines quer, zwei hochkant — verschiedene Groessen, damit es
-   nach Kontaktbogen aussieht und nicht nach Galerie. */
-/* Drei Querformate (B3-1..3). Handy: untereinander in ihren eigenen
-   Formaten. Ab 900 px: links gross die Jurte (4:3, ueber zwei Zeilen),
-   rechts uebereinander Gruppe und Gras. Spalten 1.73 : 1 — dann sind die
-   rechten Felder rund 1,6 : 1 breit, und bei der Gruppe (16:9) faellt
-   links und rechts nur je 5 % weg, keiner der acht Maenner. */
+.pull span+span{color:var(--paper-66);margin-top:.35em;}
+/* Darunter nur noch zwei Querformate (B3-2 Gruppe, B3-3 Gras). Ab 900 px
+   nebeneinander, Spalten im Verhaeltnis ihrer Formate (16:9 zu 4:3) —
+   gleich hoch, nichts beschnitten. Handy: untereinander. */
 .work-photos{
-  margin-top:clamp(50px,6vw,90px);
+  margin-top:clamp(28px,3vw,48px);
   display:grid;gap:clamp(12px,1.6vw,20px);
 }
 .work-photos figure{margin:0;}
-.work-photos img{display:block;width:100%;height:auto;object-fit:cover;}
-.work-photos .wp-main img{aspect-ratio:4/3;}
-.work-photos .wp-a img{aspect-ratio:16/9;}
-.work-photos .wp-b img{aspect-ratio:3/2;object-position:50% 60%;}
+.work-photos img{display:block;width:100%;height:auto;}
+.work-photos .wp-a img{aspect-ratio:16/9;object-fit:cover;}
+.work-photos .wp-b img{aspect-ratio:4/3;object-fit:cover;}
 @media (min-width:900px){
-  .work-photos{grid-template-columns:1.73fr 1fr;grid-template-rows:1fr 1fr;}
-  .work-photos .wp-main{grid-column:1;grid-row:1 / span 2;}
-  .work-photos .wp-a{grid-column:2;grid-row:1;}
-  .work-photos .wp-b{grid-column:2;grid-row:2;}
-  .work-photos .wp-a,.work-photos .wp-b{position:relative;}
-  .work-photos .wp-a img,.work-photos .wp-b img{
-    position:absolute;inset:0;height:100%;aspect-ratio:auto;
-  }
+  .work-photos{grid-template-columns:16fr 12fr;}
 }
 
 /* ─── 9 · Die Erfahrung — fünf Säulen ──────────────────────────────────── */
@@ -667,16 +669,19 @@ section{padding-block:var(--sec);}
 }
 /* Handy: hoeherer Schnitt, damit die Bilder wirklich gross wirken */
 @media (max-width:700px){.slide img{aspect-ratio:4/3;}}
+/* Desktop (Michi, 28.09.): nicht mehr ein Bild ueber die ganze Breite —
+   das wurde durch die Hoehenbegrenzung zum schmalen Streifen. Stattdessen
+   fast quadratische Bilder (4:3) nebeneinander, knapp zwei im Blick, das
+   dritte schaut herein. So ist jedes Bild fast ganz zu sehen. */
+@media (min-width:900px){
+  .slide{flex-basis:clamp(420px,42vw,640px);}
+  .slide img{aspect-ratio:4/3;max-height:none;}
+}
 .slider-bar{display:none;}
 .js .slider-bar{
   display:flex;align-items:center;gap:clamp(14px,1.6vw,22px);
   margin-top:clamp(16px,1.8vw,24px);
 }
-.slider-nr{
-  font-size:var(--t-eyebrow);font-weight:500;letter-spacing:.2em;color:var(--muted);
-  font-variant-numeric:tabular-nums;white-space:nowrap;
-}
-.slider-nr span{color:var(--ink);}
 .slider-line{flex:1;height:1px;background:var(--line);position:relative;}
 .slider-fill{position:absolute;left:0;top:0;height:1px;width:12.5%;background:var(--gold);transition:width .6s var(--ease);}
 .slider-btn{
