@@ -397,6 +397,16 @@ section{padding-block:var(--sec);}
 .pillar .tags{
   margin-top:auto;padding-top:clamp(18px,2vw,26px);
   font-size:var(--t-meta);letter-spacing:.02em;color:var(--ink);
+  max-width:none;
+}
+/* Handy und Tablet: die Stichworte stehen immer auf einer Zeile (Michi,
+   28.09.). Die laengste Zeile („Men's Work · Sharing · Gruppenprozesse ·
+   Zeremonie“) braucht rund 24 × Schriftgroesse — ab 360 px Breite passt sie
+   in 13 px, darunter wird die Schrift gerade so weit kleiner, dass sie
+   noch in eine Zeile passt. Nur am Desktop mit fuenf schmalen Spalten
+   duerfen sie umbrechen. */
+@media (max-width:1099px){
+  .pillar .tags{white-space:nowrap;font-size:min(13px, calc((100vw - 44px) / 24));}
 }
 
 /* ─── 10 · Bilder — Fotostrecke über die volle Breite ──────────────────── */
