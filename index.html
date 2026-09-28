@@ -22,7 +22,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111C19'/%3E%3Crect x='9' y='15' width='14' height='1.4' fill='%23DDCEB9'/%3E%3C/svg%3E">
 <link rel="preload" href="assets/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts.css?v=11">
-<link rel="stylesheet" href="assets/site.css?v=30">
+<link rel="stylesheet" href="assets/site.css?v=31">
 </head>
 <body>
 
@@ -295,19 +295,37 @@
     </div>
   </section>
 
-  <!-- ═══ 08 · Was bleibt ═══ -->
-  <section class="remains rule" id="bleibt">
+  <!-- ═══ 08 · Was bleibt ═══
+       Seit 28.09. (Michi, nach seiner Vorlage „Was du mitnimmst – Grafik“):
+       dunkles Kapitel, die sechs Erfahrungsraeume im Kreis — ein Goldring mit
+       sechs Punkten, die Raeume aussen daran. Als HTML gebaut statt als Bild,
+       damit die Schrift scharf, lesbar und auf dem Handy umbrechbar bleibt.
+       Handy/Tablet: die Raeume untereinander an einer Goldlinie. -->
+  <section class="remains on-ink" id="bleibt">
     <div class="wrap">
       <span class="eyebrow" data-reveal>Was du mitnimmst</span>
       <h2 class="mask" data-reveal><span>Vielleicht gehst du nicht als anderer Mann. <span>Aber mit einem anderen Blick auf dich selbst.</span></span></h2>
 
-      <div class="rooms">
-        <div class="room" data-reveal><h3>Klarheit</h3><p>Ein klarerer Blick darauf, was dich bewegt, wo du stehst und was dir wirklich wichtig ist.</p></div>
-        <div class="room" data-reveal><h3>Selbstkontakt</h3><p>Mehr Zugang zu dem, was du fühlst, brauchst und eigentlich willst.</p></div>
-        <div class="room" data-reveal><h3>Körper</h3><p>Die Erfahrung, nicht alles ausschließlich über den Kopf lösen zu müssen.</p></div>
-        <div class="room" data-reveal><h3>Beziehung</h3><p>Ein besseres Verständnis dafür, wie du Nähe, Grenzen, Konflikt und Verbindung gestaltest.</p></div>
-        <div class="room" data-reveal><h3>Männer</h3><p>Die Erfahrung, dass Offenheit und Tiefe unter Männern möglich sind – ohne Stärke aufgeben zu müssen.</p></div>
-        <div class="room" data-reveal><h3>Perspektive</h3><p>Ein paar Tage Abstand vom eigenen Alltag – und damit die Möglichkeit, das eigene Leben von außen zu betrachten.</p></div>
+      <div class="orbit">
+        <div class="orbit-ring" aria-hidden="true" data-reveal>
+          <svg viewBox="0 0 100 100" focusable="false">
+            <circle class="ring-in" cx="50" cy="50" r="34"/>
+            <circle class="ring" cx="50" cy="50" r="48" pathLength="100" transform="rotate(-90 50 50)"/>
+            <circle class="dot" cx="50" cy="2" r="1.4"/>
+            <circle class="dot" cx="91.57" cy="26" r="1.4"/>
+            <circle class="dot" cx="91.57" cy="74" r="1.4"/>
+            <circle class="dot" cx="50" cy="98" r="1.4"/>
+            <circle class="dot" cx="8.43" cy="74" r="1.4"/>
+            <circle class="dot" cx="8.43" cy="26" r="1.4"/>
+          </svg>
+          <span class="orbit-label">Was du<br>mitnimmst</span>
+        </div>
+        <div class="room room--n" data-reveal><h3>Klarheit</h3><p>Ein klarerer Blick darauf, was dich bewegt, wo du stehst und was dir wirklich wichtig ist.</p></div>
+        <div class="room room--ne" data-reveal><h3>Selbstkontakt</h3><p>Mehr Zugang zu dem, was du fühlst, brauchst und eigentlich willst.</p></div>
+        <div class="room room--se" data-reveal><h3>Körper</h3><p>Die Erfahrung, nicht alles ausschließlich über den Kopf lösen zu müssen.</p></div>
+        <div class="room room--s" data-reveal><h3>Beziehung</h3><p>Ein besseres Verständnis dafür, wie du Nähe, Grenzen, Konflikt und Verbindung gestaltest.</p></div>
+        <div class="room room--sw" data-reveal><h3>Männer</h3><p>Die Erfahrung, dass Offenheit und Tiefe unter Männern möglich sind – ohne Stärke aufgeben zu müssen.</p></div>
+        <div class="room room--nw" data-reveal><h3>Perspektive</h3><p>Ein paar Tage Abstand vom eigenen Alltag – und damit die Möglichkeit, das eigene Leben von außen zu betrachten.</p></div>
       </div>
 
       <p class="remains-close" data-reveal>Was davon bleibt, entscheidet sich nicht im Retreat. <span>Sondern darin, wie du danach lebst.</span></p>
@@ -389,15 +407,15 @@
         <p data-reveal>Unsere Aufgabe ist nicht, Antworten für dich zu haben. Unsere Aufgabe ist es, einen Rahmen zu schaffen, in dem ehrliche Erfahrung möglich wird.</p>
       </div>
 
-      <!-- Keine Einzelbilder (Michi, 28.09.): nur das gemeinsame Bild oben,
-           darunter Name und Bio unter einer Haarlinie. -->
+      <!-- Keine grossen Einzelbilder (Michi, 28.09.): nur das gemeinsame Bild
+           oben; neben jedem Namen ein kleines Kopf-Icon, darunter die Bio. -->
       <div class="bios">
         <div class="bio" data-reveal>
-          <h3>Alexander</h3>
+          <h3><img class="bio-icon" src="assets/img/icon-alexander-120.jpg?v=2" srcset="assets/img/icon-alexander-120.jpg?v=2 120w, assets/img/icon-alexander-240.jpg?v=2 240w" sizes="56px" width="120" height="120" loading="lazy" alt="">Alexander</h3>
           <p><span class="klaeren">[Bio später entwickeln]</span></p>
         </div>
         <div class="bio" data-reveal>
-          <h3>Dorje</h3>
+          <h3><img class="bio-icon" src="assets/img/icon-dorje-120.jpg?v=2" srcset="assets/img/icon-dorje-120.jpg?v=2 120w, assets/img/icon-dorje-240.jpg?v=2 240w" sizes="56px" width="120" height="120" loading="lazy" alt="">Dorje</h3>
           <p><span class="klaeren">[Bio später entwickeln]</span></p>
         </div>
       </div>

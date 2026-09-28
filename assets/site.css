@@ -489,24 +489,84 @@ section{padding-block:var(--sec);}
 .day h3{margin-top:clamp(16px,1.8vw,24px);}
 .day p{margin-top:12px;color:var(--muted);line-height:1.6;max-width:30ch;}
 
-/* ─── 12 · Was bleibt — sechs Erfahrungsräume ──────────────────────────── */
+/* ─── 12 · Was bleibt — sechs Erfahrungsräume im Kreis ─────────────────── */
+/* Dunkles Kapitel nach Michis Vorlage (28.09.): ein Goldring mit sechs
+   Punkten, die Raeume aussen daran — oben Klarheit, dann im Uhrzeigersinn.
+   Handy/Tablet: dieselbe Reihenfolge untereinander an einer Goldlinie. */
 .remains h2{max-width:22ch;}
-.remains h2 span span{display:block;color:var(--muted);}
-.rooms{
-  margin-top:clamp(50px,6vw,90px);
-  display:grid;gap:0 clamp(30px,4vw,60px);
-  border-top:1px solid var(--line);
+.remains h2 span span{display:block;color:var(--paper-66);}
+.orbit{
+  margin-top:clamp(56px,7vw,110px);
+  position:relative;padding-left:34px;
 }
-@media (min-width:680px){.rooms{grid-template-columns:1fr 1fr;}}
-@media (min-width:1000px){.rooms{grid-template-columns:repeat(3,1fr);}}
-.room{padding-block:clamp(24px,2.8vw,38px);border-bottom:1px solid var(--line);}
-.room h3{font-size:var(--t-eyebrow);font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);}
-.room p{margin-top:12px;line-height:1.6;max-width:32ch;}
+/* Handy: senkrechte Goldlinie, jeder Raum haengt mit einem Punkt daran */
+.orbit::before{
+  content:"";position:absolute;left:5px;top:14px;bottom:14px;width:1px;
+  background:rgba(224,192,122,.45);
+}
+.orbit-ring{display:none;}
+.room{position:relative;padding-block:clamp(18px,2.4vw,26px);}
+.room::before{
+  content:"";position:absolute;left:-34px;top:calc(clamp(18px,2.4vw,26px) + .5em);
+  width:11px;height:11px;border-radius:50%;
+  background:var(--gold-lt);box-shadow:0 0 0 4px var(--ink);
+}
+.room h3{font-size:clamp(22px,2vw,30px);letter-spacing:-.03em;line-height:1.15;color:var(--paper);}
+.room p{margin-top:10px;color:var(--paper-66);line-height:1.55;max-width:30ch;}
+
+/* Ab 900 px der Kreis: drei Spalten (Raeume links · Ring · Raeume rechts),
+   der Ring ueber zwei Zeilen, deren Mitten auf Hoehe der Seitenpunkte
+   liegen (25 % und 75 % des Rings). Oben und unten je ein Raum. */
+@media (min-width:900px){
+  .orbit{
+    --D:clamp(300px,33vw,450px);
+    padding-left:0;
+    display:grid;
+    grid-template-columns:1fr var(--D) 1fr;
+    grid-template-rows:auto calc(var(--D) / 2) calc(var(--D) / 2) auto;
+    column-gap:clamp(8px,1.4vw,22px);
+    row-gap:clamp(18px,2vw,30px);
+    max-width:1180px;margin-inline:auto;
+  }
+  .orbit::before,.room::before{display:none;}
+  .room{padding:0;}
+  .orbit-ring{display:block;position:relative;grid-column:2;grid-row:2 / 4;}
+  .orbit-ring svg{display:block;width:100%;height:100%;overflow:visible;}
+  .room--n,.room--s{grid-column:1 / -1;justify-self:center;text-align:center;}
+  .room--n{grid-row:1;align-self:end;}
+  .room--s{grid-row:4;align-self:start;}
+  .room--n p,.room--s p{margin-inline:auto;max-width:28ch;}
+  .room--nw,.room--sw{grid-column:1;justify-self:end;text-align:right;}
+  .room--ne,.room--se{grid-column:3;justify-self:start;}
+  .room--nw,.room--ne{grid-row:2;align-self:center;}
+  .room--sw,.room--se{grid-row:3;align-self:center;}
+  .room--nw p,.room--sw p{margin-left:auto;}
+  .room p{max-width:24ch;}
+}
+.ring{fill:none;stroke:rgba(224,192,122,.6);stroke-width:1px;vector-effect:non-scaling-stroke;}
+.ring-in{fill:none;stroke:rgba(249,248,246,.1);stroke-width:1px;vector-effect:non-scaling-stroke;}
+.orbit-ring .dot{fill:var(--gold-lt);stroke:var(--ink);stroke-width:1.1;}
+/* Der Ring zeichnet sich beim Heranscrollen einmal von oben im Uhrzeigersinn */
+.js .orbit-ring .ring{stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset 2.2s cubic-bezier(.3,.6,.2,1) .2s;}
+.js .orbit-ring.in .ring{stroke-dashoffset:0;}
+.orbit-label{
+  position:absolute;inset:0;display:grid;place-items:center;text-align:center;
+  font-size:var(--t-eyebrow);font-weight:500;letter-spacing:.3em;line-height:2.4;
+  text-transform:uppercase;color:var(--gold-lt);
+}
 .remains-close{
-  margin-top:clamp(44px,5vw,72px);
-  font-size:var(--t-lead);line-height:1.5;letter-spacing:-.01em;max-width:34ch;
+  margin-top:clamp(56px,7vw,110px);
+  font-size:clamp(22px,2.2vw,32px);line-height:1.3;letter-spacing:-.025em;max-width:30ch;text-wrap:balance;
 }
-.remains-close span{display:block;color:var(--muted);}
+.remains-close::before{
+  content:"";display:block;width:44px;height:1px;background:var(--gold-lt);
+  margin-bottom:clamp(22px,2.6vw,34px);
+}
+.remains-close span{display:block;color:var(--paper-66);}
+@media (min-width:900px){
+  .remains-close{margin-inline:auto;text-align:center;}
+  .remains-close::before{margin-inline:auto;}
+}
 
 /* ─── 13 · Die Männer vor dir — vier Hochkant-Videos ───────────────────── */
 .voices{
@@ -570,9 +630,11 @@ section{padding-block:var(--sec);}
   display:grid;gap:clamp(40px,5vw,72px);
 }
 @media (min-width:760px){.bios{grid-template-columns:1fr 1fr;column-gap:clamp(40px,6vw,100px);}}
-/* Ohne Einzelbilder: Name und Bio stehen unter einer Haarlinie. */
+/* Name und Bio unter einer Haarlinie; neben dem Namen ein kleines rundes
+   Kopf-Icon (Michi, 28.09.) statt eines grossen Einzelbilds. */
 .bio{border-top:1px solid var(--line);padding-top:clamp(20px,2.2vw,30px);}
-.bio h3{color:var(--gold);}
+.bio h3{color:var(--gold);display:flex;align-items:center;gap:16px;}
+.bio-icon{width:56px;height:56px;border-radius:50%;object-fit:cover;flex:none;background:var(--field);}
 .bio p{margin-top:14px;color:var(--muted);max-width:40ch;}
 .us-quote{
   margin-top:clamp(60px,7vw,110px);padding-top:clamp(26px,3vw,40px);
@@ -766,6 +828,7 @@ section{padding-block:var(--sec);}
   .mask > span,.mask.in > span{transform:none;transition:none;}
   .mirror-lines p{color:var(--paper);transition:none;}
   .js .mirror-lines p > span{opacity:1!important;transform:none!important;transition:none!important;}
+  .js .orbit-ring .ring{stroke-dashoffset:0;transition:none;}
   .nav a::after,.btn::before,.faq-list summary::after{transition:none;}
   *{animation:none!important;}
 }
