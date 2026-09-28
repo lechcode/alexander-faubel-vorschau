@@ -401,6 +401,12 @@ section{padding-block:var(--sec);}
 .work-photos{margin-top:clamp(28px,3vw,48px);}
 .work-photos figure{margin:0;}
 .work-photos img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;}
+/* Desktop (Michi, 28.09.): kleiner — das Original hat nur 1200 px. Das Bild
+   steht in der rechten Spalte, buendig mit den Fragen darueber. */
+@media (min-width:900px){
+  .work-photos{display:grid;grid-template-columns:5fr 6fr;column-gap:clamp(40px,6vw,110px);}
+  .work-photos figure{grid-column:2;}
+}
 
 /* ─── 9 · Die Erfahrung — fünf Säulen ──────────────────────────────────── */
 .pillars{
