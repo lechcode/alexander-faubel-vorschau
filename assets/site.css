@@ -396,20 +396,11 @@ section{padding-block:var(--sec);}
 }
 .pull span{display:block;}
 .pull span+span{color:var(--paper-66);margin-top:.35em;}
-/* Darunter nur noch zwei Querformate (B3-2 Gruppe, B3-3 Gras). Ab 900 px
-   nebeneinander, Spalten im Verhaeltnis ihrer Formate (16:9 zu 4:3) —
-   gleich hoch, nichts beschnitten. Handy: untereinander. */
-.work-photos{
-  margin-top:clamp(28px,3vw,48px);
-  display:grid;gap:clamp(12px,1.6vw,20px);
-}
+/* Darunter nur noch das Gruppenbild vor der Jurte (B3-2, 16:9, ungeschnitten)
+   ueber die Inhaltsbreite; die Maenner im Gras sind seit 28.09. raus. */
+.work-photos{margin-top:clamp(28px,3vw,48px);}
 .work-photos figure{margin:0;}
-.work-photos img{display:block;width:100%;height:auto;}
-.work-photos .wp-a img{aspect-ratio:16/9;object-fit:cover;}
-.work-photos .wp-b img{aspect-ratio:4/3;object-fit:cover;}
-@media (min-width:900px){
-  .work-photos{grid-template-columns:16fr 12fr;}
-}
+.work-photos img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;}
 
 /* ─── 9 · Die Erfahrung — fünf Säulen ──────────────────────────────────── */
 .pillars{
