@@ -644,8 +644,58 @@ section{padding-block:var(--sec);}
 
 /* ─── 15 · Der Rahmen — Eckdaten und Ort ───────────────────────────────── */
 .frame h2 span span{display:block;color:var(--muted);}
-.frame-grid{margin-top:clamp(44px,5vw,76px);display:grid;gap:clamp(40px,5vw,72px);}
-@media (min-width:940px){.frame-grid{grid-template-columns:5fr 7fr;column-gap:clamp(40px,6vw,100px);align-items:start;}}
+/* Location-Slider (Michi, 28.09.): die Bilder gross, das aktuelle genau so
+   breit wie der Inhalt, die Nachbarn schauen am Rand herein. Wischen ueber
+   scroll-snap (nativ, auch ohne JavaScript); site.js schaltet alle 5 s
+   weiter, haelt bei Beruehrung/Maus/Fokus an und fuehrt Zaehler + Linie. */
+.slider{margin-top:clamp(44px,5vw,76px);}
+.slider-track{
+  --side:max(var(--pad), calc((100% - var(--wrap)) / 2 + var(--pad)));
+  display:flex;gap:clamp(10px,1.2vw,18px);
+  overflow-x:auto;overscroll-behavior-x:contain;
+  scroll-snap-type:x mandatory;scroll-padding-inline:var(--side);
+  padding-inline:var(--side);
+  scrollbar-width:none;
+}
+.slider-track::-webkit-scrollbar{display:none;}
+.slider-track:focus-visible{outline-offset:-2px;}
+.slide{flex:0 0 100%;margin:0;scroll-snap-align:start;scroll-snap-stop:always;}
+.slide img{
+  width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;
+  max-height:calc(100svh - var(--head) - 120px);
+  background:var(--field);
+}
+/* Handy: hoeherer Schnitt, damit die Bilder wirklich gross wirken */
+@media (max-width:700px){.slide img{aspect-ratio:4/3;}}
+.slider-bar{display:none;}
+.js .slider-bar{
+  display:flex;align-items:center;gap:clamp(14px,1.6vw,22px);
+  margin-top:clamp(16px,1.8vw,24px);
+}
+.slider-nr{
+  font-size:var(--t-eyebrow);font-weight:500;letter-spacing:.2em;color:var(--muted);
+  font-variant-numeric:tabular-nums;white-space:nowrap;
+}
+.slider-nr span{color:var(--ink);}
+.slider-line{flex:1;height:1px;background:var(--line);position:relative;}
+.slider-fill{position:absolute;left:0;top:0;height:1px;width:12.5%;background:var(--gold);transition:width .6s var(--ease);}
+.slider-btn{
+  width:48px;height:48px;flex:none;position:relative;
+  border:1px solid var(--line);background:transparent;cursor:pointer;
+  transition:border-color .3s var(--ease),background .3s var(--ease);
+}
+.slider-btn::after{
+  content:"";position:absolute;left:50%;top:50%;width:9px;height:9px;
+  border-top:1px solid var(--ink);border-right:1px solid var(--ink);
+}
+.slider-btn--next::after{transform:translate(-65%,-50%) rotate(45deg);}
+.slider-btn--prev::after{transform:translate(-35%,-50%) rotate(-135deg);}
+.slider-btn:hover{border-color:var(--ink);}
+.frame .facts{margin-top:clamp(44px,5vw,76px);}
+@media (min-width:760px){
+  .frame .facts{display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(40px,6vw,100px);border-top:0;}
+  .frame .facts div:nth-child(-n+2){border-top:1px solid var(--line);}
+}
 .facts{border-top:1px solid var(--line);}
 .facts div{
   display:grid;grid-template-columns:minmax(120px,1fr) 2fr;gap:16px;
@@ -653,12 +703,6 @@ section{padding-block:var(--sec);}
 }
 .facts dt{font-size:var(--t-eyebrow);font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);padding-top:.35em;}
 .facts dd{font-size:var(--t-lead);line-height:1.4;letter-spacing:-.01em;}
-.place{display:grid;gap:clamp(10px,1.2vw,18px);grid-template-columns:1fr 1fr;}
-.place figure{margin:0;}
-.place figure:first-child{grid-column:1 / -1;}
-.place img{width:100%;aspect-ratio:3/2;object-fit:cover;}
-.place figure:first-child img{aspect-ratio:16/9;}
-.place figcaption{margin-top:10px;font-size:var(--t-meta);color:var(--muted);}
 
 /* ─── 16 · Für wen — Fit gegen Anti-Fit ────────────────────────────────── */
 .fit-lead{margin-top:clamp(22px,2.4vw,32px);font-size:var(--t-h3);letter-spacing:-.02em;line-height:1.35;color:var(--muted);max-width:30ch;}

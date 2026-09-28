@@ -142,6 +142,73 @@
     });
   });
 
+  /* 5b · Location-Slider
+     Gewischt wird nativ (scroll-snap). Hier nur: Pfeile, Zaehler, Linie und
+     das Weiterlaufen — alle 5 s ein Bild, am Ende zurueck zum ersten. Es
+     laeuft nur, solange der Slider im Bild ist, die Maus nicht darauf liegt
+     und er keinen Fokus hat; nach jedem Wischen oder Klick 8 s Ruhe.
+     Bei reduzierter Bewegung laeuft nichts von selbst. */
+  var slider = document.querySelector('[data-slider]');
+  if (slider) {
+    var spur = slider.querySelector('.slider-track');
+    var bilder = spur.children;
+    var anzahl = bilder.length;
+    var nrEl = slider.querySelector('[data-nr]');
+    var fill = slider.querySelector('.slider-fill');
+    var jetzt = 0;
+    var ruheBis = 0;
+    var imBild = !hatIO;
+    var maus = false;
+    var fokus = false;
+
+    var schritt = function () {
+      return anzahl > 1 ? bilder[1].offsetLeft - bilder[0].offsetLeft : spur.clientWidth;
+    };
+    var setze = function (i) {
+      jetzt = i;
+      nrEl.textContent = (i < 9 ? '0' : '') + (i + 1);
+      fill.style.width = ((i + 1) / anzahl * 100) + '%';
+    };
+    var zeigen = function (i) {
+      i = (i + anzahl) % anzahl;
+      setze(i);
+      spur.scrollTo({ left: i * schritt(), behavior: calm ? 'auto' : 'smooth' });
+    };
+    /* Beim Wischen: das Bild, das gerade am naechsten an der Kante steht */
+    var stand = function () {
+      setze(Math.max(0, Math.min(anzahl - 1, Math.round(spur.scrollLeft / schritt()))));
+    };
+    var warte = null;
+    spur.addEventListener('scroll', function () {
+      if (warte) return;
+      warte = requestAnimationFrame(function () { warte = null; stand(); });
+    }, { passive: true });
+    var ruhe = function () { ruheBis = Date.now() + 8000; };
+    ['pointerdown', 'wheel', 'touchstart', 'keydown'].forEach(function (t) {
+      spur.addEventListener(t, ruhe, { passive: true });
+    });
+    slider.querySelector('[data-prev]').addEventListener('click', function () { ruhe(); zeigen(jetzt - 1); });
+    slider.querySelector('[data-next]').addEventListener('click', function () { ruhe(); zeigen(jetzt + 1); });
+    slider.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') maus = true; });
+    slider.addEventListener('pointerleave', function () { maus = false; });
+    slider.addEventListener('focusin', function (e) { fokus = e.target.matches(':focus-visible'); });
+    slider.addEventListener('focusout', function () { fokus = false; });
+    if (hatIO) {
+      new IntersectionObserver(function (entries) {
+        imBild = entries[0].isIntersecting;
+        if (imBild) ruheBis = Math.max(ruheBis, Date.now() + 2500);
+      }, { threshold: 0.4 }).observe(spur);
+    }
+    stand();
+    if (!calm && anzahl > 1) {
+      setInterval(function () {
+        if (!imBild || maus || fokus || document.hidden || Date.now() < ruheBis) return;
+        zeigen(jetzt + 1);
+        ruheBis = Date.now() + 5000;
+      }, 500);
+    }
+  }
+
   /* 6 · Interesse-Formular
      Versand über den Lechcode-Worker (Route /contact, Schema unverändert —
      der Worker bedient auch andere Kunden, deshalb wandern die Zusatzfelder

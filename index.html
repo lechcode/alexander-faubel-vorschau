@@ -22,7 +22,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111C19'/%3E%3Crect x='9' y='15' width='14' height='1.4' fill='%23DDCEB9'/%3E%3C/svg%3E">
 <link rel="preload" href="assets/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts.css?v=11">
-<link rel="stylesheet" href="assets/site.css?v=31">
+<link rel="stylesheet" href="assets/site.css?v=32">
 </head>
 <body>
 
@@ -431,36 +431,75 @@
     <div class="wrap">
       <span class="eyebrow" data-reveal>Location · Der Rahmen</span>
       <h2 class="mask" data-reveal><span>Raus aus dem Alltag. <span>Für ein paar Tage ganz da.</span></span></h2>
+    </div>
 
-      <div class="frame-grid">
-        <dl class="facts" data-reveal>
-          <div><dt>Datum</dt><dd><span class="klaeren">[NOCH ZU DEFINIEREN]</span></dd></div>
-          <div><dt>Ort</dt><dd>Niederlande, Nähe Utrecht</dd></div>
-          <div><dt>Dauer</dt><dd>4 Tage</dd></div>
-          <div><dt>Gruppengröße</dt><dd>6–8 Männer</dd></div>
-          <div><dt>Unterkunft</dt><dd><span class="klaeren">[NOCH ZU DEFINIEREN]</span></dd></div>
-          <div><dt>Verpflegung</dt><dd>All Inklusive</dd></div>
-          <div><dt>Investment</dt><dd>3.500 € netto</dd></div>
-        </dl>
-
-        <div class="place">
-          <figure data-reveal>
-            <img src="assets/img/ort-1-1000.jpg?v=2" srcset="assets/img/ort-1-1000.jpg?v=2 1000w, assets/img/ort-1-1800.jpg?v=2 1800w"
-                 sizes="(min-width:940px) 52vw, 92vw" width="1800" height="1012" loading="lazy"
-                 alt="Die Anlage aus der Vogelperspektive: Wiesen, Obstbäume, Wasser am Horizont.">
+    <!-- Seit 28.09. ein Slider mit Michis Location-Bildern L1–L7 (+ L7.png
+         als Bild 8): gross, ueber die volle Breite wischbar (scroll-snap),
+         laeuft von selbst weiter, solange niemand eingreift; Pfeile und
+         Zaehler darunter. Ohne JavaScript bleibt er einfach wischbar. -->
+    <div class="slider" data-slider role="region" aria-roledescription="Bildergalerie" aria-label="Bilder der Location">
+      <div class="slider-track" tabindex="0">
+          <figure class="slide" role="group" aria-roledescription="Bild" aria-label="1 von 8">
+            <img src="assets/img/loc-1-1200.jpg?v=2" srcset="assets/img/loc-1-1800.jpg?v=2 1800w, assets/img/loc-1-1200.jpg?v=2 1200w, assets/img/loc-1-700.jpg?v=2 700w"
+                 sizes="(min-width:1320px) 1144px, 92vw" width="1800" height="1200" loading="lazy"
+                 alt="Heller Wohnraum unter Holzbalken mit Sitzsäcken, Sessel und großen Fenstern ins Grüne.">
           </figure>
-          <figure data-reveal>
-            <img src="assets/img/ort-2-700.jpg?v=2" srcset="assets/img/ort-2-700.jpg?v=2 700w, assets/img/ort-2-1200.jpg?v=2 1200w"
-                 sizes="(min-width:940px) 26vw, 46vw" width="1200" height="800" loading="lazy"
-                 alt="Die Jurte für die Gruppenarbeit, davor ein Holztisch.">
+          <figure class="slide" role="group" aria-roledescription="Bild" aria-label="2 von 8">
+            <img src="assets/img/loc-2-1200.jpg?v=2" srcset="assets/img/loc-2-1800.jpg?v=2 1800w, assets/img/loc-2-1200.jpg?v=2 1200w, assets/img/loc-2-700.jpg?v=2 700w"
+                 sizes="(min-width:1320px) 1144px, 92vw" width="1800" height="1200" loading="lazy"
+                 alt="Lange gedeckte Tafel mit Blumen im Wohnraum, dahinter Glastüren zum Garten.">
           </figure>
-          <figure data-reveal>
-            <img src="assets/img/ort-3-700.jpg?v=2" srcset="assets/img/ort-3-700.jpg?v=2 700w, assets/img/ort-3-1200.jpg?v=2 1200w"
-                 sizes="(min-width:940px) 26vw, 46vw" width="1200" height="800" loading="lazy"
-                 alt="Heller Wohnraum mit Holzbalken und Blick ins Grüne.">
+          <figure class="slide" role="group" aria-roledescription="Bild" aria-label="3 von 8">
+            <img src="assets/img/loc-3-1200.jpg?v=2" srcset="assets/img/loc-3-1800.jpg?v=2 1800w, assets/img/loc-3-1200.jpg?v=2 1200w, assets/img/loc-3-700.jpg?v=2 700w"
+                 sizes="(min-width:1320px) 1144px, 92vw" width="1800" height="1200" loading="lazy"
+                 alt="Wohnbereich mit Sofa, Esstisch und Pflanzen, durch die Glastür der Garten.">
           </figure>
+          <figure class="slide" role="group" aria-roledescription="Bild" aria-label="4 von 8">
+            <img src="assets/img/loc-4-900.jpg?v=2" srcset="assets/img/loc-4-900.jpg?v=2 900w, assets/img/loc-4-700.jpg?v=2 700w"
+                 sizes="(min-width:1320px) 1144px, 92vw" width="900" height="600" loading="lazy"
+                 alt="Brennende Feuerschale, ringsum Holzstühle mit Fellen unter Obstbäumen.">
+          </figure>
+          <figure class="slide" role="group" aria-roledescription="Bild" aria-label="5 von 8">
+            <img src="assets/img/loc-5-1000.jpg?v=2" srcset="assets/img/loc-5-1000.jpg?v=2 1000w, assets/img/loc-5-700.jpg?v=2 700w"
+                 sizes="(min-width:1320px) 1144px, 92vw" width="1000" height="666" loading="lazy"
+                 alt="Innenraum der Jurte: Matten und Felle im Kreis, oben das runde Dachfenster.">
+          </figure>
+          <figure class="slide" role="group" aria-roledescription="Bild" aria-label="6 von 8">
+            <img src="assets/img/loc-6-1200.jpg?v=2" srcset="assets/img/loc-6-1200.jpg?v=2 1200w, assets/img/loc-6-700.jpg?v=2 700w"
+                 sizes="(min-width:1320px) 1144px, 92vw" width="1200" height="800" loading="lazy"
+                 alt="Das lange Holzhaus mit Terrasse unter blauem Himmel.">
+          </figure>
+          <figure class="slide" role="group" aria-roledescription="Bild" aria-label="7 von 8">
+            <img src="assets/img/loc-7-1200.jpg?v=2" srcset="assets/img/loc-7-1800.jpg?v=2 1800w, assets/img/loc-7-1200.jpg?v=2 1200w, assets/img/loc-7-700.jpg?v=2 700w"
+                 sizes="(min-width:1320px) 1144px, 92vw" width="1800" height="1200" loading="lazy"
+                 alt="Die Anlage aus der Vogelperspektive: Obstwiesen, Jurte und Häuser, am Horizont Fluss und Brücke.">
+          </figure>
+          <figure class="slide" role="group" aria-roledescription="Bild" aria-label="8 von 8">
+            <img src="assets/img/loc-8-1200.jpg?v=2" srcset="assets/img/loc-8-1600.jpg?v=2 1600w, assets/img/loc-8-1200.jpg?v=2 1200w, assets/img/loc-8-700.jpg?v=2 700w"
+                 sizes="(min-width:1320px) 1144px, 92vw" width="1600" height="1066" loading="lazy"
+                 alt="Fasssauna auf der Wiese, davor ein hölzerner Badezuber.">
+          </figure>
+      </div>
+      <div class="wrap">
+        <div class="slider-bar">
+          <p class="slider-nr"><span data-nr>01</span> / 08</p>
+          <div class="slider-line" aria-hidden="true"><span class="slider-fill"></span></div>
+          <button type="button" class="slider-btn slider-btn--prev" data-prev aria-label="Vorheriges Bild"></button>
+          <button type="button" class="slider-btn slider-btn--next" data-next aria-label="Nächstes Bild"></button>
         </div>
       </div>
+    </div>
+
+    <div class="wrap">
+      <dl class="facts" data-reveal>
+        <div><dt>Datum</dt><dd><span class="klaeren">[NOCH ZU DEFINIEREN]</span></dd></div>
+        <div><dt>Ort</dt><dd>Niederlande, Nähe Utrecht</dd></div>
+        <div><dt>Dauer</dt><dd>4 Tage</dd></div>
+        <div><dt>Gruppengröße</dt><dd>6–8 Männer</dd></div>
+        <div><dt>Unterkunft</dt><dd><span class="klaeren">[NOCH ZU DEFINIEREN]</span></dd></div>
+        <div><dt>Verpflegung</dt><dd>All Inklusive</dd></div>
+        <div><dt>Investment</dt><dd>3.500 € netto</dd></div>
+      </dl>
     </div>
   </section>
 
@@ -548,6 +587,6 @@
   </div>
 </footer>
 
-<script src="assets/site.js?v=22" defer></script>
+<script src="assets/site.js?v=24" defer></script>
 </body>
 </html>
