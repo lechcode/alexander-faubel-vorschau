@@ -228,26 +228,37 @@ section{padding-block:var(--sec);}
 .menu-btn{display:none;}
 .menu{display:none;}
 @media (max-width:900px){
-  .head .wrap{gap:18px;}
+  .head .wrap{gap:14px;}
+  .mark,.nav{flex:none;}
+}
+/* Auf Handybreite (≤ 480 px) muessen Wortmarke, „Interesse anmelden“ und das
+   Menue-Zeichen in eine Zeile: Sperrung und Abstaende enger, sonst schiebt
+   sich das Zeichen ueber den Rand (gemessen: 360 px → 367 px Bedarf). */
+@media (max-width:480px){
+  .head .wrap{gap:10px;}
+  .mark{font-size:11px;letter-spacing:.11em;}
+  .nav a.apply{letter-spacing:.09em;}
+}
+@media (max-width:900px){
   /* Nur das Zeichen (zwei Linien, offen: Kreuz) — ein Wort daneben machte
      die Kopfzeile auf 390 px zu breit. Das Label bleibt fuer Screenreader. */
   .menu-btn{
     display:inline-flex;align-items:center;justify-content:center;flex:none;
-    width:44px;height:44px;margin-right:-12px;
+    width:44px;height:44px;margin-right:6px;
     border:0;background:transparent;cursor:pointer;color:var(--ink);
   }
   .menu-btn span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
   .menu-btn i{
-    position:relative;width:20px;height:11px;display:block;
+    position:relative;width:22px;height:12px;display:block;
   }
   .menu-btn i::before,.menu-btn i::after{
-    content:"";position:absolute;left:0;right:0;height:1px;background:var(--ink);
+    content:"";position:absolute;left:0;right:0;height:1.5px;background:var(--ink);
     transition:transform .32s var(--ease), top .32s var(--ease);
   }
   .menu-btn i::before{top:0;}
-  .menu-btn i::after{top:10px;}
-  .menu-btn[aria-expanded="true"] i::before{top:5px;transform:rotate(45deg);}
-  .menu-btn[aria-expanded="true"] i::after{top:5px;transform:rotate(-45deg);}
+  .menu-btn i::after{top:11px;}
+  .menu-btn[aria-expanded="true"] i::before{top:5.5px;transform:rotate(45deg);}
+  .menu-btn[aria-expanded="true"] i::after{top:5.5px;transform:rotate(-45deg);}
   .menu{
     display:block;
     position:fixed;left:0;right:0;top:var(--head);z-index:99;

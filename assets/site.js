@@ -43,7 +43,9 @@
       if (e.target.closest('a')) setMenu(false);
     });
     document.addEventListener('click', function (e) {
-      if (menuBtn.getAttribute('aria-expanded') === 'true' && !e.target.closest('.head')) setMenu(false);
+      /* Der Schleier ist ein ::after der Kopfzeile — ein Klick darauf trifft .head selbst.
+         Offen bleibt das Menue nur bei Klicks auf den Knopf oder in die Liste. */
+      if (menuBtn.getAttribute('aria-expanded') === 'true' && !e.target.closest('.menu-btn') && !e.target.closest('.menu')) setMenu(false);
     });
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && menuBtn.getAttribute('aria-expanded') === 'true') { setMenu(false); menuBtn.focus(); }
