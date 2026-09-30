@@ -265,7 +265,20 @@ section{padding-block:var(--sec);}
 /* ─── 6 · Das Leben vieler Männer — extrem reduziert ───────────────────── */
 .life .wrap{max-width:900px;}
 .life h2{max-width:20ch;}
-.life-lines{margin-top:clamp(40px,5vw,72px);max-width:560px;}
+/* V2 (Alexander): der Dreiklang gross hervorgehoben, jedes Wort auf
+   eigener Zeile — Desktop nebeneinander mit Goldpunkten dazwischen. */
+.life-key{
+  margin-top:clamp(40px,5vw,72px);
+  font-size:var(--t-big);font-weight:500;letter-spacing:-.03em;line-height:1.15;
+  max-width:none;
+}
+.life-key span{display:block;}
+@media (min-width:760px){
+  .life-key span{display:inline;white-space:nowrap;}
+  /* Der Punkt haengt am folgenden Wort, damit er nie allein am Zeilenende steht */
+  .life-key span + span::before{content:"·";color:var(--gold);margin-inline:.35em;}
+}
+.life-lines{margin-top:clamp(30px,3.6vw,52px);max-width:560px;}
 .life-lines p{
   max-width:none;
   font-size:var(--t-lead);line-height:1.5;letter-spacing:-.01em;
@@ -292,10 +305,12 @@ section{padding-block:var(--sec);}
    zweispaltig: links bleibt die Praemisse beim Scrollen stehen, rechts
    ziehen die Spiegel-Saetze vorbei. */
 .mirror{padding-top:0;padding-bottom:var(--sec);}
-.mirror h2{max-width:14ch;}
+/* V2 (Alexander): der Spiegel als zentraler Markenmoment — die Buehne
+   fuellt am Desktop den ganzen Bildschirm, die Ueberschrift hat H1-Groesse. */
+.mirror h2{max-width:14ch;font-size:var(--t-h1);line-height:1.02;}
 .mirror-stage{
   position:relative;isolation:isolate;overflow:hidden;
-  min-height:min(56.25vw, 100svh);            /* 16:9, nie hoeher als der Bildschirm */
+  min-height:min(62vw, 100svh);               /* fast Bildschirmhoehe, nie hoeher */
   display:flex;flex-direction:column;justify-content:flex-end;
   padding-top:clamp(120px,14vw,220px);
   padding-bottom:clamp(44px,5vw,80px);
@@ -365,6 +380,7 @@ section{padding-block:var(--sec);}
 .mirror-close{margin-top:clamp(60px,7vw,110px);padding-top:clamp(26px,3vw,40px);border-top:1px solid var(--paper-16);}
 .mirror-close h3{font-size:var(--t-h2);letter-spacing:-.035em;line-height:1.1;max-width:14ch;}
 .mirror-close p{margin-top:clamp(22px,2.4vw,32px);color:var(--paper-66);font-size:var(--t-lead);line-height:1.6;max-width:44ch;}
+.mirror-close .mirror-core{color:var(--paper);}
 
 /* ─── 8 · Was Men's Work für uns bedeutet ──────────────────────────────── */
 .work .lead{margin-top:clamp(22px,2.4vw,32px);color:var(--ink);}
@@ -408,57 +424,72 @@ section{padding-block:var(--sec);}
   .work-photos figure{grid-column:2;}
 }
 
-/* ─── 9 · Die Erfahrung — fünf Säulen ──────────────────────────────────── */
-.pillars{
-  margin-top:clamp(50px,7vw,100px);
-  display:grid;gap:0;
-  border-top:1px solid var(--line);
-}
-@media (min-width:760px){.pillars{grid-template-columns:1fr 1fr;column-gap:clamp(30px,4vw,60px);}}
-@media (min-width:1100px){.pillars{grid-template-columns:repeat(5,1fr);column-gap:clamp(22px,2.4vw,40px);}}
-.pillar{
-  padding-block:clamp(26px,3vw,40px);
+/* ─── 9 · Die Erfahrung — fünf Dimensionen, editorial ─────────────────── */
+/* V2 (Alexander): keine Kartenoptik. Jede Dimension ist eine Zeile
+   zwischen Haarlinien; ab 900 px Bild und Text nebeneinander, die Seite
+   wechselt von Zeile zu Zeile. Die Bildformate wechseln mit (4:5, 3:2),
+   damit es nach Magazin aussieht und nicht nach Raster. „Reibung“ steht
+   ohne Bild, zentriert — ein Atemzug im Rhythmus. */
+.dims{margin-top:clamp(50px,7vw,100px);border-top:1px solid var(--line);}
+.dim{
+  display:grid;gap:clamp(24px,3vw,40px);
+  padding-block:clamp(36px,4.5vw,72px);
   border-bottom:1px solid var(--line);
-  display:flex;flex-direction:column;
 }
-.pillar-num{
-  font-size:var(--t-eyebrow);font-weight:500;letter-spacing:.2em;color:var(--gold);
+.dim-media{margin:0;}
+.dim-media img{display:block;width:100%;height:auto;object-fit:cover;}
+.dim-media--tall img{aspect-ratio:4/5;}
+.dim-media--wide img{aspect-ratio:3/2;}
+.dim-num{display:block;font-size:var(--t-num);font-weight:500;line-height:1;letter-spacing:-.035em;color:var(--gold);}
+.dim-text h3{margin-top:clamp(16px,1.8vw,24px);font-size:var(--t-h2);letter-spacing:-.035em;line-height:1.1;}
+.dim-text p{margin-top:clamp(16px,1.8vw,22px);font-size:var(--t-lead);line-height:1.55;color:var(--muted);max-width:34ch;}
+.dim-text .tags{
+  margin-top:clamp(20px,2.4vw,30px);
+  font-size:var(--t-meta);letter-spacing:.02em;color:var(--ink);line-height:1.7;max-width:none;
 }
-.pillar h3{margin-top:clamp(14px,1.6vw,20px);text-transform:uppercase;letter-spacing:.06em;font-size:var(--t-h3);}
-.pillar p{margin-top:14px;color:var(--muted);font-size:var(--t-body);line-height:1.6;max-width:30ch;}
-.pillar .tags{
-  margin-top:auto;padding-top:clamp(18px,2vw,26px);
-  font-size:var(--t-meta);letter-spacing:.02em;color:var(--ink);
-  max-width:none;
+.dim--solo .dim-text{text-align:center;}
+.dim--solo .dim-text p{margin-inline:auto;}
+.dim--solo .dim-text h3{margin-inline:auto;}
+@media (max-width:899px){
+  /* Handy: das Bild nach dem Text, der Text bleibt links */
+  .dim-media{order:2;}
+  .dim-media--tall img{aspect-ratio:4/3;}
 }
-/* Handy und Tablet: die Stichworte stehen immer auf einer Zeile (Michi,
-   28.09.). Die laengste Zeile („Men's Work · Sharing · Gruppenprozesse ·
-   Zeremonie“) braucht rund 24 × Schriftgroesse — ab 360 px Breite passt sie
-   in 13 px, darunter wird die Schrift gerade so weit kleiner, dass sie
-   noch in eine Zeile passt. Nur am Desktop mit fuenf schmalen Spalten
-   duerfen sie umbrechen. */
-@media (max-width:1099px){
-  .pillar .tags{white-space:nowrap;font-size:min(13px, calc((100vw - 44px) / 24));}
+@media (min-width:900px){
+  .dim{grid-template-columns:5fr 6fr;column-gap:clamp(48px,7vw,120px);align-items:center;}
+  .dim-media{grid-column:1;}
+  .dim-text{grid-column:2;}
+  .dim:nth-child(even) .dim-media{grid-column:2;}
+  .dim:nth-child(even) .dim-text{grid-column:1;grid-row:1;}
+  .dim-media--tall{max-width:440px;}
+  .dim:nth-child(even) .dim-media--tall{justify-self:end;}
+  .dim--solo{grid-template-columns:1fr;padding-block:clamp(60px,7vw,110px);}
+  .dim--solo .dim-text{grid-column:1;max-width:40ch;margin-inline:auto;}
 }
 
-/* ─── 10 · Bilder — Fotostrecke über die volle Breite ──────────────────── */
-/* Vier Hochkant-Bilder (B4) nebeneinander ueber die volle Breite, je 4:5.
-   Auf schmalen Schirmen laeuft die Reihe waagerecht zum Wischen — Bilder in
-   Handybreite untereinander waeren vier Bildschirme Scrollen. */
+/* ─── 10 · Bilder — Fotostrecke als Magazinseite ───────────────────────── */
+/* V2 (Alexander): ein grosses Key Image (Kochen) und zwei kleinere statt
+   vier gleicher Kacheln. Desktop: Kochen links ueber zwei Reihen, rechts
+   zwei Hochkantbilder uebereinander. Handy: Kochen volle Breite, die
+   beiden kleinen darunter nebeneinander. */
 .strip{padding-block:0 var(--sec);}
-.strip-row{
-  display:grid;gap:clamp(6px,.8vw,12px);
-  grid-template-columns:repeat(4,1fr);
+.strip-mag{
+  display:grid;gap:clamp(8px,1vw,14px);
+  grid-template-columns:1fr 1fr;
 }
-.strip-row figure{margin:0;}
-.strip-row img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;}
-@media (max-width:760px){
-  .strip-row{
-    display:flex;overflow-x:auto;scroll-snap-type:x mandatory;
-    -webkit-overflow-scrolling:touch;scrollbar-width:none;
-  }
-  .strip-row::-webkit-scrollbar{display:none;}
-  .strip-row figure{flex:0 0 72vw;scroll-snap-align:start;}
+.strip-mag figure{margin:0;}
+.strip-mag img{display:block;width:100%;height:100%;object-fit:cover;}
+.sm-key{grid-column:1 / -1;}
+.sm-key img{aspect-ratio:3/2;}
+.sm-a img,.sm-b img{aspect-ratio:4/5;}
+@media (min-width:900px){
+  .strip-mag{grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;}
+  .sm-key{grid-column:1;grid-row:1 / span 2;}
+  .sm-key img{aspect-ratio:auto;}
+  .sm-a{grid-column:2;grid-row:1;}
+  .sm-b{grid-column:2;grid-row:2;}
+  .sm-a,.sm-b{position:relative;}
+  .sm-a img,.sm-b img{position:absolute;inset:0;aspect-ratio:auto;}
 }
 .strip-line{
   margin:clamp(50px,6vw,90px) auto 0;
@@ -467,7 +498,7 @@ section{padding-block:var(--sec);}
   max-width:20ch;
 }
 
-/* ─── 11 · Die vier Tage — waagerechte Zeitleiste ──────────────────────── */
+/* ─── 11 · Ablauf — die vier Tage als waagerechte Zeitleiste ───────────── */
 .days-line{
   margin-top:clamp(50px,7vw,100px);
   display:grid;gap:clamp(30px,4vw,56px) clamp(24px,3vw,48px);
@@ -475,7 +506,7 @@ section{padding-block:var(--sec);}
 }
 @media (min-width:760px){.days-line{grid-template-columns:repeat(2,1fr);}}
 @media (min-width:1100px){.days-line{grid-template-columns:repeat(4,1fr);}}
-.day{position:relative;padding-top:clamp(22px,2.4vw,32px);border-top:1px solid var(--line);}
+.day{position:relative;padding-top:clamp(22px,2.4vw,32px);border-top:1px solid var(--line);display:flex;flex-direction:column;}
 /* Ein Punkt auf der Linie, in Gold — die einzige Markierung der Leiste. */
 .day::before{
   content:"";position:absolute;left:0;top:-4px;
@@ -485,8 +516,17 @@ section{padding-block:var(--sec);}
   display:block;font-size:var(--t-num);font-weight:500;
   line-height:1;letter-spacing:-.035em;color:var(--gold);
 }
-.day h3{margin-top:clamp(16px,1.8vw,24px);}
+/* V2: Wochentag und Zeit klein ueber der Ueberschrift, die konkreten
+   Beispiele des Tages als Stichwortzeile darunter. */
+.day-when{margin-top:clamp(14px,1.6vw,20px);font-size:var(--t-eyebrow);font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);}
+.day h3{margin-top:clamp(10px,1.2vw,16px);}
 .day p{margin-top:12px;color:var(--muted);line-height:1.6;max-width:30ch;}
+.day .tags{margin-top:auto;padding-top:clamp(18px,2vw,26px);font-size:var(--t-meta);letter-spacing:.02em;color:var(--ink);line-height:1.7;max-width:none;}
+.days-note{
+  margin-top:clamp(44px,5vw,72px);
+  font-size:var(--t-lead);line-height:1.5;letter-spacing:-.01em;max-width:34ch;
+}
+.days-note::before{content:"";display:block;width:44px;height:1px;background:var(--gold);margin-bottom:clamp(18px,2vw,26px);}
 
 /* ─── 12 · Was bleibt — sechs Erfahrungsräume im Kreis ─────────────────── */
 /* Dunkles Kapitel nach Michis Vorlage (28.09.): ein Goldring mit sechs
@@ -513,34 +553,34 @@ section{padding-block:var(--sec);}
 .room h3{font-size:clamp(22px,2vw,30px);letter-spacing:-.03em;line-height:1.15;color:var(--paper);}
 .room p{margin-top:10px;color:var(--paper-66);line-height:1.55;max-width:30ch;}
 
-/* Ab 900 px der Kreis: drei Spalten (Raeume links · Ring · Raeume rechts),
-   der Ring ueber zwei Zeilen, deren Mitten auf Hoehe der Seitenpunkte
-   liegen (25 % und 75 % des Rings). Oben und unten je ein Raum. */
+/* Ab 900 px der Kreis: drei Spalten (Raum links · Ring · Raum rechts),
+   oben und unten je ein Raum. V2: vier Raeume, die Punkte oben, rechts,
+   unten, links — die seitlichen Raeume sitzen auf Ringmitte. */
 @media (min-width:900px){
   .orbit{
     --D:clamp(300px,33vw,450px);
     padding-left:0;
     display:grid;
     grid-template-columns:1fr var(--D) 1fr;
-    grid-template-rows:auto calc(var(--D) / 2) calc(var(--D) / 2) auto;
+    grid-template-rows:auto var(--D) auto;
     column-gap:clamp(8px,1.4vw,22px);
     row-gap:clamp(18px,2vw,30px);
     max-width:1180px;margin-inline:auto;
   }
   .orbit::before,.room::before{display:none;}
   .room{padding:0;}
-  .orbit-ring{display:block;position:relative;grid-column:2;grid-row:2 / 4;}
+  .orbit-ring{display:block;position:relative;grid-column:2;grid-row:2;}
   .orbit-ring svg{display:block;width:100%;height:100%;overflow:visible;}
   .room--n,.room--s{grid-column:1 / -1;justify-self:center;text-align:center;}
   .room--n{grid-row:1;align-self:end;}
-  .room--s{grid-row:4;align-self:start;}
+  .room--s{grid-row:3;align-self:start;}
   .room--n p,.room--s p{margin-inline:auto;max-width:28ch;}
-  .room--nw,.room--sw{grid-column:1;justify-self:end;text-align:right;}
-  .room--ne,.room--se{grid-column:3;justify-self:start;}
-  .room--nw,.room--ne{grid-row:2;align-self:center;}
-  .room--sw,.room--se{grid-row:3;align-self:center;}
-  .room--nw p,.room--sw p{margin-left:auto;}
+  .room--w{grid-column:1;grid-row:2;justify-self:end;align-self:center;text-align:right;}
+  .room--e{grid-column:3;grid-row:2;justify-self:start;align-self:center;}
+  .room--w p{margin-left:auto;}
   .room p{max-width:24ch;}
+  .room--w h3,.room--e h3{max-width:12ch;}
+  .room--w h3{margin-left:auto;}
 }
 .ring{fill:none;stroke:rgba(224,192,122,.6);stroke-width:1px;vector-effect:non-scaling-stroke;}
 .ring-in{fill:none;stroke:rgba(249,248,246,.1);stroke-width:1px;vector-effect:non-scaling-stroke;}
@@ -629,12 +669,13 @@ section{padding-block:var(--sec);}
   display:grid;gap:clamp(40px,5vw,72px);
 }
 @media (min-width:760px){.bios{grid-template-columns:1fr 1fr;column-gap:clamp(40px,6vw,100px);}}
-/* Name und Bio unter einer Haarlinie; neben dem Namen ein kleines rundes
-   Kopf-Icon (Michi, 28.09.) statt eines grossen Einzelbilds. */
+/* V2 (Alexander, 30.09.): Einzelportraets 4:5 ueber Name und Bio. */
 .bio{border-top:1px solid var(--line);padding-top:clamp(20px,2.2vw,30px);}
-.bio h3{color:var(--gold);display:flex;align-items:center;gap:16px;}
-.bio-icon{width:56px;height:56px;border-radius:50%;object-fit:cover;flex:none;background:var(--field);}
-.bio p{margin-top:14px;color:var(--muted);max-width:40ch;}
+.bio-media{margin:0 0 clamp(22px,2.6vw,34px);max-width:360px;}
+.bio-media img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;background:var(--field);}
+.bio h3{color:var(--gold);}
+.bio p{margin-top:14px;color:var(--muted);max-width:40ch;line-height:1.6;}
+.bio p:first-of-type{margin-top:clamp(14px,1.6vw,20px);color:var(--ink);}
 .us-quote{
   margin-top:clamp(60px,7vw,110px);padding-top:clamp(26px,3vw,40px);
   border-top:1px solid var(--line);
@@ -705,6 +746,7 @@ section{padding-block:var(--sec);}
 }
 .facts dt{font-size:var(--t-eyebrow);font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);padding-top:.35em;}
 .facts dd{font-size:var(--t-lead);line-height:1.4;letter-spacing:-.01em;}
+.facts dd .meta{display:block;margin-top:4px;}
 
 /* ─── 16 · Für wen — Fit gegen Anti-Fit ────────────────────────────────── */
 .fit-lead{margin-top:clamp(22px,2.4vw,32px);font-size:var(--t-h3);letter-spacing:-.02em;line-height:1.35;color:var(--muted);max-width:30ch;}
@@ -741,6 +783,15 @@ section{padding-block:var(--sec);}
 .fit--no .ico{stroke:var(--muted);}
 .fit-cta{margin-top:clamp(40px,4.5vw,64px);}
 
+/* ─── 16b · Das Kennenlerngespräch (neu in V2) ─────────────────────────── */
+.select .lead{color:var(--ink);}
+.select-p{margin-top:clamp(18px,2vw,26px);color:var(--muted);line-height:1.6;max-width:52ch;}
+.select-core{
+  margin-top:clamp(30px,3.4vw,44px);padding-top:clamp(20px,2.2vw,28px);
+  border-top:1px solid var(--gold);
+  font-size:var(--t-h3);letter-spacing:-.02em;line-height:1.35;max-width:30ch;
+}
+
 /* ─── 17 · Fragen — Accordion ohne Schmuck ─────────────────────────────── */
 .faq .wrap{max-width:960px;}
 .faq-list{margin-top:clamp(44px,5vw,72px);border-top:1px solid var(--line);}
@@ -762,6 +813,10 @@ section{padding-block:var(--sec);}
 }
 .faq-list details[open] summary::after{transform:rotate(45deg);}
 .faq-list details > p{padding-bottom:clamp(18px,2vw,26px);color:var(--muted);max-width:56ch;}
+/* V2: mehrere Absaetze je Antwort */
+.faq-a{padding-bottom:clamp(22px,2.4vw,32px);}
+.faq-a p{color:var(--muted);max-width:56ch;line-height:1.6;}
+.faq-a p+p{margin-top:.9em;}
 
 /* ─── 18 · Final — dunkel, ein Bild, ein Satz ──────────────────────────── */
 .final{
@@ -789,9 +844,11 @@ section{padding-block:var(--sec);}
 .final .two{margin-top:clamp(34px,4vw,56px);font-size:var(--t-h2);font-weight:500;letter-spacing:-.03em;line-height:1.15;}
 .final .two span{display:block;}
 .final .btn{margin-top:clamp(40px,4.6vw,64px);}
+/* V2: Mikrotext direkt unter dem Button */
+.final .micro{margin-top:16px;font-size:var(--t-meta);letter-spacing:.02em;color:var(--paper-66);}
 .final .next{
   margin-top:clamp(30px,3.4vw,48px);
-  font-size:var(--t-eyebrow);font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--paper-66);
+  font-size:var(--t-eyebrow);font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--paper-66);max-width:none;
 }
 
 /* ─── 19 · Fußzeile ────────────────────────────────────────────────────── */
@@ -812,7 +869,7 @@ section{padding-block:var(--sec);}
 }
 .form-aside .eyebrow + .facts{margin-top:18px;}
 .form-aside .next{margin-top:clamp(36px,4vw,56px);}
-.form-aside .next p{margin-top:14px;color:var(--muted);max-width:36ch;}
+.form-aside .next p{margin-top:14px;color:var(--muted);max-width:36ch;line-height:1.6;}
 .field{margin-bottom:clamp(28px,3vw,40px);}
 .field label{
   display:block;font-size:var(--t-eyebrow);font-weight:500;
