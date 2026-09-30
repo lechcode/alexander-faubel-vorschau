@@ -659,8 +659,8 @@ section{padding-block:var(--sec);}
 .voice .said{margin-top:8px;font-size:var(--t-body);line-height:1.5;letter-spacing:-.01em;max-width:26ch;}
 
 /* ─── 14 · Alexander & Dorje ───────────────────────────────────────────── */
-.us-media{margin-top:clamp(44px,5vw,76px);}
-.us-media .ph{aspect-ratio:21/9;max-height:360px;}
+.us-media{margin:clamp(44px,5vw,76px) 0 0;}
+.us-media img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;}
 .us-intro{margin-top:clamp(44px,5vw,76px);}
 .us-intro p{font-size:var(--t-lead);line-height:1.6;max-width:48ch;}
 .us-intro p+p{margin-top:clamp(18px,2vw,28px);color:var(--muted);}
