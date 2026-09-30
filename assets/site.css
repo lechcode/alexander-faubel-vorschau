@@ -412,17 +412,9 @@ section{padding-block:var(--sec);}
 }
 .pull span{display:block;}
 .pull span+span{color:var(--paper-66);margin-top:.35em;}
-/* Darunter nur noch das Gruppenbild vor der Jurte (B3-2, 16:9, ungeschnitten)
-   ueber die Inhaltsbreite; die Maenner im Gras sind seit 28.09. raus. */
-.work-photos{margin-top:clamp(28px,3vw,48px);}
-.work-photos figure{margin:0;}
-.work-photos img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;}
-/* Desktop (Michi, 28.09.): kleiner — das Original hat nur 1200 px. Das Bild
-   steht in der rechten Spalte, buendig mit den Fragen darueber. */
-@media (min-width:900px){
-  .work-photos{display:grid;grid-template-columns:5fr 6fr;column-gap:clamp(40px,6vw,110px);}
-  .work-photos figure{grid-column:2;}
-}
+/* Unter der Buehne steht seit 30.09. kein Bild mehr — die Buehne schliesst
+   das Kapitel ab. */
+.work{padding-bottom:0;}
 
 /* ─── 9 · Die Erfahrung — fünf Dimensionen, editorial ─────────────────── */
 /* V2 (Alexander): keine Kartenoptik. Jede Dimension ist eine Zeile
@@ -469,27 +461,25 @@ section{padding-block:var(--sec);}
 
 /* ─── 10 · Bilder — Fotostrecke als Magazinseite ───────────────────────── */
 /* V2 (Alexander): ein grosses Key Image (Kochen) und zwei kleinere statt
-   vier gleicher Kacheln. Desktop: Kochen links ueber zwei Reihen, rechts
-   zwei Hochkantbilder uebereinander. Handy: Kochen volle Breite, die
-   beiden kleinen darunter nebeneinander. */
-.strip{padding-block:0 var(--sec);}
-.strip-mag{
-  display:grid;gap:clamp(8px,1vw,14px);
-  grid-template-columns:1fr 1fr;
-}
+   vier gleicher Kacheln. Seit 30.09. (Michi) ist das erste kleine Bild die
+   Gruppe vor der Jurte — ein 16:9, das ungeschnitten bleiben muss (acht
+   Maenner bis zum Rand). Desktop: Kochen links 4:3 ueber beide Reihen,
+   rechts oben die Gruppe in ihrem Format, darunter fuellen die Matten auf
+   der Wiese den Rest (rund 3:2). Handy: alles untereinander, die Matten
+   als 4:3. */
+.strip{padding-block:var(--sec);}
+.strip-mag{display:grid;gap:clamp(8px,1vw,14px);}
 .strip-mag figure{margin:0;}
-.strip-mag img{display:block;width:100%;height:100%;object-fit:cover;}
-.sm-key{grid-column:1 / -1;}
-.sm-key img{aspect-ratio:3/2;}
-.sm-a img,.sm-b img{aspect-ratio:4/5;}
+.strip-mag img{display:block;width:100%;height:auto;object-fit:cover;}
+.sm-key img{aspect-ratio:4/3;}
+.sm-a img{aspect-ratio:16/9;}
+.sm-b img{aspect-ratio:4/3;object-position:50% 60%;}
 @media (min-width:900px){
-  .strip-mag{grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;}
+  .strip-mag{grid-template-columns:62fr 38fr;grid-template-rows:auto 1fr;}
   .sm-key{grid-column:1;grid-row:1 / span 2;}
-  .sm-key img{aspect-ratio:auto;}
   .sm-a{grid-column:2;grid-row:1;}
-  .sm-b{grid-column:2;grid-row:2;}
-  .sm-a,.sm-b{position:relative;}
-  .sm-a img,.sm-b img{position:absolute;inset:0;aspect-ratio:auto;}
+  .sm-b{grid-column:2;grid-row:2;position:relative;}
+  .sm-b img{position:absolute;inset:0;height:100%;aspect-ratio:auto;}
 }
 .strip-line{
   margin:clamp(50px,6vw,90px) auto 0;
@@ -661,6 +651,9 @@ section{padding-block:var(--sec);}
 /* ─── 14 · Alexander & Dorje ───────────────────────────────────────────── */
 .us-media{margin:clamp(44px,5vw,76px) 0 0;}
 .us-media img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;}
+/* Desktop (Michi, 30.09.): nicht ueber die ganze Breite — zwei Drittel,
+   linksbuendig wie der Text darunter. */
+@media (min-width:900px){.us-media{max-width:62%;}}
 .us-intro{margin-top:clamp(44px,5vw,76px);}
 .us-intro p{font-size:var(--t-lead);line-height:1.6;max-width:48ch;}
 .us-intro p+p{margin-top:clamp(18px,2vw,28px);color:var(--muted);}
@@ -669,11 +662,11 @@ section{padding-block:var(--sec);}
   display:grid;gap:clamp(40px,5vw,72px);
 }
 @media (min-width:760px){.bios{grid-template-columns:1fr 1fr;column-gap:clamp(40px,6vw,100px);}}
-/* V2 (Alexander, 30.09.): Einzelportraets 4:5 ueber Name und Bio. */
+/* Name mit kleinem rundem Kopf-Icon (Michi, 30.09. — wieder wie am 28.09.),
+   darunter die Bio. */
 .bio{border-top:1px solid var(--line);padding-top:clamp(20px,2.2vw,30px);}
-.bio-media{margin:0 0 clamp(22px,2.6vw,34px);max-width:360px;}
-.bio-media img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;background:var(--field);}
-.bio h3{color:var(--gold);}
+.bio h3{color:var(--gold);display:flex;align-items:center;gap:16px;}
+.bio-icon{width:56px;height:56px;border-radius:50%;object-fit:cover;flex:none;background:var(--field);}
 .bio p{margin-top:14px;color:var(--muted);max-width:40ch;line-height:1.6;}
 .bio p:first-of-type{margin-top:clamp(14px,1.6vw,20px);color:var(--ink);}
 .us-quote{
