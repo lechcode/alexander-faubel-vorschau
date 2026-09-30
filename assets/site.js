@@ -17,6 +17,41 @@
     window.addEventListener('scroll', onScroll, { passive: true });
   }
 
+  /* 1b · Handy-Menue: Knopf auf/zu, schliesst bei Klick auf ein Ziel,
+     ausserhalb (Schleier = ::after der Kopfzeile) oder mit Esc. Das
+     hidden-Attribut haelt den Zustand fuer Screenreader, das CSS animiert. */
+  var menuBtn = document.querySelector('[data-menu-btn]');
+  var menu = document.querySelector('[data-menu]');
+  if (menuBtn && menu && head) {
+    var label = menuBtn.querySelector('[data-menu-label]');
+    var setMenu = function (offen) {
+      menuBtn.setAttribute('aria-expanded', offen ? 'true' : 'false');
+      if (label) label.textContent = offen ? 'Menü schließen' : 'Menü öffnen';
+      head.classList.toggle('menu-open', offen);
+      if (offen) {
+        menu.hidden = false;
+        requestAnimationFrame(function () { menu.classList.add('is-open'); });
+      } else {
+        menu.classList.remove('is-open');
+        setTimeout(function () { if (!menu.classList.contains('is-open')) menu.hidden = true; }, 320);
+      }
+    };
+    menuBtn.addEventListener('click', function () {
+      setMenu(menuBtn.getAttribute('aria-expanded') !== 'true');
+    });
+    menu.addEventListener('click', function (e) {
+      if (e.target.closest('a')) setMenu(false);
+    });
+    document.addEventListener('click', function (e) {
+      if (menuBtn.getAttribute('aria-expanded') === 'true' && !e.target.closest('.head')) setMenu(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && menuBtn.getAttribute('aria-expanded') === 'true') { setMenu(false); menuBtn.focus(); }
+    });
+    /* Wird das Fenster breit, verschwindet das Menue ohnehin — Zustand zuruecksetzen */
+    window.matchMedia('(min-width:901px)').addEventListener('change', function (m) { if (m.matches) setMenu(false); });
+  }
+
   /* 2 · Fade-up beim Scrollen, gestaffelt um 70 ms, jedes Element genau einmal */
   var items = document.querySelectorAll('[data-reveal]');
   var alleZeigen = function () {

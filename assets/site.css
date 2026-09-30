@@ -221,6 +221,61 @@ section{padding-block:var(--sec);}
 .nav a.apply:hover{color:var(--ink);}
 @media (max-width:900px){.nav a:not(.apply){display:none;}}
 
+/* Handy-Menue (Michi, 30.09.): ein Knopf „Menü“ mit zwei Haarlinien rechts
+   in der Kopfzeile; darunter klappt eine Liste im Papierton auf, die Ziele
+   gross untereinander, „Interesse anmelden“ in Gold als letzter Punkt.
+   Schliesst bei Klick auf ein Ziel, ausserhalb oder mit Esc (site.js). */
+.menu-btn{display:none;}
+.menu{display:none;}
+@media (max-width:900px){
+  .head .wrap{gap:18px;}
+  /* Nur das Zeichen (zwei Linien, offen: Kreuz) — ein Wort daneben machte
+     die Kopfzeile auf 390 px zu breit. Das Label bleibt fuer Screenreader. */
+  .menu-btn{
+    display:inline-flex;align-items:center;justify-content:center;flex:none;
+    width:44px;height:44px;margin-right:-12px;
+    border:0;background:transparent;cursor:pointer;color:var(--ink);
+  }
+  .menu-btn span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+  .menu-btn i{
+    position:relative;width:20px;height:11px;display:block;
+  }
+  .menu-btn i::before,.menu-btn i::after{
+    content:"";position:absolute;left:0;right:0;height:1px;background:var(--ink);
+    transition:transform .32s var(--ease), top .32s var(--ease);
+  }
+  .menu-btn i::before{top:0;}
+  .menu-btn i::after{top:10px;}
+  .menu-btn[aria-expanded="true"] i::before{top:5px;transform:rotate(45deg);}
+  .menu-btn[aria-expanded="true"] i::after{top:5px;transform:rotate(-45deg);}
+  .menu{
+    display:block;
+    position:fixed;left:0;right:0;top:var(--head);z-index:99;
+    background:var(--paper);border-bottom:1px solid var(--line);
+    padding-block:6px 26px;
+    opacity:0;transform:translateY(-8px);pointer-events:none;
+    transition:opacity .28s var(--ease), transform .32s var(--ease);
+  }
+  .menu[hidden]{display:block;}          /* hidden steuert nur den Zustand, die Animation macht das CSS */
+  .menu.is-open{opacity:1;transform:none;pointer-events:auto;}
+  /* .head .wrap ist eine Zeile mit Mittelachse — hier wieder eine Spalte,
+     linksbuendig, ohne feste Hoehe */
+  .head .menu nav{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;height:auto;gap:0;}
+  .menu a{
+    display:block;padding-block:16px;
+    border-top:1px solid var(--line);
+    font-size:clamp(20px,5.6vw,26px);font-weight:500;letter-spacing:-.025em;line-height:1.2;
+  }
+  .menu a:first-child{border-top:0;}
+  .menu a.apply{color:var(--gold);}
+  /* Schleier ueber dem Rest der Seite, solange das Menue offen ist */
+  .head.menu-open::after{
+    content:"";position:fixed;inset:var(--head) 0 0 0;z-index:98;
+    background:rgba(17,28,25,.28);
+  }
+  .head.menu-open{border-bottom-color:var(--line);}
+}
+
 /* ─── 5 · Hero — typografisch, darunter ein einziges Bild ──────────────── */
 .hero{
   min-height:100svh;
@@ -649,14 +704,18 @@ section{padding-block:var(--sec);}
 .voice .said{margin-top:8px;font-size:var(--t-body);line-height:1.5;letter-spacing:-.01em;max-width:26ch;}
 
 /* ─── 14 · Alexander & Dorje ───────────────────────────────────────────── */
-.us-media{margin:clamp(44px,5vw,76px) 0 0;}
+/* Bild und Einstiegstext: Handy untereinander, ab 900 px nebeneinander —
+   das Bild links (rund 56 %), der Text rechts auf Hoehe der Bildmitte
+   (Michi, 30.09.). */
+.us-top{margin-top:clamp(44px,5vw,76px);display:grid;gap:clamp(36px,4.5vw,64px);}
+.us-media{margin:0;}
 .us-media img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;}
-/* Desktop (Michi, 30.09.): nicht ueber die ganze Breite — zwei Drittel,
-   linksbuendig wie der Text darunter. */
-@media (min-width:900px){.us-media{max-width:62%;}}
-.us-intro{margin-top:clamp(44px,5vw,76px);}
 .us-intro p{font-size:var(--t-lead);line-height:1.6;max-width:48ch;}
 .us-intro p+p{margin-top:clamp(18px,2vw,28px);color:var(--muted);}
+@media (min-width:900px){
+  .us-top{grid-template-columns:56fr 44fr;column-gap:clamp(40px,6vw,100px);align-items:center;}
+  .us-intro p{max-width:40ch;}
+}
 .bios{
   margin-top:clamp(50px,6vw,90px);
   display:grid;gap:clamp(40px,5vw,72px);

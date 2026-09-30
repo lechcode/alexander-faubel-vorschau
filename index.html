@@ -22,7 +22,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111C19'/%3E%3Crect x='9' y='15' width='14' height='1.4' fill='%23DDCEB9'/%3E%3C/svg%3E">
 <link rel="preload" href="assets/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts.css?v=11">
-<link rel="stylesheet" href="assets/site.css?v=38">
+<link rel="stylesheet" href="assets/site.css?v=41">
 </head>
 <body>
 
@@ -40,6 +40,19 @@
   <div class="wrap">
     <a class="mark" href="index.html">Leading Legends</a>
     <nav class="nav" aria-label="Hauptnavigation">
+      <a href="#erfahrung">Die Erfahrung</a>
+      <a href="#ablauf">Ablauf</a>
+      <a href="#ueber-uns">Über uns</a>
+      <a href="#faq">FAQ</a>
+      <a class="apply" href="interesse.html">Interesse anmelden</a>
+    </nav>
+    <!-- Handy/Tablet (Michi, 30.09.): ein schlankes Menue — Knopf rechts,
+         darunter klappt eine Liste mit denselben Zielen auf. Ab 900 px
+         unsichtbar, dort stehen die Links in der Kopfzeile. -->
+    <button type="button" class="menu-btn" aria-expanded="false" aria-controls="menu" data-menu-btn><span data-menu-label>Menü öffnen</span><i aria-hidden="true"></i></button>
+  </div>
+  <div class="menu" id="menu" data-menu hidden>
+    <nav class="wrap" aria-label="Seitenmenü">
       <a href="#erfahrung">Die Erfahrung</a>
       <a href="#ablauf">Ablauf</a>
       <a href="#ueber-uns">Über uns</a>
@@ -462,17 +475,19 @@
       <span class="eyebrow" data-reveal>Alexander &amp; Dorje</span>
       <h2 class="mask" data-reveal><span>Nicht vor euch. Mit euch.</span></h2>
 
-      <!-- Das gemeinsame Bild (D&A.png, seit 30.09.) im Farblook, 3:2 —
-           am Desktop nicht ueber die ganze Breite, sondern zwei Drittel (Michi). -->
-      <figure class="us-media" data-reveal>
-        <img src="assets/img/wir-1400.jpg?v=3" srcset="assets/img/wir-900.jpg?v=3 900w, assets/img/wir-1400.jpg?v=3 1400w"
-             sizes="(min-width:1320px) 760px, (min-width:900px) 62vw, 92vw" width="1400" height="933" loading="lazy"
-             alt="Dorje und Alexander stehen mit erhobenen Fäusten dicht nebeneinander auf einer sonnigen Wiese und lachen in die Kamera.">
-      </figure>
-
-      <div class="us-intro">
-        <p data-reveal>Wir verstehen uns nicht als Männer, die anderen Männern erklären, wie sie leben sollten. Unsere Aufgabe ist es, den Rahmen zu halten, Orientierung zu geben und selbst präsent zu sein – für das, was in diesen vier Tagen entsteht.</p>
-        <p data-reveal>Unsere Aufgabe ist nicht, Antworten für dich zu haben. Unsere Aufgabe ist es, einen Rahmen zu schaffen, in dem ehrliche Erfahrung möglich wird.</p>
+      <!-- Das gemeinsame Bild (D&A.png, seit 30.09.) im Farblook, 3:2. Am
+           Desktop steht der Einstiegstext rechts daneben (Michi, 30.09.),
+           auf dem Handy darunter. -->
+      <div class="us-top">
+        <figure class="us-media" data-reveal>
+          <img src="assets/img/wir-1400.jpg?v=3" srcset="assets/img/wir-900.jpg?v=3 900w, assets/img/wir-1400.jpg?v=3 1400w"
+               sizes="(min-width:1320px) 700px, (min-width:900px) 56vw, 92vw" width="1400" height="933" loading="lazy"
+               alt="Dorje und Alexander stehen mit erhobenen Fäusten dicht nebeneinander auf einer sonnigen Wiese und lachen in die Kamera.">
+        </figure>
+        <div class="us-intro">
+          <p data-reveal>Wir verstehen uns nicht als Männer, die anderen Männern erklären, wie sie leben sollten. Unsere Aufgabe ist es, den Rahmen zu halten, Orientierung zu geben und selbst präsent zu sein – für das, was in diesen vier Tagen entsteht.</p>
+          <p data-reveal>Unsere Aufgabe ist nicht, Antworten für dich zu haben. Unsere Aufgabe ist es, einen Rahmen zu schaffen, in dem ehrliche Erfahrung möglich wird.</p>
+        </div>
       </div>
 
       <div class="bios">
@@ -742,7 +757,7 @@
 
 <footer class="foot">
   <div class="wrap">
-    <p>Leading Legends — Alexander Faubel &amp; Dorje</p>
+    <p>Leading Legends — Alexander Faubel &amp; Dorje Wulf</p>
     <nav aria-label="Rechtliches">
       <a href="impressum.html">Impressum</a>
       <a href="datenschutz.html">Datenschutz</a>
@@ -750,6 +765,6 @@
   </div>
 </footer>
 
-<script src="assets/site.js?v=25" defer></script>
+<script src="assets/site.js?v=27" defer></script>
 </body>
 </html>
