@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>document.documentElement.classList.add("js")</script>
 <title>Interesse anmelden — Leading Legends</title>
-<meta name="description" content="Interesse am Leading-Legends-Retreat anmelden. Unverbindlich — Alexander und Dorje melden sich persönlich.">
+<meta name="description" content="Interesse am Leading-Legends-Retreat anmelden. Unverbindlich — im persönlichen Kennenlerngespräch klären wir alles Weitere.">
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#F9F8F6">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111C19'/%3E%3Crect x='9' y='15' width='14' height='1.4' fill='%23DDCEB9'/%3E%3C/svg%3E">
 <link rel="preload" href="assets/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts.css?v=11">
-<link rel="stylesheet" href="assets/site.css?v=44">
+<link rel="stylesheet" href="assets/site.css?v=45">
 </head>
 <body>
 
@@ -40,71 +40,39 @@
   </div>
 </header>
 
+<!-- Seit 30.09. (Michi): kein Formular mehr. Das Interesse wird ueber einen
+     Calendly-Link von Alexander angemeldet (Kennenlerngespraech buchen).
+     Bis der Link da ist, steht hier ein Platzhalter-Knopf. Sobald er da ist:
+     href hier eintragen — und klaeren, ob die „Interesse anmelden“-Knoepfe
+     auf index.html direkt auf Calendly zeigen sollen. -->
 <main id="main" class="legal">
   <div class="wrap">
 
     <span class="eyebrow" data-reveal>Interesse anmelden</span>
     <h1 data-reveal style="margin-top:24px;max-width:17ch;font-size:var(--t-h2)">Ein erstes Signal. Mehr nicht.</h1>
-    <p class="lead" data-reveal style="margin-top:28px">Du meldest damit nur dein Interesse an — unverbindlich. Wie es danach weitergeht, klären wir persönlich mit dir.</p>
+    <p class="lead" data-reveal style="margin-top:28px">Mit „Interesse anmelden“ buchst du noch keinen Platz und gehst keine Verpflichtung ein. Du wählst einen Termin für ein persönliches Kennenlerngespräch – alles Weitere klären wir dort.</p>
 
     <div class="form-grid">
-    <form class="form" data-apply data-reveal>
-      <!-- Spamschutz: für Menschen unsichtbar, kein CAPTCHA. -->
-      <div class="hp" aria-hidden="true">
-        <label for="website">Website</label>
-        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+      <div data-reveal>
+        <p style="margin-top:clamp(36px,4vw,56px)"><a class="btn" href="#" aria-disabled="true">Kennenlerngespräch buchen</a></p>
+        <p class="meta" style="margin-top:14px"><span class="klaeren">[Calendly-Link von Alexander folgt]</span></p>
+
+        <div style="margin-top:clamp(44px,5vw,72px)">
+          <span class="eyebrow">Was danach passiert</span>
+          <p style="margin-top:14px;color:var(--muted);max-width:44ch">Du kannst im Gespräch alle offenen Fragen stellen und wir finden gemeinsam heraus, ob Leading Legends für dich und die jeweilige Gruppe passt.</p>
+          <p style="margin-top:14px;color:var(--muted);max-width:44ch">Wenn es für beide Seiten stimmig ist, erhältst du anschließend alle Informationen zur verbindlichen Teilnahme.</p>
+        </div>
       </div>
 
-      <div class="field">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="Name" required autocomplete="name">
-      </div>
-
-      <div class="field">
-        <label for="email">E-Mail</label>
-        <input type="email" id="email" name="E-Mail" required autocomplete="email">
-      </div>
-
-      <div class="field">
-        <label for="tel">Telefon — optional</label>
-        <input type="tel" id="tel" name="Telefon" autocomplete="tel">
-      </div>
-
-      <div class="field">
-        <label for="thema">Was du uns mitgeben möchtest — optional</label>
-        <textarea id="thema" name="Was du uns mitgeben möchtest"></textarea>
-        <p class="hint">Ein paar Sätze reichen. Du musst nichts erklären.</p>
-      </div>
-
-      <div class="consent">
-        <input type="checkbox" id="ok" name="Einverständnis" required>
-        <label for="ok">Ich bin damit einverstanden, dass meine Angaben zur Beantwortung meiner Anfrage gespeichert und verwendet werden. Widerruf jederzeit per E-Mail.</label>
-      </div>
-
-      <button type="submit" class="btn">Interesse anmelden</button>
-
-      <p class="form-msg" id="form-msg" role="status" tabindex="-1" hidden></p>
-
-      <p class="form-note">Deine Angaben gehen ausschließlich an Alexander und Dorje und werden nur für die Beantwortung deiner Anfrage verwendet. Kein Newsletter, keine Weitergabe. Mehr dazu in der <a class="link" href="datenschutz.html">Datenschutzerklärung</a>.</p>
-    </form>
-
-    <!-- Neben dem Formular: die Eckdaten und der naechste Schritt — der
-         Ablauf ist Alexanders FAQ-Antwort „Wie laeuft die Anmeldung ab?“ (V2). -->
-    <aside class="form-aside" data-reveal>
-      <span class="eyebrow">Eckdaten</span>
-      <dl class="facts">
-        <div><dt>Datum</dt><dd>25.–28. Juni 2027</dd></div>
-        <div><dt>Ort</dt><dd>Niederlande, Nähe Utrecht</dd></div>
-        <div><dt>Gruppe</dt><dd>6–8 Männer</dd></div>
-        <div><dt>Investment</dt><dd>ab 3.000 € zzgl. MwSt.</dd></div>
-      </dl>
-      <div class="next">
-        <span class="eyebrow">Was danach passiert</span>
-        <p>Mit „Interesse anmelden“ buchst du noch keinen Platz und gehst keine Verpflichtung ein.</p>
-        <p>Im ersten Schritt schickst du uns einige kurze Informationen über dich und darüber, was dich zu Leading Legends bringt. Anschließend vereinbaren wir ein persönliches Kennenlerngespräch.</p>
-        <p>Wenn es für beide Seiten stimmig ist, erhältst du anschließend alle Informationen zur verbindlichen Teilnahme.</p>
-      </div>
-    </aside>
+      <aside class="form-aside" data-reveal>
+        <span class="eyebrow">Eckdaten</span>
+        <dl class="facts">
+          <div><dt>Datum</dt><dd>25.–28. Juni 2027</dd></div>
+          <div><dt>Ort</dt><dd>Niederlande, Nähe Utrecht</dd></div>
+          <div><dt>Gruppe</dt><dd>6–8 Männer</dd></div>
+          <div><dt>Investment</dt><dd>ab 3.000 € zzgl. MwSt.</dd></div>
+        </dl>
+      </aside>
     </div>
 
   </div>
@@ -120,6 +88,6 @@
   </div>
 </footer>
 
-<script src="assets/site.js?v=28" defer></script>
+<script src="assets/site.js?v=29" defer></script>
 </body>
 </html>
