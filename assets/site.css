@@ -329,20 +329,24 @@ section{padding-block:var(--sec);}
 }
 
 /* ─── 6 · Das Leben vieler Männer — extrem reduziert ───────────────────── */
-.life .wrap{max-width:900px;}
+/* Linksbuendig wie alle anderen Kapitel (Michi, 01.10.) — frueher war die
+   .wrap hier auf 900 px begrenzt und stand dadurch mittig eingerueckt. Die
+   Textbloecke haben ihre eigenen Maximalbreiten. */
 .life h2{max-width:20ch;}
 /* V2 (Alexander): der Dreiklang gross hervorgehoben, jedes Wort auf
    eigener Zeile — Desktop nebeneinander mit Goldpunkten dazwischen. */
 .life-key{
   margin-top:clamp(40px,5vw,72px);
-  font-size:var(--t-big);font-weight:500;letter-spacing:-.03em;line-height:1.15;
+  font-size:clamp(26px,2.85vw,40px);   /* Desktop: alle drei auf einer Zeile */
+  font-weight:500;letter-spacing:-.03em;line-height:1.15;
   max-width:none;
 }
 .life-key span{display:block;}
-@media (min-width:760px){
+@media (min-width:900px){
   .life-key span{display:inline;white-space:nowrap;}
-  /* Der Punkt haengt am folgenden Wort, damit er nie allein am Zeilenende steht */
-  .life-key span + span::before{content:"·";color:var(--gold);margin-inline:.35em;}
+  /* Der Punkt haengt am vorangehenden Wort (im nowrap-Bereich) — bricht die
+     Zeile um, bleibt er am Zeilenende stehen statt eine neue Zeile zu beginnen. */
+  .life-key span:not(:last-child)::after{content:"·";color:var(--gold);margin-inline:.35em;}
 }
 .life-lines{margin-top:clamp(30px,3.6vw,52px);max-width:560px;}
 .life-lines p{
