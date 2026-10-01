@@ -343,10 +343,9 @@ section{padding-block:var(--sec);}
 }
 .life-key span{display:block;}
 @media (min-width:900px){
+  /* Ohne Trennpunkte (Michi, 01.10.) — nur etwas mehr Luft zwischen den Saetzen */
   .life-key span{display:inline;white-space:nowrap;}
-  /* Der Punkt haengt am vorangehenden Wort (im nowrap-Bereich) — bricht die
-     Zeile um, bleibt er am Zeilenende stehen statt eine neue Zeile zu beginnen. */
-  .life-key span:not(:last-child)::after{content:"·";color:var(--gold);margin-inline:.35em;}
+  .life-key span:not(:last-child){margin-right:.45em;}
 }
 .life-lines{margin-top:clamp(30px,3.6vw,52px);max-width:560px;}
 .life-lines p{
@@ -539,6 +538,7 @@ section{padding-block:var(--sec);}
    als 4:3. */
 .strip{padding-block:var(--sec);}
 .strip-mag{display:grid;gap:clamp(8px,1vw,14px);}
+.strip .eyebrow + .strip-mag{margin-top:clamp(22px,2.6vw,34px);}   /* kleine Ueberschrift „Weitere Einblicke“ (Michi, 01.10.) */
 .strip-mag figure{margin:0;}
 .strip-mag img{display:block;width:100%;height:auto;object-fit:cover;}
 .sm-key img{aspect-ratio:4/3;}
