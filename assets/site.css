@@ -538,7 +538,10 @@ section{padding-block:var(--sec);}
    als 4:3. */
 .strip{padding-block:var(--sec);}
 .strip-mag{display:grid;gap:clamp(8px,1vw,14px);}
-.strip .eyebrow + .strip-mag{margin-top:clamp(22px,2.6vw,34px);}   /* kleine Ueberschrift „Weitere Einblicke“ (Michi, 01.10.) */
+/* Ueberschrift „Weitere Einblicke“ (Michi, 01.10.): gross und schwarz wie der Satz
+   unter den Bildern, aber linksbuendig */
+.strip-head{font-size:var(--t-h2);letter-spacing:-.035em;line-height:1.1;}
+.strip-head + .strip-mag{margin-top:clamp(32px,4vw,56px);}
 .strip-mag figure{margin:0;}
 .strip-mag img{display:block;width:100%;height:auto;object-fit:cover;}
 .sm-key img{aspect-ratio:4/3;}
