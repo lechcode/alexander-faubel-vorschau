@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<!--
+  ╔══════════════════════════════════════════════════════════════════╗
+  ║  LECHCODE — Onboarding-Fragebogen (Kunden-Template)               ║
+  ║  Zeigt genau die Fragen, die bei diesem Kunden noch offen sind    ║
+  ║  (GET /onboarding, gepflegt via lc-onboarding-publish.sh).        ║
+  ║  Antworten → onboarding-answers-Job → Runner hakt die Gates ab.   ║
+  ║  Zugang: onboarding.html#k=<token> — selbst-tragend, cookiefrei.  ║
+  ╚══════════════════════════════════════════════════════════════════╝
+-->
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Kurz noch deine Angaben · Lechcode</title>
+  <meta name="theme-color" content="#16130c" />
+  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA2NCA2NCc+PHJlY3Qgd2lkdGg9JzY0JyBoZWlnaHQ9JzY0JyByeD0nMTUnIGZpbGw9JyMxZjFiMTInLz48Y2lyY2xlIGN4PSczMicgY3k9JzMyJyByPScyMi41JyBmaWxsPSdub25lJyBzdHJva2U9JyNlN2I5NjQnIHN0cm9rZS13aWR0aD0nMy40Jy8+PHBhdGggZD0nTTE1IDM2IEMgMjIgMjgsIDI5IDI4LCAzMyAzNCBDIDM3IDQwLCA0NCA0MCwgNTAgMzEnIGZpbGw9J25vbmUnIHN0cm9rZT0nI2U3Yjk2NCcgc3Ryb2tlLXdpZHRoPSc0LjInIHN0cm9rZS1saW5lY2FwPSdyb3VuZCcgc3Ryb2tlLWxpbmVqb2luPSdyb3VuZCcvPjxjaXJjbGUgY3g9JzQ0JyBjeT0nMTguNScgcj0nMy40JyBmaWxsPScjZTg5MjNmJy8+PC9zdmc+" />
+  <style>
+  :root{
+    /* Helles Theme in Homepage-Beige (lechcode.de --cream #f7efe0) */
+    --night:#f7efe0; --night-2:#fffaf0; --panel:#fbf3e3;
+    --bone:#2a2218; --bone-dim:#544a38; --muted:#786c52;
+    --amber:#e8923f; --ember:#d97a2b; --gold:#b77e28; --gruen:#7aa259;
+    --line:rgba(74,58,34,.18);
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,monospace;
+    --radius:16px; --radius-lg:22px; --pill:999px;
+    --focus:0 0 0 3px rgba(232,146,63,.45);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--night);color:var(--bone);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100dvh;}
+  h1,h2,h3{line-height:1.2;letter-spacing:-.02em;color:#241d12;text-wrap:balance;}
+  a{color:var(--ember);text-decoration:underline;text-underline-offset:3px;}
+  .wrap{width:min(680px,94vw);margin-inline:auto;}
+  .kopfzeile{border-bottom:1px solid var(--line);background:rgba(247,239,224,.85);backdrop-filter:blur(10px);position:sticky;top:0;z-index:40;}
+  .kopfzeile .wrap{height:60px;display:flex;align-items:center;justify-content:space-between;}
+  .wm{font-weight:800;letter-spacing:-.04em;font-size:19px;}
+  .wm .code{color:var(--gold);font-family:var(--mono);}
+  main{padding:clamp(24px,4vw,44px) 0 70px;}
+  .intro h1{font-size:clamp(23px,4vw,30px);}
+  .intro p{color:var(--bone-dim);margin-top:8px;max-width:54ch;}
+  .fortschritt{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin-top:14px;}
+
+  .gruppe{background:var(--night-2);border:1px solid var(--line);border-radius:var(--radius-lg);padding:clamp(18px,3vw,26px);margin-top:20px;}
+  .gruppe h2{font-size:18px;display:flex;align-items:center;gap:9px;}
+  .gruppe h2 .nr{width:26px;height:26px;border-radius:50%;background:var(--panel);border:1px solid var(--line);display:grid;place-items:center;font-family:var(--mono);font-size:13px;color:var(--gold);flex:none;}
+  .gruppe .erkl{color:var(--muted);font-size:14px;margin:8px 0 14px;}
+  .feld{margin-top:12px;display:grid;gap:6px;}
+  .feld label{font-size:14px;color:var(--bone-dim);}
+  .feld label .opt{color:var(--muted);font-size:12px;}
+  .feld input[type=text],.feld textarea{border:1px solid var(--line);background:var(--panel);color:var(--bone);font-family:var(--sans);font-size:16px;border-radius:12px;padding:11px 13px;width:100%;}
+  .feld textarea{resize:vertical;min-height:76px;line-height:1.5;}
+  .feld input:focus-visible,.feld textarea:focus-visible{outline:none;box-shadow:var(--focus);}
+  .check{display:flex;gap:11px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:13px 14px;cursor:pointer;}
+  .check input{width:20px;height:20px;margin-top:2px;accent-color:var(--amber);flex:none;}
+  .check span{font-size:14.5px;line-height:1.5;}
+
+  .frei{margin-top:20px;}
+  .abschluss{margin-top:26px;display:grid;gap:12px;justify-items:start;}
+  .btn{display:inline-flex;align-items:center;gap:8px;cursor:pointer;border:none;
+    background:linear-gradient(180deg,var(--ember),var(--amber));color:#2a1808;
+    font-weight:700;font-size:15.5px;padding:14px 24px;border-radius:var(--pill);font-family:var(--sans);
+    box-shadow:0 12px 22px -10px rgba(232,146,63,.55);transition:transform .2s,opacity .2s;}
+  .btn:hover{transform:translateY(-1px);}
+  .btn:focus-visible{outline:none;box-shadow:var(--focus);}
+  .btn[disabled]{opacity:.45;cursor:not-allowed;transform:none;}
+  .fehler{display:none;color:#b5502a;font-size:14px;}
+  .fehler.an{display:block;}
+  .hinweis{color:var(--muted);font-size:12.5px;max-width:54ch;}
+
+  .vollbild{display:none;place-items:center;min-height:70dvh;text-align:center;padding:24px;}
+  .vollbild.an{display:grid;}
+  .vollbild .inhalt{max-width:440px;display:grid;gap:12px;justify-items:center;}
+  .vollbild .zeichen{width:60px;height:60px;border-radius:50%;display:grid;place-items:center;font-size:28px;background:var(--panel);border:1px solid var(--line);}
+  .vollbild .zeichen.gruen{background:var(--gruen);border:none;color:#1c2413;}
+  footer{border-top:1px solid var(--line);padding:20px 0 32px;color:var(--muted);font-size:13px;}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+  </style>
+</head>
+<body>
+
+  <header class="kopfzeile">
+    <div class="wrap">
+      <span class="wm">lech<span class="code">code</span></span>
+      <span style="font-size:13px;color:var(--muted);">Dauert ca. 3 Minuten</span>
+    </div>
+  </header>
+
+  <div class="vollbild" id="kein-zugang">
+    <div class="inhalt">
+      <div class="zeichen">🔑</div>
+      <h1 style="font-size:22px;">Dein persönlicher Link fehlt</h1>
+      <p style="color:var(--bone-dim);font-size:15px;">Diese Seite öffnest du über deinen persönlichen Link aus unserer E-Mail. Nicht zur Hand? Schreib uns — wir schicken sofort einen neuen.</p>
+      <a class="btn" href="mailto:info@lechcode.de?subject=Neuer%20Link%20zum%20Fragebogen">Neuen Link anfordern</a>
+    </div>
+  </div>
+
+  <div class="vollbild" id="danke">
+    <div class="inhalt">
+      <div class="zeichen gruen">✓</div>
+      <h1 style="font-size:24px;">Danke dir! Alles angekommen.</h1>
+      <p style="color:var(--bone-dim);font-size:15px;">Damit können wir deine Seite fertig machen — deine Angaben fließen automatisch ein. Wenn noch etwas fehlt, melden wir uns persönlich.</p>
+      <p style="font-size:15px;color:var(--gold);">Bis gleich — Lenny &amp; Michael 🌿</p>
+    </div>
+  </div>
+
+  <main class="wrap" id="app" style="display:none;">
+    <div class="intro">
+      <h1 id="titel">Kurz noch ein paar Angaben — dann ist deine Seite startklar.</h1>
+      <p>Das hier sind genau die Punkte, die uns für deine Website noch fehlen. Ehrlich beantwortet hilft am meisten — und was du nicht weißt, lässt du einfach leer.</p>
+      <p class="fortschritt" id="fortschritt"></p>
+    </div>
+    <form id="formular"></form>
+    <div class="gruppe frei">
+      <h2><span class="nr">✎</span> Noch etwas, das wir wissen sollten?</h2>
+      <div class="feld"><textarea id="freitext" placeholder="Alles, was dir noch einfällt — Wünsche, Hinweise, Fragen …"></textarea></div>
+    </div>
+    <div class="abschluss">
+      <button class="btn" id="absenden">Angaben absenden ✓</button>
+      <p class="fehler" id="fehler"></p>
+      <p class="hinweis">Deine Angaben nutzen wir nur für deine Website (Impressum, Texte, Bildnachweise). Fragen? <a href="mailto:info@lechcode.de">info@lechcode.de</a></p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>lech<span style="color:var(--gold);font-family:var(--mono);">code</span> · Code mit Seele · Landsberg am Lech</span>
+      <span><a href="mailto:info@lechcode.de">info@lechcode.de</a></span>
+    </div>
+  </footer>
+
+<script>
+(function(){
+  "use strict";
+  var LC_API = "https://lechcode-api.nameless-waterfall-55e5.workers.dev"; /* LC-API-URL — wird von plattform/bin/set-api-url.sh gesetzt */
+
+  // Token aus #k=… — pro Kunde eindeutig speichern (geteilte Origin lechcode.github.io!).
+  //   Gleicher Slug-Namespace wie mein-bereich.html, damit der Token auf beiden Seiten gilt.
+  var pfadSlug = (location.pathname.match(/\/([a-z0-9][a-z0-9-]*)-vorschau\//) || [])[1] || null;
+  var nsSlug = pfadSlug || location.hostname || "lc";
+  function nsKey(basis){ return basis + ":" + nsSlug; }
+  try { localStorage.removeItem("lc-zugang"); } catch(e){}
+  var token = "";
+  var m = (location.hash || "").match(/[#&]k=([A-Za-z0-9]+)/);
+  if (m){ token = m[1]; try{ localStorage.setItem(nsKey("lc-zugang"), token); }catch(e){}
+    history.replaceState(null, "", location.pathname + location.search); }
+  else { try{ token = localStorage.getItem(nsKey("lc-zugang")) || ""; }catch(e){} }
+
+  var app = document.getElementById("app");
+  function zeigeKeinZugang(){ document.getElementById("kein-zugang").classList.add("an"); }
+  if (!token){ zeigeKeinZugang(); return; }
+
+  // Enter in einem Textfeld darf das Formular NICHT nativ absenden (GET-Reload → alle
+  // Antworten weg). Der Absende-Button liegt außerhalb des <form> und hat einen eigenen Handler.
+  var formEl = document.getElementById("formular");
+  if (formEl) formEl.addEventListener("submit", function(e){ e.preventDefault(); });
+
+  function api(pfad, opts){
+    opts = opts || {};
+    opts.headers = Object.assign({"authorization":"Bearer " + token}, opts.headers || {});
+    return fetch(LC_API + pfad, opts);
+  }
+
+  var gruppen = [];
+
+  function feldId(g, f){ return "f-" + g.id + "-" + f.id; }
+
+  function bauen(daten){
+    document.getElementById("kein-zugang").classList.remove("an"); // evtl. gezeigten „Verbindung klemmt"-Hinweis wieder ausblenden
+    var anrede = daten.anrede || (daten.name || "").split(" ")[0];
+    if (anrede) document.getElementById("titel").textContent = anrede + ", kurz noch ein paar Angaben — dann ist deine Seite startklar.";
+    gruppen = (daten.fragen && daten.fragen.gruppen) || [];
+    document.getElementById("fortschritt").textContent = gruppen.length + (gruppen.length === 1 ? " Themenblock" : " Themenblöcke") + " · ca. 3 Minuten";
+    var form = document.getElementById("formular");
+    gruppen.forEach(function(g, idx){
+      var box = document.createElement("section");
+      box.className = "gruppe";
+      var h = document.createElement("h2");
+      var nr = document.createElement("span"); nr.className = "nr"; nr.textContent = idx + 1;
+      h.appendChild(nr); h.appendChild(document.createTextNode(g.titel || ""));
+      box.appendChild(h);
+      if (g.erklaerung){ var e = document.createElement("p"); e.className = "erkl"; e.textContent = g.erklaerung; box.appendChild(e); }
+      (g.felder || []).forEach(function(f){
+        var feld = document.createElement("div"); feld.className = "feld";
+        if (f.art === "checkbox"){
+          var lab = document.createElement("label"); lab.className = "check";
+          var cb = document.createElement("input"); cb.type = "checkbox"; cb.id = feldId(g, f);
+          var sp = document.createElement("span"); sp.textContent = f.frage;
+          lab.appendChild(cb); lab.appendChild(sp); feld.appendChild(lab);
+        } else {
+          var l = document.createElement("label"); l.htmlFor = feldId(g, f);
+          l.textContent = f.frage;
+          if (f.optional){ var o = document.createElement("span"); o.className = "opt"; o.textContent = "  (optional)"; l.appendChild(o); }
+          feld.appendChild(l);
+          var input;
+          if (f.art === "liste"){ input = document.createElement("textarea"); input.placeholder = "z. B.\nErstgespräch — kostenlos\nBehandlung 60 Min — 80 €"; }
+          else { input = document.createElement("input"); input.type = "text"; }
+          input.id = feldId(g, f);
+          feld.appendChild(input);
+        }
+        box.appendChild(feld);
+      });
+      form.appendChild(box);
+    });
+    app.style.display = "";
+  }
+
+  var obVersuche = 0;
+  function ladeFragen(){
+    api("/onboarding").then(function(r){
+      if (r.status === 401){ zeigeKeinZugang(); return null; }
+      if (!r.ok) throw new Error("http " + r.status); // 5xx/429 → gleich nochmal versuchen (kein „Link fehlt")
+      return r.json();
+    }).then(function(j){
+      if (j === null) return; // 401 bereits behandelt
+      if (j && j.ok){
+        // Schutz: gehört der Token wirklich zu DIESER Seite? (fremder/falscher Link → keine Fremddaten)
+        if (pfadSlug && j.slug && j.slug !== pfadSlug){ try{ localStorage.removeItem(nsKey("lc-zugang")); }catch(e){} zeigeKeinZugang(); return; }
+        // Schon abgeschickt? → direkt „Danke", kein Doppel-Versand.
+        var schon = false; try { schon = !!localStorage.getItem(nsKey("lc-onboarding-done")); } catch(e){}
+        if (schon){ document.getElementById("danke").classList.add("an"); return; }
+        bauen(j);
+      } else if (j) zeigeKeinZugang(); // ok:false = echter Zugangsfehler
+    }).catch(function(){
+      if (obVersuche < 3){ obVersuche++; setTimeout(ladeFragen, 2500); } // transienter Fehler → kurz erneut
+      else {
+        // Nach 3 Fehlversuchen NICHT „Link fehlt" behaupten (der Link ist meist gültig) —
+        // ehrlich als Verbindungsproblem zeigen und weiter im Hintergrund versuchen.
+        var kz = document.getElementById("kein-zugang");
+        var p = kz.querySelector("p");
+        if (p) p.textContent = "Die Verbindung klemmt gerade — ich versuche es weiter. Bitte lass die Seite offen oder lade sie gleich neu.";
+        var h1 = kz.querySelector("h1"); if (h1) h1.textContent = "Einen Moment noch …";
+        kz.classList.add("an");
+        setTimeout(function(){ obVersuche = 0; ladeFragen(); }, 8000);
+      }
+    });
+  }
+  ladeFragen();
+
+  document.getElementById("absenden").addEventListener("click", async function(){
+    var knopf = this; var fehlerEl = document.getElementById("fehler");
+    fehlerEl.classList.remove("an");
+    var antworten = {};
+    gruppen.forEach(function(g){
+      var gr = {};
+      (g.felder || []).forEach(function(f){
+        var el = document.getElementById(feldId(g, f));
+        if (!el) return;
+        if (f.art === "checkbox") gr[f.id] = el.checked;
+        else if (f.art === "liste"){
+          gr[f.id] = el.value.split("\n").map(function(z){ return z.trim(); }).filter(Boolean)
+            .map(function(z){
+              // Nur an einem Trenner MIT umgebendem Leerraum (oder Gedankenstrich) splitten —
+              // sonst zerschneidet „Anti-Stress-Massage" fälschlich in Leistung+Preis.
+              var t = z.split(/\s+[—–]\s+|\s+-\s+/);
+              return (t.length > 1) ? {leistung: t[0].trim(), preis: t.slice(1).join(" - ").trim()} : {leistung: z, preis: ""};
+            });
+        }
+        else gr[f.id] = el.value.trim();
+      });
+      // Gruppen mit genau einem Feld flach ablegen (z. B. oeffnungszeiten)
+      var schluessel = Object.keys(gr);
+      antworten[g.id] = (schluessel.length === 1 && schluessel[0] === g.id) ? gr[g.id] : gr;
+    });
+    knopf.disabled = true; knopf.textContent = "Sendet …";
+    try {
+      var r = await api("/job", {method:"POST", headers:{"content-type":"application/json"},
+        body: JSON.stringify({type:"onboarding-answers", payload:{antworten: antworten, freitext: document.getElementById("freitext").value.trim()}})});
+      var j = await r.json();
+      if (!j.ok) throw new Error(j.meldung || "");
+      try { localStorage.setItem(nsKey("lc-onboarding-done"), "1"); } catch(e){} // gegen versehentlichen Doppel-Versand
+      app.style.display = "none";
+      document.getElementById("danke").classList.add("an");
+      window.scrollTo({top:0});
+    } catch(e){
+      fehlerEl.textContent = (e && e.message) ? e.message : "Das Absenden hat nicht geklappt — bitte noch einmal versuchen oder kurz an info@lechcode.de schreiben.";
+      fehlerEl.classList.add("an");
+      knopf.disabled = false; knopf.textContent = "Angaben absenden ✓";
+    }
+  });
+})();
+</script>
+</body>
+</html>

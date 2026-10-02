@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<!--
+  ╔══════════════════════════════════════════════════════════════════╗
+  ║  LECHCODE — Mein Bereich (Kunden-Dashboard)                       ║
+  ║  Generisches Template — wird per lc-dashboard-install.sh <slug>   ║
+  ║  UNVERÄNDERT in jedes Kundenrepo kopiert. Personalisierung läuft  ║
+  ║  zur Laufzeit über den Worker (Magic-Link-Token → Name/Slug).     ║
+  ║  Zugang:  mein-bereich.html#k=<token>   (Link kommt von uns)      ║
+  ║  Selbst-tragend: Systemschriften, keine Requests außer LC_API.    ║
+  ╚══════════════════════════════════════════════════════════════════╝
+-->
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Mein Bereich · Lechcode</title>
+  <meta name="theme-color" content="#16130c" />
+  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA2NCA2NCc+PHJlY3Qgd2lkdGg9JzY0JyBoZWlnaHQ9JzY0JyByeD0nMTUnIGZpbGw9JyMxZjFiMTInLz48Y2lyY2xlIGN4PSczMicgY3k9JzMyJyByPScyMi41JyBmaWxsPSdub25lJyBzdHJva2U9JyNlN2I5NjQnIHN0cm9rZS13aWR0aD0nMy40Jy8+PHBhdGggZD0nTTE1IDM2IEMgMjIgMjgsIDI5IDI4LCAzMyAzNCBDIDM3IDQwLCA0NCA0MCwgNTAgMzEnIGZpbGw9J25vbmUnIHN0cm9rZT0nI2U3Yjk2NCcgc3Ryb2tlLXdpZHRoPSc0LjInIHN0cm9rZS1saW5lY2FwPSdyb3VuZCcgc3Ryb2tlLWxpbmVqb2luPSdyb3VuZCcvPjxjaXJjbGUgY3g9JzQ0JyBjeT0nMTguNScgcj0nMy40JyBmaWxsPScjZTg5MjNmJy8+PC9zdmc+" />
+  <style>
+  :root{
+    /* Helles Theme in Homepage-Beige (lechcode.de --cream #f7efe0) */
+    --night:#f7efe0; --night-2:#fffaf0; --panel:#fbf3e3; --panel-2:#f0e4cf;
+    --bone:#2a2218; --bone-dim:#544a38; --muted:#786c52;
+    --amber:#e8923f; --ember:#d97a2b; --gold:#b77e28;
+    --gruen:#7aa259; --line:rgba(74,58,34,.18);
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,monospace;
+    --radius:16px; --radius-lg:22px; --pill:999px;
+    --focus:0 0 0 3px rgba(232,146,63,.45);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{overflow-x:clip;}
+  body{background:var(--night);color:var(--bone);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100dvh;overflow-x:clip;-webkit-text-size-adjust:100%;max-width:100%;}
+  h1,h2,h3{line-height:1.2;letter-spacing:-.02em;color:#241d12;text-wrap:balance;}
+  a{color:var(--ember);text-decoration:underline;text-underline-offset:3px;}
+  img,svg{display:block;max-width:100%;}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;}
+  .wrap{width:min(760px,94vw);margin-inline:auto;}
+  .kopfzeile{position:sticky;top:0;z-index:40;background:rgba(247,239,224,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  .kopfzeile .wrap{height:60px;display:flex;align-items:center;justify-content:space-between;}
+  .wm{font-weight:800;letter-spacing:-.04em;font-size:19px;}
+  .wm .code{color:var(--gold);font-family:var(--mono);}
+  .kopfzeile .hilfe{font-size:13px;color:var(--bone-dim);text-decoration:none;}
+  .kopfzeile .hilfe:hover{color:var(--bone);}
+
+  main{padding:clamp(22px,4vw,40px) 0 60px;display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(18px,3vw,28px);}
+  .karte{background:var(--night-2);border:1px solid var(--line);border-radius:var(--radius-lg);padding:clamp(18px,3vw,26px);}
+  .karte h2{font-size:clamp(19px,2.4vw,22px);margin-bottom:6px;}
+  .karte .unter{color:var(--muted);font-size:14px;margin-bottom:16px;}
+  .karte .ki-hinweis{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;line-height:1.5;color:var(--bone-dim);background:rgba(232,146,63,.10);border:1px solid rgba(232,146,63,.24);border-radius:10px;padding:9px 12px;margin:2px 0 16px;}
+  .karte .ki-hinweis strong{color:var(--ember);font-weight:700;}
+  .karte .ki-hinweis a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(231,185,100,.45);}
+  .gruss h1{font-size:clamp(24px,4vw,32px);}
+  .gruss p{color:var(--bone-dim);margin-top:6px;}
+
+  .btn{display:inline-flex;align-items:center;gap:8px;cursor:pointer;border:none;
+    background:linear-gradient(180deg,var(--ember),var(--amber));color:#2a1808;
+    font-weight:700;font-size:15px;padding:12px 20px;border-radius:var(--pill);font-family:var(--sans);
+    box-shadow:0 12px 22px -10px rgba(232,146,63,.55);transition:transform .2s,opacity .2s;}
+  .btn:hover{transform:translateY(-1px);}
+  .btn:focus-visible{outline:none;box-shadow:var(--focus);}
+  .btn[disabled]{opacity:.45;cursor:not-allowed;transform:none;}
+  .btn-ghost{background:transparent;color:var(--bone-dim);box-shadow:inset 0 0 0 1.5px var(--line);}
+
+  /* Zeitleiste */
+  .job{border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;display:grid;gap:4px;margin-bottom:10px;background:var(--panel);}
+  .job .zeile1{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap;}
+  .job .was{font-weight:600;}
+  .job .wann{color:var(--muted);font-size:12.5px;font-family:var(--mono);}
+  .schritte{display:flex;align-items:center;gap:0;margin-top:8px;}
+  .schritt{display:flex;align-items:center;gap:0;flex:1;}
+  .punkt{width:22px;height:22px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-size:11px;flex:none;background:var(--night-2);color:var(--muted);}
+  .strich{height:2px;background:var(--line);flex:1;}
+  .schritt.aktiv .punkt{background:var(--amber);border-color:var(--amber);color:#2a1808;}
+  .schritt.fertig .punkt{background:var(--gruen);border-color:var(--gruen);color:#1c2413;}
+  .schritt.fertig .strich,.schritt.aktiv .strich{background:var(--amber);}
+  .schritt-namen{display:flex;justify-content:space-between;margin-top:6px;color:var(--muted);font-size:11.5px;}
+  .job .live-link{margin-top:8px;font-size:14px;}
+  .job.problem{border-color:rgba(189,123,84,.5);}
+  .leer{color:var(--muted);font-size:14.5px;}
+
+  /* Chat — eigene Unterhaltungs-Fläche */
+  .chat-verlauf{background:var(--night);border:1px solid var(--line);border-radius:16px;
+    min-height:150px;max-height:380px;overflow-y:auto;display:flex;flex-direction:column;gap:13px;
+    padding:16px;margin-bottom:12px;scroll-behavior:smooth;}
+  .msg-row{display:flex;gap:9px;align-items:flex-end;max-width:min(94%,620px);align-self:flex-start;}
+  .msg-avatar{flex:none;width:28px;height:28px;border-radius:50%;background:var(--panel-2);
+    border:1px solid rgba(231,185,100,.3);display:grid;place-items:center;margin-bottom:2px;}
+  .msg-avatar svg{width:17px;height:17px;color:var(--gold);}
+  .msg{padding:11px 15px;border-radius:16px;font-size:15px;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere;}
+  .msg-row .msg{min-width:0;}
+  .msg.ki{align-self:flex-start;background:var(--panel-2);color:var(--bone);border-bottom-left-radius:5px;}
+  .msg.du{align-self:flex-end;max-width:min(78%,480px);
+    background:linear-gradient(180deg,rgba(232,146,63,.22),rgba(232,146,63,.12));
+    border:1px solid rgba(232,146,63,.38);color:#3a2c17;border-bottom-right-radius:5px;}
+  .tipp{display:none;align-self:flex-start;padding:2px 6px;color:var(--muted);font-size:13px;}
+  .tipp.an{display:block;}
+
+  /* Composer — ein zusammenhängendes Eingabefeld (wie die Aufnahme-Leiste) */
+  .chat-eingabe{display:flex;flex-direction:column;gap:8px;}
+  .composer{flex:1;min-width:0;display:flex;align-items:flex-end;gap:4px;background:var(--night-2);
+    border:1px solid rgba(231,185,100,.22);border-radius:18px;padding:6px 6px 6px 6px;
+    transition:border-color .2s,box-shadow .2s;}
+  .composer:focus-within{border-color:rgba(231,185,100,.5);box-shadow:0 0 0 3px rgba(232,146,63,.13);}
+  .composer textarea{flex:1;min-width:0;resize:none;border:none;background:transparent;color:var(--bone);
+    font-family:var(--sans);font-size:16px;line-height:1.45;padding:10px 4px;min-height:24px;max-height:120px;}
+  .composer textarea::placeholder{color:var(--muted);white-space:nowrap;text-overflow:ellipsis;}
+  .composer textarea:focus{outline:none;}
+  .composer-send{flex:none;width:40px;height:40px;border-radius:50%;border:none;cursor:pointer;
+    background:linear-gradient(180deg,var(--ember),var(--amber));color:#2a1808;display:grid;place-items:center;
+    box-shadow:inset 0 1px 0 rgba(255,220,170,.5),0 8px 16px -8px rgba(232,146,63,.6);transition:transform .2s,opacity .2s;}
+  .composer-send:hover{transform:translateY(-1px);}
+  .composer-send:focus-visible{outline:none;box-shadow:var(--focus);}
+  .composer-send[disabled]{opacity:.4;cursor:default;transform:none;}
+  .composer-send svg{width:19px;height:19px;}
+  /* Datei im Chat: Büroklammer im Composer + Anhang-Leiste + Datei-Bubble */
+  .lc-attach{flex:none;width:40px;height:40px;border-radius:50%;border:none;background:transparent;color:var(--gold);display:grid;place-items:center;cursor:pointer;transition:color .2s,background .2s;}
+  .lc-attach:hover{color:var(--ember);background:rgba(231,185,100,.09);}
+  .lc-attach:focus-visible{outline:none;box-shadow:var(--focus);}
+  .lc-attach svg{width:20px;height:20px;}
+  .chat-anhang{display:none;align-items:center;gap:11px;padding:8px 10px;border:1px solid var(--line);border-radius:14px;background:var(--night-2);}
+  .chat-anhang.an{display:flex;}
+  .chat-anhang img{width:46px;height:46px;object-fit:cover;border-radius:9px;border:1px solid var(--line);flex:none;}
+  .chat-anhang .ah-ic{width:46px;height:46px;border-radius:9px;border:1px solid var(--line);background:var(--panel);display:grid;place-items:center;font-size:22px;flex:none;}
+  .chat-anhang .ah-meta{min-width:0;flex:1;display:flex;flex-direction:column;line-height:1.3;}
+  .chat-anhang .ah-name{font-size:14px;color:var(--bone);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .chat-anhang .ah-size{font-size:12px;color:var(--muted);}
+  .chat-anhang .ah-x{flex:none;width:28px;height:28px;border-radius:50%;border:none;background:transparent;color:var(--muted);cursor:pointer;font-size:16px;display:grid;place-items:center;}
+  .chat-anhang .ah-x:hover{background:rgba(255,255,255,.06);color:var(--bone);}
+  .chat-eingabe-zeile.zieht .composer{border-color:var(--amber);box-shadow:0 0 0 3px rgba(232,146,63,.13);}
+  .msg.datei{display:flex;flex-direction:column;gap:7px;}
+  .msg.datei img{max-width:220px;width:100%;border-radius:11px;border:1px solid rgba(255,255,255,.14);display:block;}
+  .msg.datei .d-chip{display:flex;align-items:center;gap:9px;}
+  .msg.datei .d-chip .d-ic{font-size:22px;flex:none;}
+  .chat-tools{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:14px;color:var(--muted);font-size:13px;}
+  .chat-tools .btn-ghost{font-size:14px;padding:9px 18px;white-space:nowrap;}
+  .chat-verlauf::-webkit-scrollbar{width:8px;}
+  .chat-verlauf::-webkit-scrollbar-thumb{background:rgba(231,185,100,.18);border-radius:8px;}
+  .chat-verlauf::-webkit-scrollbar-track{background:transparent;}
+  .beauftragen{margin-top:12px;display:none;}
+  .beauftragen.an{display:block;}
+  .beauftragen .kasten{background:var(--panel);border:1px solid rgba(232,146,63,.35);border-radius:var(--radius);padding:14px 16px;margin-bottom:12px;font-size:14.5px;}
+  .beauftragen .kasten b{color:var(--gold);}
+
+  /* Upload */
+  .drop{border:2px dashed var(--line);border-radius:var(--radius);padding:22px;text-align:center;cursor:pointer;transition:border-color .2s;}
+  .drop:hover,.drop.zieht{border-color:var(--amber);}
+  .drop input{display:none;}
+  .drop .gross{font-size:15px;font-weight:600;}
+  .drop .klein{color:var(--muted);font-size:13px;margin-top:4px;}
+  .vorschau{display:none;margin-top:14px;gap:14px;align-items:flex-start;}
+  .vorschau.an{display:flex;flex-wrap:wrap;}
+  .vorschau img{width:110px;height:110px;object-fit:cover;border-radius:12px;border:1px solid var(--line);}
+  .datei-chip{display:none;align-items:center;gap:11px;width:110px;padding:14px 10px;border-radius:12px;border:1px solid var(--line);background:var(--panel);flex-direction:column;text-align:center;}
+  .datei-chip.an{display:flex;}
+  .datei-icon{font-size:30px;line-height:1;}
+  .datei-meta{display:flex;flex-direction:column;gap:2px;min-width:0;width:100%;}
+  .datei-meta #datei-name{font-size:12.5px;font-weight:600;word-break:break-word;line-height:1.3;}
+  .datei-meta small{color:var(--muted);font-size:11.5px;font-family:var(--mono);}
+  .vorschau .rechts{flex:1;min-width:220px;display:grid;gap:8px;align-content:start;}
+  .feld-label{font-size:14px;color:var(--bone-dim);}
+  .vorschau textarea{border:1px solid var(--line);background:var(--panel);color:var(--bone);font-family:var(--sans);font-size:15px;line-height:1.45;border-radius:11px;padding:10px 12px;width:100%;resize:vertical;min-height:78px;}
+  .vorschau textarea:focus-visible{outline:none;box-shadow:var(--focus);}
+  .upload-status{margin-top:10px;font-size:14px;color:var(--gruen);display:none;}
+  .upload-status.an{display:block;}
+  .upload-status.fehler{color:#f0b090;}
+
+  /* FAQ — auf .faq gescoped, damit die generischen details/summary-Regeln NICHT
+     in andere <details> (z. B. den „Erledigt"-Klappbereich) leaken. */
+  .faq details{border-bottom:1px solid var(--line);padding:12px 2px;}
+  .faq details:last-of-type{border-bottom:none;}
+  .faq summary{cursor:pointer;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;gap:10px;}
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary::after{content:"+";color:var(--gold);font-family:var(--mono);}
+  .faq details[open] summary::after{content:"–";}
+  .faq details p{color:var(--bone-dim);font-size:14.5px;margin-top:8px;}
+
+  /* Zugang fehlt / Fehler */
+  .vollbild{display:none;place-items:center;min-height:70dvh;text-align:center;padding:24px;}
+  .vollbild.an{display:grid;}
+  .vollbild .inhalt{max-width:420px;display:grid;gap:12px;justify-items:center;}
+  .vollbild .zeichen{width:56px;height:56px;border-radius:50%;background:var(--panel);border:1px solid var(--line);display:grid;place-items:center;font-size:26px;}
+
+  footer{border-top:1px solid var(--line);padding:20px 0 32px;color:var(--muted);font-size:13px;}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+
+  /* ===== Deine Website — Live-Vorschau ===== */
+  .seite-kopf{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:14px;}
+  .seite-kopf h2{margin-bottom:2px;}
+  .seite-fenster{position:relative;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--panel-2);aspect-ratio:16/10;box-shadow:0 18px 34px -22px rgba(74,58,34,.5);}
+  .seite-fenster .leiste{position:absolute;top:0;left:0;right:0;height:31px;background:var(--panel-2);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:6px;padding:0 13px;z-index:2;}
+  .seite-fenster .leiste i{width:9px;height:9px;border-radius:50%;background:rgba(74,58,34,.22);display:block;}
+  .seite-rahmen{position:absolute;top:31px;left:0;right:0;bottom:0;overflow:hidden;background:#fff;}
+  .seite-rahmen iframe{width:200%;height:200%;border:0;transform:scale(.5);transform-origin:0 0;background:#fff;pointer-events:none;}
+  .seite-fenster .klick{position:absolute;inset:0;z-index:3;display:block;}
+  .seite-fenster .lupe{position:absolute;right:12px;bottom:12px;z-index:4;background:rgba(247,239,224,.92);border:1px solid var(--line);border-radius:var(--pill);font-size:12.5px;padding:5px 12px;color:var(--bone-dim);backdrop-filter:blur(4px);pointer-events:none;}
+  #seite-ansehen{white-space:nowrap;text-decoration:none;}
+  .job .laenger{margin-top:9px;font-size:13.5px;color:var(--bone-dim);background:var(--panel-2);border:1px solid var(--line);border-radius:11px;padding:9px 12px;line-height:1.5;}
+  .job-fb{margin-top:12px;padding-top:12px;border-top:1px solid var(--line);display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
+  .job-fb .fb-frage{font-size:13.5px;color:var(--bone-dim);}
+  .job-fb .fb-btn{font-size:13px;padding:6px 14px;}
+  .job-fb .fb-dank{font-size:13.5px;color:var(--gruen);}
+  /* Erledigt — einklappbarer Verlauf */
+  .erledigt{margin-top:12px;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);overflow:hidden;}
+  .erledigt > summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:9px;padding:13px 16px;font-weight:600;font-size:14.5px;color:var(--bone-dim);user-select:none;}
+  .erledigt > summary::-webkit-details-marker{display:none;}
+  .erledigt > summary::after{content:"▾";margin-left:auto;color:var(--muted);transition:transform .25s;}
+  .erledigt[open] > summary::after{transform:rotate(180deg);}
+  .erledigt > summary:hover{color:var(--bone);}
+  .erledigt .erl-check{width:20px;height:20px;border-radius:50%;background:var(--gruen);color:#1c2413;display:grid;place-items:center;font-size:11px;flex:none;}
+  .erledigt .erl-n{color:var(--muted);font-weight:600;}
+  .erledigt-liste{padding:0 12px 12px;display:grid;gap:8px;}
+  .erl-item{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--night-2);}
+  .erl-item .zeile1{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap;}
+  .erl-item .was{font-weight:600;font-size:14.5px;}
+  .erl-item .wann{color:var(--muted);font-size:12px;font-family:var(--mono);}
+  .erl-item .live-badge{color:var(--gruen);font-size:13px;font-weight:600;margin-top:2px;}
+  .erl-item .live-link{margin-top:6px;font-size:13.5px;}
+  /* ===== Sprachnachricht ===== */
+  .lc-mic{flex:none;width:40px;height:40px;border-radius:50%;border:none;background:transparent;color:var(--gold);display:grid;place-items:center;cursor:pointer;transition:color .2s,background .2s;}
+  .lc-mic:hover{color:var(--ember);background:rgba(231,185,100,.09);}
+  .lc-mic:focus-visible{outline:none;box-shadow:var(--focus);}
+  .lc-mic svg{width:21px;height:21px;}
+  .lc-rec{flex:1;min-width:0;display:flex;align-items:center;gap:10px;background:var(--night-2);border:1px solid rgba(231,185,100,.32);border-radius:18px;padding:7px 8px 7px 14px;min-height:52px;}
+  .lc-rec-dot{width:11px;height:11px;border-radius:50%;background:var(--amber);flex:none;animation:lc-pulse 1.4s infinite;}
+  @keyframes lc-pulse{0%{box-shadow:0 0 0 0 rgba(232,146,63,.55)}70%{box-shadow:0 0 0 9px rgba(232,146,63,0)}100%{box-shadow:0 0 0 0 rgba(232,146,63,0)}}
+  .lc-rec-time{font-family:var(--mono);font-size:13px;color:var(--bone-dim);flex:none;min-width:36px;font-variant-numeric:tabular-nums;}
+  .lc-rec-wave{flex:1;min-width:0;display:flex;align-items:center;justify-content:center;gap:3px;height:26px;overflow:hidden;}
+  .lc-rec-wave i{flex:none;width:3px;height:8%;background:linear-gradient(180deg,var(--ember),var(--amber));border-radius:2px;transition:height .09s ease;}
+  .lc-rec-btn{flex:none;width:38px;height:38px;border-radius:50%;border:none;cursor:pointer;display:grid;place-items:center;font-size:16px;line-height:1;}
+  .lc-rec-cancel{background:transparent;color:var(--bone-dim);border:1px solid rgba(231,185,100,.22);}
+  .lc-rec-cancel:hover{color:#f0b090;}
+  .lc-rec-send{background:linear-gradient(180deg,var(--ember),var(--amber));color:#2a1808;box-shadow:0 8px 18px -8px rgba(232,146,63,.6);}
+  .lc-rec-btn:focus-visible,.lc-mic:focus-visible{outline:none;box-shadow:var(--focus);}
+  .msg.voice{display:flex;flex-direction:column;gap:8px;min-width:min(210px,82%);}
+  .lc-vrow{display:flex;align-items:center;gap:10px;}
+  .lc-vplay{flex:none;width:32px;height:32px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(180deg,var(--ember),var(--amber));color:#2a1808;display:grid;place-items:center;font-size:12px;}
+  .lc-vplay:focus-visible{outline:none;box-shadow:var(--focus);}
+  .lc-vwave{flex:1;display:flex;align-items:center;gap:2px;height:24px;}
+  .lc-vwave i{flex:1;min-width:2px;background:rgba(231,185,100,.42);border-radius:2px;transition:background .12s;}
+  .lc-vwave i.on{background:linear-gradient(180deg,var(--ember),var(--amber));}
+  .lc-vdur{font-family:var(--mono);font-size:12px;color:var(--bone-dim);flex:none;font-variant-numeric:tabular-nums;}
+  .lc-vtext{line-height:1.5;}
+  .lc-vtext.warten{color:var(--bone-dim);font-style:italic;}
+  .lc-vtext .lc-mini{opacity:.6;margin-right:5px;}
+  @media (prefers-reduced-motion:reduce){.lc-rec-dot{animation:none;}.lc-rec-wave i,.lc-vwave i{transition:none;}}
+  @media (max-width:640px){
+    .chat-verlauf{max-height:min(62vh,460px);}   /* handlicher: nutzt mehr Höhe, weniger „kleines Fenster im großen Scroll“ */
+    .msg-row{max-width:100%;}
+    .msg.du{max-width:82%;}
+    .msg.datei img{max-width:min(220px,72vw);}
+    .lc-vwave{overflow:hidden;}
+    #gruss-titel{font-size:clamp(26px,7vw,34px);}
+  }
+
+  /* ===== Umzugs-Assistent (Domain verbinden) ===== */
+  .umzug-intro{color:var(--bone-dim);font-size:14.5px;margin-bottom:14px;}
+  .umzug-feld{display:flex;gap:8px;flex-wrap:wrap;align-items:stretch;margin-bottom:4px;}
+  .umzug-feld input{flex:1;min-width:200px;border:1px solid var(--line);background:var(--panel);color:var(--bone);font-family:var(--sans);font-size:16px;border-radius:12px;padding:11px 14px;}
+  .umzug-feld input:focus-visible{outline:none;box-shadow:var(--focus);}
+  .umzug-hinweis{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.5;}
+  .umzug-box{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;margin:12px 0;font-size:14.5px;line-height:1.6;}
+  .umzug-box.gut{border-color:rgba(122,162,89,.5);background:rgba(122,162,89,.10);}
+  .umzug-box.warm{border-color:rgba(232,146,63,.4);background:rgba(232,146,63,.09);}
+  .umzug-box b{color:var(--gold);}
+  .stepper{list-style:none;display:grid;gap:0;margin:8px 0 4px;padding:0;}
+  .stepper li{display:grid;grid-template-columns:26px minmax(0,1fr);gap:12px;padding:0 0 18px;position:relative;}
+  .stepper li::before{content:"";position:absolute;left:12px;top:26px;bottom:0;width:2px;background:var(--line);}
+  .stepper li:last-child::before{display:none;}
+  .stepper .st-punkt{width:26px;height:26px;border-radius:50%;border:2px solid var(--line);background:var(--night-2);display:grid;place-items:center;font-size:13px;color:var(--muted);z-index:1;}
+  .stepper li.fertig .st-punkt{background:var(--gruen);border-color:var(--gruen);color:#1c2413;}
+  .stepper li[aria-current="step"] .st-punkt{background:var(--amber);border-color:var(--amber);color:#2a1808;}
+  .stepper .st-inhalt{padding-top:2px;min-width:0;}
+  .stepper .st-titel{font-weight:600;font-size:15px;}
+  .stepper li:not([aria-current="step"]):not(.fertig) .st-inhalt{opacity:.5;}
+  .stepper .st-detail{margin-top:8px;font-size:14px;color:var(--bone-dim);line-height:1.6;}
+  .ns-liste{display:grid;gap:8px;margin:10px 0;}
+  .ns-zeile{display:flex;align-items:center;gap:8px;background:var(--night-2);border:1px solid var(--line);border-radius:12px;padding:7px 8px 7px 12px;}
+  .ns-zeile code{flex:1;min-width:0;font-family:var(--mono);font-size:15px;color:var(--bone);user-select:all;overflow:auto;white-space:nowrap;}
+  .ns-copy{flex:none;border:1px solid var(--line);background:transparent;color:var(--gold);cursor:pointer;font-size:13px;padding:6px 11px;border-radius:9px;font-family:var(--sans);}
+  .ns-copy:hover{background:rgba(231,185,100,.12);color:var(--ember);}
+  .ns-copy:focus-visible{outline:none;box-shadow:var(--focus);}
+  .umzug-schritte{margin:10px 0 4px;padding-left:20px;font-size:14px;color:var(--bone-dim);line-height:1.6;}
+  .umzug-schritte li{margin-bottom:6px;}
+  .umzug-schritte .sub{display:block;color:var(--muted);font-size:12.5px;font-family:var(--mono);margin-top:2px;word-break:break-word;}
+  </style>
+</head>
+<body>
+
+  <header class="kopfzeile">
+    <div class="wrap">
+      <span class="wm">lech<span class="code">code</span> · Mein Bereich</span>
+      <a class="hilfe" href="mailto:info@lechcode.de">Hilfe: info@lechcode.de</a>
+    </div>
+  </header>
+
+  <!-- Login (passwortlos, per E-Mail-Link) -->
+  <div class="vollbild" id="kein-zugang">
+    <div class="inhalt">
+      <div class="zeichen">🔑</div>
+      <h1 style="font-size:22px;">Anmelden</h1>
+      <p style="color:var(--bone-dim);font-size:15px;">Gib deine E-Mail-Adresse ein — wir schicken dir einen Login-Link. So kommst nur du in deinen Bereich, sonst niemand.</p>
+      <form id="login-form" style="display:flex;flex-direction:column;gap:10px;max-width:340px;margin:4px auto 0;">
+        <input id="login-email" type="email" required autocomplete="email" inputmode="email" placeholder="deine@email.de"
+          style="border:1px solid var(--line);background:var(--panel);color:var(--bone);font-family:var(--sans);font-size:16px;border-radius:12px;padding:12px 14px;width:100%;box-sizing:border-box;">
+        <button class="btn" type="submit" id="login-btn">Login-Link schicken</button>
+      </form>
+      <p id="login-status" role="status" aria-live="polite" style="min-height:20px;color:var(--bone-dim);font-size:14px;margin-top:12px;"></p>
+      <p style="color:var(--bone-dim);font-size:13px;margin-top:2px;">Kein Zugang mehr? Schreib uns: <a href="mailto:info@lechcode.de" style="color:inherit;">info@lechcode.de</a></p>
+    </div>
+  </div>
+
+  <main class="wrap" id="app" style="display:none;">
+
+    <section class="gruss">
+      <h1 id="gruss-titel">Schön, dass du da bist!</h1>
+      <p>Hier ist dein persönlicher KI-Berater: Frag ihn alles rund um deine Website, lad Bilder hoch oder sag einfach, was geändert werden soll — den Rest macht unsere Automatik, meist in wenigen Minuten bis Stunden.</p>
+    </section>
+
+    <section class="karte seite-karte" id="seite-karte">
+      <div class="seite-kopf">
+        <div>
+          <h2>Deine Website</h2>
+          <p class="unter" style="margin-bottom:0;">So sieht deine Seite gerade live aus.</p>
+        </div>
+        <a class="btn" id="seite-ansehen" href="./" target="_blank" rel="noopener">Deine Seite ansehen ↗</a>
+      </div>
+      <div class="seite-fenster">
+        <div class="leiste"><i></i><i></i><i></i></div>
+        <div class="seite-rahmen">
+          <iframe id="seite-iframe" title="Live-Vorschau deiner Website" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+        </div>
+        <a class="klick" href="./" target="_blank" rel="noopener" aria-label="Website in neuem Tab öffnen"></a>
+        <span class="lupe">Zum Öffnen tippen ↗</span>
+      </div>
+    </section>
+
+    <section class="karte" id="status-karte">
+      <h2>Deine Aufträge</h2>
+      <p class="unter">Hier siehst du live, was gerade passiert. Die Anzeige aktualisiert sich von selbst.</p>
+      <div id="lc-ansage" class="sr-only" aria-live="polite" role="status"></div>
+      <div id="jobs"><p class="leer">Noch keine Aufträge — schreib unten einfach deinen ersten Wunsch in den Chat. 🌿</p></div>
+      <div id="erledigt-wrap"></div>
+    </section>
+
+    <section class="karte" id="umzug-karte" style="display:none;">
+      <h2>Deine Domain verbinden 🌐</h2>
+      <p class="unter">Schalte deine Wunsch-Adresse in wenigen einfachen Schritten live — deine E-Mails bleiben dabei sicher. Bei jeder Frage sind wir da.</p>
+      <div id="umzug-inhalt"></div>
+    </section>
+
+    <section class="karte">
+      <h2>Dein KI-Berater 💬</h2>
+      <p class="unter">Frag mich alles rund um deine Website, deine Texte und wie du besser gefunden wirst — oder sag mir einfach, was ich für dich ändern soll.</p>
+      <p class="ki-hinweis"><span aria-hidden="true">ℹ️</span><span>Hinweis: Hier antwortet eine <strong>KI</strong>, kein Mensch. Ein echter Mensch ist jederzeit über <a href="mailto:info@lechcode.de">info@lechcode.de</a> für dich da.</span></p>
+      <div class="chat-verlauf" id="chat-verlauf"></div>
+      <p class="tipp" id="tipp">… schreibt</p>
+      <div class="chat-eingabe" id="chat-eingabe-zeile">
+        <div class="chat-anhang" id="chat-anhang" aria-live="polite"></div>
+        <div class="composer" id="composer">
+          <input type="file" id="chat-datei" accept="image/png,image/jpeg,image/webp,image/gif,image/heic,.pdf,.doc,.docx,.txt,.rtf,.csv,.ppt,.pptx,.xls,.xlsx,.heic" style="display:none">
+          <button class="lc-attach" id="chat-attach" type="button" aria-label="Datei anhängen" title="Datei anhängen (Bild, PDF, Dokument)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+          </button>
+          <button class="lc-mic" id="chat-mic" type="button" aria-label="Sprachnachricht aufnehmen" title="Sprachnachricht aufnehmen">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0"/><path d="M12 19v3"/></svg>
+          </button>
+          <textarea id="chat-eingabe" rows="1" placeholder="Schreib, sprich oder häng was an …" aria-label="Nachricht an deinen Berater"></textarea>
+          <button class="composer-send" id="chat-senden" type="button" aria-label="Senden">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 12h13M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="chat-tools">
+        <span>Möchtest du etwas ändern lassen?</span>
+        <button class="btn btn-ghost" id="beauftragen-trigger" type="button">Änderung beauftragen ✓</button>
+      </div>
+      <div class="beauftragen" id="beauftragen">
+        <div class="kasten" id="beauftragen-text"></div>
+        <button class="btn" id="beauftragen-btn">Ja, so beauftragen ✓</button>
+        <button class="btn btn-ghost" id="beauftragen-abbruch" style="margin-left:8px;">Weiter besprechen</button>
+      </div>
+    </section>
+
+    <section class="karte faq">
+      <h2>Häufige Fragen</h2>
+      <details><summary>Was kostet eine Änderung?</summary><p>Nichts. Änderungen sind unbegrenzt inklusive, es gibt kein Abo und keine monatlichen Kosten. Schreib so oft du magst.</p></details>
+      <details><summary>Wie schnell ist meine Änderung online?</summary><p>Meist innerhalb weniger Minuten bis Stunden. Du siehst den Fortschritt oben unter „Deine Aufträge“ — und bekommst dort auch den Link, sobald es live ist.</p></details>
+      <details><summary>Kann ich etwas kaputt machen?</summary><p>Nein. Jede Änderung durchläuft automatisch unsere Qualitätsprüfung, und wir können jederzeit alles wiederherstellen. Trau dich!</p></details>
+      <details><summary>Was, wenn ich etwas Größeres will?</summary><p>Schreib es einfach in den Chat — bei größeren Wünschen (neue Seiten, Umbau, Shop) melden wir uns persönlich und besprechen alles mit dir.</p></details>
+      <details><summary>Mein Link ist weg — was jetzt?</summary><p>Kurze Mail an <a href="mailto:info@lechcode.de">info@lechcode.de</a>, und du bekommst sofort einen neuen. Der alte wird dann ungültig.</p></details>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>lech<span style="color:var(--gold);font-family:var(--mono);">code</span> · Code mit Seele · Landsberg am Lech</span>
+      <span><a href="mailto:info@lechcode.de">info@lechcode.de</a> · <a href="#" id="lc-abmelden" style="color:var(--bone-dim);display:none;">Abmelden</a></span>
+    </div>
+  </footer>
+
+<script>
+(function(){
+  "use strict";
+  var LC_API = "https://lechcode-api.nameless-waterfall-55e5.workers.dev"; /* LC-API-URL — wird von plattform/bin/set-api-url.sh gesetzt */
+
+  var STATUS_TEXT = { pending:"empfangen", claimed:"wird gebaut", running:"wird gebaut", qa:"Qualitätsprüfung", approved:"wird gebaut", done:"live ✓", failed:"wir schauen persönlich drauf", rejected:"wir schauen persönlich drauf" };
+  var SCHRITTE = ["empfangen","wird gebaut","Qualitätsprüfung","live ✓"];
+
+  // — Selbstheilender Status: Aufträge, die ungewöhnlich lange „in Arbeit“ sind,
+  //   bekommen einen ehrlichen Hinweis statt endlos zu „laufen“. —
+  var LAENGER_MIN = 30;
+  function jobAlterMin(job){
+    var t = Date.parse(job && job.created);
+    if (isNaN(t)) return null;
+    return (Date.now() - t) / 60000;
+  }
+
+  // — Live-Vorschau der eigenen Website (die Seite liegt neben dieser Datei: „./“) —
+  var seiteIframe = document.getElementById("seite-iframe");
+  function seiteLaden(){ if (seiteIframe) seiteIframe.src = "./?v=" + Date.now(); }
+  seiteLaden();
+
+  // Hängt einen Cache-Bust an einen Seiten-Link, damit der Kunde direkt nach einer
+  // Änderung die FRISCHE Version sieht (GitHub Pages cached statische Seiten bis 10 Min).
+  // Der Wert ist der Zeitstempel der letzten Änderung → stabil, solange sich nichts ändert.
+  function mitVersion(url, roh){
+    if (!url) return url;
+    var v = roh ? String(roh).replace(/[^0-9A-Za-z]/g, "") : "";
+    if (!v) return url;
+    return url + (url.indexOf("?") === -1 ? "?" : "&") + "v=" + v;
+  }
+  var doneGesehen = null;
+  // Erkennt NEU erledigte Aufträge → lädt die Vorschau frisch und meldet „neu" zurück
+  // (damit der Erledigt-Bereich einmalig aufklappt und den „live"-Moment zeigt).
+  function pruefeNeuErledigt(jobs){
+    var jetzt = {}, neu = false;
+    (jobs || []).forEach(function(job){ if (job && job.status === "done" && job.type !== "domain-selfservice") jetzt[job.id] = true; });
+    if (doneGesehen){
+      neu = Object.keys(jetzt).some(function(id){ return !doneGesehen[id]; });
+      if (neu){
+        seiteLaden();
+        var neuId = Object.keys(jetzt).filter(function(id){ return !doneGesehen[id]; })[0];
+        var neuJob = (jobs || []).filter(function(x){ return x && x.id === neuId; })[0];
+        var an = document.getElementById("lc-ansage");
+        // Titel einbauen → jede Ansage hat neuen Text (sonst verschluckt der Screenreader die 2.).
+        if (an) an.textContent = ((neuJob && neuJob.kurz) ? ("„" + neuJob.kurz + "“ ist") : "Deine Änderung ist") + " jetzt live.";
+      }
+    }
+    doneGesehen = jetzt;
+    return neu;
+  }
+
+  // — Mandanten-Trennung: ALLE Kundenbereiche liegen auf DERSELBEN Origin
+  //   (lechcode.github.io) → localStorage ist geteilt. Deshalb jeden Schlüssel pro
+  //   Kunde eindeutig machen (Slug aus dem Pfad „…/<slug>-vorschau/…", sonst Hostname
+  //   bei eigener Domain). Sonst „leakt" Token/Zustand eines Kunden auf andere Seiten. —
+  var pfadSlug = (location.pathname.match(/\/([a-z0-9][a-z0-9-]*)-vorschau\//) || [])[1] || null;
+  var nsSlug = pfadSlug || location.hostname || "lc";
+  function nsKey(basis){ return basis + ":" + nsSlug; }
+  // Alte, unscoped Schlüssel wegräumen (verhindert Alt-Leaks aus früheren Versionen).
+  try { localStorage.removeItem("lc-zugang"); localStorage.removeItem("lc-opener-done"); } catch(e){}
+
+  // — Magic-Link-Login: ?login=<code> → 30-Tage-Session holen, dann sauber neu laden —
+  var loginCode = ((location.search || "").match(/[?&]login=([A-Za-z0-9]+)/) || [])[1];
+  if (loginCode){
+    fetch(LC_API + "/auth/verify", { method:"POST", headers:{"content-type":"application/json"}, body: JSON.stringify({ code: loginCode }) })
+      .then(function(r){ return r.json().catch(function(){ return {}; }); })
+      .then(function(j){
+        try {
+          if (j && j.ok && j.token){ localStorage.setItem(nsKey("lc-zugang"), j.token); }
+          else { sessionStorage.setItem("lc-login-fehler", "1"); }
+        } catch(e){}
+      })
+      .catch(function(){ try { sessionStorage.setItem("lc-login-fehler", "1"); } catch(e){} })
+      .then(function(){ location.replace(location.pathname); }); // Query weg, frisch initialisieren
+    return;
+  }
+
+  // — Token: aus #k=… übernehmen, pro Kunde sichern, URL säubern —
+  var token = "";
+  var m = (location.hash || "").match(/[#&]k=([A-Za-z0-9]+)/);
+  if (m){ token = m[1]; try{ localStorage.setItem(nsKey("lc-zugang"), token); }catch(e){}
+    history.replaceState(null, "", location.pathname + location.search); }
+  else { try{ token = localStorage.getItem(nsKey("lc-zugang")) || ""; }catch(e){} }
+
+  var app = document.getElementById("app");
+  var keinZugang = document.getElementById("kein-zugang");
+  var loginGewired = false;
+  function loginWiren(){
+    if (loginGewired) return; loginGewired = true;
+    var form = document.getElementById("login-form");
+    var statusEl = document.getElementById("login-status");
+    try { if (sessionStorage.getItem("lc-login-fehler")){ sessionStorage.removeItem("lc-login-fehler");
+      if (statusEl) statusEl.textContent = "Der Link war abgelaufen oder schon benutzt. Fordere dir einfach einen neuen an."; } } catch(e){}
+    if (!form) return;
+    form.addEventListener("submit", function(ev){
+      ev.preventDefault();
+      var email = (document.getElementById("login-email").value || "").trim();
+      var btn = document.getElementById("login-btn");
+      if (!email) return;
+      if (btn){ btn.disabled = true; btn.textContent = "Wird gesendet …"; }
+      fetch(LC_API + "/auth/request", { method:"POST", headers:{"content-type":"application/json"},
+        body: JSON.stringify({ email: email, ruecklink: location.origin + location.pathname }) })
+        .catch(function(){})
+        .then(function(){
+          // Immer dieselbe Antwort — verrät nicht, ob die Adresse hinterlegt ist.
+          if (statusEl) statusEl.textContent = "Wenn diese Adresse bei uns hinterlegt ist, ist dein Login-Link jetzt unterwegs. Schau in dein Postfach (auch im Spam).";
+          if (btn){ btn.disabled = false; btn.textContent = "Login-Link schicken"; }
+        });
+    });
+  }
+  function zeigeKeinZugang(){ keinZugang.classList.add("an"); app.style.display = "none"; loginWiren(); }
+  if (!token){ zeigeKeinZugang(); return; }
+
+  // Session zu Ende (401 an IRGENDEINEM Endpoint, oder fremder Slug): einmalig sauber
+  // zum Login zurück — Polls stoppen, Token nullen, verständlichen Hinweis zeigen.
+  // (Vorher behandelte nur /status den 401; alle anderen Aufrufe zeigten irreführende
+  //  „nochmal versuchen"-Texte und die Poll-Schleifen liefen mit totem Token weiter.)
+  var sessionBeendet = false, proaktivInterval = null;
+  function sessionAbgelaufen(){
+    if (sessionBeendet) return;
+    sessionBeendet = true;
+    try { if (proaktivInterval) clearInterval(proaktivInterval); } catch(e){}
+    token = "";
+    zeigeKeinZugang();
+    var st = document.getElementById("login-status");
+    if (st) st.textContent = "Deine Anmeldung ist abgelaufen — melde dich unten einfach mit deiner E-Mail neu an.";
+  }
+
+  function api(pfad, opts){
+    opts = opts || {};
+    opts.headers = Object.assign({"authorization":"Bearer " + token}, opts.headers || {});
+    return fetch(LC_API + pfad, opts).then(function(r){
+      if (r.status === 401) sessionAbgelaufen();
+      return r;
+    });
+  }
+
+  // — Abmelden (Session beenden — wichtig am fremden/geteilten Rechner) —
+  (function(){
+    var ab = document.getElementById("lc-abmelden");
+    if (!ab) return;
+    ab.style.display = "inline";
+    ab.addEventListener("click", function(ev){
+      ev.preventDefault();
+      try { api("/auth/logout", { method:"POST" }); } catch(e){}
+      try { localStorage.removeItem(nsKey("lc-zugang")); } catch(e){}
+      location.replace(location.pathname);
+    });
+  })();
+
+  // — Status laden + Polling —
+  var kundenName = "", anrede = "", letzteSignatur = null, schnellVersuche = 0, begruesstGesetzt = false;
+  var hatAktiveJobs = false; // steuert das Poll-Tempo: läuft ein Auftrag → schneller pollen
+  async function statusLaden(erster){
+    try {
+      var r = await api("/status");
+      if (r.status === 401){ sessionAbgelaufen(); return; }
+      var j = await r.json();
+      if (!j.ok) throw new Error();
+      // Schutz: gehört der Token wirklich zu DIESER Seite? (fremder/falscher Link)
+      if (pfadSlug && j.slug && j.slug !== pfadSlug){
+        try { localStorage.removeItem(nsKey("lc-zugang")); } catch(e){}
+        sessionAbgelaufen(); return; // stoppt auch das Chat-Polling mit dem fremden Token
+      }
+      // Bereich zeigen + einmalig personalisieren — unabhängig von 'erster', damit die
+      //   Begrüßung auch nach einem fehlgeschlagenen Erst-Laden noch gesetzt wird.
+      app.style.display = "";
+      if (!begruesstGesetzt){
+        anrede = j.anrede || (j.name || "").split(" ")[0] || "";
+        document.getElementById("gruss-titel").textContent = anrede ? ("Hallo " + anrede + ", schön dass du da bist!") : "Schön, dass du da bist!";
+        begruesstGesetzt = true;
+      }
+      var jobs = j.jobs || [];
+      var neuErledigt = pruefeNeuErledigt(jobs);
+      try { umzugLetzteJobs = jobs; umzugAktualisieren(jobs); } catch(e){}
+      // Nur neu rendern, wenn sich wirklich etwas geändert hat (verhindert 30-s-Flackern
+      //   und Aufklapp-/Fokus-Sprünge). „lang" fängt die zeitbasierte Hänge-Meldung mit ein.
+      var sig = jobs.map(function(x){
+        var i = schrittIndex(x.status);
+        var lang = (i >= 0 && i < 3 && jobAlterMin(x) > LAENGER_MIN) ? 1 : 0;
+        return x.id + ":" + x.status + ":" + (x.url ? 1 : 0) + ":" + lang;
+      }).join("|");
+      if (erster || neuErledigt || sig !== letzteSignatur){ jobsZeigen(jobs, neuErledigt); letzteSignatur = sig; }
+    } catch(e){
+      if (erster){
+        app.style.display = ""; // Netzproblem: Bereich trotzdem zeigen …
+        var jb = document.getElementById("jobs"), leer = jb && jb.querySelector(".leer");
+        if (leer) leer.textContent = "Einen Moment — deine Aufträge werden geladen …";
+        if (schnellVersuche < 3){ schnellVersuche++; setTimeout(function(){ statusLaden(true); }, 3000); } // … schnell erneut (max 3×), danach greift der 30-s-Poll
+        else if (leer) leer.textContent = "Die Verbindung klemmt gerade — ich versuche es automatisch weiter. Deine Aufträge gehen dabei nicht verloren. 🌿";
+      }
+    }
+  }
+
+  function schrittIndex(status){
+    if (status === "pending") return 0;
+    if (status === "claimed" || status === "running" || status === "approved") return 1;
+    if (status === "qa") return 2;
+    if (status === "done") return 3;
+    return -1; // failed/rejected
+  }
+
+  // Feedback-Block („Passt so?") für einen erledigten Auftrag — Zustand pro Kunde.
+  function macheFeedback(job){
+    var fbState = null; try { fbState = localStorage.getItem(nsKey("lc-fb") + ":" + job.id); } catch(e){}
+    var fb = document.createElement("div"); fb.className = "job-fb";
+    if (fbState === "ok"){
+      fb.innerHTML = "<span class='fb-dank'>Freut mich, dass es passt! 🌿</span>";
+    } else if (fbState === "redo"){
+      fb.innerHTML = "<span class='fb-dank'>Alles klar — schreib unten kurz, was noch anders soll. 🙌</span>";
+    } else {
+      var frage = document.createElement("span"); frage.className = "fb-frage"; frage.textContent = "War die Änderung wie gewünscht?";
+      var ja = document.createElement("button"); ja.type = "button"; ja.className = "btn btn-ghost fb-btn"; ja.textContent = "Ja, perfekt 👍";
+      var nein = document.createElement("button"); nein.type = "button"; nein.className = "btn btn-ghost fb-btn"; nein.textContent = "Nicht ganz 🙅";
+      ja.addEventListener("click", function(){
+        try { localStorage.setItem(nsKey("lc-fb") + ":" + job.id, "ok"); } catch(e){}
+        fb.innerHTML = "<span class='fb-dank'>Freut mich, dass es passt! 🌿</span>";
+      });
+      nein.addEventListener("click", function(){
+        try { localStorage.setItem(nsKey("lc-fb") + ":" + job.id, "redo"); } catch(e){}
+        var feld = document.getElementById("chat-eingabe");
+        if (feld){
+          // Bereits getippten Text NICHT verwerfen — Kontext voranstellen.
+          var pre = "Die letzte Änderung (" + (job.kurz || "") + ") passt noch nicht ganz — ";
+          var alt = (feld.value || "").trim();
+          feld.value = alt ? (pre + alt) : pre;
+          try { feld.dispatchEvent(new Event("input")); } catch(e){}
+          feld.focus();
+        }
+        var cv = document.getElementById("chat-verlauf");
+        if (cv) cv.scrollIntoView({behavior:"smooth", block:"center"});
+        fb.innerHTML = "<span class='fb-dank'>Alles klar — schreib unten kurz, was noch anders soll. 🙌</span>";
+      });
+      fb.appendChild(frage); fb.appendChild(ja); fb.appendChild(nein);
+    }
+    return fb;
+  }
+
+  // Aktiver / fehlgeschlagener Auftrag: volle Karte mit Zeitleiste bzw. Hinweis.
+  function macheAktivKarte(job){
+    var el = document.createElement("div");
+    var idx = schrittIndex(job.status);
+    el.className = "job" + (idx < 0 ? " problem" : "");
+    var kopf = document.createElement("div"); kopf.className = "zeile1";
+    var was = document.createElement("span"); was.className = "was"; was.textContent = job.kurz || "Auftrag";
+    var wann = document.createElement("span"); wann.className = "wann"; wann.textContent = (job.created || "").slice(0, 16).replace("T", " · ");
+    kopf.appendChild(was); kopf.appendChild(wann); el.appendChild(kopf);
+    if (idx >= 0){
+      var leiste = document.createElement("div"); leiste.className = "schritte";
+      for (var s = 0; s < 4; s++){
+        var sch = document.createElement("div");
+        sch.className = "schritt" + (s < idx ? " fertig" : s === idx ? (idx === 3 ? " fertig" : " aktiv") : "");
+        var p = document.createElement("span"); p.className = "punkt"; p.textContent = (s < idx || idx === 3 && s === 3) ? "✓" : (s + 1);
+        sch.appendChild(p);
+        if (s < 3){ var st = document.createElement("span"); st.className = "strich"; sch.appendChild(st); }
+        leiste.appendChild(sch);
+      }
+      el.appendChild(leiste);
+      var namen = document.createElement("div"); namen.className = "schritt-namen";
+      SCHRITTE.forEach(function(n){ var sp = document.createElement("span"); sp.textContent = n; namen.appendChild(sp); });
+      el.appendChild(namen);
+      if (idx < 3){
+        var alter = jobAlterMin(job);
+        if (alter !== null && alter > LAENGER_MIN){
+          var lg = document.createElement("div"); lg.className = "laenger";
+          lg.textContent = "⏳ Das dauert gerade etwas länger als sonst — kein Grund zur Sorge, wir haben es im Blick. Du musst nichts tun. 🌿";
+          el.appendChild(lg);
+        }
+      }
+    } else {
+      var info = document.createElement("div"); info.style.cssText = "color:var(--muted);font-size:14px;margin-top:4px;";
+      // „Keine Änderung erkannt" ist KEIN Fehler, der einen Menschen braucht — meist war
+      // der Wunsch schon erfüllt oder nicht eindeutig. Dann ehrlich & einladend formulieren,
+      // statt fälschlich „wir melden uns persönlich" zu versprechen.
+      var nichtsGeaendert = /keine änderung|nichts geändert|schon erf/i.test(job.notiz || "");
+      info.textContent = nichtsGeaendert
+        ? "Daran war nichts zu ändern — vermutlich ist es schon so. Wenn doch etwas fehlt, beschreib mir unten im Chat kurz genauer, was anders soll. 🌿"
+        : "Das übernehmen wir persönlich — wir melden uns bei dir. 🤝";
+      el.appendChild(info);
+    }
+    return el;
+  }
+
+  // Erledigter Auftrag: kompakt (Titel, Datum, live ✓, Ansehen, Feedback).
+  function macheErledigtItem(job){
+    var el = document.createElement("div"); el.className = "erl-item";
+    var kopf = document.createElement("div"); kopf.className = "zeile1";
+    var was = document.createElement("span"); was.className = "was"; was.textContent = job.kurz || "Auftrag";
+    var wann = document.createElement("span"); wann.className = "wann"; wann.textContent = (job.created || "").slice(0, 16).replace("T", " · ");
+    kopf.appendChild(was); kopf.appendChild(wann); el.appendChild(kopf);
+    if (job.url){
+      var badge = document.createElement("div"); badge.className = "live-badge"; badge.textContent = "live ✓"; el.appendChild(badge);
+      var link = document.createElement("div"); link.className = "live-link";
+      var a = document.createElement("a"); a.href = mitVersion(job.url, job.updated || job.created); a.target = "_blank"; a.rel = "noopener";
+      a.textContent = "Ansehen: deine Seite ist aktualisiert →";
+      link.appendChild(a); el.appendChild(link);
+      el.appendChild(macheFeedback(job));
+    } else {
+      // Kein Deploy passiert (z. B. Datei ohne Anweisung erhalten) → NICHT fälschlich „live ✓" zeigen.
+      var note = document.createElement("div"); note.style.cssText = "font-size:13.5px;color:var(--bone-dim);margin-top:6px;";
+      note.textContent = job.notiz || "Erhalten — sag mir im Chat, was ich damit machen soll.";
+      el.appendChild(note);
+    }
+    return el;
+  }
+
+  var erledigtOffen = false; // merkt sich die Aufklapp-Wahl über Re-Renders
+  function jobsZeigen(jobs, autoOpen){
+    var box = document.getElementById("jobs");
+    var erlWrap = document.getElementById("erledigt-wrap");
+    var altDet = document.getElementById("erledigt-details");
+    var istReRender = !!altDet;
+    if (altDet) erledigtOffen = altDet.open; // vom Nutzer geänderten Aufklapp-Zustand übernehmen
+    box.innerHTML = ""; erlWrap.innerHTML = "";
+
+    var aktive = [], probleme = [], erledigt = [];
+    (jobs || []).forEach(function(job){
+      if (!job) return;
+      if (job.type === "domain-selfservice") return; // eigener Stepper (Umzugs-Assistent), nicht in der Job-Liste
+      if (job.status === "done") erledigt.push(job);
+      else if (schrittIndex(job.status) < 0) probleme.push(job); // failed/rejected → „wir melden uns"
+      else aktive.push(job); // in Arbeit (pending/claimed/running/qa/approved)
+    });
+    hatAktiveJobs = aktive.length > 0; // → Poll-Tempo (schnell, solange etwas läuft)
+
+    // „Deine Seite ansehen“-Links (Top-Button + Klick-Overlay) auf die LETZTE Änderung
+    //   cache-busten, damit ein Klick direkt nach einer Änderung die frische Version zeigt.
+    var maxT = 0, maxRaw = "";
+    erledigt.forEach(function(j){ var t = Date.parse(j.updated || j.created); if (t && t > maxT){ maxT = t; maxRaw = j.updated || j.created; } });
+    var frischUrl = maxRaw ? mitVersion("./", maxRaw) : "./";
+    var seiteBtn = document.getElementById("seite-ansehen"); if (seiteBtn) seiteBtn.href = frischUrl;
+    var klickLink = document.querySelector(".seite-fenster .klick"); if (klickLink) klickLink.href = frischUrl;
+
+    if (aktive.length || probleme.length){
+      aktive.forEach(function(job){ box.appendChild(macheAktivKarte(job)); });
+      probleme.forEach(function(job){ box.appendChild(macheAktivKarte(job)); });
+    } else {
+      var leer = document.createElement("p"); leer.className = "leer";
+      leer.textContent = erledigt.length
+        ? "Gerade läuft nichts Neues — deine erledigten Änderungen siehst du unten. 🌿"
+        : "Noch keine Aufträge — schreib unten einfach deinen ersten Wunsch in den Chat. 🌿";
+      box.appendChild(leer);
+    }
+
+    if (erledigt.length){
+      var det = document.createElement("details"); det.id = "erledigt-details"; det.className = "erledigt";
+      // Standardmäßig EINGEKLAPPT (Lenny-Wunsch) — nur automatisch aufklappen, wenn gerade
+      //   etwas neu live ging (autoOpen); den vom Nutzer gewählten Zustand beim Re-Render bewahren.
+      det.open = (!!autoOpen) || (istReRender ? erledigtOffen : false);
+      var sum = document.createElement("summary");
+      sum.innerHTML = "<span class='erl-check'>✓</span> Erledigt <span class='erl-n'>· " + erledigt.length + "</span>";
+      det.appendChild(sum);
+      var liste = document.createElement("div"); liste.className = "erledigt-liste";
+      erledigt.forEach(function(job){ liste.appendChild(macheErledigtItem(job)); });
+      det.appendChild(liste);
+      erlWrap.appendChild(det);
+    }
+  }
+  // ===== Umzugs-Assistent: „Deine Domain verbinden" (Nameserver-Delegation zu INWX) =====
+  // Der Kunde führt den Umzug selbst; die Ausführung (INWX-Zone + GitHub-Pages + Mail-Spiegelung)
+  // macht der Runner voll-auto. Fixe Nameserver → kein Warten auf Werte, Go-Live erkennt das
+  // Dashboard selbst per /domain-check-Nachpoll. Zustand pro Kunde in localStorage (nsKey).
+  // Umzugs-Assistent („Deine Domain verbinden") vorerst AUS, bis er 100% zuverlässig ist
+  //   (Lenny-Wunsch). Zum Reaktivieren einfach auf true setzen.
+  var UMZUG_AKTIV = false;
+  var umzugSig = null, umzugChecking = false, umzugLetzteJobs = [];
+  function umzugDomain(){ try { return localStorage.getItem(nsKey("umzug-domain")) || ""; } catch(e){ return ""; } }
+  function umzugNsOk(){ try { return localStorage.getItem(nsKey("umzug-ns-ok")) === "1"; } catch(e){ return false; } }
+  function umzugIstLive(){ try { return localStorage.getItem(nsKey("umzug-live")) === "1"; } catch(e){ return false; } }
+  function ansage(text){ var an = document.getElementById("lc-ansage"); if (an) an.textContent = text; }
+
+  function umzugAktualisieren(jobs){
+    var karte = document.getElementById("umzug-karte"), box = document.getElementById("umzug-inhalt");
+    if (!karte || !box) return;
+    if (!UMZUG_AKTIV){ karte.style.display = "none"; return; } // Umzug im Dashboard ausgeblendet
+    umzugLetzteJobs = jobs || [];
+    karte.style.display = "";
+    var job = (jobs || []).filter(function(x){ return x && x.type === "domain-selfservice"; })
+                          .sort(function(a,b){ return a.id < b.id ? 1 : -1; })[0] || null;
+    // Läuft ein echter Umzug, ist der „Sonderfall"-Merker hinfällig.
+    if (job){ try { localStorage.removeItem(nsKey("umzug-mensch")); } catch(e){} }
+    var menschGrund = null; if (!job){ try { menschGrund = localStorage.getItem(nsKey("umzug-mensch")); } catch(e){} }
+    var phase = job ? (job.phase || "vorbereitet") : (menschGrund ? "mensch-statisch" : "start");
+    if (job && job.domain){ try { if (umzugDomain() !== job.domain) localStorage.setItem(nsKey("umzug-domain"), job.domain); } catch(e){} }
+    var dom = (job && job.domain) || umzugDomain();
+    // Go-Live-Erkennung: sobald der Kunde die NS bestätigt hat und noch nicht live.
+    if (!umzugIstLive() && job && phase === "nameserver" && umzugNsOk() && dom) umzugGoLiveCheck(dom);
+    var sig = (job ? job.id : "-") + ":" + phase + ":" + (umzugIstLive() ? "L" : "") + ":" + (umzugNsOk() ? "N" : "");
+    if (sig === umzugSig) return; // kein echter Zustandswechsel → nicht neu rendern (kein Flackern)
+    umzugSig = sig;
+    box.innerHTML = "";
+    if (umzugIstLive()){ umzugRenderLive(box, dom); return; }
+    if (phase === "start"){ umzugRenderStart(box); return; }
+    if (phase === "mensch-statisch"){ umzugRenderMenschStatisch(box, menschGrund); return; }
+    if (phase === "mensch_uebernimmt"){ umzugRenderMensch(box, job); return; }
+    if (phase === "nameserver"){ umzugRenderNameserver(box, job, dom); return; }
+    umzugRenderVorbereitet(box); // Job da, aber Runner noch nicht durch
+  }
+  function umzugNeuRendern(){ umzugSig = null; umzugAktualisieren(umzugLetzteJobs); }
+
+  function normDomain(roh){
+    return (roh || "").trim().toLowerCase()
+      .replace(/^https?:\/\//, "").replace(/\/.*$/, "").replace(/^www\./, "").replace(/\.$/, "");
+  }
+
+  function umzugRenderStart(box){
+    var wrap = document.createElement("div");
+    var intro = document.createElement("p"); intro.className = "umzug-intro";
+    intro.textContent = "Gib deine Wunsch-Adresse ein — ich prüfe kurz, wie sie eingerichtet ist. Deine E-Mails rühre ich dabei nicht an.";
+    wrap.appendChild(intro);
+    var feld = document.createElement("div"); feld.className = "umzug-feld";
+    var inp = document.createElement("input"); inp.type = "text"; inp.placeholder = "z. B. meine-praxis.de"; inp.setAttribute("aria-label", "Deine Domain");
+    inp.value = umzugDomain();
+    var btn = document.createElement("button"); btn.className = "btn"; btn.type = "button"; btn.textContent = "Domain prüfen";
+    feld.appendChild(inp); feld.appendChild(btn); wrap.appendChild(feld);
+    var out = document.createElement("div"); wrap.appendChild(out);
+    function los(){ umzugPruefen(inp.value, out, btn); }
+    btn.addEventListener("click", los);
+    inp.addEventListener("keydown", function(e){ if (e.key === "Enter"){ e.preventDefault(); los(); } });
+    box.appendChild(wrap);
+  }
+
+  function umzugPruefen(roh, out, btn){
+    var domain = normDomain(roh);
+    if (!/^[a-z0-9ä-ü][a-z0-9ä-ü.-]*\.[a-z0-9ä-ü-]{2,}$/i.test(domain)){
+      out.innerHTML = '<div class="umzug-box warm">Bitte gib eine gültige Adresse ein, z. B. <b>meine-praxis.de</b>.</div>'; return;
+    }
+    try { localStorage.setItem(nsKey("umzug-domain"), domain); } catch(e){}
+    btn.disabled = true; btn.textContent = "prüfe …"; out.innerHTML = "";
+    fetch(LC_API + "/domain-check", { method:"POST", headers:{"content-type":"application/json"}, body: JSON.stringify({ domain: domain }) })
+      .then(function(r){ return r.json(); }).then(function(j){
+        btn.disabled = false; btn.textContent = "Domain prüfen";
+        if (!j || !j.ok || !j.steckbrief){
+          out.innerHTML = '<div class="umzug-box warm">Diese Adresse konnte ich gerade nicht prüfen. Schau kurz nach der Schreibweise — oder <a href="mailto:info@lechcode.de">frag uns</a>.</div>'; return;
+        }
+        var sb = j.steckbrief;
+        var mailSatz = sb.email_an_domain
+          ? ("Deine E-Mail läuft über " + (sb.email_provider || "deinen Anbieter") + " — die bleibt beim Umzug <b>unangetastet</b>.")
+          : "An dieser Adresse hängt keine E-Mail — der Umzug ist besonders unkompliziert.";
+        var g = document.createElement("div"); g.className = "umzug-box gut";
+        g.innerHTML = "<b>" + domain + "</b> liegt aktuell bei " + (sb.aktueller_anbieter || "deinem Anbieter") + ".<br>" + mailSatz +
+          "<br>Ich richte alles ein und zeige dir dann genau den <b>einen Handgriff</b>, den nur du machen kannst.";
+        out.appendChild(g);
+        var los = document.createElement("button"); los.className = "btn"; los.type = "button"; los.textContent = "Ja, Domain verbinden ✓";
+        los.addEventListener("click", function(){ umzugStarten(domain, out, los); });
+        out.appendChild(los);
+      })
+      .catch(function(){ btn.disabled = false; btn.textContent = "Domain prüfen"; out.innerHTML = '<div class="umzug-box warm">Verbindungsproblem — bitte gleich noch einmal versuchen.</div>'; });
+  }
+
+  function umzugStarten(domain, out, btn){
+    btn.disabled = true; btn.textContent = "starte …";
+    api("/job", { method:"POST", headers:{"content-type":"application/json"}, body: JSON.stringify({ type:"domain-selfservice", payload:{ domain: domain } }) })
+      .then(function(r){ return r.json(); }).then(function(j){
+        if (j && j.eligible === false){
+          try { localStorage.setItem(nsKey("umzug-mensch"), j.grund || ""); } catch(e){}
+          ansage("Diesen Umzug übernehmen wir persönlich.");
+          umzugNeuRendern();
+          return;
+        }
+        if (j && j.ok){ umzugSig = null; ansage("Alles klar — ich richte deine Domain jetzt ein."); statusLaden(false); }
+        else { out.innerHTML = '<div class="umzug-box warm">Das hat gerade nicht geklappt — bitte gleich noch einmal, oder <a href="mailto:info@lechcode.de">schreib uns</a>.</div>'; btn.disabled = false; btn.textContent = "Ja, Domain verbinden ✓"; }
+      })
+      .catch(function(){ out.innerHTML = '<div class="umzug-box warm">Verbindungsproblem — bitte gleich noch einmal.</div>'; btn.disabled = false; btn.textContent = "Ja, Domain verbinden ✓"; });
+  }
+
+  function umzugRenderVorbereitet(box){
+    box.innerHTML = '<div class="umzug-box">🌿 Ich richte gerade alles ein — deine Internet-Zone, die Sicherheit (SSL) und deine E-Mail-Einträge. Das dauert nur ein, zwei Minuten. Gleich zeige ich dir den letzten Schritt.</div>';
+  }
+
+  function stepLi(titel, klasse, detailFn){
+    var li = document.createElement("li");
+    if (klasse === "current") li.setAttribute("aria-current", "step");
+    if (klasse === "fertig") li.className = "fertig";
+    var pk = document.createElement("div"); pk.className = "st-punkt"; pk.textContent = klasse === "fertig" ? "✓" : "•";
+    var inh = document.createElement("div"); inh.className = "st-inhalt";
+    var t = document.createElement("div"); t.className = "st-titel"; t.textContent = titel; inh.appendChild(t);
+    if (detailFn){ var d = detailFn(); if (d) inh.appendChild(d); }
+    li.appendChild(pk); li.appendChild(inh);
+    return li;
+  }
+
+  function umzugRenderNameserver(box, job, dom){
+    var ns = (job.ziel_ns && job.ziel_ns.length) ? job.ziel_ns : ["ns.inwx.de", "ns2.inwx.de", "ns3.inwx.eu"];
+    var anl = job.anleitung || {};
+    var nsOk = umzugNsOk();
+    var ol = document.createElement("ol"); ol.className = "stepper";
+    ol.appendChild(stepLi("Geprüft & alles vorbereitet", "fertig", null));
+    ol.appendChild(stepLi("Nameserver umstellen — dein einziger Handgriff", nsOk ? "fertig" : "current",
+      nsOk ? null : function(){ return nsSwitchDetail(ns, anl, dom); }));
+    ol.appendChild(stepLi("Wir prüfen automatisch & schalten live", nsOk ? "current" : "",
+      nsOk ? function(){
+        var d = document.createElement("div"); d.className = "st-detail";
+        d.innerHTML = "Läuft — das kann ein paar Stunden bis zu einem Tag dauern, völlig normal. Du musst nichts tun, deine E-Mails laufen weiter. Diese Seite darfst du jederzeit schließen; sobald es steht, siehst du es hier. 🌿";
+        return d;
+      } : null));
+    box.appendChild(ol);
+  }
+
+  function nsSwitchDetail(ns, anl, dom){
+    var d = document.createElement("div"); d.className = "st-detail";
+    var p = document.createElement("div");
+    p.innerHTML = "Melde dich bei <b>" + (anl.provider_name || "deinem Domain-Anbieter") + "</b> an" +
+      (anl.registrar_login_url ? ' (<a href="' + anl.registrar_login_url + '" target="_blank" rel="noopener">Login öffnen ↗</a>)' : "") +
+      " und trage dort als Nameserver <b>genau diese drei</b> ein:";
+    d.appendChild(p);
+    var liste = document.createElement("div"); liste.className = "ns-liste";
+    ns.forEach(function(n){
+      var z = document.createElement("div"); z.className = "ns-zeile";
+      var c = document.createElement("code"); c.textContent = n;
+      var b = document.createElement("button"); b.className = "ns-copy"; b.type = "button"; b.textContent = "kopieren"; b.setAttribute("aria-label", "Nameserver " + n + " kopieren");
+      b.addEventListener("click", function(){ kopieren(n, b); });
+      z.appendChild(c); z.appendChild(b); liste.appendChild(z);
+    });
+    d.appendChild(liste);
+    var schritte = anl.ns_schritte || [];
+    if (schritte.length){
+      var sol = document.createElement("ol"); sol.className = "umzug-schritte";
+      schritte.forEach(function(s){
+        var li = document.createElement("li"); li.textContent = s.text || "";
+        if (s.hinweis){ var sm = document.createElement("span"); sm.className = "sub"; sm.textContent = s.hinweis; li.appendChild(sm); }
+        sol.appendChild(li);
+      });
+      d.appendChild(sol);
+    }
+    if (anl.dnssec_hinweis){ var w = document.createElement("div"); w.className = "umzug-hinweis"; w.textContent = "⚠ " + anl.dnssec_hinweis; d.appendChild(w); }
+    var fertig = document.createElement("button"); fertig.className = "btn"; fertig.type = "button"; fertig.textContent = "Hab ich gemacht ✓"; fertig.style.marginTop = "12px";
+    fertig.addEventListener("click", function(){ try { localStorage.setItem(nsKey("umzug-ns-ok"), "1"); } catch(e){} ansage("Danke — wir prüfen jetzt automatisch, wann deine Seite live ist."); umzugNeuRendern(); });
+    var hilfe = document.createElement("button"); hilfe.className = "btn btn-ghost"; hilfe.type = "button"; hilfe.textContent = "Ich komme nicht weiter"; hilfe.style.marginLeft = "8px";
+    hilfe.addEventListener("click", function(){ umzugHilfe(dom); });
+    d.appendChild(fertig); d.appendChild(hilfe);
+    return d;
+  }
+
+  function umzugRenderMensch(box, job){
+    var grund = (job && job.grund) ? (" " + job.grund) : "";
+    box.innerHTML = '<div class="umzug-box warm">🤝 Diesen Umzug übernehmen wir <b>persönlich</b> für dich —' + (grund || " bei deiner Domain schauen wir lieber selbst genau hin.") +
+      ' Du musst nichts weiter tun; wir melden uns. Fragen? <a href="mailto:info@lechcode.de">info@lechcode.de</a></div>';
+  }
+
+  // Sonderfall aus der Vorab-Prüfung (kein domain-selfservice-Job) — persistent, mit Ausweg.
+  function umzugRenderMenschStatisch(box, grund){
+    var wrap = document.createElement("div");
+    var b = document.createElement("div"); b.className = "umzug-box warm";
+    b.innerHTML = "🤝 Diesen Umzug übernehmen wir <b>persönlich</b> für dich" + (grund ? (" — " + grund) : ".") +
+      " Wir haben dem Team schon Bescheid gegeben und melden uns bei dir. Fragen? <a href=\"mailto:info@lechcode.de\">info@lechcode.de</a>";
+    wrap.appendChild(b);
+    var neu = document.createElement("button"); neu.className = "btn btn-ghost"; neu.type = "button"; neu.textContent = "Andere Adresse verbinden";
+    neu.addEventListener("click", function(){
+      try { localStorage.removeItem(nsKey("umzug-mensch")); localStorage.removeItem(nsKey("umzug-domain")); } catch(e){}
+      umzugNeuRendern();
+    });
+    wrap.appendChild(neu);
+    box.appendChild(wrap);
+  }
+
+  function umzugRenderLive(box, dom){
+    box.innerHTML = '<div class="umzug-box gut">🎉 Geschafft! <b>' + (dom || "Deine Domain") + '</b> ist jetzt mit deiner Website verbunden — und deine E-Mails laufen unverändert weiter. 🌿</div>';
+  }
+
+  function umzugHilfe(dom){
+    try {
+      api("/job", { method:"POST", headers:{"content-type":"application/json"}, body: JSON.stringify({
+        type:"change-request",
+        payload:{ wunsch_oton: "Umzugs-Assistent: Ich komme beim Nameserver-Schritt für " + (dom || umzugDomain()) + " nicht weiter. Bitte helft mir.", kategorie:"umzug-hilfe", aenderungen:[], bilder:[], transcript:[] }
+      }) }).catch(function(){});
+    } catch(e){}
+    umzugSig = "__hilfe__";
+    var box = document.getElementById("umzug-inhalt");
+    if (box) box.innerHTML = '<div class="umzug-box warm">Alles gut — wir haben dem Team Bescheid gegeben und melden uns bei dir. Du musst nichts weiter tun. 🤝</div>';
+    ansage("Wir haben dem Team Bescheid gegeben.");
+  }
+
+  function umzugGoLiveCheck(domain){
+    if (umzugChecking || umzugIstLive()) return;
+    umzugChecking = true;
+    fetch(LC_API + "/domain-check", { method:"POST", headers:{"content-type":"application/json"}, body: JSON.stringify({ domain: domain }) })
+      .then(function(r){ return r.json(); }).then(function(j){
+        umzugChecking = false;
+        if (!j || !j.ok || !j.steckbrief) return;
+        var sb = j.steckbrief, a = (sb.dns_ist && sb.dns_ist.a) || [];
+        var ghp = ["185.199.108.153", "185.199.109.153", "185.199.110.153", "185.199.111.153"];
+        var aufPages = sb.aktuelles_hosting === "GitHub Pages" || a.some(function(ip){ return ghp.indexOf(ip) >= 0; });
+        var mailDa = !sb.email_an_domain || (sb.nicht_verlieren && sb.nicht_verlieren.mx && sb.nicht_verlieren.mx.length > 0);
+        if (aufPages && mailDa){
+          try { localStorage.setItem(nsKey("umzug-live"), "1"); } catch(e){}
+          ansage("Deine Domain " + domain + " ist jetzt live.");
+          seiteLaden();
+          umzugNeuRendern();
+        }
+      })
+      .catch(function(){ umzugChecking = false; });
+  }
+
+  function kopieren(text, btn){
+    var fertig = function(){ var alt = btn.textContent; btn.textContent = "kopiert ✓"; ansage(text + " kopiert."); setTimeout(function(){ btn.textContent = alt; }, 1600); };
+    if (navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(fertig, fertig); }
+    else { fertig(); }
+  }
+
+  statusLaden(true);
+  // Adaptiver Poll: solange ein FRISCHER Auftrag läuft, alle 7 s (fast Echtzeit auf „live");
+  // sonst alle 30 s. Nach Session-Ende (401/fremder Slug) hört das Pollen auf.
+  (function planePoll(){
+    setTimeout(async function(){
+      if (sessionBeendet) return;
+      try { await statusLaden(false); } catch(e){}
+      if (!sessionBeendet) planePoll();
+    }, hatAktiveJobs ? 7000 : 30000);
+  })();
+
+  // — Chat —
+  var messages = [];
+  var beschaeftigt = false;
+  var verlauf = document.getElementById("chat-verlauf");
+  var tipp = document.getElementById("tipp");
+  var eingabe = document.getElementById("chat-eingabe");
+  var sendBtn = document.getElementById("chat-senden");
+  var micBtn = document.getElementById("chat-mic");
+  var zeileEl = document.getElementById("chat-eingabe-zeile");
+  var beauftragenBox = document.getElementById("beauftragen");
+  var letzterRequest = null;
+  var bekannteProaktiv = {}; // schon gezeigte proaktive Nachrichten (id → 1), gegen Doppel-Anzeige
+  var angehaengteDatei = null; // im Chat angehängte Datei (vor dem Senden)
+  var anhangUrl = null;        // Object-URL der Anhang-Vorschau (wird beim Ersetzen/Entfernen freigegeben)
+
+  // ===== Sprachnachricht-Bausteine (identisch in berater.html & mein-bereich.html) =====
+  function lcVoiceUnterstuetzt(){ return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder); }
+  function lcFmtZeit(sec){ sec = Math.max(0, Math.round(sec)); var m = Math.floor(sec/60), s = sec%60; return m + ":" + (s<10?"0":"") + s; }
+  function lcBlobB64(blob){ return new Promise(function(res,rej){ var fr = new FileReader(); fr.onload = function(){ res(String(fr.result).split(",")[1]); }; fr.onerror = rej; fr.readAsDataURL(blob); }); }
+
+  function lcAufnahmeStarten(zeile, verstecken, onFertig, onAbbruch, onFehler){
+    navigator.mediaDevices.getUserMedia({audio:true}).then(function(stream){
+      var typen = ["audio/webm;codecs=opus","audio/webm","audio/mp4"];
+      var mime = ""; for (var t=0;t<typen.length;t++){ if (window.MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(typen[t])){ mime = typen[t]; break; } }
+      var rec = mime ? new MediaRecorder(stream, {mimeType:mime}) : new MediaRecorder(stream);
+      var chunks = []; rec.ondataavailable = function(e){ if (e.data && e.data.size) chunks.push(e.data); };
+      var actx = new (window.AudioContext||window.webkitAudioContext)();
+      try { if (actx.state === "suspended" && actx.resume) actx.resume(); } catch(e){} // iOS: Context startet sonst „suspended" → flache Wellenform
+      var ana = actx.createAnalyser(); ana.fftSize = 256; ana.smoothingTimeConstant = 0.75;
+      actx.createMediaStreamSource(stream).connect(ana);
+      var freq = new Uint8Array(ana.frequencyBinCount), peaks = [];
+
+      var bar = document.createElement("div"); bar.className = "lc-rec";
+      var cancel = document.createElement("button"); cancel.className = "lc-rec-btn lc-rec-cancel"; cancel.type = "button"; cancel.setAttribute("aria-label","Abbrechen"); cancel.textContent = "✕";
+      var dot = document.createElement("span"); dot.className = "lc-rec-dot";
+      var time = document.createElement("span"); time.className = "lc-rec-time"; time.textContent = "0:00";
+      var wave = document.createElement("div"); wave.className = "lc-rec-wave";
+      var send = document.createElement("button"); send.className = "lc-rec-btn lc-rec-send"; send.type = "button"; send.setAttribute("aria-label","Sprachnachricht senden"); send.innerHTML = "→";
+      bar.appendChild(cancel); bar.appendChild(dot); bar.appendChild(time); bar.appendChild(wave); bar.appendChild(send);
+      verstecken.forEach(function(el){ el.style.display = "none"; });
+      zeile.appendChild(bar);
+
+      // Balkenzahl an die tatsächliche Wellenform-Breite anpassen → füllt jede Breite dicht
+      // (Desktop viele, Mobil weniger); Balken je 3px + 3px Lücke = 6px.
+      var BARS = Math.max(20, Math.min(96, Math.floor(((wave.clientWidth || 320) + 3) / 6)));
+      var ibars = [], form = [];
+      for (var i=0;i<BARS;i++){
+        var bi = document.createElement("i"); wave.appendChild(bi); ibars.push(bi);
+        // stabile, organische Silhouette: sanfter Bogen (Mitte höher) + leichte Streuung
+        var t0 = BARS > 1 ? i/(BARS-1) : 0.5;
+        form.push((0.6 + 0.4*Math.sin(Math.PI*t0)) * (0.78 + 0.44*Math.random()));
+      }
+
+      var start = Date.now(), raf, abgebrochen = false, beendet = false;
+      function tick(){
+        ana.getByteFrequencyData(freq);
+        var bins = freq.length;
+        var vBins = Math.max(6, Math.floor(bins*0.55));       // Sprach-Energie sitzt in den unteren Bins
+        var level = 0; for (var k=0;k<vBins;k++) level += freq[k]; level = (level/vBins)/255; // 0..1
+        for (var i=0;i<BARS;i++){
+          var t = BARS>1 ? i/(BARS-1) : 0.5;
+          var spec = freq[Math.floor(t*(vBins-1))]/255;       // etwas Spektral-Bewegung über die Breite
+          var h = level*form[i]*1.5 + spec*0.25;              // Lautstärke (überall) + Bewegung
+          if (h > 1) h = 1;
+          ibars[i].style.height = Math.max(8, h*100) + "%";
+        }
+        peaks.push(level);                                     // Hüllkurve für die gesendete Sprach-Bubble
+        var dauer = (Date.now()-start)/1000; time.textContent = lcFmtZeit(dauer);
+        if (dauer > 90){ beenden(); return; }
+        raf = requestAnimationFrame(tick);
+      }
+      raf = requestAnimationFrame(tick);
+
+      function aufraeumen(){
+        cancelAnimationFrame(raf);
+        try { stream.getTracks().forEach(function(t){ t.stop(); }); } catch(e){}
+        try { actx.close(); } catch(e){}
+        bar.remove(); verstecken.forEach(function(el){ el.style.display = ""; });
+      }
+      function beenden(){
+        if (beendet) return; beendet = true; // gegen doppeltes beenden (90-s-Auto-Stopp + gleichzeitiger Cancel-Klick)
+        var dauer = (Date.now()-start)/1000;
+        rec.onstop = function(){
+          aufraeumen();
+          if (abgebrochen) return;
+          var blob = new Blob(chunks, {type: mime || "audio/webm"});
+          var ziel = 40, out = [], grp = Math.max(1, Math.floor(peaks.length/ziel));
+          for (var k=0;k<ziel;k++){ var a=0,c=0; for (var j=k*grp;j<(k+1)*grp && j<peaks.length;j++){ a+=peaks[j]; c++; } out.push(c?a/c:0); }
+          var max = Math.max.apply(null, out.concat([0.001])); out = out.map(function(v){ return Math.min(1, v/max); });
+          onFertig({blob:blob, url:URL.createObjectURL(blob), dauer:dauer, peaks:out});
+        };
+        try { rec.stop(); } catch(e){ aufraeumen(); }
+      }
+      cancel.addEventListener("click", function(){ abgebrochen = true; beenden(); if (onAbbruch) onAbbruch(); });
+      send.addEventListener("click", function(){ beenden(); });
+      rec.start();
+    }).catch(function(err){
+      var m = (err && err.name === "NotAllowedError")
+        ? "Ich brauche kurz die Erlaubnis fürs Mikrofon — dann klappt die Sprachnachricht. Du kannst natürlich auch einfach tippen."
+        : "Das Mikrofon lässt sich gerade nicht öffnen — magst du stattdessen tippen?";
+      if (onFehler) onFehler(m);
+    });
+  }
+
+  function lcVoiceBubble(verlaufEl, rolleKlasse, daten){
+    var el = document.createElement("div"); el.className = "msg " + rolleKlasse + " voice";
+    var row = document.createElement("div"); row.className = "lc-vrow";
+    var play = document.createElement("button"); play.className = "lc-vplay"; play.type = "button"; play.setAttribute("aria-label","Abspielen"); play.innerHTML = "▶";
+    var wave = document.createElement("div"); wave.className = "lc-vwave";
+    (daten.peaks||[]).forEach(function(p){ var b = document.createElement("i"); b.style.height = Math.max(12, p*100) + "%"; wave.appendChild(b); });
+    var dur = document.createElement("span"); dur.className = "lc-vdur"; dur.textContent = lcFmtZeit(daten.dauer);
+    row.appendChild(play); row.appendChild(wave); row.appendChild(dur);
+    var txt = document.createElement("div"); txt.className = "lc-vtext warten"; txt.textContent = "… wird verstanden";
+    el.appendChild(row); el.appendChild(txt);
+    verlaufEl.appendChild(el); verlaufEl.scrollTop = verlaufEl.scrollHeight;
+
+    var audio = new Audio(daten.url), spielt = false;
+    var bars = [].slice.call(wave.querySelectorAll("i"));
+    audio.addEventListener("timeupdate", function(){
+      var f = audio.currentTime / (audio.duration || daten.dauer || 1);
+      var n = Math.floor(f*bars.length);
+      bars.forEach(function(b,i){ b.classList.toggle("on", i <= n); });
+    });
+    audio.addEventListener("ended", function(){ spielt = false; play.innerHTML = "▶"; bars.forEach(function(b){ b.classList.remove("on"); }); });
+    play.addEventListener("click", function(){ if (spielt){ audio.pause(); spielt = false; play.innerHTML = "▶"; } else { audio.play(); spielt = true; play.innerHTML = "❚❚"; } });
+
+    return {
+      setText: function(t){ txt.classList.remove("warten"); txt.innerHTML = "<span class='lc-mini'>🎤</span>" + String(t).replace(/</g,"&lt;"); verlaufEl.scrollTop = verlaufEl.scrollHeight; },
+      setFehler: function(t){ txt.classList.remove("warten"); txt.style.color = "#f0b090"; txt.textContent = t; }
+    };
+  }
+
+  // Leichte, sichere Formatierung für Berater-Nachrichten: erst HTML escapen,
+  // dann **fett**, Aufzählungszeichen und Zeilenumbrüche rendern (kein rohes HTML).
+  function escHtml(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  function kiMd(s){
+    var t = escHtml(s);
+    t = t.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+    t = t.replace(/^\s*[-•]\s+/gm, "• ");
+    t = t.replace(/\n/g, "<br>");
+    return t;
+  }
+  function bubble(rolle, text){
+    var el = document.createElement("div");
+    el.className = "msg " + (rolle === "user" ? "du" : "ki");
+    if (rolle === "user"){
+      el.textContent = text;
+      verlauf.appendChild(el);
+    } else {
+      el.innerHTML = kiMd(text);
+      // KI-Nachricht mit kleinem Berater-Avatar (Lechcode-Welle)
+      var row = document.createElement("div"); row.className = "msg-row";
+      var av = document.createElement("div"); av.className = "msg-avatar";
+      av.innerHTML = "<svg viewBox='0 0 48 48' fill='none' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M8 27 C 14 19, 20 19, 24 25 C 28 31, 34 31, 40 22'/></svg>";
+      row.appendChild(av); row.appendChild(el);
+      verlauf.appendChild(row);
+    }
+    verlauf.scrollTop = verlauf.scrollHeight;
+    return el;
+  }
+  // — Begrüßung: beim ERSTEN Besuch seiten-bewusst (der Berater liest die Startseite),
+  //   danach ruhig & sofort. Bei Fehler still auf eine schlichte Begrüßung zurückfallen. —
+  var OPENER_INSTR = "[Hinweis, den du NICHT erwähnst: Der Kunde hat gerade seinen Kundenbereich geöffnet. Begrüße ihn herzlich in 2–4 Sätzen, beziehe dich dabei konkret und positiv auf EINEN Punkt seiner aktuellen Startseite (zeig, dass du sie kennst — ohne Fakten zu erfinden), und frage mit genau EINER Frage, womit er anfangen möchte.]";
+  async function openerZeigen(){
+    var schonDa = false; try { schonDa = !!localStorage.getItem(nsKey("lc-opener-done")); } catch(e){}
+    if (schonDa){
+      bubble("assistant", "Schön, dass du wieder da bist! 🌿 Frag mich alles rund um deine Seite — oder sag einfach, was ich für dich ändern soll.");
+      return;
+    }
+    messages.push({role:"user", content: OPENER_INSTR});
+    beschaeftigt = true; sendBtn.disabled = true;
+    var txt = await streamAntwort({stillBeiFehler:true});
+    beschaeftigt = false; sendBtn.disabled = false;
+    if (txt){ try { localStorage.setItem(nsKey("lc-opener-done"), "1"); } catch(e){} }
+    else { messages = []; chatSpeichern(); bubble("assistant", "Hallo! 🌿 Ich bin dein persönlicher Berater rund um deine Website. Frag mich alles — oder sag einfach, was ich für dich ändern soll."); }
+  }
+
+  // — Chat-Verlauf pro Kunde behalten (localStorage, namespaced wie alle Schlüssel) —
+  //   So macht der Kunde beim Neuladen dort weiter, wo er aufgehört hat, statt bei null
+  //   zu starten. Gespeichert wird NUR aus streamAntwort() nach einer fertigen Antwort:
+  //   dadurch beginnt der wiederhergestellte Verlauf immer mit „user" und alterniert
+  //   sauber (zwei User-Turns am Stück würde der Chat-Endpoint mit 400 quittieren).
+  function chatSpeichern(){
+    try {
+      var arr = messages.slice(-60);                       // Speicher deckeln
+      while (arr.length && arr[0].role !== "user") arr.shift(); // immer mit „user" beginnen
+      if (!arr.length){ localStorage.removeItem(nsKey("lc-chat")); }
+      else localStorage.setItem(nsKey("lc-chat"), JSON.stringify(arr));
+    } catch(e){}
+    serverSpeichern();
+  }
+  // Verlauf zusätzlich server-seitig sichern (Wahrheit, geräteübergreifend). Entprellt,
+  // Fire-and-forget; der Server erhält proaktive Nachrichten merge-sicher (per id).
+  var saveTimer = null;
+  function serverSpeichern(){
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function(){
+      try {
+        api("/dashboard-chat/save", {method:"POST", headers:{"content-type":"application/json"},
+          body: JSON.stringify({messages: messages.slice(-80)})}).catch(function(){});
+      } catch(e){}
+    }, 400);
+  }
+  function chatLaden(){
+    try { var a = JSON.parse(localStorage.getItem(nsKey("lc-chat")) || "null"); return Array.isArray(a) ? a : null; }
+    catch(e){ return null; }
+  }
+
+  function verlaufRendern(arr){
+    arr.forEach(function(m){
+      if (!m || !m.content) return;
+      if (m.role === "user" && m.content === OPENER_INSTR) return; // versteckte Begrüßungs-Anweisung nie anzeigen
+      if (m.proaktiv && m.id) bekannteProaktiv[m.id] = 1;
+      bubble(m.role === "user" ? "user" : "assistant", m.content);
+    });
+  }
+  // Verlauf laden: Server ist die Wahrheit (geräteübergreifend, wir können reinschreiben).
+  // localStorage nur als Offline-Fallback; ein reiner Browser-Verlauf wird einmalig migriert.
+  (async function ladeVerlauf(){
+    var serverArr = null;
+    try {
+      var r = await api("/dashboard-chat/verlauf", {method:"GET"});
+      var j = await r.json();
+      if (j && j.ok && Array.isArray(j.messages)) serverArr = j.messages;
+    } catch(e){}
+    if (serverArr && serverArr.length){
+      messages = serverArr; verlaufRendern(serverArr);
+    } else {
+      var lokal = chatLaden();
+      if (lokal && lokal.length){
+        messages = lokal; verlaufRendern(lokal); serverSpeichern(); // einmalig zum Server migrieren
+      } else {
+        openerZeigen();
+      }
+    }
+    if (!sessionBeendet) proaktivInterval = setInterval(proaktivPoll, 30000); // proaktive Nachrichten (z. B. „Änderung ist live") abholen
+  })();
+
+  // Neue proaktive Berater-Nachrichten vom Server holen und einblenden (id-dedupliziert).
+  async function proaktivPoll(){
+    if (beschaeftigt || sessionBeendet) return;
+    var arr = null;
+    try {
+      var r = await api("/dashboard-chat/verlauf", {method:"GET"});
+      var j = await r.json();
+      if (j && j.ok && Array.isArray(j.messages)) arr = j.messages;
+    } catch(e){ return; }
+    if (!arr) return;
+    var neue = arr.filter(function(m){ return m && m.proaktiv && m.id && !bekannteProaktiv[m.id]; });
+    if (!neue.length) return;
+    neue.forEach(function(m){
+      bekannteProaktiv[m.id] = 1;
+      messages.push({role:"assistant", content:m.content, proaktiv:true, id:m.id, t:m.t});
+      bubble("assistant", m.content);
+    });
+    try { var arr2 = messages.slice(-60); localStorage.setItem(nsKey("lc-chat"), JSON.stringify(arr2)); } catch(e){}
+  }
+
+  // Nur ein FENSTER der letzten Nachrichten an den Server schicken: der gespeicherte
+  // Verlauf kann bis zu 80 Nachrichten lang sein, der Chat-Endpoint deckelt bei 40 —
+  // den kompletten Verlauf zu senden würde den Chat für Stammkunden dauerhaft brechen.
+  // Die versteckte Begrüßungs-Anweisung fliegt raus (außer sie ist die aktuelle Nachricht).
+  function chatFenster(basis){
+    var quelle = basis || messages;
+    var arr = [];
+    for (var i = 0; i < quelle.length; i++){
+      var m = quelle[i];
+      if (!m || !m.content) continue;
+      if (m.content === OPENER_INSTR && i !== quelle.length - 1) continue;
+      arr.push({role: m.role, content: m.content});
+    }
+    // Aufeinanderfolgende gleiche Rollen zusammenführen: schlägt eine Antwort fehl,
+    // bleibt der User-Turn unbeantwortet stehen und der nächste Versuch erzeugte sonst
+    // zwei „user" am Stück (Doppel-Anzeige; der Chat-Endpoint verlangt Wechsel).
+    var merged = [];
+    for (var k = 0; k < arr.length; k++){
+      var last = merged[merged.length - 1];
+      if (last && last.role === arr[k].role) last.content += "\n\n" + arr[k].content;
+      else merged.push({role: arr[k].role, content: arr[k].content});
+    }
+    merged = merged.slice(-30);
+    while (merged.length && merged[0].role !== "user") merged.shift(); // sauber mit „user" beginnen
+    return merged;
+  }
+
+  // Blendet den technischen Bereitschafts-Marker aus der Anzeige aus (auch als Teil-Marker
+  // während des Streamens). Der Rohtext bleibt für die Marker-Erkennung erhalten.
+  var AEND_MARKER = "[[AENDERUNG_BEREIT]]";
+  function markerWeg(s){
+    return String(s).replace(/\s*\[\[AENDERUNG_BEREIT\]\]\s*/g, " ").replace(/\[\[[A-Z_]*\]?$/, "").replace(/[ \t]+$/, "");
+  }
+
+  // Streamt die Assistenten-Antwort (setzt voraus: letzte messages-Zeile = user). Gibt den ROH-Text zurück.
+  // opts.stillBeiFehler: bei Fehlern keine Fehler-Blase zeigen (für die Auto-Begrüßung).
+  async function streamAntwort(opts){
+    tipp.classList.add("an");
+    var antwortEl = null, antwortText = "";
+    try {
+      var r = await api("/dashboard-chat", {method:"POST", headers:{"content-type":"application/json"}, body: JSON.stringify({messages: chatFenster()})});
+      var ct = r.headers.get("content-type") || "";
+      if (ct.indexOf("text/event-stream") === -1){
+        var j = await r.json().catch(function(){ return {}; });
+        tipp.classList.remove("an");
+        if (!(opts && opts.stillBeiFehler)) bubble("assistant", j.meldung || "Hoppla — magst du es gleich noch einmal versuchen?");
+      } else {
+        var reader = r.body.getReader(); var dec = new TextDecoder(); var rest = "";
+        while (true){
+          var c = await reader.read(); if (c.done) break;
+          rest += dec.decode(c.value, {stream:true});
+          var zeilen = rest.split("\n"); rest = zeilen.pop();
+          for (var i = 0; i < zeilen.length; i++){
+            if (zeilen[i].indexOf("data:") !== 0) continue;
+            try {
+              var ev = JSON.parse(zeilen[i].slice(5).trim());
+              if (ev.delta){
+                if (!antwortEl){ tipp.classList.remove("an"); antwortEl = bubble("assistant", ""); }
+                antwortText += ev.delta; antwortEl.innerHTML = kiMd(markerWeg(antwortText));
+                verlauf.scrollTop = verlauf.scrollHeight;
+              }
+            } catch(e){}
+          }
+        }
+      }
+    } catch(e){
+      tipp.classList.remove("an");
+      if (!(opts && opts.stillBeiFehler)) bubble("assistant", "Verbindungsproblem — bitte gleich noch einmal. Zur Not erreichst du uns immer unter info@lechcode.de.");
+    }
+    tipp.classList.remove("an");
+    if (antwortText){ messages.push({role:"assistant", content: markerWeg(antwortText)}); chatSpeichern(); }
+    return antwortText;
+  }
+
+  async function senden(){
+    if (beschaeftigt) return;
+    var text = eingabe.value.trim();
+    if (angehaengteDatei){ await dateiSenden(text); return; } // Datei angehängt → Upload-Weg
+    if (!text) return;
+    beschaeftigt = true; sendBtn.disabled = true;
+    // Eine noch offene (evtl. VERALTETE) Beauftragen-Box schließen: das Gespräch geht
+    // weiter, ein neuer Marker erzeugt gleich eine frische, passende Zusammenfassung.
+    beauftragenBox.classList.remove("an");
+    eingabe.value = ""; eingabe.style.height = "auto";
+    messages.push({role:"user", content:text});
+    bubble("user", text);
+    var raw = await streamAntwort();
+    beschaeftigt = false; sendBtn.disabled = false;
+    if (raw && raw.indexOf(AEND_MARKER) !== -1 && !beauftragenBox.classList.contains("an")) zusammenfassen();
+  }
+
+  // — Sprachnachricht —
+  async function transkribieren(blob){
+    var b64 = await lcBlobB64(blob);
+    var r = await api("/transcribe", {method:"POST", headers:{"content-type":"application/json"}, body: JSON.stringify({audio_b64:b64, mime:blob.type})});
+    var j = await r.json();
+    if (!j.ok) throw new Error(j.meldung || "");
+    return j.text;
+  }
+  var aufnahmeLaeuft = false; // synchroner Guard: verhindert zwei parallele Aufnahmen bei Doppelklick, bevor getUserMedia (Berechtigungs-Dialog) auflöst
+  if (lcVoiceUnterstuetzt()){
+    micBtn.addEventListener("click", function(){
+      if (beschaeftigt || aufnahmeLaeuft) return;
+      aufnahmeLaeuft = true;
+      lcAufnahmeStarten(zeileEl, [document.getElementById("composer")],
+        async function(daten){
+          aufnahmeLaeuft = false;
+          beschaeftigt = true; sendBtn.disabled = true;
+          var vb = lcVoiceBubble(verlauf, "du", daten);
+          try {
+            var text = await transkribieren(daten.blob);
+            vb.setText(text);
+            if (angehaengteDatei){
+              // Bild + gesprochene Anweisung gehören zusammen → als EIN Upload mit Anweisung senden
+              // (sonst ginge nur die Sprachnachricht raus und das Bild bliebe hängen).
+              // ohneCaption: das Transkript steht schon an der Voice-Bubble — nicht doppelt zeigen.
+              beschaeftigt = false; sendBtn.disabled = false;
+              await dateiSenden(text, {ohneCaption:true});
+              return;
+            }
+            beauftragenBox.classList.remove("an"); // evtl. veraltete Box schließen (wie im Text-Pfad)
+            messages.push({role:"user", content:text});
+            var raw = await streamAntwort();
+            // beschaeftigt VOR dem Marker-Check zurücksetzen — sonst kehrt zusammenfassen()
+            // sofort um (if (beschaeftigt) return) und die Beauftragen-Box erschien nie.
+            beschaeftigt = false; sendBtn.disabled = false;
+            if (raw && raw.indexOf(AEND_MARKER) !== -1 && !beauftragenBox.classList.contains("an")) zusammenfassen();
+            return;
+          } catch(e){
+            vb.setFehler(e.message || "Konnte die Sprachnachricht nicht verstehen — magst du es tippen?");
+          }
+          beschaeftigt = false; sendBtn.disabled = false;
+        },
+        function(){ aufnahmeLaeuft = false; },                       // Abbruch → Guard lösen
+        function(msg){ aufnahmeLaeuft = false; bubble("assistant", msg); }); // Fehler (z. B. Mikro-Berechtigung) → Guard lösen
+    });
+  } else {
+    micBtn.style.display = "none";
+  }
+
+  // Prüft, ob im Gespräch eine konkrete Änderung steckt → zeigt die Beauftragen-Box, sonst freundlicher Hinweis.
+  var trigBtn = document.getElementById("beauftragen-trigger");
+  var BEAUFTRAGT_TEXT = "Beauftragt! ✓ Du siehst den Fortschritt oben unter „Deine Aufträge“. Sobald es live ist, steht dort der Link.";
+  // Fürs Zusammenfassen zählt nur das Gespräch SEIT dem letzten Auftrag — sonst würde
+  // eine bereits beauftragte Änderung beim nächsten Klick gleich noch einmal beauftragt.
+  function fensterSeitLetztemAuftrag(){
+    var start = 0;
+    for (var i = 0; i < messages.length; i++){
+      if (messages[i] && messages[i].role === "assistant" && String(messages[i].content).indexOf("Beauftragt! ✓") === 0) start = i + 1;
+    }
+    return chatFenster(messages.slice(start));
+  }
+  async function zusammenfassen(){
+    if (beschaeftigt) return;
+    var fenster = fensterSeitLetztemAuftrag();
+    var hatWunsch = fenster.some(function(m){ return m.role === "user" && m.content !== OPENER_INSTR; });
+    if (!hatWunsch){
+      bubble("assistant", "Schreib mir erst kurz in den Chat, was ich ändern soll (z. B. „Öffnungszeiten im Footer auf Mo–Fr 9–18 Uhr“) — dann fasse ich es hier für dich zusammen.");
+      return;
+    }
+    beschaeftigt = true; trigBtn.disabled = true; trigBtn.textContent = "Einen Moment …";
+    try {
+      var r = await api("/dashboard-chat", {method:"POST", headers:{"content-type":"application/json"}, body: JSON.stringify({messages: fenster, finalize:true})});
+      var j = await r.json();
+      if (!j.ok){
+        // Finalize-Fehler (z. B. Zusammenfassung nicht lesbar) — NICHT als „keine Änderung“ ausgeben,
+        // sonst geht ein klarer Wunsch stumm verloren.
+        bubble("assistant", "Das Zusammenfassen hat gerade nicht geklappt — magst du gleich noch einmal auf „Änderung beauftragen“ tippen? Zur Not sind wir unter info@lechcode.de für dich da.");
+      } else {
+        var aend = (j.request && Array.isArray(j.request.aenderungen)) ? j.request.aenderungen : [];
+        if (aend.length){
+          letzterRequest = j.request;
+          var liste = aend.map(function(a){ return "• " + a.bereich + ": " + a.wunsch; });
+          document.getElementById("beauftragen-text").innerHTML = "<b>Das würde ich für dich ändern:</b><br>" +
+            liste.map(function(z){ return z.replace(/</g,"&lt;"); }).join("<br>");
+          beauftragenBox.classList.add("an");
+          verlauf.scrollTop = verlauf.scrollHeight;
+        } else {
+          bubble("assistant", "Ich hab gerade keine konkrete Änderung erkannt — beschreib mir kurz, was genau ich ändern soll (z. B. „Öffnungszeiten im Footer auf Mo–Fr 9–18 Uhr“), dann nehme ich es für dich auf.");
+        }
+      }
+    } catch(e){
+      bubble("assistant", "Das hat gerade nicht geklappt — magst du es gleich noch einmal versuchen?");
+    }
+    beschaeftigt = false; trigBtn.disabled = false; trigBtn.textContent = "Änderung beauftragen ✓";
+  }
+  trigBtn.addEventListener("click", zusammenfassen);
+
+  document.getElementById("chat-senden").addEventListener("click", senden);
+  eingabe.addEventListener("keydown", function(e){ if (e.key === "Enter" && !e.shiftKey){ e.preventDefault(); senden(); } });
+  eingabe.addEventListener("input", function(){ this.style.height = "auto"; this.style.height = Math.min(this.scrollHeight, 120) + "px"; }); // 120 = CSS max-height (sonst springt es)
+  // Placeholder responsiv: mobil kurz (passt ohne Abschneiden), Desktop mit vollem Hinweis
+  function placeholderAnpassen(){ eingabe.setAttribute("placeholder", window.innerWidth < 560 ? "Schreib oder sprich …" : "Schreib, sprich oder häng was an …"); }
+  placeholderAnpassen(); window.addEventListener("resize", placeholderAnpassen);
+  document.getElementById("beauftragen-abbruch").addEventListener("click", function(){ beauftragenBox.classList.remove("an"); eingabe.focus(); });
+
+  document.getElementById("beauftragen-btn").addEventListener("click", async function(){
+    if (!letzterRequest) return;
+    var knopf = this; knopf.disabled = true;
+    try {
+      var r = await api("/job", {method:"POST", headers:{"content-type":"application/json"},
+        body: JSON.stringify({type:"change-request", payload:{
+          wunsch_oton: letzterRequest.wunsch_oton || "",
+          aenderungen: letzterRequest.aenderungen || [],
+          kategorie: letzterRequest.kategorie || "inhalt",
+          bilder: [],
+          transcript: messages.slice(-30)
+        }})});
+      var j = await r.json();
+      if (!j.ok) throw new Error(j.meldung || "");
+      beauftragenBox.classList.remove("an");
+      bubble("assistant", BEAUFTRAGT_TEXT);
+      // Verlauf BEHALTEN (vorher wurde er hier gelöscht → nach einem Reload war der
+      // ganze Chat weg). Die Bestätigung wandert mit in den Verlauf und dient zugleich
+      // als Schnitt-Marker fürs nächste „Änderung beauftragen".
+      messages.push({role:"assistant", content: BEAUFTRAGT_TEXT});
+      letzterRequest = null; chatSpeichern();
+      statusLaden(false);
+      window.scrollTo({top:0, behavior:"smooth"});
+    } catch(e){
+      bubble("assistant", (e && e.message) ? e.message : "Das Beauftragen hat nicht geklappt — bitte noch einmal versuchen.");
+    }
+    // Immer re-enablen (auch nach Erfolg) — sonst bleibt der Knopf ausgegraut und eine
+    // ZWEITE Beauftragung in derselben Sitzung wäre unmöglich (er ist ein statisches Element).
+    knopf.disabled = false;
+  });
+
+  // — Datei im Chat anhängen (Klick, Drag-Drop, Paste) → beim Senden hochladen —
+  var anhangEl = document.getElementById("chat-anhang");
+  var attachBtn = document.getElementById("chat-attach");
+  var chatDatei = document.getElementById("chat-datei");
+  var chatDrop = verlauf.closest(".karte") || zeileEl;
+
+  function icZuTyp(name){
+    var e = (name.split(".").pop() || "").toLowerCase();
+    if (["pdf"].indexOf(e) > -1) return "📕";
+    if (["doc","docx","rtf","txt","pages"].indexOf(e) > -1) return "📝";
+    if (["xls","xlsx","csv","numbers"].indexOf(e) > -1) return "📊";
+    if (["ppt","pptx","key"].indexOf(e) > -1) return "📈";
+    return "📄";
+  }
+  function groesse(bytes){
+    if (bytes < 1024*1024) return Math.max(1, Math.round(bytes/1024)) + " KB";
+    return (bytes/1024/1024).toFixed(1) + " MB";
+  }
+  function anhangSetzen(f){
+    if (!f) return;
+    if (f.size > 12 * 1024 * 1024){ bubble("assistant", "Die Datei ist größer als 12 MB — magst du eine kleinere Version anhängen?"); return; }
+    angehaengteDatei = f;
+    anhangEl.innerHTML = "";
+    if (anhangUrl){ try { URL.revokeObjectURL(anhangUrl); } catch(e){} anhangUrl = null; } // alte Vorschau-URL freigeben (Speicher-Leak)
+    if (f.type && f.type.indexOf("image/") === 0){
+      anhangUrl = URL.createObjectURL(f);
+      var img = document.createElement("img"); img.src = anhangUrl; img.alt = ""; anhangEl.appendChild(img);
+    } else {
+      var ic = document.createElement("div"); ic.className = "ah-ic"; ic.textContent = icZuTyp(f.name); anhangEl.appendChild(ic);
+    }
+    var meta = document.createElement("div"); meta.className = "ah-meta";
+    var nm = document.createElement("span"); nm.className = "ah-name"; nm.textContent = f.name;
+    var sz = document.createElement("span"); sz.className = "ah-size"; sz.textContent = groesse(f.size);
+    meta.appendChild(nm); meta.appendChild(sz); anhangEl.appendChild(meta);
+    var x = document.createElement("button"); x.type = "button"; x.className = "ah-x"; x.setAttribute("aria-label","Anhang entfernen"); x.textContent = "✕";
+    x.addEventListener("click", anhangEntfernen); anhangEl.appendChild(x);
+    anhangEl.classList.add("an");
+    eingabe.focus();
+  }
+  function anhangEntfernen(){
+    angehaengteDatei = null; anhangEl.classList.remove("an"); anhangEl.innerHTML = ""; chatDatei.value = "";
+    if (anhangUrl){ try { URL.revokeObjectURL(anhangUrl); } catch(e){} anhangUrl = null; }
+  }
+  attachBtn.addEventListener("click", function(){ if (!beschaeftigt) chatDatei.click(); });
+  chatDatei.addEventListener("change", function(){ anhangSetzen(this.files[0]); this.value = ""; }); // value leeren → dieselbe Datei ist gleich nochmal wählbar
+  ["dragover","dragenter"].forEach(function(ev){ chatDrop.addEventListener(ev, function(e){ e.preventDefault(); zeileEl.classList.add("zieht"); }); });
+  ["dragleave","dragend","drop"].forEach(function(ev){ chatDrop.addEventListener(ev, function(e){ e.preventDefault(); zeileEl.classList.remove("zieht"); }); });
+  chatDrop.addEventListener("drop", function(e){ if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]) anhangSetzen(e.dataTransfer.files[0]); });
+  eingabe.addEventListener("paste", function(e){
+    var items = (e.clipboardData && e.clipboardData.items) || [];
+    for (var i=0;i<items.length;i++){ if (items[i].kind === "file"){ var f = items[i].getAsFile(); if (f){ e.preventDefault(); anhangSetzen(f); return; } } }
+  });
+
+  // Datei-Bubble im Verlauf (Thumbnail bei Bildern, Chip bei Dokumenten) + optionale Caption
+  function dateiBubble(f, caption){
+    var el = document.createElement("div"); el.className = "msg du datei";
+    if (f.type && f.type.indexOf("image/") === 0){
+      var img = document.createElement("img"); img.src = URL.createObjectURL(f); img.alt = f.name; el.appendChild(img);
+    } else {
+      var chip = document.createElement("div"); chip.className = "d-chip";
+      var ic = document.createElement("span"); ic.className = "d-ic"; ic.textContent = icZuTyp(f.name);
+      var nm = document.createElement("span"); nm.textContent = f.name + " · " + groesse(f.size);
+      chip.appendChild(ic); chip.appendChild(nm); el.appendChild(chip);
+    }
+    if (caption){ var cap = document.createElement("div"); cap.className = "d-cap"; cap.textContent = caption; el.appendChild(cap); }
+    verlauf.appendChild(el); verlauf.scrollTop = verlauf.scrollHeight;
+  }
+
+  // Angehängte Datei senden: Bubble zeigen → /upload (Anweisung = Caption) → Bestätigung.
+  // Das Bild wird NICHT im Verlauf-Speicher (KV) abgelegt (Bloat) — dort nur eine Text-Referenz.
+  // opts.ohneCaption: Text NICHT unter dem Bild wiederholen (Sprachnachricht+Bild —
+  // das Transkript steht schon an der Voice-Bubble; doppelt sah unschön aus).
+  async function dateiSenden(caption, opts){
+    var f = angehaengteDatei; if (!f) return;
+    beschaeftigt = true; sendBtn.disabled = true;
+    var name = f.name;
+    dateiBubble(f, (opts && opts.ohneCaption) ? "" : caption);
+    anhangEntfernen(); eingabe.value = ""; eingabe.style.height = "auto";
+    var warte = bubble("assistant", "Lädt hoch … 🌿");
+    try {
+      var b64 = await new Promise(function(res, rej){
+        var fr = new FileReader(); fr.onload = function(){ res(String(fr.result).split(",")[1]); }; fr.onerror = rej; fr.readAsDataURL(f);
+      });
+      var r = await api("/upload", {method:"POST", headers:{"content-type":"application/json"},
+        body: JSON.stringify({filename: name, content_b64: b64, anweisung: caption})});
+      var j = await r.json();
+      if (!j.ok) throw new Error(j.meldung || "");
+      var okText = caption
+        ? "Angekommen ✓ — ich kümmere mich darum. Den Fortschritt siehst du oben unter „Deine Aufträge“, dort kommt auch der Link, sobald es live ist."
+        : "Angekommen ✓ — die Datei liegt bei uns. Sag mir gern noch, was ich damit machen soll (z. B. „als großes Bild ganz oben“), dann baue ich sie ein.";
+      warte.innerHTML = kiMd(okText);
+      // Erst bei ERFOLG in den Verlauf schreiben (sonst stünde „Datei gesendet" in der
+      // Historie, obwohl der Upload scheiterte).
+      messages.push({role:"user", content:"📎 Datei gesendet: " + name + (caption ? " — " + caption : "")});
+      messages.push({role:"assistant", content: okText}); chatSpeichern();
+      statusLaden(false);
+    } catch(e){
+      warte.innerHTML = kiMd((e && e.message) ? e.message : "Der Upload hat gerade nicht geklappt — magst du es noch einmal versuchen?");
+      anhangSetzen(f); // Anhang wiederherstellen — „noch einmal versuchen" geht dann ohne Neu-Anhängen
+      if (caption){ eingabe.value = caption; try { eingabe.dispatchEvent(new Event("input")); } catch(e2){} } // Anweisung nicht verlieren
+    }
+    verlauf.scrollTop = verlauf.scrollHeight;
+    beschaeftigt = false; sendBtn.disabled = false;
+  }
+})();
+</script>
+</body>
+</html>
