@@ -1,5 +1,4 @@
-# Vorschau — bleibt aus dem Index, bis Alexander die Seite freigibt.
-# Vor dem Livegang: diese Datei auf "Allow: /" umstellen und die
-# noindex-Metatags aus allen HTML-Dateien entfernen.
 User-agent: *
-Disallow: /
+Allow: /
+
+Sitemap: https://alexanderfaubel.com/sitemap.xml
