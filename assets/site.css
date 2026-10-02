@@ -928,14 +928,6 @@ section{padding-block:var(--sec);}
 .foot nav{display:flex;flex-wrap:wrap;gap:18px 28px;}
 .foot a:hover{color:var(--ink);}
 
-/* ─── 20 · Interesse-Seite (seit 30.09. ohne Formular: Knopf zu Calendly + Eckdaten) ─ */
-.form-grid{display:grid;gap:clamp(44px,6vw,90px);}
-@media (min-width:940px){
-  .form-grid{grid-template-columns:7fr 5fr;column-gap:clamp(48px,7vw,120px);align-items:start;}
-  .form-aside{margin-top:clamp(44px,5vw,76px);}
-}
-.form-aside .eyebrow + .facts{margin-top:18px;}
-
 /* ─── 21 · Rechtstexte ─────────────────────────────────────────────────── */
 .legal{padding-top:calc(var(--head) + clamp(60px,9vw,130px));}
 .legal h2{font-size:var(--t-h3);margin-top:clamp(40px,4vw,64px);max-width:40ch;}
