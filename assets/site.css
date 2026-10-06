@@ -869,15 +869,6 @@ section{padding-block:var(--sec);}
 .fit--no .ico{stroke:var(--muted);}
 .fit-cta{margin-top:clamp(40px,4.5vw,64px);}
 
-/* ─── 16b · Das Kennenlerngespräch (neu in V2) ─────────────────────────── */
-.select .lead{color:var(--ink);}
-.select-p{margin-top:clamp(18px,2vw,26px);color:var(--muted);line-height:1.6;max-width:52ch;}
-.select-core{
-  margin-top:clamp(30px,3.4vw,44px);padding-top:clamp(20px,2.2vw,28px);
-  border-top:1px solid var(--gold);
-  font-size:var(--t-h3);letter-spacing:-.02em;line-height:1.35;max-width:30ch;
-}
-
 /* ─── 17 · Fragen — Accordion ohne Schmuck ─────────────────────────────── */
 .faq .wrap{max-width:960px;}
 .faq-list{margin-top:clamp(44px,5vw,72px);border-top:1px solid var(--line);}
