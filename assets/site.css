@@ -460,6 +460,15 @@ section{padding-block:var(--sec);}
   padding-block:clamp(12px,1.4vw,18px);border-top:1px solid var(--line);
 }
 .work-questions p:last-child{border-bottom:1px solid var(--line);}
+/* Eyecatcher-Zitat (Alexander, 06.10.): gross, eigene Zeile, feiner
+   Goldstrich davor — auf Papier, damit es sich von der dunklen Buehne
+   darunter absetzt. */
+.work-quote{
+  margin-top:clamp(56px,7vw,110px);
+  padding-left:clamp(18px,2.2vw,32px);border-left:2px solid var(--gold);
+  font-size:var(--t-big);font-weight:500;letter-spacing:-.03em;line-height:1.15;
+  color:var(--ink);max-width:28ch;text-wrap:balance;
+}
 /* Das Zitat als dunkle Buehne ueber die volle Breite (Michi, 28.09.):
    B3-1 (Jurte innen) liegt im Hintergrund — dieselbe Machart wie oben im
    Spiegel (.mirror-bg: Deckkraft, Verlauf von unten, Handy 4:3 oben). */
