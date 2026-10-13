@@ -366,7 +366,7 @@
       <div class="chat-eingabe" id="chat-eingabe-zeile">
         <div class="chat-anhang" id="chat-anhang" aria-live="polite"></div>
         <div class="composer" id="composer">
-          <input type="file" id="chat-datei" accept="image/png,image/jpeg,image/webp,image/gif,image/heic,.pdf,.doc,.docx,.txt,.rtf,.csv,.ppt,.pptx,.xls,.xlsx,.heic" style="display:none">
+          <input type="file" id="chat-datei" accept="image/png,image/jpeg,image/webp,image/gif,image/heic,video/*,.pdf,.doc,.docx,.txt,.rtf,.csv,.ppt,.pptx,.xls,.xlsx,.heic" style="display:none">
           <button class="lc-attach" id="chat-attach" type="button" aria-label="Datei anhängen" title="Datei anhängen (Bild, PDF, Dokument)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
           </button>
@@ -395,6 +395,7 @@
       <details><summary>Was kostet eine Änderung?</summary><p>Nichts. Änderungen sind unbegrenzt inklusive, es gibt kein Abo und keine monatlichen Kosten. Schreib so oft du magst.</p></details>
       <details><summary>Wie schnell ist meine Änderung online?</summary><p>Meist innerhalb weniger Minuten bis Stunden. Du siehst den Fortschritt oben unter „Deine Aufträge“ — und bekommst dort auch den Link, sobald es live ist.</p></details>
       <details><summary>Kann ich etwas kaputt machen?</summary><p>Nein. Jede Änderung durchläuft automatisch unsere Qualitätsprüfung, und wir können jederzeit alles wiederherstellen. Trau dich!</p></details>
+      <details><summary>Wie schicke ich euch ein Video?</summary><p>Videos sind für den Chat zu groß. Lade sie bei Google Drive oder Dropbox hoch, stell die Freigabe auf „Jeder mit dem Link“ und schick den Link hier in den Chat, mit einem Satz dazu, wo das Video hin soll. Wir laden es herunter, verkleinern es fürs Web und bauen es ein. (WeTransfer geht auch, dann bauen wir es von Hand ein — das dauert etwas länger.)</p></details>
       <details><summary>Was, wenn ich etwas Größeres will?</summary><p>Schreib es einfach in den Chat — bei größeren Wünschen (neue Seiten, Umbau, Shop) melden wir uns persönlich und besprechen alles mit dir.</p></details>
       <details><summary>Mein Link ist weg — was jetzt?</summary><p>Kurze Mail an <a href="mailto:info@lechcode.de">info@lechcode.de</a>, und du bekommst sofort einen neuen. Der alte wird dann ungültig.</p></details>
     </section>
@@ -1538,7 +1539,13 @@
   }
   function anhangSetzen(f){
     if (!f) return;
-    if (f.size > 12 * 1024 * 1024){ bubble("assistant", "Die Datei ist größer als 12 MB — magst du eine kleinere Version anhängen?"); return; }
+    // Videos sind fast immer zu groß für den Chat → freundlich auf den Link-Weg lenken
+    // (Google Drive/Dropbox-Links holt unsere Automatik selbst ab und baut sie ein).
+    if ((f.type && f.type.indexOf("video/") === 0) || /\.(mp4|mov|m4v|webm|avi|mkv)$/i.test(f.name)){
+      bubble("assistant", "Videos sind für den Chat meist zu groß — so geht's ganz einfach: Lade das Video bei **Google Drive** oder **Dropbox** hoch, stell die Freigabe auf „Jeder mit dem Link“ und schick mir hier den Link. Schreib kurz dazu, wo es hin soll (oder welches Video es ersetzt). Den Rest erledigen wir: herunterladen, fürs Web verkleinern, einbauen. 🎬");
+      return;
+    }
+    if (f.size > 12 * 1024 * 1024){ bubble("assistant", "Die Datei ist größer als 12 MB — magst du eine kleinere Version anhängen? Bei großen Dateien kannst du mir auch einfach einen Google-Drive- oder Dropbox-Link schicken."); return; }
     angehaengteDatei = f;
     anhangEl.innerHTML = "";
     if (anhangUrl){ try { URL.revokeObjectURL(anhangUrl); } catch(e){} anhangUrl = null; } // alte Vorschau-URL freigeben (Speicher-Leak)
