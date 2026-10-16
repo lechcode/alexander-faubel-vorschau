@@ -727,7 +727,7 @@ section{padding-block:var(--sec);}
    kalibriert (Variante 2 von 3). */
 .voice-frame.is-playing video{filter:saturate(.72) sepia(.2) contrast(.9) brightness(1.04);}
 .voice figcaption{margin-top:clamp(14px,1.6vw,20px);}
-.voice .name{font-size:var(--t-meta);letter-spacing:.02em;color:var(--muted);}
+.voice .name{max-width:30ch;font-size:var(--t-meta);letter-spacing:.02em;color:var(--muted);}
 .voice .said{margin-top:8px;font-size:var(--t-body);line-height:1.5;letter-spacing:-.01em;max-width:26ch;}
 
 /* ─── 14 · Alexander & Dorje ───────────────────────────────────────────── */
@@ -738,6 +738,7 @@ section{padding-block:var(--sec);}
 .us-media{margin:0;}
 .us-media img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;}
 .us-intro p{font-size:var(--t-lead);line-height:1.6;max-width:48ch;}
+.us-pull{margin-top:clamp(18px,2vw,28px);padding-left:clamp(16px,2vw,26px);border-left:1px solid var(--gold);font-size:var(--t-lead);line-height:1.6;max-width:48ch;color:var(--muted);}
 .us-intro p+p{margin-top:clamp(18px,2vw,28px);color:var(--muted);}
 @media (min-width:900px){
   .us-top{grid-template-columns:56fr 44fr;column-gap:clamp(40px,6vw,100px);align-items:center;}
