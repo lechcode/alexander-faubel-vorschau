@@ -531,7 +531,7 @@
   function sessionAbgelaufen(){
     if (sessionBeendet) return;
     sessionBeendet = true;
-    try { if (proaktivInterval) clearInterval(proaktivInterval); } catch(e){}
+    try { clearTimeout(proaktivInterval); clearTimeout(statusTimer); } catch(e){}
     token = "";
     zeigeKeinZugang();
     var st = document.getElementById("login-status");
@@ -611,7 +611,7 @@
         app.style.display = ""; // Netzproblem: Bereich trotzdem zeigen …
         var jb = document.getElementById("jobs"), leer = jb && jb.querySelector(".leer");
         if (leer) leer.textContent = "Einen Moment — deine Aufträge werden geladen …";
-        if (schnellVersuche < 3){ schnellVersuche++; setTimeout(function(){ statusLaden(true); }, 3000); } // … schnell erneut (max 3×), danach greift der 30-s-Poll
+        if (schnellVersuche < 3){ schnellVersuche++; setTimeout(function(){ statusLaden(true); }, 3000); } // … schnell erneut (max 3×), danach greift der reguläre Poll
         else if (leer) leer.textContent = "Die Verbindung klemmt gerade — ich versuche es automatisch weiter. Deine Aufträge gehen dabei nicht verloren. 🌿";
       }
     }
@@ -746,7 +746,9 @@
       else if (schrittIndex(job.status) < 0) probleme.push(job); // failed/rejected → „wir melden uns"
       else aktive.push(job); // in Arbeit (pending/claimed/running/qa/approved)
     });
-    hatAktiveJobs = aktive.length > 0; // → Poll-Tempo (schnell, solange etwas läuft)
+    // → Poll-Tempo: schnell nur bei FRISCHEN Aufträgen — ein hängender Job soll nicht
+    //   tagelang im Schnelltakt pollen (jede Abfrage kostet KV-Lesezugriffe im Worker).
+    hatAktiveJobs = aktive.some(function(x){ var a = jobAlterMin(x); return a !== null && a < LAENGER_MIN; });
 
     // „Deine Seite ansehen“-Links (Top-Button + Klick-Overlay) auf die LETZTE Änderung
     //   cache-busten, damit ein Klick direkt nach einer Änderung die frische Version zeigt.
@@ -1023,16 +1025,35 @@
     else { fertig(); }
   }
 
-  statusLaden(true);
-  // Adaptiver Poll: solange ein FRISCHER Auftrag läuft, alle 7 s (fast Echtzeit auf „live");
-  // sonst alle 30 s. Nach Session-Ende (401/fremder Slug) hört das Pollen auf.
-  (function planePoll(){
-    setTimeout(async function(){
-      if (sessionBeendet) return;
+  // — Sparsames Pollen —
+  // Jede Abfrage kostet im Cloudflare-Worker KV-Lesezugriffe (Free-Tier: 100.000/Tag für
+  // ALLE Kundenbereiche zusammen). Ein vergessener offener Tab hat früher ~5.800 Abfragen
+  // am Tag gemacht. Darum:
+  //   • Tab im Hintergrund → gar nicht pollen; beim Zurückkommen sofort einmal nachholen.
+  //   • sichtbar → Status + Chat alle 60 s; läuft ein frischer Auftrag, Status alle 10 s.
+  //   • 15 Min. ohne Maus/Tastatur/Touch → nur noch alle 5 Min.; erste Bewegung weckt auf.
+  var POLL_SCHNELL_MS = 10000, POLL_NORMAL_MS = 60000, POLL_LEERLAUF_MS = 300000, LEERLAUF_NACH_MS = 15 * 60000;
+  var letzteAktivitaet = Date.now(), statusTimer = null;
+  function tabVersteckt(){ return document.visibilityState === "hidden"; }
+  function imLeerlauf(){ return Date.now() - letzteAktivitaet > LEERLAUF_NACH_MS; }
+  function pollTakt(schnellErlaubt){
+    if (imLeerlauf()) return POLL_LEERLAUF_MS;
+    return (schnellErlaubt && hatAktiveJobs) ? POLL_SCHNELL_MS : POLL_NORMAL_MS;
+  }
+  // Plant die nächste Status-Abfrage neu (ersetzt eine schon geplante). Im Hintergrund wird
+  // nichts geplant — der visibilitychange-Handler weiter unten weckt die Schleife wieder auf.
+  function planePoll(){
+    clearTimeout(statusTimer);
+    if (sessionBeendet || tabVersteckt()) return;
+    statusTimer = setTimeout(async function(){
+      if (sessionBeendet || tabVersteckt()) return;
       try { await statusLaden(false); } catch(e){}
-      if (!sessionBeendet) planePoll();
-    }, hatAktiveJobs ? 7000 : 30000);
-  })();
+      planePoll();
+    }, pollTakt(true));
+  }
+
+  statusLaden(true);
+  planePoll();
 
   // — Chat —
   var messages = [];
@@ -1250,6 +1271,7 @@
       bubble(m.role === "user" ? "user" : "assistant", m.content);
     });
   }
+  var chatPollBereit = false; // erst nach dem ersten Verlauf-Laden pollen
   // Verlauf laden: Server ist die Wahrheit (geräteübergreifend, wir können reinschreiben).
   // localStorage nur als Offline-Fallback; ein reiner Browser-Verlauf wird einmalig migriert.
   (async function ladeVerlauf(){
@@ -1269,8 +1291,35 @@
         openerZeigen();
       }
     }
-    if (!sessionBeendet) proaktivInterval = setInterval(proaktivPoll, 30000); // proaktive Nachrichten (z. B. „Änderung ist live") abholen
+    chatPollBereit = true;
+    planeChatPoll(); // proaktive Nachrichten (z. B. „Änderung ist live") abholen
   })();
+
+  // Chat-Poll: gleicher Takt wie der Status, aber nie im Schnelltakt; im Hintergrund pausiert.
+  function planeChatPoll(){
+    clearTimeout(proaktivInterval);
+    if (sessionBeendet || tabVersteckt() || !chatPollBereit) return;
+    proaktivInterval = setTimeout(async function(){
+      if (sessionBeendet || tabVersteckt()) return;
+      try { await proaktivPoll(); } catch(e){}
+      planeChatPoll();
+    }, pollTakt(false));
+  }
+
+  // Aufwachen: Tab wieder sichtbar oder erste Bewegung nach dem Leerlauf → sofort einmal
+  // nachholen und beide Schleifen im normalen Takt neu planen.
+  function aufwachen(){
+    if (sessionBeendet || tabVersteckt()) return;
+    letzteAktivitaet = Date.now();
+    statusLaden(false); planePoll();
+    if (chatPollBereit){ proaktivPoll(); planeChatPoll(); }
+  }
+  document.addEventListener("visibilitychange", aufwachen);
+  ["pointerdown", "pointermove", "keydown", "scroll", "touchstart"].forEach(function(ev){
+    window.addEventListener(ev, function(){
+      if (imLeerlauf()) aufwachen(); else letzteAktivitaet = Date.now();
+    }, { passive: true });
+  });
 
   // Neue proaktive Berater-Nachrichten vom Server holen und einblenden (id-dedupliziert).
   async function proaktivPoll(){
